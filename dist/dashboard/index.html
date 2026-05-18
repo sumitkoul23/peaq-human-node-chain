@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PHN Node Console</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: rgba(10, 20, 38, 0.82);
+      --line: rgba(132, 184, 255, 0.18);
+      --text: #ecf4ff;
+      --muted: #9bb1cb;
+      --accent: #73f5d3;
+      --accent2: #7aa7ff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Inter, Segoe UI, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(115,245,211,.14), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(122,167,255,.2), transparent 32%),
+        var(--bg);
+    }
+    .wrap { max-width: 1180px; margin: 0 auto; padding: 28px; }
+    .hero {
+      display: flex; justify-content: space-between; align-items: end; gap: 20px;
+      margin-bottom: 24px;
+    }
+    h1 { margin: 0; font-size: clamp(28px, 4vw, 42px); }
+    .muted { color: var(--muted); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 20px;
+      padding: 18px;
+      backdrop-filter: blur(12px);
+    }
+    .label { font-size: 12px; text-transform: uppercase; letter-spacing: .12em; color: var(--muted); }
+    .value { font-size: 24px; margin-top: 8px; word-break: break-word; }
+    .wide { grid-column: 1 / -1; }
+    code { color: var(--accent); }
+    .status { display: inline-flex; gap: 8px; align-items: center; }
+    .dot { width: 10px; height: 10px; border-radius: 999px; background: var(--accent); box-shadow: 0 0 16px var(--accent); }
+    .contracts { display: grid; gap: 10px; margin-top: 12px; }
+    .row { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div>
+        <div class="label">Peaq Human Node</div>
+        <h1>PHN Node Console</h1>
+      </div>
+      <div class="status"><span class="dot"></span><span id="network">Connecting to peaq...</span></div>
+    </section>
+
+    <section class="grid">
+      <article class="card">
+        <div class="label">Token supply</div>
+        <div class="value" id="supply">—</div>
+      </article>
+      <article class="card">
+        <div class="label">Reward vault</div>
+        <div class="value" id="vault">—</div>
+      </article>
+      <article class="card">
+        <div class="label">Founder vesting</div>
+        <div class="value" id="vesting">—</div>
+      </article>
+      <article class="card">
+        <div class="label">Owner wallet PHN</div>
+        <div class="value" id="owner">—</div>
+      </article>
+
+      <article class="card wide">
+        <div class="label">Live contracts</div>
+        <div class="contracts">
+          <div class="row"><span>Token</span><code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code></div>
+          <div class="row"><span>Registry</span><code>0x94F7a1C1Bb5Bab6C5Ba6E2371789828Ef94E6ea9</code></div>
+          <div class="row"><span>Reward vault</span><code>0x38F783620A850AC99677fE083DFd5dF86682885f</code></div>
+          <div class="row"><span>Founder vesting</span><code>0xaBe58dD0199118c3705AfAc45B62873D1Fc4fB1e</code></div>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <script type="module">
+    import { JsonRpcProvider, Contract, formatUnits } from "https://cdn.jsdelivr.net/npm/ethers@6.13.5/+esm";
+    const provider = new JsonRpcProvider("https://quicknode1.peaq.xyz");
+    const token = new Contract(
+      "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B",
+      [
+        "function totalSupply() view returns (uint256)",
+        "function balanceOf(address) view returns (uint256)"
+      ],
+      provider
+    );
+    const addr = {
+      vault: "0x38F783620A850AC99677fE083DFd5dF86682885f",
+      vesting: "0xaBe58dD0199118c3705AfAc45B62873D1Fc4fB1e",
+      owner: "0x7fb31d8b2b5cbed4d6e02768664a299d303ea4c2"
+    };
+    const fmt = (v) => Number(formatUnits(v, 18)).toLocaleString(undefined, { maximumFractionDigits: 2 });
+    async function load() {
+      const [network, supply, vault, vesting, owner] = await Promise.all([
+        provider.getNetwork(),
+        token.totalSupply(),
+        token.balanceOf(addr.vault),
+        token.balanceOf(addr.vesting),
+        token.balanceOf(addr.owner)
+      ]);
+      document.querySelector("#network").textContent = `peaq chain ${network.chainId}`;
+      document.querySelector("#supply").textContent = `${fmt(supply)} PHN`;
+      document.querySelector("#vault").textContent = `${fmt(vault)} PHN`;
+      document.querySelector("#vesting").textContent = `${fmt(vesting)} PHN`;
+      document.querySelector("#owner").textContent = `${fmt(owner)} PHN`;
+    }
+    load().catch((err) => {
+      document.querySelector("#network").textContent = "RPC unavailable";
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#06101C">
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView android:text="PHN Beacon" android:textColor="#EEF5FF" android:textSize="30sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="Run a verified node. Earn with every valid heartbeat." android:textColor="#9EB0C7" android:textSize="14sp" android:layout_marginTop="6dp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:id="@+id/nodeStatus" android:text="Node offline" android:textColor="#FFD27A" android:textSize="20sp" android:layout_marginTop="26dp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <ProgressBar android:id="@+id/uptimeBar" style="?android:attr/progressBarStyleHorizontal" android:max="100" android:progress="0" android:layout_marginTop="14dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <TextView android:id="@+id/uptimeText" android:text="Uptime score: 0%" android:textColor="#9EB0C7" android:textSize="15sp" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <TextView android:id="@+id/rewardBalance" android:text="Rewards: 0 PHN" android:textColor="#73F5D3" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="24dp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:id="@+id/lastHeartbeat" android:text="Last heartbeat: never" android:textColor="#9EB0C7" android:textSize="15sp" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+        <Button android:id="@+id/connectWalletButton" android:text="Connect wallet" android:layout_marginTop="24dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <Button android:id="@+id/registerButton" android:text="Verify this device" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <Button android:id="@+id/startNodeButton" android:text="Start node" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <Button android:id="@+id/heartbeatButton" android:text="Send heartbeat" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+        <Button android:id="@+id/claimButton" android:text="Claim rewards" android:layout_marginTop="12dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+
+        <TextView android:text="Milestones" android:textColor="#EEF5FF" android:textSize="20sp" android:textStyle="bold" android:layout_marginTop="28dp" android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:id="@+id/milestones" android:text="• Device identity\n• Human attestation\n• 10 valid heartbeats\n• 24h uptime streak" android:textColor="#9EB0C7" android:textSize="15sp" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>

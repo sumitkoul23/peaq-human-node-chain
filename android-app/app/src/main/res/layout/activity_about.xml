@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F7FBFF">
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView android:text="About PHN" android:textColor="#0C1930" android:textSize="28sp" android:textStyle="bold" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="Verified machines earn. Humans remain accountable." android:textColor="#5F7188" android:textSize="16sp" android:layout_marginTop="8dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="Economy" android:textColor="#0C1930" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="24dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="• Prelaunch: 0.2 PEAQ / PHN\n• Public price: 0.6 PEAQ / PHN\n• Fee: 1%\n• Burn: 25% of fee\n• Owner treasury: 75% of fee\n• Holder rewards + staking modules" android:textColor="#5F7188" android:textSize="16sp" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+        <TextView android:text="Liquidity" android:textColor="#0C1930" android:textSize="22sp" android:textStyle="bold" android:layout_marginTop="24dp" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+        <TextView android:text="PHN/PEAQ first, then stablecoin pairs, then BNB routes after cross-chain expansion." android:textColor="#5F7188" android:textSize="16sp" android:layout_marginTop="8dp" android:layout_width="match_parent" android:layout_height="wrap_content"/>
+    </LinearLayout>
+</ScrollView>

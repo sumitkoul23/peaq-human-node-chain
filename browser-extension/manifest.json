@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "PHN Community Node",
+  "version": "0.1.0",
+  "description": "Run a lightweight PHN community node from your browser.",
+  "permissions": ["storage", "alarms"],
+  "action": {
+    "default_title": "PHN Community Node",
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "service-worker.js"
+  }
+}

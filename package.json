@@ -1,0 +1,23 @@
+{
+    "name":  "peaq-human-node-chain",
+    "version":  "1.0.0",
+    "private":  true,
+    "type":  "commonjs",
+    "scripts":  {
+                    "compile":  "hardhat compile",
+                    "test":  "hardhat test",
+                    "deploy:bsc-testnet":  "hardhat run scripts/deploy.js --network bscTestnet",
+                    "deploy:bsc":  "hardhat run scripts/deploy.js --network bsc",
+                    "deploy:peaq":  "hardhat run scripts/deploy.js --network peaq",
+                    "phn-node":  "node cli/phn-node.js"
+                },
+    "devDependencies":  {
+                            "@nomicfoundation/hardhat-toolbox":  "^5.0.0",
+                            "hardhat":  "2.22.3"
+                        },
+    "dependencies":  {
+                         "@openzeppelin/contracts":  "^5.0.2",
+                         "dotenv":  "^16.4.5",
+                         "fp-ts":  "^2.16.11"
+                     }
+}

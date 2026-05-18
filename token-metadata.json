@@ -1,0 +1,8 @@
+{
+  "name": "Peaq Human Node",
+  "symbol": "PHN",
+  "decimals": 18,
+  "chainId": 3338,
+  "address": "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B",
+  "logoURI": "./assets/phn-logo-light.png"
+}
