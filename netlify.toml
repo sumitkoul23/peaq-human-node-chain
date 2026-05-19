@@ -1,2 +1,95 @@
 [build]
   publish = "dist"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.bscscan.com https://*.binance.org https://bsc-dataseed.binance.org https://api.coingecko.com https://peaq.api.onfinality.io wss://*.walletconnect.org https://plausible.io; img-src 'self' data: https:; frame-src https://plausible.io;"
+
+[[redirects]]
+  from = "/staking"
+  to = "/staking.html"
+  status = 200
+
+[[redirects]]
+  from = "/exchange"
+  to = "/exchange.html"
+  status = 200
+
+[[redirects]]
+  from = "/vesting"
+  to = "/vesting.html"
+  status = 200
+
+[[redirects]]
+  from = "/activate"
+  to = "/activate-node.html"
+  status = 200
+
+[[redirects]]
+  from = "/contract"
+  to = "https://bscscan.com/token/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B"
+  status = 302
+
+[[redirects]]
+  from = "/trade"
+  to = "https://pancakeswap.finance/swap?outputCurrency=0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B"
+  status = 302
+
+[[redirects]]
+  from = "/telegram"
+  to = "https://t.me/PeaqHumanNode"
+  status = 302
+
+[[redirects]]
+  from = "/twitter"
+  to = "https://x.com/PeaqHumanNode"
+  status = 302
+
+[[redirects]]
+  from = "/buy"
+  to = "/buy.html"
+  status = 200
+
+[[redirects]]
+  from = "/verify"
+  to = "/verify.html"
+  status = 200
+
+[[redirects]]
+  from = "/support"
+  to = "/support.html"
+  status = 200
+
+[[redirects]]
+  from = "/help"
+  to = "/support.html"
+  status = 200
+
+[[redirects]]
+  from = "/discord"
+  to = "https://discord.gg/peaqhumannode"
+  status = 302
+
+[[redirects]]
+  from = "/youtube"
+  to = "https://youtube.com/@PeaqHumanNode"
+  status = 302
+
+[[redirects]]
+  from = "/instagram"
+  to = "https://instagram.com/peaqhumannode"
+  status = 302
+
+[[redirects]]
+  from = "/medium"
+  to = "https://medium.com/@PeaqHumanNode"
+  status = 302
+
+# Netlify Forms (support ticket)
+[build.processing]
+  skip_processing = false

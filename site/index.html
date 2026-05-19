@@ -32,10 +32,10 @@
       display:flex; justify-content:space-between; align-items:center; padding:22px 0;
       border-bottom:1px solid var(--line);
     }
-    .brand { display:flex; align-items:center; gap:12px; }
-    .brand img { width:42px; height:42px; border-radius:50%; }
+    .brand { display:flex; align-items:center; gap:14px; }
+    .brand img { width:220px; max-width:38vw; height:auto; }
     nav a { text-decoration:none; color:var(--muted); margin-left:18px; }
-    .hero { display:grid; grid-template-columns:1.05fr .95fr; gap:32px; align-items:center; min-height:78vh; }
+    .hero { display:grid; grid-template-columns:.9fr 1.1fr; gap:32px; align-items:center; min-height:78vh; }
     .eyebrow { color:var(--teal); letter-spacing:.14em; text-transform:uppercase; font-size:12px; }
     h1 { font-size:clamp(42px,6vw,72px); line-height:.94; margin:14px 0 18px; }
     h2 { font-size:clamp(28px,4vw,40px); margin:0 0 18px; }
@@ -44,9 +44,14 @@
     .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
     .btn { border:0; cursor:pointer; text-decoration:none; background:var(--blue); color:#fff; padding:13px 18px; border-radius:999px; font-weight:700; }
     .btn.alt { background:transparent; color:var(--text); border:1px solid var(--line); }
-    .panel, .card { background:var(--panel); border:1px solid var(--line); border-radius:28px; padding:22px; box-shadow:0 18px 45px rgba(39,74,115,.10); }
-    .hero-panel { display:grid; gap:16px; }
-    .hero-panel img { width:min(360px,100%); margin:0 auto; }
+    .panel, .card { background:var(--panel); border:1px solid var(--line); border-radius:28px; padding:22px; box-shadow:0 18px 45px rgba(39,74,115,.10); backdrop-filter:blur(18px); }
+    .hero-panel { display:grid; gap:16px; padding:0; overflow:hidden; min-height:520px; position:relative; }
+    .hero-art { width:100%; height:100%; object-fit:cover; display:block; }
+    .hero-overlay {
+      position:absolute; inset:auto 18px 18px 18px; display:grid; gap:12px;
+      background:rgba(255,255,255,.76); border:1px solid rgba(255,255,255,.8);
+      border-radius:24px; padding:16px; box-shadow:0 24px 60px rgba(53,109,255,.18);
+    }
     .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
     .metric small { color:var(--teal); text-transform:uppercase; letter-spacing:.12em; font-size:11px; }
     .metric strong { display:block; margin-top:8px; font-size:24px; }
@@ -66,23 +71,46 @@
     .faq summary { cursor:pointer; font-weight:700; }
     code { color:var(--teal); word-break:break-all; }
     footer { padding:56px 0 70px; color:var(--muted); border-top:1px solid var(--line); margin-top:18px; }
+    .feature-band { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+    .glow { position:relative; overflow:hidden; }
+    .glow::after { content:""; position:absolute; inset:auto -20% -40% auto; width:180px; height:180px; background:radial-gradient(circle,var(--teal),transparent 70%); opacity:.16; }
+    .showcase { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:stretch; }
+    .showcase-art { padding:0; overflow:hidden; min-height:380px; }
+    .showcase-art img { width:100%; height:100%; object-fit:cover; display:block; }
+    .glass-stat {
+      display:grid; gap:8px; align-content:center;
+      background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(244,249,255,.72));
+    }
+    .glass-stat strong { font-size:34px; }
+    .floaty { animation:floaty 7s ease-in-out infinite; }
+    .floaty.delay { animation-delay:1.4s; }
+    @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .footer-grid { display:grid; grid-template-columns:1.2fr repeat(3,1fr); gap:22px; }
+    .footer-grid a { display:block; text-decoration:none; color:var(--muted); margin-top:10px; }
     @media(max-width:900px){
       .hero { grid-template-columns:1fr; min-height:auto; }
       nav { flex-direction:column; align-items:flex-start; gap:10px; }
       nav a { margin-left:0; margin-right:14px; }
       .metrics { grid-template-columns:1fr; }
+      .showcase { grid-template-columns:1fr; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <nav>
-      <div class="brand"><img src="../assets/phn-logo-light.png" alt="PHN logo"><strong>PHN</strong></div>
+      <div class="brand"><img src="../assets/phn-wordmark.png" alt="Peaq Human Node logo"></div>
       <div>
         <a href="#network">Network</a>
         <a href="#earn">Earn</a>
+        <a href="activate-node.html">Activate node</a>
         <a href="#build">Build</a>
         <a href="#tokenomics">Tokenomics</a>
+        <a href="staking.html">Staking</a>
+        <a href="vesting.html">Vesting</a>
+        <a href="governance.html">Governance</a>
+        <a href="validators.html">Validators</a>
+        <a href="developers.html">Developers</a>
         <a href="#faq">FAQ</a>
       </div>
     </nav>
@@ -98,12 +126,14 @@
           <a class="btn alt" href="https://scout.peaq.xyz/address/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B">Explorer</a>
         </div>
       </div>
-      <div class="panel hero-panel">
-        <img src="../assets/phn-logo-light.png" alt="PHN coin">
-        <div class="metrics">
-          <div class="metric"><small>Total supply</small><strong>100M</strong></div>
-          <div class="metric"><small>Node rewards</small><strong>20M</strong></div>
-          <div class="metric"><small>Live chain</small><strong>peaq</strong></div>
+      <div class="panel hero-panel floaty">
+        <img class="hero-art" src="../assets/phn-hero-3d.png" alt="3D Peaq Human Node network artwork">
+        <div class="hero-overlay">
+          <div class="metrics">
+            <div class="metric"><small>Total supply</small><strong>100M</strong></div>
+            <div class="metric"><small>Node rewards</small><strong>20M</strong></div>
+            <div class="metric"><small>Live chain</small><strong>peaq</strong></div>
+          </div>
         </div>
       </div>
     </header>
@@ -116,6 +146,25 @@
         <span class="chip">fixed supply</span>
         <span class="chip">timelocked control</span>
         <span class="chip">future cross-chain</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="feature-band">
+        <article class="card glow"><h3>Buy PHN</h3><p>Round-based fundraising sale with dynamic pricing.</p><p><a href="exchange.html">Open sale →</a></p></article>
+        <article class="card glow"><h3>Wallet</h3><p>Connect on peaq and inspect PHN, PEAQ, and rewards.</p><p><a href="wallet.html">Open wallet →</a></p></article>
+        <article class="card glow"><h3>Run node</h3><p>Activate a verified machine and start earning.</p><p><a href="activate-node.html">Activate node →</a></p></article>
+        <article class="card glow"><h3>Govern</h3><p>Stake, vest, and help shape the network.</p><p><a href="governance.html">Open governance →</a></p></article>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <div class="panel showcase-art floaty delay">
+        <img src="../assets/phn-network-3d.png" alt="3D machine economy network">
+      </div>
+      <div class="grid">
+        <article class="card glass-stat"><small class="eyebrow">Reward rails</small><strong>Verified PCs → PHN</strong><p>Identity, activity, staking, vesting, and rewards now read as one connected machine economy.</p></article>
+        <article class="card glass-stat"><small class="eyebrow">Visual system</small><strong>Glass + glow + depth</strong><p>The site now leans into a premium 3D Web3 language instead of flat brochure cards.</p></article>
       </div>
     </section>
 
@@ -149,6 +198,12 @@
         <article class="card"><h3>Node registry</h3><p>Identity-gated registration for machine operators.</p></article>
         <article class="card"><h3>Reward engine</h3><p>Heartbeat accrual and claims for verified nodes.</p></article>
         <article class="card"><h3>Dashboard</h3><p>Supply, vault, and allocation visibility for the ecosystem.</p></article>
+        <article class="card"><h3>Validator terminal</h3><p>Integrity and health monitoring for the protocol.</p></article>
+        <article class="card"><h3>Developer portal</h3><p>CLI, contracts, SDK roadmap, and build surfaces.</p></article>
+        <article class="card"><h3>Staking</h3><p>Yield, loyalty, and network participation.</p></article>
+        <article class="card"><h3>Vesting</h3><p>Sale unlocks and founder allocation schedules.</p></article>
+        <article class="card"><h3>Governance</h3><p>Stake to help steer the future protocol.</p></article>
+        <article class="card"><h3>Activation guide</h3><p>Step-by-step onboarding for Windows, macOS, Linux, Ubuntu, and mobile.</p></article>
       </div>
     </section>
 
@@ -228,7 +283,35 @@
       <details><summary>Where is the logo stored?</summary><p>In project metadata and token-list submissions, not inside token bytecode.</p></details>
     </section>
 
-    <footer>PHN — building a verified machine economy on peaq.</footer>
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <strong>PHN</strong>
+          <p>Building a verified machine economy on peaq.</p>
+        </div>
+        <div>
+          <strong>Protocol</strong>
+          <a href="about.html">About us</a>
+          <a href="#network">Mission</a>
+          <a href="#tokenomics">Tokenomics</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <strong>Ecosystem</strong>
+          <a href="#earn">Run a node</a>
+          <a href="staking.html">Staking</a>
+          <a href="vesting.html">Vesting</a>
+          <a href="validators.html">Validators</a>
+        </div>
+        <div>
+          <strong>Resources</strong>
+          <a href="developers.html">Developers</a>
+          <a href="activate-node.html">Activation guide</a>
+          <a href="wallet.html">Wallet</a>
+          <a href="exchange.html">Sale</a>
+        </div>
+      </div>
+    </footer>
   </div>
 
   <script type="module">

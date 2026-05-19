@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_in_Chrome__list_connected_browsers",
+      "mcp__Claude_in_Chrome__tabs_context_mcp",
+      "Bash(dir *)",
+      "Bash(where *)",
+      "Bash(/c/Program Files/GitHub CLI/gh.exe auth status)",
+      "Bash(/c/Program Files/GitHub CLI/gh.exe repo list *)",
+      "Bash(/c/Program Files/GitHub CLI/gh.exe pr list *)",
+      "Bash(/c/Program Files/GitHub CLI/gh.exe pr view *)",
+      "Bash(/c/Program Files/GitHub CLI/gh.exe issue list *)",
+      "Bash(/c/Program Files/GitHub CLI/gh.exe run list *)"
+    ],
+    "deny": []
+  }
+}

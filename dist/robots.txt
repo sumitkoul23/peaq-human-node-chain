@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://peaqhumannode.netlify.app/sitemap.xml
+
+# Disallow internal/build artifacts
+Disallow: /dashboard/
+Disallow: /token-metadata.json
