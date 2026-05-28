@@ -9,4 +9,4 @@ typechain-types/
 site-server.log
 dist/index.html.bak
 flat_token.sol
-
+web3-dist/
