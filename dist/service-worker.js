@@ -1,4 +1,4 @@
-const PHN_CACHE = "phn-beacon-v6";
+const PHN_CACHE = "phn-beacon-v9";
 const PHN_ASSETS = [
   "./",
   "./index.html",
@@ -16,8 +16,9 @@ const PHN_ASSETS = [
   "./phn.css",
   "./phn-app.js",
   "./offline.html",
-  "./assets/phn-logo-64.png",
-  "./assets/phn-logo-subscan.png"
+  "./assets/phn-logo-minimal.svg",
+  "./assets/phn-logo-minimal-192.png",
+  "./assets/phn-logo-minimal-512.png"
 ];
 
 self.addEventListener("install", (event) => {

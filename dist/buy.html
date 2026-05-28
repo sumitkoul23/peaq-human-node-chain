@@ -1,678 +1,1100 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Buy PHN - Presale | Peaq Human Node</title>
-<meta name="description" content="Buy PHN at presale price $0.02. Epoch-based pricing price increases each round. Accept PEAQ and USDC."/>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buy PHN Presale | Peaq Human Node</title>
+<meta name="description" content="Buy PHN through the official Peaq Human Node presale app. Epoch 1 price is $0.02 with transparent fee, burn, and treasury routing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529-light2">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b1f33">
+<script defer src="phn-app.js?v=20260529-light2"></script>
 <style>
-:root{--black:#030508;--deep:#070c14;--card:#0c1420;--border:#1a2840;--cyan:#00e5ff;--green:#00ff88;--amber:#ffb800;--purple:#a78bfa;--pink:#f472b6;--red:#ff4444;--text:#e8f0fe;--muted:#6b8299;--font-display:'Syne',sans-serif;--font-mono:'DM Mono',monospace}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--text);font-family:var(--font-display);line-height:1.6;overflow-x:hidden}
-body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.4}
-.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
-nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(180deg,rgba(3,5,8,.95) 0%,transparent 100%);backdrop-filter:blur(8px)}
-.nav-logo{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
-.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 8px var(--cyan)}50%{box-shadow:0 0 24px var(--cyan),0 0 40px var(--cyan)}}
-.nav-links{display:flex;gap:28px;list-style:none}
-.nav-links a{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
-.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
-.nav-cta{background:var(--pink);color:var(--black);font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;padding:10px 22px;border-radius:4px;text-decoration:none;transition:all .2s}
-.nav-cta:hover{background:#fff;box-shadow:0 0 24px rgba(244,114,182,.5)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+:root {
+  --buy-bg: #f7fbff;
+  --buy-surface: #ffffff;
+  --buy-surface-2: #f0f7fc;
+  --buy-text: #0b1f33;
+  --buy-muted: #5f7388;
+  --buy-line: #d9e7f2;
+  --buy-line-strong: #b8dfea;
+  --buy-primary: #0b1f33;
+  --buy-cyan: #008fb3;
+  --buy-green: #00a978;
+  --buy-amber: #b87900;
+  --buy-red: #d63d54;
+  --buy-shadow: 0 22px 70px rgba(20, 45, 70, 0.10);
+  --buy-radius: 10px;
+  --buy-mono: "DM Mono", monospace;
+}
 
-/* HERO BAND */
-.hero-band{position:relative;z-index:10;padding:100px 48px 40px;max-width:1100px;margin:0 auto;text-align:center}
-.presale-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.25);border-radius:100px;padding:6px 18px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:24px;animation:fadeUp .7s ease both}
-.hero-band h1{font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;animation:fadeUp .7s .1s ease both}
-.hero-band h1 span{color:var(--pink)}
-.hero-band p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 40px;line-height:1.7;animation:fadeUp .7s .2s ease both}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body.buy-page {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--buy-bg);
+  color: var(--buy-text);
+  font-family: "Inter", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+button, input { font: inherit; }
+a { color: inherit; }
 
-/* EPOCH TRACK */
-.epoch-track{display:flex;justify-content:center;gap:0;margin-bottom:56px;position:relative;z-index:10;animation:fadeUp .7s .25s ease both}
-.epoch-track::before{content:'';position:absolute;top:50%;left:10%;right:10%;height:1px;background:var(--border);z-index:0}
-.epoch-node{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 24px;position:relative;z-index:1}
-.epoch-dot{width:14px;height:14px;border-radius:50%;border:2px solid var(--border);background:var(--deep);transition:all .3s}
-.epoch-dot.done{background:var(--green);border-color:var(--green);box-shadow:0 0 10px var(--green)}
-.epoch-dot.active{background:var(--pink);border-color:var(--pink);box-shadow:0 0 16px var(--pink);animation:pulse 1.5s infinite}
-.epoch-dot.upcoming{background:var(--deep);border-color:var(--border)}
-.epoch-price{font-family:var(--font-mono);font-size:12px;font-weight:600;letter-spacing:.04em}
-.epoch-price.active{color:var(--pink)}
-.epoch-price.done{color:var(--green)}
-.epoch-price.upcoming{color:var(--muted)}
-.epoch-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.buy-nav {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--buy-line);
+  background: rgba(247, 251, 255, 0.9);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 34px rgba(20,45,70,.06);
+}
+.buy-nav-inner {
+  width: min(1180px, calc(100% - 32px));
+  min-height: 74px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--buy-text);
+  font-weight: 900;
+}
+.nav-logo img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--buy-line);
+  background: #fff;
+}
+.phn-brand-stack {
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: .88;
+  font-weight: 900;
+  font-size: 13px;
+}
+.buy-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.buy-links a {
+  text-decoration: none;
+  color: var(--buy-muted);
+  font-size: 12px;
+  font-weight: 800;
+}
+.buy-links a:hover,
+.buy-links a.active { color: var(--buy-cyan); }
+.buy-nav-actions { display: flex; align-items: center; gap: 10px; }
+.buy-btn {
+  min-height: 42px;
+  border: 1px solid var(--buy-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--buy-text);
+  padding: 11px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 850;
+  font-size: 13px;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+.buy-btn:hover { transform: translateY(-1px); border-color: var(--buy-line-strong); box-shadow: 0 14px 28px rgba(20,45,70,.08); }
+.buy-btn.primary {
+  background: var(--buy-primary);
+  border-color: var(--buy-primary);
+  color: #fff;
+}
+.buy-btn.full { width: 100%; }
+.buy-btn:disabled {
+  cursor: not-allowed;
+  opacity: .52;
+  transform: none;
+  box-shadow: none;
+}
 
-/* MAIN LAYOUT */
-.main-wrap{position:relative;z-index:10;max-width:1100px;margin:0 auto;padding:0 48px 80px;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start}
+.buy-shell {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.04fr) minmax(360px, .82fr);
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+  padding: clamp(44px, 7vw, 84px) 0 28px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+  border: 1px solid #c7edf5;
+  border-radius: 999px;
+  background: #eef9fc;
+  color: var(--buy-cyan);
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--buy-green);
+  box-shadow: 0 0 0 5px rgba(0,169,120,.12);
+}
+.hero-copy h1 {
+  margin: 18px 0 16px;
+  max-width: 760px;
+  font-size: clamp(44px, 7vw, 82px);
+  line-height: .94;
+  letter-spacing: 0;
+  font-weight: 950;
+}
+.hero-copy h1 span { color: var(--buy-cyan); }
+.hero-copy p {
+  max-width: 650px;
+  margin: 0;
+  color: var(--buy-muted);
+  font-size: clamp(16px, 2vw, 19px);
+  line-height: 1.7;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 28px 0 0;
+}
+.hero-facts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 34px;
+}
+.fact-card,
+.panel,
+.sale-card,
+.route-card {
+  border: 1px solid var(--buy-line);
+  border-radius: var(--buy-radius);
+  background: var(--buy-surface);
+  box-shadow: var(--buy-shadow);
+}
+.fact-card {
+  padding: 18px;
+}
+.fact-value {
+  font-size: 24px;
+  font-weight: 950;
+  letter-spacing: 0;
+}
+.fact-label {
+  margin-top: 6px;
+  color: var(--buy-muted);
+  font-family: var(--buy-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
 
-/* BUY WIDGET */
-.buy-widget{background:var(--card);border:1px solid rgba(244,114,182,.2);border-radius:20px;padding:36px;position:sticky;top:100px}
-.widget-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-.widget-head h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
-.live-price{display:flex;flex-direction:column;align-items:flex-end}
-.price-val{font-size:24px;font-weight:800;color:var(--pink);letter-spacing:-.02em}
-.price-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sale-card {
+  position: sticky;
+  top: 94px;
+  padding: 24px;
+}
+.sale-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+.sale-head h2 {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+.price-pill {
+  border-radius: 8px;
+  background: #eef9fc;
+  color: var(--buy-cyan);
+  border: 1px solid #c7edf5;
+  padding: 9px 11px;
+  text-align: right;
+  flex: 0 0 auto;
+}
+.price-pill strong { display: block; font-size: 21px; line-height: 1; }
+.price-pill span { display: block; margin-top: 4px; font-family: var(--buy-mono); font-size: 10px; color: var(--buy-muted); }
+.progress-wrap { margin-bottom: 22px; }
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+  color: var(--buy-muted);
+  font-family: var(--buy-mono);
+  font-size: 11px;
+}
+.progress-track {
+  height: 10px;
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--buy-surface-2);
+  border: 1px solid var(--buy-line);
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, var(--buy-cyan), var(--buy-green));
+  border-radius: inherit;
+  transition: width .5s ease;
+}
+.notice {
+  border: 1px solid #f0d99a;
+  background: #fff8e7;
+  color: #6f5100;
+  border-radius: 8px;
+  padding: 11px 12px;
+  font-size: 12px;
+  line-height: 1.5;
+  margin-bottom: 18px;
+}
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.tab-btn {
+  border: 1px solid var(--buy-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--buy-muted);
+  min-height: 42px;
+  font-family: var(--buy-mono);
+  font-size: 12px;
+  cursor: pointer;
+}
+.tab-btn.active {
+  color: #fff;
+  background: var(--buy-primary);
+  border-color: var(--buy-primary);
+}
+.tab-btn:disabled {
+  opacity: .45;
+  cursor: not-allowed;
+}
+.amount-box {
+  border: 1px solid var(--buy-line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.amount-label-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 10px;
+  color: var(--buy-muted);
+  font-family: var(--buy-mono);
+  font-size: 11px;
+}
+.amount-input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#payInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--buy-text);
+  font-size: clamp(26px, 4vw, 38px);
+  font-weight: 900;
+  letter-spacing: 0;
+}
+.pay-symbol {
+  font-family: var(--buy-mono);
+  font-size: 13px;
+  color: var(--buy-muted);
+}
+.range-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+#amountRange {
+  width: 100%;
+  accent-color: var(--buy-primary);
+}
+.preset-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-bottom: 18px;
+}
+.preset-row button {
+  min-height: 36px;
+  border: 1px solid var(--buy-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--buy-text);
+  cursor: pointer;
+  font-family: var(--buy-mono);
+  font-size: 11px;
+}
+.quote-box {
+  border-radius: 10px;
+  border: 1px solid var(--buy-line);
+  background: var(--buy-surface-2);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.quote-main {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: end;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--buy-line);
+  margin-bottom: 12px;
+}
+.quote-label {
+  color: var(--buy-muted);
+  font-family: var(--buy-mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+.quote-amount {
+  color: var(--buy-green);
+  font-family: var(--buy-mono);
+  font-size: clamp(27px, 4vw, 36px);
+  font-weight: 900;
+  line-height: 1;
+  text-align: right;
+}
+.fee-grid {
+  display: grid;
+  gap: 8px;
+}
+.fee-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--buy-mono);
+  font-size: 12px;
+}
+.fee-row span:first-child { color: var(--buy-muted); }
+.fee-row .burn { color: var(--buy-red); }
+.fee-row .treasury { color: var(--buy-amber); }
+.fee-row .net { color: var(--buy-green); }
+.wallet-state {
+  border-top: 1px solid var(--buy-line);
+  padding-top: 16px;
+  margin-top: 16px;
+}
+.wallet-note {
+  min-height: 20px;
+  text-align: center;
+  color: var(--buy-muted);
+  font-family: var(--buy-mono);
+  font-size: 11px;
+  margin-top: 10px;
+  overflow-wrap: anywhere;
+}
 
-/* Epoch progress */
-.epoch-progress{margin-bottom:24px}
-.progress-header{display:flex;justify-content:space-between;margin-bottom:8px}
-.progress-label{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
-.progress-pct{font-family:var(--font-mono);font-size:11px;color:var(--pink)}
-.progress-bar-wrap{height:6px;background:var(--deep);border-radius:3px;overflow:hidden;border:1px solid var(--border)}
-.progress-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--pink),var(--purple));transition:width .8s ease}
-.progress-sub{display:flex;justify-content:space-between;margin-top:6px}
-.progress-sub span{font-family:var(--font-mono);font-size:10px;color:var(--muted)}
-.next-price-warn{background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.15);border-radius:6px;padding:8px 12px;font-family:var(--font-mono);font-size:11px;color:var(--pink);margin-bottom:20px;text-align:center}
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr);
+  gap: 22px;
+  align-items: start;
+  padding: 18px 0 80px;
+}
+.panel { padding: 24px; }
+.panel h3 {
+  margin: 0 0 16px;
+  font-size: 21px;
+  letter-spacing: 0;
+}
+.epoch-list,
+.route-list,
+.trust-list { display: grid; gap: 10px; }
+.epoch-item,
+.route-item,
+.trust-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 14px;
+  border: 1px solid var(--buy-line);
+  border-radius: 8px;
+  background: #fff;
+}
+.epoch-item.active { border-color: #b8dfea; background: #f5fbfe; }
+.epoch-num,
+.route-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--buy-surface-2);
+  color: var(--buy-cyan);
+  font-family: var(--buy-mono);
+  font-size: 12px;
+  font-weight: 900;
+}
+.epoch-price { font-weight: 900; }
+.epoch-detail,
+.route-detail,
+.trust-detail {
+  color: var(--buy-muted);
+  font-size: 13px;
+  margin-top: 2px;
+}
+.status-pill {
+  border: 1px solid var(--buy-line);
+  border-radius: 999px;
+  padding: 5px 9px;
+  color: var(--buy-muted);
+  font-family: var(--buy-mono);
+  font-size: 10px;
+  white-space: nowrap;
+}
+.status-pill.live {
+  color: var(--buy-green);
+  border-color: rgba(0,169,120,.28);
+  background: rgba(0,169,120,.08);
+}
+.route-card { padding: 24px; }
+.route-item { grid-template-columns: auto 1fr; }
+.trust-item { grid-template-columns: 1fr auto; }
+.copy-code {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--buy-line);
+  border-radius: 8px;
+  background: var(--buy-surface-2);
+  padding: 12px;
+  margin-top: 18px;
+}
+.copy-code code {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: anywhere;
+  font-family: var(--buy-mono);
+  color: var(--buy-cyan);
+  font-size: 12px;
+}
+.mini-btn {
+  border: 1px solid var(--buy-line);
+  border-radius: 7px;
+  background: #fff;
+  color: var(--buy-text);
+  min-height: 34px;
+  padding: 7px 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.buy-footer {
+  border-top: 1px solid var(--buy-line);
+  padding: 30px 0;
+  color: var(--buy-muted);
+  font-size: 13px;
+}
+.buy-footer .buy-shell {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.buy-page .phn-quick-hub { display: none !important; }
 
-/* Currency tabs */
-.currency-tabs{display:flex;gap:0;background:var(--deep);border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:20px}
-.cur-tab{flex:1;padding:10px;font-family:var(--font-mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:transparent;border:none;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:6px}
-.cur-tab.active{background:rgba(244,114,182,.1);color:var(--pink);border-bottom:2px solid var(--pink)}
-.cur-tab:hover:not(.active){color:var(--text)}
-.cur-icon{font-size:14px}
-
-/* Amount input */
-.input-row{display:flex;gap:12px;margin-bottom:16px}
-.input-box{flex:1;background:var(--deep);border:1px solid var(--border);border-radius:8px;overflow:hidden;transition:border-color .2s;display:flex;align-items:center}
-.input-box:focus-within{border-color:rgba(244,114,182,.4)}
-.buy-input{flex:1;background:transparent;border:none;outline:none;padding:14px 16px;font-family:var(--font-mono);font-size:18px;color:var(--text);width:100%}
-.input-cur{padding:0 16px;font-family:var(--font-mono);font-size:13px;color:var(--muted);white-space:nowrap}
-.max-btn{background:rgba(244,114,182,.08);border:none;border-left:1px solid var(--border);padding:0 14px;font-family:var(--font-mono);font-size:11px;color:var(--pink);cursor:pointer;transition:all .2s;height:100%}
-.max-btn:hover{background:rgba(244,114,182,.18)}
-
-/* PHN output */
-.phn-output{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:16px;margin-bottom:20px}
-.phn-main{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-.phn-amount{font-size:28px;font-weight:800;color:var(--green);letter-spacing:-.02em;font-family:var(--font-mono)}
-.phn-symbol{font-size:16px;color:var(--muted);align-self:flex-end;margin-bottom:4px}
-.fee-breakdown{display:flex;flex-direction:column;gap:6px;border-top:1px solid var(--border);padding-top:12px}
-.fee-row{display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:11px}
-.fee-key{color:var(--muted)}
-.fee-val{color:var(--text)}
-.fee-val.burn{color:var(--red)}
-.fee-val.green{color:var(--green)}
-
-/* Buy button */
-.btn-buy{width:100%;padding:18px;background:linear-gradient(135deg,var(--pink),var(--purple));color:#fff;font-family:var(--font-display);font-weight:800;font-size:16px;letter-spacing:.02em;border:none;border-radius:10px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
-.btn-buy:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(244,114,182,.4)}
-.btn-buy:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;transform:none;box-shadow:none}
-.btn-connect{width:100%;padding:18px;background:transparent;color:var(--pink);font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:.02em;border:1px solid rgba(244,114,182,.3);border-radius:10px;cursor:pointer;transition:all .3s}
-.btn-connect:hover{background:rgba(244,114,182,.08);border-color:var(--pink)}
-.wallet-info{font-family:var(--font-mono);font-size:11px;color:var(--muted);text-align:center;margin-top:12px}
-.wallet-info span{color:var(--pink)}
-
-/* LEFT COLUMN */
-.left-col{display:flex;flex-direction:column;gap:24px}
-
-/* Info cards */
-.info-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
-.info-card h3{font-size:18px;font-weight:700;margin-bottom:16px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px}
-.info-card h3 .icon{font-size:22px}
-
-/* Raise tracker */
-.raise-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border-radius:12px;overflow:hidden;margin-bottom:28px}
-.raise-block{background:var(--card);padding:20px}
-.raise-val{font-size:22px;font-weight:800;letter-spacing:-.02em}
-.raise-val.pink{color:var(--pink)}
-.raise-val.green{color:var(--green)}
-.raise-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-
-/* Epoch table */
-.epoch-table{display:flex;flex-direction:column;gap:8px}
-.epoch-row{display:flex;align-items:center;gap:16px;padding:14px 16px;border-radius:8px;border:1px solid var(--border);transition:all .2s}
-.epoch-row.active-row{border-color:rgba(244,114,182,.3);background:rgba(244,114,182,.04)}
-.epoch-row.done-row{opacity:.6}
-.e-idx{font-family:var(--font-mono);font-size:12px;color:var(--muted);width:60px}
-.e-price{font-family:var(--font-mono);font-size:16px;font-weight:700;flex:1}
-.e-price.pink{color:var(--pink)}
-.e-cap{font-family:var(--font-mono);font-size:12px;color:var(--muted);text-align:right}
-.e-status{flex-shrink:0}
-.e-badge{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:3px 10px;border-radius:100px}
-.e-badge.live{background:rgba(244,114,182,.1);color:var(--pink);border:1px solid rgba(244,114,182,.2)}
-.e-badge.up{background:rgba(0,229,255,.08);color:var(--cyan);border:1px solid rgba(0,229,255,.15)}
-.e-badge.done{background:rgba(0,255,136,.08);color:var(--green);border:1px solid rgba(0,255,136,.15)}
-
-/* Burn tracker */
-.burn-meter{background:rgba(255,68,68,.04);border:1px solid rgba(255,68,68,.15);border-radius:12px;padding:24px}
-.burn-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.burn-title{font-size:16px;font-weight:700;display:flex;align-items:center;gap:8px}
-.burn-flame{font-size:22px}
-.burn-total{font-family:var(--font-mono);font-size:24px;font-weight:800;color:var(--red)}
-.burn-sub{font-family:var(--font-mono);font-size:11px;color:var(--muted);text-align:right;margin-top:2px}
-.burn-bar-wrap{height:6px;background:var(--deep);border-radius:3px;overflow:hidden;margin-bottom:8px}
-.burn-bar{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--red),var(--amber));transition:width 1s ease}
-.burn-desc{font-size:12px;color:var(--muted);line-height:1.6}
-
-/* Fee info */
-.fee-info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-.fee-box{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:16px;text-align:center}
-.fee-box .big{font-size:22px;font-weight:800;letter-spacing:-.02em}
-.fee-box .lbl{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:4px}
-
-/* Phase roadmap */
-.phase-list{display:flex;flex-direction:column;gap:12px}
-.phase-item{display:flex;gap:16px;align-items:flex-start;padding:16px;border-radius:8px;border:1px solid var(--border)}
-.phase-item.live{border-color:rgba(0,255,136,.2);background:rgba(0,255,136,.03)}
-.phase-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;border:1px solid var(--border)}
-.phase-dot.live-dot{background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.3)}
-.phase-body .name{font-weight:700;font-size:14px;margin-bottom:4px}
-.phase-body .detail{font-size:12px;color:var(--muted)}
-
-@media(max-width:1000px){
- .main-wrap{grid-template-columns:1fr;padding:0 24px 60px}
- .buy-widget{position:static}
- .raise-stats{grid-template-columns:1fr 1fr}
- .fee-info-grid{grid-template-columns:1fr 1fr}
- .epoch-track{gap:0;padding:0 12px}
- .epoch-node{padding:0 12px}
- nav{padding:16px 24px}.nav-links{display:none}
+@media (max-width: 980px) {
+  .buy-links { display: none; }
+  .hero-grid,
+  .content-grid { grid-template-columns: 1fr; }
+  .sale-card { position: static; }
+  .hero-grid { gap: 18px; padding-top: 30px; }
+  .hero-copy h1 { font-size: clamp(42px, 8vw, 58px); }
+  .hero-copy p { font-size: 16px; line-height: 1.6; }
+  .hero-actions { margin-top: 20px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .hero-actions .buy-btn { width: 100%; min-height: 40px; padding: 10px 12px; font-size: 12px; }
+  .hero-facts { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: 20px; }
+  .fact-card { padding: 12px; }
+  .fact-value { font-size: 21px; }
+  }
+@media (max-width: 640px) {
+  .buy-nav-inner,
+  .buy-shell { width: min(100% - 24px, 1180px); }
+  .buy-nav-actions .buy-btn:not(.primary) { display: none; }
+  .nav-logo img { width: 38px; height: 38px; }
+  .phn-brand-stack { height: 38px; font-size: 11px; }
+  .hero-grid { padding-top: 34px; }
+  .hero-copy h1 { font-size: clamp(40px, 12vw, 54px); }
+  .hero-actions,
+  .preset-row,
+  .tabs { grid-template-columns: 1fr 1fr; display: grid; }
+  .hero-actions .buy-btn { width: 100%; }
+  .hero-facts { grid-template-columns: 1fr; }
+  .sale-card,
+  .panel,
+  .route-card { padding: 18px; }
+  .sale-head { display: grid; }
+  .price-pill { text-align: left; }
+  .epoch-item { grid-template-columns: auto 1fr; }
+  .epoch-item .status-pill { grid-column: 2; width: max-content; }
+  .quote-main { display: grid; }
+  .quote-amount { text-align: left; }
+}
+@media (max-width: 760px) {
+  .sale-card { order: -1; }
+  .hero-grid { padding-top: 20px; }
 }
 </style>
-
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#00e5ff">
-<script defer src="phn-app.js?v=20260529f"></script>
 </head>
-<body>
-<div class="grid-bg"></div>
+<body class="buy-page">
+<header class="buy-nav">
+  <div class="buy-nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="Peaq Human Node">
+      <img src="assets/phn-logo-minimal.svg" alt="PHN">
+      <span class="phn-brand-stack"><span>Peaq</span><span>Human</span><span>Node</span></span>
+    </a>
+    <nav class="buy-links" aria-label="Primary">
+      <a class="active" href="buy.html">Buy</a>
+      <a href="staking.html">Stake</a>
+      <a href="activate-node.html">Run Node</a>
+      <a href="wallet.html">Wallet</a>
+      <a href="vesting.html">Vesting</a>
+      <a href="support.html">Support</a>
+    </nav>
+    <div class="buy-nav-actions">
+      <button class="buy-btn" type="button" onclick="connectWallet()">Connect</button>
+      <a class="buy-btn primary" href="#sale">Buy PHN</a>
+    </div>
+  </div>
+</header>
 
-<!-- NAV -->
-<nav>
- <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
- <ul class="nav-links">
- <li><a href="index.html#how">Protocol</a></li>
- <li><a href="staking.html">Staking</a></li>
- <li><a href="buy.html" class="active">Buy PHN</a></li>
- <li><a href="verify.html">Verify</a></li>
- </ul>
- <a class="nav-cta" href="buy.html">Buy PHN </a>
-</nav>
+<main>
+  <section class="buy-shell hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Official peaq-first presale</div>
+      <h1>Buy PHN before the next price epoch.</h1>
+      <p>
+        Epoch 1 is priced at <strong>$0.02 per PHN</strong>. The next epoch moves to
+        <strong>$0.05</strong>. The purchase flow shows your gross tokens, burn amount,
+        treasury routing, and final net PHN before you confirm in your wallet.
+      </p>
+      <div class="hero-actions">
+        <a class="buy-btn primary" href="#sale">Open presale app</a>
+        <a class="buy-btn" href="verify.html">Verify contracts</a>
+        <a class="buy-btn" href="activate-node.html">Run a node</a>
+      </div>
+      <div class="hero-facts" aria-label="Presale facts">
+        <div class="fact-card">
+          <div class="fact-value" id="heroPrice">$0.02</div>
+          <div class="fact-label">Current price</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-value">2%</div>
+          <div class="fact-label">Total token fee</div>
+        </div>
+        <div class="fact-card">
+          <div class="fact-value">0.25%</div>
+          <div class="fact-label">Burned forever</div>
+        </div>
+      </div>
+    </div>
 
-<!-- HERO BAND -->
-<div class="hero-band">
- <div class="presale-badge">x Presale Live Limited Supply</div>
- <h1>Buy <span>$PHN</span> Now.<br>Price Rises Next Epoch.</h1>
- <p>Epoch 1 presale: <strong style="color:var(--pink)">$0.02 per PHN</strong>. Next epoch: $0.05. Buy before the round fills. 2% fee 0.25% permanently burned every purchase.</p>
-</div>
+    <aside class="sale-card" id="sale" aria-label="PHN presale widget">
+      <div class="sale-head">
+        <div>
+          <h2>Presale calculator</h2>
+          <p class="wallet-note" id="saleSub">PEAQ is active first. BNB, ETH, and BTC follow after liquidity rollout.</p>
+        </div>
+        <div class="price-pill">
+          <strong id="currentPriceDisplay">$0.0200</strong>
+          <span>per PHN</span>
+        </div>
+      </div>
 
-<!-- EPOCH TRACK -->
-<div class="epoch-track" id="epochTrack">
- <!-- populated by JS -->
-</div>
+      <div class="progress-wrap">
+        <div class="progress-row">
+          <span>Epoch 1 progress</span>
+          <span id="progressPct">0.0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="progressBar"></div></div>
+        <div class="progress-row" style="margin-top:8px">
+          <span id="progressSold">0 PHN sold</span>
+          <span id="progressCap">5,000,000 cap</span>
+        </div>
+      </div>
 
-<!-- MAIN LAYOUT -->
-<div class="main-wrap">
+      <div class="notice" id="nextPriceWarn">Next epoch: $0.05 per PHN after this allocation fills.</div>
 
- <!-- LEFT COL -->
- <div class="left-col">
+      <div class="tabs" role="tablist" aria-label="Payment currency">
+        <button class="tab-btn active" id="tabPeaq" type="button" onclick="setCurrency('peaq')">PEAQ</button>
+        <button class="tab-btn" id="tabUsdc" type="button" onclick="setCurrency('usdc')">USDC</button>
+        <button class="tab-btn" type="button" disabled>BNB</button>
+        <button class="tab-btn" type="button" disabled>ETH</button>
+      </div>
 
- <!-- Raise Stats -->
- <div class="raise-stats">
- <div class="raise-block">
- <div class="raise-val pink" id="statRaised">$0</div>
- <div class="raise-label">Total Raised (USD)</div>
- </div>
- <div class="raise-block">
- <div class="raise-val" id="statSold">0</div>
- <div class="raise-label">PHN Sold</div>
- </div>
- <div class="raise-block">
- <div class="raise-val green" id="statBuyers">0</div>
- <div class="raise-label">Buyers</div>
- </div>
- </div>
+      <div class="amount-box">
+        <div class="amount-label-row">
+          <span>You pay</span>
+          <span id="balanceText">Balance: connect wallet</span>
+        </div>
+        <div class="amount-input-row">
+          <input id="payInput" type="number" min="0" step="0.01" value="10" inputmode="decimal" oninput="syncFromInput()" aria-label="Payment amount">
+          <span class="pay-symbol" id="paySymbol">PEAQ</span>
+        </div>
+      </div>
 
- <!-- Epoch Pricing Table -->
- <div class="info-card">
- <h3><span class="icon">x`</span> Epoch Pricing Schedule</h3>
- <div class="epoch-table" id="epochTable">
- <!-- populated by JS -->
- </div>
- </div>
+      <div class="range-row">
+        <input id="amountRange" type="range" min="0" max="1000" step="1" value="10" oninput="syncFromRange()" aria-label="Payment amount slider">
+        <button class="mini-btn" type="button" onclick="setMax()">MAX</button>
+      </div>
+      <div class="preset-row">
+        <button type="button" onclick="setPreset(10)">10</button>
+        <button type="button" onclick="setPreset(50)">50</button>
+        <button type="button" onclick="setPreset(100)">100</button>
+        <button type="button" onclick="setPreset(500)">500</button>
+      </div>
 
- <!-- Burn Tracker -->
- <div class="burn-meter">
- <div class="burn-header">
- <div class="burn-title"><span class="burn-flame">x</span> PHN Burned Forever</div>
- <div>
- <div class="burn-total" id="burnTotal">0 PHN</div>
- <div class="burn-sub">0.25% of every purchase</div>
- </div>
- </div>
- <div class="burn-bar-wrap">
- <div class="burn-bar" id="burnBar" style="width:0%"></div>
- </div>
- <p class="burn-desc">Every PHN purchase burns 0.25% of the purchased amount permanently via <code style="font-family:var(--font-mono);color:var(--red)">ERC20Burnable.burn()</code>. These tokens are gone forever reducing total supply and creating deflationary pressure as adoption grows.</p>
- </div>
+      <div class="quote-box">
+        <div class="quote-main">
+          <div>
+            <div class="quote-label">Estimated net received</div>
+            <div class="wallet-note" id="usdVal">$5.00 payment value</div>
+          </div>
+          <div class="quote-amount"><span id="phnOut">245.00</span> PHN</div>
+        </div>
+        <div class="fee-grid">
+          <div class="fee-row"><span>Gross PHN</span><strong id="grossPhn">250.00</strong></div>
+          <div class="fee-row"><span>Burned 0.25%</span><strong class="burn" id="burnAmt">-0.63</strong></div>
+          <div class="fee-row"><span>Treasury 1.75%</span><strong class="treasury" id="treasuryAmt">-4.38</strong></div>
+          <div class="fee-row"><span>Net to wallet 98%</span><strong class="net" id="netPhn">245.00</strong></div>
+        </div>
+      </div>
 
- <!-- Fee Structure -->
- <div class="info-card">
- <h3><span class="icon">x</span> Fee Breakdown</h3>
- <div class="fee-info-grid">
- <div class="fee-box">
- <div class="big" style="color:var(--pink)">2%</div>
- <div class="lbl">Total Fee</div>
- </div>
- <div class="fee-box">
- <div class="big" style="color:var(--red)">0.25%</div>
- <div class="lbl">Burned x</div>
- </div>
- <div class="fee-box">
- <div class="big" style="color:var(--amber)">1.75%</div>
- <div class="lbl">Treasury</div>
- </div>
- </div>
- <p style="font-size:13px;color:var(--muted);margin-top:16px;line-height:1.7">Fees are applied to PHN dispensed not your payment. You always get <strong style="color:var(--text)">98% of your calculated PHN</strong>. 0.25% is burned on-chain via <code style="font-family:var(--font-mono);font-size:11px;color:var(--red)">burn()</code>.</p>
- </div>
+      <div id="walletNotConnected" class="wallet-state">
+        <button class="buy-btn primary full" type="button" onclick="connectWallet()">Connect wallet to buy</button>
+      </div>
+      <div id="walletConnected" class="wallet-state" style="display:none">
+        <button class="buy-btn primary full" id="buyBtn" type="button" onclick="doBuy()">Buy 245.00 PHN</button>
+      </div>
+      <div class="wallet-note" id="walletStatus">No wallet connected. You will confirm every transaction inside your wallet.</div>
+    </aside>
+  </section>
 
- <!-- Chain Roadmap -->
- <div class="info-card">
- <h3><span class="icon">xR</span> Chain Rollout</h3>
- <div class="phase-list">
- <div class="phase-item live">
- <div class="phase-dot live-dot">S</div>
- <div class="phase-body">
- <div class="name" style="color:var(--green)">Phase 1 peaq Mainnet (Live)</div>
- <div class="detail">Buy with PEAQ native token or USDC. Identity-gated node network.</div>
- </div>
- </div>
- <div class="phase-item">
- <div class="phase-dot">2</div>
- <div class="phase-body">
- <div class="name">Phase 2 BSC Mainnet</div>
- <div class="detail">Accept BNB + USDC. Wider DeFi liquidity. PancakeSwap listing.</div>
- </div>
- </div>
- <div class="phase-item">
- <div class="phase-dot">3</div>
- <div class="phase-body">
- <div class="name">Phase 3 Ethereum + BTC</div>
- <div class="detail">ETH, WBTC via bridge. Broader audience. CEX listing target.</div>
- </div>
- </div>
- </div>
- </div>
+  <section class="buy-shell content-grid">
+    <div class="panel">
+      <h3>Epoch pricing</h3>
+      <div class="epoch-list" id="epochTable"></div>
+    </div>
 
- </div><!-- /left-col -->
+    <div class="route-card">
+      <h3>Transaction route</h3>
+      <div class="route-list">
+        <div class="route-item">
+          <div class="route-num">1</div>
+          <div><strong>Pay with PEAQ</strong><div class="route-detail">The presale accepts native PEAQ first on peaq Mainnet.</div></div>
+        </div>
+        <div class="route-item">
+          <div class="route-num">2</div>
+          <div><strong>Fee is applied in PHN</strong><div class="route-detail">0.25% burn, 1.75% treasury, 98% net to buyer.</div></div>
+        </div>
+        <div class="route-item">
+          <div class="route-num">3</div>
+          <div><strong>Future liquidity routing</strong><div class="route-detail">BNB, ETH, BTC, and extra chains open after liquidity and verification milestones.</div></div>
+        </div>
+      </div>
+      <div class="copy-code">
+        <code id="presaleAddress">0x334D6748a105Aa857890375a811bf51a0182a757</code>
+        <button class="mini-btn" type="button" onclick="copyAddress('presaleAddress', this)">Copy</button>
+      </div>
+    </div>
 
- <!-- BUY WIDGET -->
- <div class="buy-widget">
- <div class="widget-head">
- <h2>Buy PHN</h2>
- <div class="live-price">
- <div class="price-val" id="currentPriceDisplay">$0.02</div>
- <div class="price-label" id="epochLabel">Epoch 1    Live</div>
- </div>
- </div>
+    <div class="panel">
+      <h3>Presale status</h3>
+      <div class="trust-list">
+        <div class="trust-item">
+          <div><strong>Network</strong><div class="trust-detail">peaq Mainnet, chain ID 3338</div></div>
+          <span class="status-pill live">Active</span>
+        </div>
+        <div class="trust-item">
+          <div><strong>Burn mechanism</strong><div class="trust-detail">ERC20Burnable burn() removes the burn allocation from supply.</div></div>
+          <span class="status-pill live">Enabled</span>
+        </div>
+        <div class="trust-item">
+          <div><strong>Contract verification</strong><div class="trust-detail">Use the verify page before buying or sharing the link.</div></div>
+          <a class="status-pill" href="verify.html">Open</a>
+        </div>
+      </div>
+    </div>
 
- <!-- Epoch progress -->
- <div class="epoch-progress">
- <div class="progress-header">
- <span class="progress-label">Epoch 1 Progress</span>
- <span class="progress-pct" id="progressPct">0%</span>
- </div>
- <div class="progress-bar-wrap">
- <div class="progress-bar" id="progressBar" style="width:0%"></div>
- </div>
- <div class="progress-sub">
- <span id="progressSold">0 PHN sold</span>
- <span id="progressCap">5,000,000 cap</span>
- </div>
- </div>
- <div class="next-price-warn" id="nextPriceWarn">a Next epoch: $0.05 get in before the price jump</div>
+    <div class="panel">
+      <h3>Official links</h3>
+      <div class="trust-list">
+        <div class="trust-item">
+          <div><strong>PHN token</strong><div class="trust-detail">0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</div></div>
+          <button class="mini-btn" type="button" data-copy="0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B">Copy</button>
+        </div>
+        <div class="trust-item">
+          <div><strong>Need help?</strong><div class="trust-detail">Use the support page. Admins will never DM first asking for funds or seed phrases.</div></div>
+          <a class="status-pill" href="support.html">Support</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
- <!-- Currency tabs -->
- <div class="currency-tabs">
- <button class="cur-tab active" id="tabPeaq" onclick="setCurrency('peaq')"><span class="cur-icon">xx</span> PEAQ</button>
- <button class="cur-tab" id="tabUsdc" onclick="setCurrency('usdc')"><span class="cur-icon">x</span> USDC</button>
- <button class="cur-tab" id="tabBnb" onclick="setCurrency('bnb')" style="opacity:.5;cursor:default" title="Phase 2"><span class="cur-icon">x</span> BNB <span style="font-size:9px;color:var(--muted)">Soon</span></button>
- <button class="cur-tab" id="tabEth" onclick="setCurrency('eth')" style="opacity:.5;cursor:default" title="Phase 3"><span class="cur-icon">   </span> ETH <span style="font-size:9px;color:var(--muted)">Soon</span></button>
- </div>
-
- <!-- Amount input -->
- <div class="input-row">
- <div class="input-box" style="flex:1">
- <input class="buy-input" id="payInput" type="number" placeholder="0.00" min="0" oninput="updateCalc()"/>
- <span class="input-cur" id="paySymbol">PEAQ</span>
- <button class="max-btn" onclick="setMax()">MAX</button>
- </div>
- </div>
-
- <!-- PHN output -->
- <div class="phn-output">
- <div class="phn-main">
- <div>
- <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">You Receive</div>
- <div style="display:flex;align-items:baseline;gap:8px">
- <div class="phn-amount" id="phnOut">0.00</div>
- <div class="phn-symbol">PHN</div>
- </div>
- </div>
- <div style="text-align:right">
- <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">USD Value</div>
- <div style="font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--text)" id="usdVal">$0.00</div>
- </div>
- </div>
- <div class="fee-breakdown">
- <div class="fee-row"><span class="fee-key">Gross PHN</span><span class="fee-val" id="grossPhn">0</span></div>
- <div class="fee-row"><span class="fee-key">x Burned (0.25%)</span><span class="fee-val burn" id="burnAmt">-0</span></div>
- <div class="fee-row"><span class="fee-key">Treasury (1.75%)</span><span class="fee-val" id="treasuryAmt">-0</span></div>
- <div class="fee-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px">
- <span class="fee-key" style="color:var(--text);font-weight:600">You Receive (98%)</span>
- <span class="fee-val green" id="netPhn">0</span>
- </div>
- </div>
- </div>
-
- <!-- Connect / Buy -->
- <div id="walletNotConnected">
- <button class="btn-connect" onclick="connectWallet()">x` Connect Wallet to Buy</button>
- </div>
- <div id="walletConnected" style="display:none">
- <button class="btn-buy" id="buyBtn" onclick="doBuy()" disabled>Enter amount above</button>
- </div>
- <div class="wallet-info" id="walletInfo">
- Balance: <span id="nativeBal"></span> PEAQ &nbsp;|&nbsp; <span id="usdcBal"></span> USDC
- </div>
- <div style="margin-top:16px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--muted)">
- Contract: <span style="color:var(--pink)">0x334D6748a105Aa857890375a811bf51a0182a757</span><br>
- <a href="verify.html" style="color:var(--cyan);text-decoration:none"> Verify token authenticity</a>
- </div>
- </div><!-- /buy-widget -->
-
-</div><!-- /main-wrap -->
-
-<footer style="border-top:1px solid var(--border);padding:48px;position:relative;z-index:10;text-align:center">
- <p style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">
- PHN Contract: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B &nbsp;  &nbsp;
- <a href="verify.html" style="color:var(--cyan);text-decoration:none">Verify </a>
- &nbsp;  &nbsp;    2026 Peaq Human Node
- </p>
+<footer class="buy-footer">
+  <div class="buy-shell">
+    <span>2026 Skymetric Consulting LLP - Peaq Human Node</span>
+    <span>Official presale app. Verify contract addresses before transacting.</span>
+  </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js"></script>
 <script>
-// CONFIG 
-const PRESALE_CA = "0x334D6748a105Aa857890375a811bf51a0182a757"; // update after deployment
+const PRESALE_CA = "0x334D6748a105Aa857890375a811bf51a0182a757";
 const PHN_TOKEN = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
-const PEAQ_CHAIN_ID = "0xD0A"; // 3338 in hex
+const USDC_PEAQ = "";
+const PEAQ_CHAIN_ID = "0xD0A";
 const PEAQ_CHAIN_PARAMS = {
- chainId: PEAQ_CHAIN_ID,
- chainName: "peaq Mainnet",
- nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 },
- rpcUrls: ["https://quicknode1.peaq.xyz"],
- blockExplorerUrls: ["https://peaq.subscan.io/"]
+  chainId: PEAQ_CHAIN_ID,
+  chainName: "peaq Mainnet",
+  nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 },
+  rpcUrls: ["https://quicknode1.peaq.xyz"],
+  blockExplorerUrls: ["https://peaq.subscan.io/"]
 };
 
 const PRESALE_ABI = [
- "function buyWithNative() external payable",
- "function buyWithUsdc(uint256 amount) external",
- "function previewNative(uint256 nativeAmount) external view returns (uint256,uint256,uint256,uint256)",
- "function previewUsdc(uint256 usdcAmount) external view returns (uint256,uint256,uint256)",
- "function currentPriceUsdMicro() external view returns (uint256)",
- "function currentEpoch() external view returns (uint256)",
- "function currentEpochSold() external view returns (uint256)",
- "function currentEpochCap() external view returns (uint256)",
- "function totalPhnSold() external view returns (uint256)",
- "function totalPhnBurned() external view returns (uint256)",
- "function totalUsdRaisedMicro() external view returns (uint256)",
- "function allEpochs() external view returns (tuple(uint256 priceUsdMicro,uint256 cap,uint256 sold,bool active)[])",
- "function nativePerUsd() external view returns (uint256)",
+  "function buyWithNative() external payable",
+  "function buyWithUsdc(uint256 usdcAmount) external",
+  "function currentPriceUsdMicro() external view returns (uint256)",
+  "function totalPhnSold() external view returns (uint256)",
+  "function totalPhnBurned() external view returns (uint256)",
+  "function totalUsdRaisedMicro() external view returns (uint256)",
+  "function allEpochs() external view returns (tuple(uint256 priceUsdMicro,uint256 cap,uint256 sold,bool active)[])",
+  "function nativePerUsd() external view returns (uint256)"
 ];
 const ERC20_ABI = [
- "function balanceOf(address) external view returns (uint256)",
- "function approve(address,uint256) external returns (bool)",
- "function allowance(address,address) external view returns (uint256)",
+  "function balanceOf(address) external view returns (uint256)",
+  "function approve(address,uint256) external returns (bool)",
+  "function allowance(address,address) external view returns (uint256)"
 ];
 
-// Static epoch data until contract is deployed
 const STATIC_EPOCHS = [
- { priceUsdMicro: 20000, cap: "5000000", sold: "0", active: true },
- { priceUsdMicro: 50000, cap: "5000000", sold: "0", active: false },
- { priceUsdMicro: 100000, cap: "5000000", sold: "0", active: false },
- { priceUsdMicro: 200000, cap: "5000000", sold: "0", active: false },
+  { priceUsdMicro: 20000n, cap: 5000000n * 10n ** 18n, sold: 0n, active: true },
+  { priceUsdMicro: 50000n, cap: 5000000n * 10n ** 18n, sold: 0n, active: false },
+  { priceUsdMicro: 100000n, cap: 5000000n * 10n ** 18n, sold: 0n, active: false },
+  { priceUsdMicro: 200000n, cap: 5000000n * 10n ** 18n, sold: 0n, active: false }
 ];
 
-let provider = null, signer = null, account = null;
-let presaleContract = null, phnContract = null;
-let nativeBalance = 0n, usdcBalance = 0n;
+let provider = null;
+let signer = null;
+let account = null;
+let presaleContract = null;
 let selectedCurrency = "peaq";
-let nativePerUsdRate = 2n * 10n**18n; // fallback: PEAQ = $0.50
+let nativeBalance = 0n;
+let usdcBalance = 0n;
+let nativePerUsdRate = 2n * 10n ** 18n;
+let currentPrice = 0.02;
 
-// EPOCH RENDER 
+function usdFromMicro(v) {
+  return Number(v) / 1000000;
+}
+function formatUnitsSafe(value, decimals = 18) {
+  if (typeof ethers !== "undefined") return ethers.formatUnits(value, decimals);
+  return (Number(value) / 10 ** decimals).toString();
+}
+function fmt(n, digits = 2) {
+  if (!Number.isFinite(n)) return "0.00";
+  if (n >= 1000000) return (n / 1000000).toFixed(2) + "M";
+  if (n >= 1000) return (n / 1000).toFixed(2) + "K";
+  return n.toLocaleString(undefined, { minimumFractionDigits: digits, maximumFractionDigits: digits });
+}
+function short(addr) {
+  return addr ? addr.slice(0, 6) + "..." + addr.slice(-4) : "";
+}
+function setStatus(text) {
+  document.getElementById("walletStatus").textContent = text;
+}
+
 function renderEpochs(epochs) {
- // Track bar
- const track = document.getElementById("epochTrack");
- track.innerHTML = "";
- epochs.forEach((e, i) => {
- const priceUsd = (Number(e.priceUsdMicro || e.priceUsdMicro) / 1_000_000).toFixed(2);
- const cls = e.active ? "active" : (Number(e.sold) > 0 ? "done" : "upcoming");
- track.innerHTML += `
- <div class="epoch-node">
- <div class="epoch-price ${cls}">$${priceUsd}</div>
- <div class="epoch-dot ${cls}"></div>
- <div class="epoch-label">Epoch ${i+1}</div>
- </div>`;
- });
+  const table = document.getElementById("epochTable");
+  table.innerHTML = "";
+  epochs.forEach((epoch, index) => {
+    const price = usdFromMicro(epoch.priceUsdMicro);
+    const sold = Number(epoch.sold) / 1e18;
+    const cap = Number(epoch.cap) / 1e18;
+    const activeClass = epoch.active ? " active" : "";
+    const pill = epoch.active ? "Live" : sold > 0 ? "Done" : "Upcoming";
+    const pillClass = epoch.active ? " live" : "";
+    table.insertAdjacentHTML("beforeend", `
+      <div class="epoch-item${activeClass}">
+        <div class="epoch-num">${index + 1}</div>
+        <div>
+          <div class="epoch-price">$${price.toFixed(2)} per PHN</div>
+          <div class="epoch-detail">${fmt(sold, 0)} / ${fmt(cap, 0)} PHN allocation</div>
+        </div>
+        <span class="status-pill${pillClass}">${pill}</span>
+      </div>
+    `);
+  });
 
- // Table
- const table = document.getElementById("epochTable");
- table.innerHTML = "";
- epochs.forEach((e, i) => {
- const priceUsd = (Number(e.priceUsdMicro) / 1_000_000).toFixed(2);
- const sold = parseFloat(typeof e.sold === "bigint" ? formatE(e.sold) : e.sold).toLocaleString();
- const cap = parseFloat(typeof e.cap === "bigint" ? formatE(e.cap) : e.cap ).toLocaleString();
- const cls = e.active ? "active-row" : (Number(e.sold) > 0 ? "done-row" : "");
- const badgeCls = e.active ? "live" : (Number(e.sold) > 0 ? "done" : "up");
- const badgeTxt = e.active ? "x Live" : (Number(e.sold) > 0 ? "S Done" : "Upcoming");
- table.innerHTML += `
- <div class="epoch-row ${cls}">
- <span class="e-idx mono">Epoch ${i+1}</span>
- <span class="e-price${e.active?' pink':''}">$${priceUsd} <span style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">/ PHN</span></span>
- <span class="e-cap">${sold} / ${cap} PHN</span>
- <span class="e-status"><span class="e-badge ${badgeCls}">${badgeTxt}</span></span>
- </div>`;
- });
+  const active = epochs.find((epoch) => epoch.active) || epochs[0];
+  currentPrice = usdFromMicro(active.priceUsdMicro);
+  document.getElementById("currentPriceDisplay").textContent = "$" + currentPrice.toFixed(4);
+  document.getElementById("heroPrice").textContent = "$" + currentPrice.toFixed(2);
 
- // Progress
- const active = epochs.find(e => e.active) || epochs[0];
- const soldN = Number(typeof active.sold === "bigint" ? active.sold : BigInt(active.sold)) / 1e18;
- const capN = Number(typeof active.cap === "bigint" ? active.cap : BigInt(active.cap)) / 1e18;
- const pct = capN > 0 ? Math.min(100, (soldN / capN) * 100) : 0;
- document.getElementById("progressBar").style.width = pct + "%";
- document.getElementById("progressPct").textContent = pct.toFixed(1) + "%";
- document.getElementById("progressSold").textContent = soldN.toLocaleString(undefined,{maximumFractionDigits:0}) + " PHN sold";
- document.getElementById("progressCap").textContent = capN.toLocaleString(undefined,{maximumFractionDigits:0}) + " cap";
+  const soldN = Number(active.sold) / 1e18;
+  const capN = Number(active.cap) / 1e18;
+  const pct = capN > 0 ? Math.min(100, soldN / capN * 100) : 0;
+  document.getElementById("progressBar").style.width = pct.toFixed(2) + "%";
+  document.getElementById("progressPct").textContent = pct.toFixed(1) + "%";
+  document.getElementById("progressSold").textContent = fmt(soldN, 0) + " PHN sold";
+  document.getElementById("progressCap").textContent = fmt(capN, 0) + " cap";
 
- // Next price warning
- const activeIdx = epochs.findIndex(e => e.active);
- const next = epochs[activeIdx + 1];
- if (next) {
- const nextPrice = (Number(next.priceUsdMicro) / 1_000_000).toFixed(2);
- document.getElementById("nextPriceWarn").textContent = `a Next epoch: $${nextPrice} get in before the price jump`;
- }
+  const activeIndex = epochs.findIndex((epoch) => epoch.active);
+  const next = epochs[activeIndex + 1];
+  if (next) {
+    document.getElementById("nextPriceWarn").textContent = "Next epoch: $" + usdFromMicro(next.priceUsdMicro).toFixed(2) + " per PHN after this allocation fills.";
+  }
 }
 
-// CURRENCY 
-function setCurrency(c) {
- if (c === "bnb" || c === "eth") return; // not yet
- selectedCurrency = c;
- document.getElementById("tabPeaq").classList.toggle("active", c === "peaq");
- document.getElementById("tabUsdc").classList.toggle("active", c === "usdc");
- document.getElementById("paySymbol").textContent = c === "usdc" ? "USDC" : "PEAQ";
- updateCalc();
+function setCurrency(currency) {
+  if (currency === "usdc" && !USDC_PEAQ) {
+    selectedCurrency = "usdc";
+    setStatus("USDC route is staged. Native PEAQ purchases are active first.");
+  } else {
+    selectedCurrency = currency;
+  }
+  document.getElementById("tabPeaq").classList.toggle("active", selectedCurrency === "peaq");
+  document.getElementById("tabUsdc").classList.toggle("active", selectedCurrency === "usdc");
+  document.getElementById("paySymbol").textContent = selectedCurrency === "usdc" ? "USDC" : "PEAQ";
+  document.getElementById("amountRange").max = selectedCurrency === "usdc" ? "10000" : "1000";
+  updateBalanceText();
+  updateCalc();
 }
-
+function syncFromInput() {
+  const input = document.getElementById("payInput");
+  const range = document.getElementById("amountRange");
+  range.value = Math.min(Number(range.max), Number(input.value || 0));
+  updateCalc();
+}
+function syncFromRange() {
+  document.getElementById("payInput").value = document.getElementById("amountRange").value;
+  updateCalc();
+}
+function setPreset(value) {
+  document.getElementById("payInput").value = value;
+  document.getElementById("amountRange").value = value;
+  updateCalc();
+}
 function setMax() {
- const max = selectedCurrency === "usdc" ? usdcBalance : nativeBalance;
- if (max > 0n) {
- document.getElementById("payInput").value = formatE(max);
- updateCalc();
- }
+  const balance = selectedCurrency === "usdc" ? usdcBalance : nativeBalance;
+  if (balance <= 0n) {
+    setStatus("Connect wallet first to use MAX.");
+    return;
+  }
+  const formatted = selectedCurrency === "usdc" ? formatUnitsSafe(balance, 6) : formatUnitsSafe(balance, 18);
+  document.getElementById("payInput").value = Number(formatted).toFixed(selectedCurrency === "usdc" ? 2 : 4);
+  syncFromInput();
 }
 
-// CALC 
+function paymentToUsd(rawInput) {
+  if (selectedCurrency === "usdc") return rawInput;
+  const nativePerUsd = Number(nativePerUsdRate) / 1e18;
+  return nativePerUsd > 0 ? rawInput / nativePerUsd : 0;
+}
 function updateCalc() {
- const rawInput = parseFloat(document.getElementById("payInput").value) || 0;
- const price = 0.02; // $0.02 USD fallback until contract
- let usdVal = 0, grossPhn = 0;
-
- if (selectedCurrency === "usdc") {
- usdVal = rawInput;
- grossPhn = rawInput / price;
- } else {
- // Estimate based on nativePerUsd
- const nativeUsd = Number(nativePerUsdRate) / 1e18; // native per $1
- usdVal = rawInput / nativeUsd;
- grossPhn = usdVal / price;
- }
-
- const burnPhn = grossPhn * 0.0025;
- const treasuryPhn = grossPhn * 0.0175;
- const netPhn = grossPhn * 0.98;
-
- document.getElementById("phnOut").textContent = fmt(netPhn);
- document.getElementById("usdVal").textContent = "$" + usdVal.toFixed(2);
- document.getElementById("grossPhn").textContent = fmt(grossPhn);
- document.getElementById("burnAmt").textContent = "-" + fmt(burnPhn);
- document.getElementById("treasuryAmt").textContent = "-" + fmt(treasuryPhn);
- document.getElementById("netPhn").textContent = fmt(netPhn);
-
- const buyBtn = document.getElementById("buyBtn");
- if (buyBtn) {
- buyBtn.disabled = rawInput <= 0;
- buyBtn.textContent = rawInput > 0 ? `Buy ${fmt(netPhn)} PHN ` : "Enter amount above";
- }
+  const rawInput = Number(document.getElementById("payInput").value || 0);
+  const usdVal = paymentToUsd(rawInput);
+  const grossPhn = currentPrice > 0 ? usdVal / currentPrice : 0;
+  const burnPhn = grossPhn * 0.0025;
+  const treasuryPhn = grossPhn * 0.0175;
+  const netPhn = grossPhn * 0.98;
+  document.getElementById("usdVal").textContent = "$" + usdVal.toFixed(2) + " payment value";
+  document.getElementById("phnOut").textContent = fmt(netPhn);
+  document.getElementById("grossPhn").textContent = fmt(grossPhn);
+  document.getElementById("burnAmt").textContent = "-" + fmt(burnPhn);
+  document.getElementById("treasuryAmt").textContent = "-" + fmt(treasuryPhn);
+  document.getElementById("netPhn").textContent = fmt(netPhn);
+  const buyBtn = document.getElementById("buyBtn");
+  if (buyBtn) {
+    buyBtn.disabled = rawInput <= 0 || (selectedCurrency === "usdc" && !USDC_PEAQ);
+    buyBtn.textContent = rawInput > 0 ? "Buy " + fmt(netPhn) + " PHN" : "Enter an amount";
+  }
+}
+function updateBalanceText() {
+  const el = document.getElementById("balanceText");
+  if (!account) {
+    el.textContent = "Balance: connect wallet";
+    return;
+  }
+  if (selectedCurrency === "usdc") {
+    el.textContent = "Balance: " + Number(formatUnitsSafe(usdcBalance, 6)).toFixed(2) + " USDC";
+  } else {
+    el.textContent = "Balance: " + Number(formatUnitsSafe(nativeBalance, 18)).toFixed(4) + " PEAQ";
+  }
 }
 
-function fmt(n) {
- if (n >= 1000000) return (n/1000000).toFixed(2) + "M";
- if (n >= 1000) return (n/1000).toFixed(2) + "K";
- return n.toFixed(2);
-}
-function formatE(wei) {
- return typeof ethers !== "undefined" ? ethers.formatEther(wei) : String(Number(wei) / 1e18);
-}
-
-// WALLET 
 async function connectWallet() {
- if (!window.ethereum) { alert("Please install MetaMask."); return; }
- try {
- if (typeof ethers === "undefined") { alert("Loading try again in a second."); return; }
- await window.ethereum.request({ method: "eth_requestAccounts" });
- provider = new ethers.BrowserProvider(window.ethereum);
- let chainId = (await provider.getNetwork()).chainId;
- if (chainId !== 3338n) {
- try {
- await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: PEAQ_CHAIN_ID }] });
- } catch (switchError) {
- await window.ethereum.request({ method: "wallet_addEthereumChain", params: [PEAQ_CHAIN_PARAMS] });
- }
- provider = new ethers.BrowserProvider(window.ethereum);
- }
- signer = await provider.getSigner();
- account = await signer.getAddress();
-
- document.getElementById("walletNotConnected").style.display = "none";
- document.getElementById("walletConnected").style.display = "block";
-
- if (PRESALE_CA && PRESALE_CA !== "DEPLOY_PRESALE_ADDRESS_HERE") {
- presaleContract = new ethers.Contract(PRESALE_CA, PRESALE_ABI, signer);
- }
-
- await refreshBalances();
- window.ethereum.on("accountsChanged", () => location.reload());
- } catch(e) { console.error(e); }
+  if (!window.ethereum) {
+    setStatus("Install MetaMask or another EVM wallet to continue.");
+    return;
+  }
+  try {
+    setStatus("Opening wallet connection...");
+    await window.ethereum.request({ method: "eth_requestAccounts" });
+    provider = new ethers.BrowserProvider(window.ethereum);
+    const network = await provider.getNetwork();
+    if (network.chainId !== 3338n) {
+      try {
+        await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: PEAQ_CHAIN_ID }] });
+      } catch (switchError) {
+        await window.ethereum.request({ method: "wallet_addEthereumChain", params: [PEAQ_CHAIN_PARAMS] });
+      }
+      provider = new ethers.BrowserProvider(window.ethereum);
+    }
+    signer = await provider.getSigner();
+    account = await signer.getAddress();
+    presaleContract = new ethers.Contract(PRESALE_CA, PRESALE_ABI, signer);
+    document.getElementById("walletNotConnected").style.display = "none";
+    document.getElementById("walletConnected").style.display = "block";
+    setStatus("Connected: " + short(account) + ". Review quote, then confirm purchase in wallet.");
+    await refreshBalances();
+    window.ethereum.on("accountsChanged", () => location.reload());
+    window.ethereum.on("chainChanged", () => location.reload());
+  } catch (error) {
+    console.error(error);
+    setStatus(error.message || "Wallet connection failed.");
+  }
 }
 
 async function refreshBalances() {
- if (!account) return;
- try {
- nativeBalance = await provider.getBalance(account);
- const nbFormatted = parseFloat(formatE(nativeBalance)).toFixed(4);
- document.getElementById("nativeBal").textContent = nbFormatted;
-
- // Try to refresh from contract
- if (presaleContract) {
- try {
- const rate = await presaleContract.nativePerUsd();
- nativePerUsdRate = rate;
- const priceUsdMicro = await presaleContract.currentPriceUsdMicro();
- const priceUsd = Number(priceUsdMicro) / 1_000_000;
- document.getElementById("currentPriceDisplay").textContent = "$" + priceUsd.toFixed(4);
-
- const epochs = await presaleContract.allEpochs();
- renderEpochs(epochs);
-
- const burned = await presaleContract.totalPhnBurned();
- const raised = await presaleContract.totalUsdRaisedMicro();
- const sold = await presaleContract.totalPhnSold();
- document.getElementById("burnTotal").textContent = parseFloat(formatE(burned)).toLocaleString() + " PHN";
- document.getElementById("statRaised").textContent = "$" + (Number(raised) / 1_000_000).toLocaleString();
- document.getElementById("statSold").textContent = parseFloat(formatE(sold)).toLocaleString();
- } catch(e) { console.log("Contract not yet deployed"); }
- }
- updateCalc();
- } catch(e) { console.error(e); }
+  if (!provider || !account) return;
+  try {
+    nativeBalance = await provider.getBalance(account);
+    if (USDC_PEAQ) {
+      const usdc = new ethers.Contract(USDC_PEAQ, ERC20_ABI, provider);
+      usdcBalance = await usdc.balanceOf(account);
+    }
+    if (presaleContract) {
+      try {
+        nativePerUsdRate = await presaleContract.nativePerUsd();
+        const priceMicro = await presaleContract.currentPriceUsdMicro();
+        currentPrice = usdFromMicro(priceMicro);
+        const epochs = await presaleContract.allEpochs();
+        renderEpochs(epochs);
+      } catch (readError) {
+        console.warn("Presale read fallback", readError);
+      }
+    }
+    updateBalanceText();
+    updateCalc();
+  } catch (error) {
+    console.error(error);
+    setStatus("Connected, but balance refresh failed. You can still retry.");
+  }
 }
 
-// BUY 
 async function doBuy() {
- if (!presaleContract) { alert("Connect to peaq Mainnet and try again. Presale contract is live."); return; }
- const rawInput = parseFloat(document.getElementById("payInput").value);
- if (!rawInput || rawInput <= 0) return;
-
- const btn = document.getElementById("buyBtn");
- try {
- btn.disabled = true;
- if (selectedCurrency === "usdc") {
- // USDC buy
- const usdcAmt = ethers.parseUnits(rawInput.toString(), 6);
- const usdcCa = ""; // set after deployment
- const usdcC = new ethers.Contract(usdcCa, ERC20_ABI, signer);
- btn.textContent = "Approving USDC   ";
- const allow = await usdcC.allowance(account, PRESALE_CA);
- if (allow < usdcAmt) {
- const apTx = await usdcC.approve(PRESALE_CA, ethers.MaxUint256);
- await apTx.wait();
- }
- btn.textContent = "Buying   ";
- const tx = await presaleContract.buyWithUsdc(usdcAmt);
- await tx.wait();
- } else {
- // PEAQ native buy
- const value = ethers.parseEther(rawInput.toString());
- btn.textContent = "Confirming   ";
- const tx = await presaleContract.buyWithNative({ value });
- await tx.wait();
- }
- btn.textContent = "S Purchase Complete!";
- document.getElementById("payInput").value = "";
- updateCalc();
- await refreshBalances();
- setTimeout(() => { btn.textContent = "Buy PHN "; btn.disabled = false; }, 4000);
- } catch(e) {
- console.error(e);
- btn.textContent = "Buy PHN ";
- btn.disabled = false;
- alert("Transaction failed: " + (e.reason || e.message));
- }
+  const rawInput = Number(document.getElementById("payInput").value || 0);
+  if (!rawInput || rawInput <= 0) return;
+  if (!presaleContract) {
+    setStatus("Connect wallet on peaq Mainnet before buying.");
+    return;
+  }
+  if (selectedCurrency === "usdc" && !USDC_PEAQ) {
+    setStatus("USDC purchase route is staged. Use native PEAQ for the first phase.");
+    return;
+  }
+  const btn = document.getElementById("buyBtn");
+  try {
+    btn.disabled = true;
+    if (selectedCurrency === "usdc") {
+      const amount = ethers.parseUnits(rawInput.toString(), 6);
+      const usdc = new ethers.Contract(USDC_PEAQ, ERC20_ABI, signer);
+      setStatus("Checking USDC approval...");
+      const allowance = await usdc.allowance(account, PRESALE_CA);
+      if (allowance < amount) {
+        const approval = await usdc.approve(PRESALE_CA, ethers.MaxUint256);
+        await approval.wait();
+      }
+      setStatus("Submitting USDC purchase...");
+      const tx = await presaleContract.buyWithUsdc(amount);
+      await tx.wait();
+    } else {
+      setStatus("Submitting PEAQ purchase...");
+      const tx = await presaleContract.buyWithNative({ value: ethers.parseEther(rawInput.toString()) });
+      await tx.wait();
+    }
+    setStatus("Purchase complete. Refreshing balances...");
+    document.getElementById("payInput").value = "0";
+    document.getElementById("amountRange").value = "0";
+    await refreshBalances();
+  } catch (error) {
+    console.error(error);
+    setStatus(error.shortMessage || error.reason || error.message || "Transaction failed.");
+  } finally {
+    updateCalc();
+  }
 }
 
-// INIT 
-const es = document.createElement("script");
-es.src = "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js";
-document.head.appendChild(es);
+async function copyAddress(id, button) {
+  const text = document.getElementById(id).textContent.trim();
+  await navigator.clipboard.writeText(text);
+  const old = button.textContent;
+  button.textContent = "Copied";
+  setTimeout(() => { button.textContent = old; }, 1300);
+}
 
-window.addEventListener("load", () => {
- renderEpochs(STATIC_EPOCHS);
- updateCalc();
- if (window.ethereum) {
- window.ethereum.request({ method: "eth_accounts" }).then(a => { if (a.length) connectWallet(); });
- }
+window.addEventListener("load", async () => {
+  renderEpochs(STATIC_EPOCHS);
+  updateCalc();
+  if (window.ethereum) {
+    try {
+      const accounts = await window.ethereum.request({ method: "eth_accounts" });
+      if (accounts.length) await connectWallet();
+    } catch (error) {
+      console.warn(error);
+    }
+  }
 });
 </script>
 </body>

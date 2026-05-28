@@ -6,14 +6,14 @@
 <title>PHN Developers | Peaq Human Node</title>
 <meta name="description" content="PHN developer surface for contracts, node CLI, Beacon app, wallet integration and future Skymetric Chain modules.">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#00e5ff">
+<meta name="theme-color" content="#0b1f33">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="phn.css?v=20260529f">
-<script defer src="phn-app.js?v=20260529f"></script>
+<link rel="stylesheet" href="phn.css?v=20260529-light2">
+<script defer src="phn-app.js?v=20260529-light2"></script>
 </head>
 <body class="phn-page">
-<header class="phn-topbar"><nav class="phn-nav"><a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a><div class="phn-links"><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="validators.html">Validators</a><a class="active" href="developers.html">Developers</a></div><div class="phn-actions"><a class="phn-btn primary" href="activate-node.html">Start Node</a></div><button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button></nav></header>
+<header class="phn-topbar"><nav class="phn-nav"><a class="phn-brand" href="index.html"><img src="assets/phn-logo-minimal.svg" alt="PHN"><span>PEAQ HUMAN NODE</span></a><div class="phn-links"><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="validators.html">Validators</a><a class="active" href="developers.html">Developers</a></div><div class="phn-actions"><a class="phn-btn primary" href="activate-node.html">Start Node</a></div><button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button></nav></header>
 <div class="phn-mobile-drawer"><a href="index.html">Home</a><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="vesting.html">Vesting</a><a href="roadmap.html">Roadmap</a><a href="support.html">Support</a></div>
 <main class="phn-shell">
   <section class="phn-hero"><div><span class="phn-kicker">Developer surface</span><h1 class="phn-title">Build around verified nodes, wallets and future agents.</h1><p class="phn-lead">The current stack includes Solidity contracts, the PHN node CLI, a PWA app shell, wallet connection helpers, and launch dashboards. Future developer work expands into NexaFlow Agents, Skymetric Chain and games.</p><div class="phn-hero-actions"><a class="phn-btn primary" href="activate-node.html">Node guide</a><a class="phn-btn" href="download.html">App install</a><a class="phn-btn ghost" href="roadmap.html">Roadmap</a></div></div><article class="phn-panel"><span class="phn-tag">CLI</span><h2>Node command</h2><pre class="phn-code-block">npm run phn-node -- init

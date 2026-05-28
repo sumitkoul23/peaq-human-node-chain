@@ -1,18 +1,18 @@
 /* PHN shared site shell */
 :root {
-  --bg: #030508;
-  --panel: #0b1220;
-  --panel-2: #0f1a2b;
-  --line: rgba(142, 209, 255, 0.18);
-  --line-strong: rgba(0, 229, 255, 0.34);
-  --text: #eef6ff;
-  --muted: #8ba2b8;
-  --cyan: #00e5ff;
-  --green: #00ff88;
-  --amber: #ffb800;
-  --pink: #f472b6;
-  --red: #ff5a6e;
-  --shadow: 0 24px 80px rgba(0, 0, 0, 0.34);
+  --bg: #f7fbff;
+  --panel: #ffffff;
+  --panel-2: #eef5fb;
+  --line: #d9e7f2;
+  --line-strong: #b8dfea;
+  --text: #0b1f33;
+  --muted: #60758a;
+  --cyan: #008fb3;
+  --green: #00a978;
+  --amber: #c88700;
+  --pink: #d94f96;
+  --red: #d63d54;
+  --shadow: 0 20px 58px rgba(20, 45, 70, 0.10);
   --radius: 8px;
   --font-display: "Syne", "Inter", system-ui, sans-serif;
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
@@ -25,26 +25,14 @@ body.phn-page {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background:
-    radial-gradient(circle at 8% 8%, rgba(0, 229, 255, 0.12), transparent 28%),
-    radial-gradient(circle at 90% 16%, rgba(244, 114, 182, 0.10), transparent 26%),
-    linear-gradient(180deg, #030508 0%, #07101d 48%, #030508 100%);
+  background: #f7fbff;
   font-family: var(--font-body);
   line-height: 1.6;
   overflow-x: hidden;
 }
 
 body.phn-page::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: -1;
-  background-image:
-    linear-gradient(rgba(0, 229, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 229, 255, 0.035) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: linear-gradient(180deg, rgba(0,0,0,0.9), transparent 82%);
+  content: none;
 }
 
 a { color: inherit; }
@@ -54,8 +42,9 @@ a { color: inherit; }
   top: 0;
   z-index: 50;
   backdrop-filter: blur(18px);
-  background: rgba(3, 5, 8, 0.82);
-  border-bottom: 1px solid rgba(0, 229, 255, 0.12);
+  background: rgba(247, 251, 255, 0.88);
+  border-bottom: 1px solid var(--line);
+  box-shadow: 0 10px 34px rgba(20, 45, 70, 0.06);
 }
 .phn-nav {
   width: min(1180px, calc(100% - 32px));
@@ -77,8 +66,33 @@ a { color: inherit; }
   letter-spacing: 0;
   white-space: nowrap;
 }
-.phn-brand img { width: 34px; height: 34px; border-radius: 8px; object-fit: cover; }
-.phn-brand span { font-size: 14px; }
+.phn-brand img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  object-fit: cover;
+  flex: 0 0 auto;
+}
+.phn-brand-stack {
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: none;
+}
+.phn-brand-stack span {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  letter-spacing: 0;
+}
 .phn-links {
   display: flex;
   align-items: center;
@@ -115,8 +129,8 @@ a { color: inherit; }
   min-height: 42px;
   padding: 11px 16px;
   border-radius: 8px;
-  border: 1px solid rgba(0, 229, 255, 0.26);
-  background: rgba(0, 229, 255, 0.10);
+  border: 1px solid var(--line);
+  background: #fff;
   color: var(--cyan);
   text-decoration: none;
   font-family: var(--font-display);
@@ -128,9 +142,9 @@ a { color: inherit; }
 }
 .phn-btn:hover { transform: translateY(-1px); border-color: var(--cyan); background: rgba(0, 229, 255, 0.18); }
 .phn-btn.primary {
-  background: linear-gradient(135deg, var(--cyan), var(--green));
+  background: #0b1f33;
   border-color: transparent;
-  color: #021016;
+  color: #fff;
 }
 .phn-btn.warn { color: #120a00; background: linear-gradient(135deg, var(--amber), #ffd56b); border-color: transparent; }
 .phn-btn.ghost { background: transparent; color: var(--text); border-color: var(--line); }
@@ -175,9 +189,7 @@ a { color: inherit; }
   min-height: 440px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    linear-gradient(135deg, rgba(0,229,255,0.10), rgba(244,114,182,0.07)),
-    rgba(11,18,32,0.74);
+  background: #fff;
   box-shadow: var(--shadow);
   position: relative;
   overflow: hidden;
@@ -193,8 +205,8 @@ a { color: inherit; }
   gap: 10px;
 }
 .phn-chip {
-  border: 1px solid rgba(255,255,255,0.14);
-  background: rgba(3,5,8,0.72);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.86);
   border-radius: 8px;
   padding: 12px;
 }
@@ -215,7 +227,7 @@ a { color: inherit; }
 .phn-grid.four { grid-template-columns: repeat(4, 1fr); }
 .phn-card, .phn-panel {
   border: 1px solid var(--line);
-  background: rgba(11, 18, 32, 0.78);
+  background: #fff;
   border-radius: var(--radius);
   padding: clamp(18px, 2.4vw, 28px);
   box-shadow: 0 16px 50px rgba(0,0,0,0.18);
@@ -234,9 +246,9 @@ code { overflow-wrap: anywhere; }
   padding: 16px;
   border-radius: 8px;
   border: 1px solid rgba(0,229,255,0.16);
-  background: rgba(0,0,0,0.28);
+  background: #f1f7fb;
   overflow: auto;
-  color: #c9f8ff;
+  color: #0b1f33;
   font-family: var(--font-mono);
   font-size: 12px;
 }
@@ -350,8 +362,8 @@ code { overflow-wrap: anywhere; }
   .phn-shell, .phn-nav { width: min(100% - 24px, 1180px); }
   body.phn-page { overflow-x: hidden; }
   .phn-nav { min-height: 66px; }
-  .phn-brand span { font-size: 12px; }
-  .phn-brand img { width: 30px; height: 30px; }
+  .phn-brand img { width: 38px; height: 38px; border-radius: 9px; }
+  .phn-brand-stack { height: 38px; font-size: 11px; line-height: 0.9; }
   .phn-hero { padding-top: 38px; }
   .phn-hero-actions .phn-btn { width: 100%; }
   .phn-panel, .phn-card { min-width: 0; overflow: hidden; }
