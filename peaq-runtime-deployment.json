@@ -1,0 +1,25 @@
+{
+    "network":  "peaq",
+    "chainId":  3338,
+    "deployedAt":  "2026-05-28T17:47:50.7597588Z",
+    "deployer":  "0x8f1a80cA5B7eF92Ddf7FF41DA2c7662B43203d1C",
+    "adminOwner":  "0x7fb31d8b2b5cbed4d6e02768664a299d303ea4c2",
+    "treasury":  "0x7fb31d8b2b5cbed4d6e02768664a299d303ea4c2",
+    "contracts":  {
+                      "PHNToken":  "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B",
+                      "PHNStaking":  "0x2926c13A0f82b0462f686bbd6c67Fe78a444589A",
+                      "PHNPresale":  "0x334D6748a105Aa857890375a811bf51a0182a757"
+                  },
+    "presale":  {
+                    "nativePerUsd":  "33433634000000000000",
+                    "nativePerUsdHuman":  "33.433634",
+                    "priceSource":  "CoinGecko observed PEAQ ~= $0.02991 on 2026-05-28",
+                    "epoch1":  "$0.02",
+                    "epoch2":  "$0.05",
+                    "fee":  "2% total: 0.25% burn + 1.75% treasury"
+                },
+    "fundingRequired":  {
+                            "stakingRewardPool":  "Owner must approve PHNStaking and call fundRewardPool(10000000e18) with 10,000,000 PHN.",
+                            "presaleInventory":  "Owner must transfer PHN inventory to PHNPresale before public sales can succeed."
+                        }
+}

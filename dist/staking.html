@@ -323,8 +323,15 @@ h1{font-size:clamp(40px,5vw,64px);font-weight:800;letter-spacing:-.03em;line-hei
 <script>
 // ── CONFIG ────────────────────────────────────────────────────────────────────
 const PHN_TOKEN   = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
-const STAKING_CA  = "DEPLOY_STAKING_ADDRESS_HERE"; // update after deployment
-const BSC_CHAIN   = "0x38"; // 56 in hex
+const STAKING_CA  = "0x2926c13A0f82b0462f686bbd6c67Fe78a444589A"; // update after deployment
+const PEAQ_CHAIN  = "0xD0A"; // 3338 in hex
+const PEAQ_CHAIN_PARAMS = {
+  chainId: PEAQ_CHAIN,
+  chainName: "peaq Mainnet",
+  nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 },
+  rpcUrls: ["https://quicknode1.peaq.xyz"],
+  blockExplorerUrls: ["https://peaq.subscan.io/"]
+};
 
 const TIERS = {
   FLEX:   { apyBps: 800,  lockDays: 0,   lockSec: 0,        label: "FLEX",   penaltyBps: 0     },
@@ -394,13 +401,13 @@ async function connectWallet() {
     account  = await signer.getAddress();
 
     const chainId = (await provider.getNetwork()).chainId;
-    if (chainId !== 56n) {
-      try { await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: BSC_CHAIN }] }); }
-      catch { alert("Please switch MetaMask to BSC Mainnet."); return; }
+    if (chainId !== 3338n) {
+      try { await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: PEAQ_CHAIN }] }); }
+      catch { try { await window.ethereum.request({ method: "wallet_addEthereumChain", params: [PEAQ_CHAIN_PARAMS] }); } catch { alert("Please switch MetaMask to peaq Mainnet."); return; } }
     }
 
     phnContract     = new ethers.Contract(PHN_TOKEN, ERC20_ABI, signer);
-    if (STAKING_CA !== "DEPLOY_STAKING_ADDRESS_HERE") {
+    if (STAKING_CA && STAKING_CA !== "DEPLOY_STAKING_ADDRESS_HERE") {
       stakingContract = new ethers.Contract(STAKING_CA, STAKING_ABI, signer);
     }
 
@@ -554,7 +561,7 @@ window.addEventListener("load", async () => {
     if (accounts.length > 0) connectWallet();
   }
   updatePreview();
-  if (STAKING_CA !== "DEPLOY_STAKING_ADDRESS_HERE") {
+  if (STAKING_CA && STAKING_CA !== "DEPLOY_STAKING_ADDRESS_HERE") {
     document.getElementById("contractDisplay").textContent = STAKING_CA;
   }
 });

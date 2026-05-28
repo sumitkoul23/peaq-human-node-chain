@@ -1,7 +1,7 @@
 # Context — Skymetric Consulting LLP / PHN
 
 ## The Company
-**Skymetric Consulting LLP** — solo founder/builder. Zero budget. Building PHN as a DePIN project on BSC + peaq mainnet.
+**Skymetric Consulting LLP** — founder-led Web3 and consulting company building PHN as the first product in a wider verified-human ecosystem. Current execution is zero-budget and peaq-first.
 
 ## The Project
 **Peaq Human Node (PHN)** — identity-gated compute reward protocol. Nodes must prove they're human (PC hash + attestation + peaq DID), then send heartbeats to earn PHN.
@@ -28,3 +28,10 @@
 1. peaq Mainnet (Chain 3338) — primary, PHN's home chain
 2. BSC Mainnet (Chain 56) — largest audience
 3. Ethereum Mainnet — future phase
+
+## Future Ecosystem Plans
+- **Skymetric Chain:** Future EVM-compatible chain for verified DePIN, identity, games, and low-cost utility transactions.
+- **Games:** Planned titles include NodeRunner, Proof of Human, and DePIN Wars.
+- **Utility token:** SKY is planned as the future chain utility token for gas, app fees, games, NFT minting, and validator economics.
+- **Governance token:** SKYGOV is planned as a non-transferable governance credential earned by verified node operators, stakers, contributors, and game participants.
+- **Current priority:** Do not distract from PHN launch. Finish peaq-first verification, presale, staking, support, liquidity, listings, and social trust before building future layers.

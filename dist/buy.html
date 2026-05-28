@@ -375,7 +375,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:cen
       Balance: <span id="nativeBal">—</span> PEAQ &nbsp;|&nbsp; <span id="usdcBal">—</span> USDC
     </div>
     <div style="margin-top:16px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--muted)">
-      Contract: <span style="color:var(--pink)">deploying on peaq soon</span><br>
+      Contract: <span style="color:var(--pink)">0x334D6748a105Aa857890375a811bf51a0182a757</span><br>
       <a href="verify.html" style="color:var(--cyan);text-decoration:none">→ Verify token authenticity</a>
     </div>
   </div><!-- /buy-widget -->
@@ -392,9 +392,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:cen
 
 <script>
 // ── CONFIG ────────────────────────────────────────────────────────────────────
-const PRESALE_CA = "DEPLOY_PRESALE_ADDRESS_HERE"; // update after deployment
+const PRESALE_CA = "0x334D6748a105Aa857890375a811bf51a0182a757"; // update after deployment
 const PHN_TOKEN  = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
 const PEAQ_CHAIN_ID = "0xD0A"; // 3338 in hex
+const PEAQ_CHAIN_PARAMS = {
+  chainId: PEAQ_CHAIN_ID,
+  chainName: "peaq Mainnet",
+  nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 },
+  rpcUrls: ["https://quicknode1.peaq.xyz"],
+  blockExplorerUrls: ["https://peaq.subscan.io/"]
+};
 
 const PRESALE_ABI = [
   "function buyWithNative() external payable",
@@ -553,13 +560,22 @@ async function connectWallet() {
     if (typeof ethers === "undefined") { alert("Loading — try again in a second."); return; }
     await window.ethereum.request({ method: "eth_requestAccounts" });
     provider = new ethers.BrowserProvider(window.ethereum);
+    let chainId = (await provider.getNetwork()).chainId;
+    if (chainId !== 3338n) {
+      try {
+        await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: PEAQ_CHAIN_ID }] });
+      } catch (switchError) {
+        await window.ethereum.request({ method: "wallet_addEthereumChain", params: [PEAQ_CHAIN_PARAMS] });
+      }
+      provider = new ethers.BrowserProvider(window.ethereum);
+    }
     signer   = await provider.getSigner();
     account  = await signer.getAddress();
 
     document.getElementById("walletNotConnected").style.display = "none";
     document.getElementById("walletConnected").style.display    = "block";
 
-    if (PRESALE_CA !== "DEPLOY_PRESALE_ADDRESS_HERE") {
+    if (PRESALE_CA && PRESALE_CA !== "DEPLOY_PRESALE_ADDRESS_HERE") {
       presaleContract = new ethers.Contract(PRESALE_CA, PRESALE_ABI, signer);
     }
 
@@ -601,7 +617,7 @@ async function refreshBalances() {
 
 // ── BUY ───────────────────────────────────────────────────────────────────────
 async function doBuy() {
-  if (!presaleContract) { alert("Presale contract deploying soon on peaq. Check back shortly!"); return; }
+  if (!presaleContract) { alert("Connect to peaq Mainnet and try again. Presale contract is live."); return; }
   const rawInput = parseFloat(document.getElementById("payInput").value);
   if (!rawInput || rawInput <= 0) return;
 

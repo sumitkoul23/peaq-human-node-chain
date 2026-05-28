@@ -61,6 +61,16 @@
   status = 200
 
 [[redirects]]
+  from = "/roadmap"
+  to = "/roadmap.html"
+  status = 200
+
+[[redirects]]
+  from = "/liquidity"
+  to = "/liquidity.html"
+  status = 200
+
+[[redirects]]
   from = "/support"
   to = "/support.html"
   status = 200

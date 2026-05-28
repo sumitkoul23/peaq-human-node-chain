@@ -287,6 +287,10 @@ memory/
 - Soulbound = cannot be bought. Only earned.
 
 **Full roadmap:** `C:\ClaudeAgent\outputs\ECOSYSTEM_ROADMAP.md`
+**Public roadmap page:** `dist/roadmap.html`
+
+### Roadmap Messaging Rule
+Publicly phrase Skymetric Chain, SKY, SKYGOV, and games as **future plans / development targets**, not live products or investment guarantees. Current priority remains PHN on peaq: verification, presale, staking, exchange, support, liquidity, and listings.
 
 ---
 
