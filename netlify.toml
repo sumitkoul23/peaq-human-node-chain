@@ -8,7 +8,7 @@
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "camera=(), microphone=(), geolocation=()"
-    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.bscscan.com https://*.binance.org https://bsc-dataseed.binance.org https://api.coingecko.com https://peaq.api.onfinality.io wss://*.walletconnect.org https://plausible.io; img-src 'self' data: https:; frame-src https://plausible.io;"
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://plausible.io; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://fonts.gstatic.com; font-src https://fonts.gstatic.com; connect-src 'self' https://*.bscscan.com https://*.binance.org https://bsc-dataseed.binance.org https://api.coingecko.com https://peaq.api.onfinality.io https://quicknode1.peaq.xyz wss://*.walletconnect.org https://plausible.io; img-src 'self' data: https:; frame-src https://plausible.io;"
 
 [[redirects]]
   from = "/staking"
@@ -28,6 +28,46 @@
 [[redirects]]
   from = "/activate"
   to = "/activate-node.html"
+  status = 200
+
+[[redirects]]
+  from = "/activate-node"
+  to = "/activate-node.html"
+  status = 200
+
+[[redirects]]
+  from = "/download"
+  to = "/download.html"
+  status = 200
+
+[[redirects]]
+  from = "/app"
+  to = "/download.html"
+  status = 200
+
+[[redirects]]
+  from = "/auth"
+  to = "/auth.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/auth.html"
+  status = 200
+
+[[redirects]]
+  from = "/achievements"
+  to = "/achievements.html"
+  status = 200
+
+[[redirects]]
+  from = "/validators"
+  to = "/validators.html"
+  status = 200
+
+[[redirects]]
+  from = "/dex"
+  to = "/exchange.html"
   status = 200
 
 [[redirects]]

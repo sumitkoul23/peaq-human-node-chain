@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Buy PHN — Presale · Peaq Human Node</title>
-<meta name="description" content="Buy PHN at presale price $0.02. Epoch-based pricing — price increases each round. Accept PEAQ and USDC."/>
+<title>Buy PHN - Presale | Peaq Human Node</title>
+<meta name="description" content="Buy PHN at presale price $0.02. Epoch-based pricing price increases each round. Accept PEAQ and USDC."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
 <style>
@@ -25,14 +25,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:cen
 .nav-cta:hover{background:#fff;box-shadow:0 0 24px rgba(244,114,182,.5)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 
-/* ── HERO BAND ── */
+/* HERO BAND */
 .hero-band{position:relative;z-index:10;padding:100px 48px 40px;max-width:1100px;margin:0 auto;text-align:center}
 .presale-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(244,114,182,.1);border:1px solid rgba(244,114,182,.25);border-radius:100px;padding:6px 18px;font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--pink);margin-bottom:24px;animation:fadeUp .7s ease both}
 .hero-band h1{font-size:clamp(40px,6vw,72px);font-weight:800;letter-spacing:-.03em;line-height:1.05;margin-bottom:16px;animation:fadeUp .7s .1s ease both}
 .hero-band h1 span{color:var(--pink)}
 .hero-band p{font-size:17px;color:var(--muted);max-width:520px;margin:0 auto 40px;line-height:1.7;animation:fadeUp .7s .2s ease both}
 
-/* ── EPOCH TRACK ── */
+/* EPOCH TRACK */
 .epoch-track{display:flex;justify-content:center;gap:0;margin-bottom:56px;position:relative;z-index:10;animation:fadeUp .7s .25s ease both}
 .epoch-track::before{content:'';position:absolute;top:50%;left:10%;right:10%;height:1px;background:var(--border);z-index:0}
 .epoch-node{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 24px;position:relative;z-index:1}
@@ -46,10 +46,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:cen
 .epoch-price.upcoming{color:var(--muted)}
 .epoch-label{font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 
-/* ── MAIN LAYOUT ── */
+/* MAIN LAYOUT */
 .main-wrap{position:relative;z-index:10;max-width:1100px;margin:0 auto;padding:0 48px 80px;display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:start}
 
-/* ── BUY WIDGET ── */
+/* BUY WIDGET */
 .buy-widget{background:var(--card);border:1px solid rgba(244,114,182,.2);border-radius:20px;padding:36px;position:sticky;top:100px}
 .widget-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
 .widget-head h2{font-size:22px;font-weight:800;letter-spacing:-.01em}
@@ -105,7 +105,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:cen
 .wallet-info{font-family:var(--font-mono);font-size:11px;color:var(--muted);text-align:center;margin-top:12px}
 .wallet-info span{color:var(--pink)}
 
-/* ── LEFT COLUMN ── */
+/* LEFT COLUMN */
 .left-col{display:flex;flex-direction:column;gap:24px}
 
 /* Info cards */
@@ -163,273 +163,277 @@ nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:cen
 .phase-body .detail{font-size:12px;color:var(--muted)}
 
 @media(max-width:1000px){
-  .main-wrap{grid-template-columns:1fr;padding:0 24px 60px}
-  .buy-widget{position:static}
-  .raise-stats{grid-template-columns:1fr 1fr}
-  .fee-info-grid{grid-template-columns:1fr 1fr}
-  .epoch-track{gap:0;padding:0 12px}
-  .epoch-node{padding:0 12px}
-  nav{padding:16px 24px}.nav-links{display:none}
+ .main-wrap{grid-template-columns:1fr;padding:0 24px 60px}
+ .buy-widget{position:static}
+ .raise-stats{grid-template-columns:1fr 1fr}
+ .fee-info-grid{grid-template-columns:1fr 1fr}
+ .epoch-track{gap:0;padding:0 12px}
+ .epoch-node{padding:0 12px}
+ nav{padding:16px 24px}.nav-links{display:none}
 }
 </style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<script defer src="phn-app.js?v=20260529f"></script>
 </head>
 <body>
 <div class="grid-bg"></div>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
-  <ul class="nav-links">
-    <li><a href="index.html#how">Protocol</a></li>
-    <li><a href="staking.html">Staking</a></li>
-    <li><a href="buy.html" class="active">Buy PHN</a></li>
-    <li><a href="verify.html">Verify</a></li>
-  </ul>
-  <a class="nav-cta" href="buy.html">Buy PHN →</a>
+ <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
+ <ul class="nav-links">
+ <li><a href="index.html#how">Protocol</a></li>
+ <li><a href="staking.html">Staking</a></li>
+ <li><a href="buy.html" class="active">Buy PHN</a></li>
+ <li><a href="verify.html">Verify</a></li>
+ </ul>
+ <a class="nav-cta" href="buy.html">Buy PHN </a>
 </nav>
 
 <!-- HERO BAND -->
 <div class="hero-band">
-  <div class="presale-badge">🔥 Presale Live — Limited Supply</div>
-  <h1>Buy <span>$PHN</span> Now.<br>Price Rises Next Epoch.</h1>
-  <p>Epoch 1 presale: <strong style="color:var(--pink)">$0.02 per PHN</strong>. Next epoch: $0.05. Buy before the round fills. 2% fee — 0.25% permanently burned every purchase.</p>
+ <div class="presale-badge">x Presale Live Limited Supply</div>
+ <h1>Buy <span>$PHN</span> Now.<br>Price Rises Next Epoch.</h1>
+ <p>Epoch 1 presale: <strong style="color:var(--pink)">$0.02 per PHN</strong>. Next epoch: $0.05. Buy before the round fills. 2% fee 0.25% permanently burned every purchase.</p>
 </div>
 
 <!-- EPOCH TRACK -->
 <div class="epoch-track" id="epochTrack">
-  <!-- populated by JS -->
+ <!-- populated by JS -->
 </div>
 
 <!-- MAIN LAYOUT -->
 <div class="main-wrap">
 
-  <!-- LEFT COL -->
-  <div class="left-col">
+ <!-- LEFT COL -->
+ <div class="left-col">
 
-    <!-- Raise Stats -->
-    <div class="raise-stats">
-      <div class="raise-block">
-        <div class="raise-val pink" id="statRaised">$0</div>
-        <div class="raise-label">Total Raised (USD)</div>
-      </div>
-      <div class="raise-block">
-        <div class="raise-val" id="statSold">0</div>
-        <div class="raise-label">PHN Sold</div>
-      </div>
-      <div class="raise-block">
-        <div class="raise-val green" id="statBuyers">0</div>
-        <div class="raise-label">Buyers</div>
-      </div>
-    </div>
+ <!-- Raise Stats -->
+ <div class="raise-stats">
+ <div class="raise-block">
+ <div class="raise-val pink" id="statRaised">$0</div>
+ <div class="raise-label">Total Raised (USD)</div>
+ </div>
+ <div class="raise-block">
+ <div class="raise-val" id="statSold">0</div>
+ <div class="raise-label">PHN Sold</div>
+ </div>
+ <div class="raise-block">
+ <div class="raise-val green" id="statBuyers">0</div>
+ <div class="raise-label">Buyers</div>
+ </div>
+ </div>
 
-    <!-- Epoch Pricing Table -->
-    <div class="info-card">
-      <h3><span class="icon">📊</span> Epoch Pricing Schedule</h3>
-      <div class="epoch-table" id="epochTable">
-        <!-- populated by JS -->
-      </div>
-    </div>
+ <!-- Epoch Pricing Table -->
+ <div class="info-card">
+ <h3><span class="icon">x`</span> Epoch Pricing Schedule</h3>
+ <div class="epoch-table" id="epochTable">
+ <!-- populated by JS -->
+ </div>
+ </div>
 
-    <!-- Burn Tracker -->
-    <div class="burn-meter">
-      <div class="burn-header">
-        <div class="burn-title"><span class="burn-flame">🔥</span> PHN Burned Forever</div>
-        <div>
-          <div class="burn-total" id="burnTotal">0 PHN</div>
-          <div class="burn-sub">0.25% of every purchase</div>
-        </div>
-      </div>
-      <div class="burn-bar-wrap">
-        <div class="burn-bar" id="burnBar" style="width:0%"></div>
-      </div>
-      <p class="burn-desc">Every PHN purchase burns 0.25% of the purchased amount permanently via <code style="font-family:var(--font-mono);color:var(--red)">ERC20Burnable.burn()</code>. These tokens are gone forever — reducing total supply and creating deflationary pressure as adoption grows.</p>
-    </div>
+ <!-- Burn Tracker -->
+ <div class="burn-meter">
+ <div class="burn-header">
+ <div class="burn-title"><span class="burn-flame">x</span> PHN Burned Forever</div>
+ <div>
+ <div class="burn-total" id="burnTotal">0 PHN</div>
+ <div class="burn-sub">0.25% of every purchase</div>
+ </div>
+ </div>
+ <div class="burn-bar-wrap">
+ <div class="burn-bar" id="burnBar" style="width:0%"></div>
+ </div>
+ <p class="burn-desc">Every PHN purchase burns 0.25% of the purchased amount permanently via <code style="font-family:var(--font-mono);color:var(--red)">ERC20Burnable.burn()</code>. These tokens are gone forever reducing total supply and creating deflationary pressure as adoption grows.</p>
+ </div>
 
-    <!-- Fee Structure -->
-    <div class="info-card">
-      <h3><span class="icon">💱</span> Fee Breakdown</h3>
-      <div class="fee-info-grid">
-        <div class="fee-box">
-          <div class="big" style="color:var(--pink)">2%</div>
-          <div class="lbl">Total Fee</div>
-        </div>
-        <div class="fee-box">
-          <div class="big" style="color:var(--red)">0.25%</div>
-          <div class="lbl">Burned 🔥</div>
-        </div>
-        <div class="fee-box">
-          <div class="big" style="color:var(--amber)">1.75%</div>
-          <div class="lbl">Treasury</div>
-        </div>
-      </div>
-      <p style="font-size:13px;color:var(--muted);margin-top:16px;line-height:1.7">Fees are applied to PHN dispensed — not your payment. You always get <strong style="color:var(--text)">98% of your calculated PHN</strong>. 0.25% is burned on-chain via <code style="font-family:var(--font-mono);font-size:11px;color:var(--red)">burn()</code>.</p>
-    </div>
+ <!-- Fee Structure -->
+ <div class="info-card">
+ <h3><span class="icon">x</span> Fee Breakdown</h3>
+ <div class="fee-info-grid">
+ <div class="fee-box">
+ <div class="big" style="color:var(--pink)">2%</div>
+ <div class="lbl">Total Fee</div>
+ </div>
+ <div class="fee-box">
+ <div class="big" style="color:var(--red)">0.25%</div>
+ <div class="lbl">Burned x</div>
+ </div>
+ <div class="fee-box">
+ <div class="big" style="color:var(--amber)">1.75%</div>
+ <div class="lbl">Treasury</div>
+ </div>
+ </div>
+ <p style="font-size:13px;color:var(--muted);margin-top:16px;line-height:1.7">Fees are applied to PHN dispensed not your payment. You always get <strong style="color:var(--text)">98% of your calculated PHN</strong>. 0.25% is burned on-chain via <code style="font-family:var(--font-mono);font-size:11px;color:var(--red)">burn()</code>.</p>
+ </div>
 
-    <!-- Chain Roadmap -->
-    <div class="info-card">
-      <h3><span class="icon">🌐</span> Chain Rollout</h3>
-      <div class="phase-list">
-        <div class="phase-item live">
-          <div class="phase-dot live-dot">✓</div>
-          <div class="phase-body">
-            <div class="name" style="color:var(--green)">Phase 1 — peaq Mainnet (Live)</div>
-            <div class="detail">Buy with PEAQ native token or USDC. Identity-gated node network.</div>
-          </div>
-        </div>
-        <div class="phase-item">
-          <div class="phase-dot">2</div>
-          <div class="phase-body">
-            <div class="name">Phase 2 — BSC Mainnet</div>
-            <div class="detail">Accept BNB + USDC. Wider DeFi liquidity. PancakeSwap listing.</div>
-          </div>
-        </div>
-        <div class="phase-item">
-          <div class="phase-dot">3</div>
-          <div class="phase-body">
-            <div class="name">Phase 3 — Ethereum + BTC</div>
-            <div class="detail">ETH, WBTC via bridge. Broader audience. CEX listing target.</div>
-          </div>
-        </div>
-      </div>
-    </div>
+ <!-- Chain Roadmap -->
+ <div class="info-card">
+ <h3><span class="icon">xR</span> Chain Rollout</h3>
+ <div class="phase-list">
+ <div class="phase-item live">
+ <div class="phase-dot live-dot">S</div>
+ <div class="phase-body">
+ <div class="name" style="color:var(--green)">Phase 1 peaq Mainnet (Live)</div>
+ <div class="detail">Buy with PEAQ native token or USDC. Identity-gated node network.</div>
+ </div>
+ </div>
+ <div class="phase-item">
+ <div class="phase-dot">2</div>
+ <div class="phase-body">
+ <div class="name">Phase 2 BSC Mainnet</div>
+ <div class="detail">Accept BNB + USDC. Wider DeFi liquidity. PancakeSwap listing.</div>
+ </div>
+ </div>
+ <div class="phase-item">
+ <div class="phase-dot">3</div>
+ <div class="phase-body">
+ <div class="name">Phase 3 Ethereum + BTC</div>
+ <div class="detail">ETH, WBTC via bridge. Broader audience. CEX listing target.</div>
+ </div>
+ </div>
+ </div>
+ </div>
 
-  </div><!-- /left-col -->
+ </div><!-- /left-col -->
 
-  <!-- BUY WIDGET -->
-  <div class="buy-widget">
-    <div class="widget-head">
-      <h2>Buy PHN</h2>
-      <div class="live-price">
-        <div class="price-val" id="currentPriceDisplay">$0.02</div>
-        <div class="price-label" id="epochLabel">Epoch 1 · Live</div>
-      </div>
-    </div>
+ <!-- BUY WIDGET -->
+ <div class="buy-widget">
+ <div class="widget-head">
+ <h2>Buy PHN</h2>
+ <div class="live-price">
+ <div class="price-val" id="currentPriceDisplay">$0.02</div>
+ <div class="price-label" id="epochLabel">Epoch 1    Live</div>
+ </div>
+ </div>
 
-    <!-- Epoch progress -->
-    <div class="epoch-progress">
-      <div class="progress-header">
-        <span class="progress-label">Epoch 1 Progress</span>
-        <span class="progress-pct" id="progressPct">0%</span>
-      </div>
-      <div class="progress-bar-wrap">
-        <div class="progress-bar" id="progressBar" style="width:0%"></div>
-      </div>
-      <div class="progress-sub">
-        <span id="progressSold">0 PHN sold</span>
-        <span id="progressCap">5,000,000 cap</span>
-      </div>
-    </div>
-    <div class="next-price-warn" id="nextPriceWarn">⚡ Next epoch: $0.05 — get in before the price jump</div>
+ <!-- Epoch progress -->
+ <div class="epoch-progress">
+ <div class="progress-header">
+ <span class="progress-label">Epoch 1 Progress</span>
+ <span class="progress-pct" id="progressPct">0%</span>
+ </div>
+ <div class="progress-bar-wrap">
+ <div class="progress-bar" id="progressBar" style="width:0%"></div>
+ </div>
+ <div class="progress-sub">
+ <span id="progressSold">0 PHN sold</span>
+ <span id="progressCap">5,000,000 cap</span>
+ </div>
+ </div>
+ <div class="next-price-warn" id="nextPriceWarn">a Next epoch: $0.05 get in before the price jump</div>
 
-    <!-- Currency tabs -->
-    <div class="currency-tabs">
-      <button class="cur-tab active" id="tabPeaq" onclick="setCurrency('peaq')"><span class="cur-icon">🟦</span> PEAQ</button>
-      <button class="cur-tab" id="tabUsdc" onclick="setCurrency('usdc')"><span class="cur-icon">💵</span> USDC</button>
-      <button class="cur-tab" id="tabBnb" onclick="setCurrency('bnb')" style="opacity:.5;cursor:default" title="Phase 2"><span class="cur-icon">🔶</span> BNB <span style="font-size:9px;color:var(--muted)">Soon</span></button>
-      <button class="cur-tab" id="tabEth" onclick="setCurrency('eth')" style="opacity:.5;cursor:default" title="Phase 3"><span class="cur-icon">⬡</span> ETH <span style="font-size:9px;color:var(--muted)">Soon</span></button>
-    </div>
+ <!-- Currency tabs -->
+ <div class="currency-tabs">
+ <button class="cur-tab active" id="tabPeaq" onclick="setCurrency('peaq')"><span class="cur-icon">xx</span> PEAQ</button>
+ <button class="cur-tab" id="tabUsdc" onclick="setCurrency('usdc')"><span class="cur-icon">x</span> USDC</button>
+ <button class="cur-tab" id="tabBnb" onclick="setCurrency('bnb')" style="opacity:.5;cursor:default" title="Phase 2"><span class="cur-icon">x</span> BNB <span style="font-size:9px;color:var(--muted)">Soon</span></button>
+ <button class="cur-tab" id="tabEth" onclick="setCurrency('eth')" style="opacity:.5;cursor:default" title="Phase 3"><span class="cur-icon">   </span> ETH <span style="font-size:9px;color:var(--muted)">Soon</span></button>
+ </div>
 
-    <!-- Amount input -->
-    <div class="input-row">
-      <div class="input-box" style="flex:1">
-        <input class="buy-input" id="payInput" type="number" placeholder="0.00" min="0" oninput="updateCalc()"/>
-        <span class="input-cur" id="paySymbol">PEAQ</span>
-        <button class="max-btn" onclick="setMax()">MAX</button>
-      </div>
-    </div>
+ <!-- Amount input -->
+ <div class="input-row">
+ <div class="input-box" style="flex:1">
+ <input class="buy-input" id="payInput" type="number" placeholder="0.00" min="0" oninput="updateCalc()"/>
+ <span class="input-cur" id="paySymbol">PEAQ</span>
+ <button class="max-btn" onclick="setMax()">MAX</button>
+ </div>
+ </div>
 
-    <!-- PHN output -->
-    <div class="phn-output">
-      <div class="phn-main">
-        <div>
-          <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">You Receive</div>
-          <div style="display:flex;align-items:baseline;gap:8px">
-            <div class="phn-amount" id="phnOut">0.00</div>
-            <div class="phn-symbol">PHN</div>
-          </div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">USD Value</div>
-          <div style="font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--text)" id="usdVal">$0.00</div>
-        </div>
-      </div>
-      <div class="fee-breakdown">
-        <div class="fee-row"><span class="fee-key">Gross PHN</span><span class="fee-val" id="grossPhn">0</span></div>
-        <div class="fee-row"><span class="fee-key">🔥 Burned (0.25%)</span><span class="fee-val burn" id="burnAmt">-0</span></div>
-        <div class="fee-row"><span class="fee-key">Treasury (1.75%)</span><span class="fee-val" id="treasuryAmt">-0</span></div>
-        <div class="fee-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px">
-          <span class="fee-key" style="color:var(--text);font-weight:600">You Receive (98%)</span>
-          <span class="fee-val green" id="netPhn">0</span>
-        </div>
-      </div>
-    </div>
+ <!-- PHN output -->
+ <div class="phn-output">
+ <div class="phn-main">
+ <div>
+ <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">You Receive</div>
+ <div style="display:flex;align-items:baseline;gap:8px">
+ <div class="phn-amount" id="phnOut">0.00</div>
+ <div class="phn-symbol">PHN</div>
+ </div>
+ </div>
+ <div style="text-align:right">
+ <div style="font-family:var(--font-mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:4px">USD Value</div>
+ <div style="font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--text)" id="usdVal">$0.00</div>
+ </div>
+ </div>
+ <div class="fee-breakdown">
+ <div class="fee-row"><span class="fee-key">Gross PHN</span><span class="fee-val" id="grossPhn">0</span></div>
+ <div class="fee-row"><span class="fee-key">x Burned (0.25%)</span><span class="fee-val burn" id="burnAmt">-0</span></div>
+ <div class="fee-row"><span class="fee-key">Treasury (1.75%)</span><span class="fee-val" id="treasuryAmt">-0</span></div>
+ <div class="fee-row" style="border-top:1px solid var(--border);padding-top:6px;margin-top:2px">
+ <span class="fee-key" style="color:var(--text);font-weight:600">You Receive (98%)</span>
+ <span class="fee-val green" id="netPhn">0</span>
+ </div>
+ </div>
+ </div>
 
-    <!-- Connect / Buy -->
-    <div id="walletNotConnected">
-      <button class="btn-connect" onclick="connectWallet()">🦊 Connect Wallet to Buy</button>
-    </div>
-    <div id="walletConnected" style="display:none">
-      <button class="btn-buy" id="buyBtn" onclick="doBuy()" disabled>Enter amount above</button>
-    </div>
-    <div class="wallet-info" id="walletInfo">
-      Balance: <span id="nativeBal">—</span> PEAQ &nbsp;|&nbsp; <span id="usdcBal">—</span> USDC
-    </div>
-    <div style="margin-top:16px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--muted)">
-      Contract: <span style="color:var(--pink)">0x334D6748a105Aa857890375a811bf51a0182a757</span><br>
-      <a href="verify.html" style="color:var(--cyan);text-decoration:none">→ Verify token authenticity</a>
-    </div>
-  </div><!-- /buy-widget -->
+ <!-- Connect / Buy -->
+ <div id="walletNotConnected">
+ <button class="btn-connect" onclick="connectWallet()">x` Connect Wallet to Buy</button>
+ </div>
+ <div id="walletConnected" style="display:none">
+ <button class="btn-buy" id="buyBtn" onclick="doBuy()" disabled>Enter amount above</button>
+ </div>
+ <div class="wallet-info" id="walletInfo">
+ Balance: <span id="nativeBal"></span> PEAQ &nbsp;|&nbsp; <span id="usdcBal"></span> USDC
+ </div>
+ <div style="margin-top:16px;text-align:center;font-family:var(--font-mono);font-size:10px;color:var(--muted)">
+ Contract: <span style="color:var(--pink)">0x334D6748a105Aa857890375a811bf51a0182a757</span><br>
+ <a href="verify.html" style="color:var(--cyan);text-decoration:none"> Verify token authenticity</a>
+ </div>
+ </div><!-- /buy-widget -->
 
 </div><!-- /main-wrap -->
 
 <footer style="border-top:1px solid var(--border);padding:48px;position:relative;z-index:10;text-align:center">
-  <p style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">
-    PHN Contract: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B &nbsp;·&nbsp;
-    <a href="verify.html" style="color:var(--cyan);text-decoration:none">Verify →</a>
-    &nbsp;·&nbsp; © 2026 Peaq Human Node
-  </p>
+ <p style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">
+ PHN Contract: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B &nbsp;  &nbsp;
+ <a href="verify.html" style="color:var(--cyan);text-decoration:none">Verify </a>
+ &nbsp;  &nbsp;    2026 Peaq Human Node
+ </p>
 </footer>
 
 <script>
-// ── CONFIG ────────────────────────────────────────────────────────────────────
+// CONFIG 
 const PRESALE_CA = "0x334D6748a105Aa857890375a811bf51a0182a757"; // update after deployment
-const PHN_TOKEN  = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
+const PHN_TOKEN = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
 const PEAQ_CHAIN_ID = "0xD0A"; // 3338 in hex
 const PEAQ_CHAIN_PARAMS = {
-  chainId: PEAQ_CHAIN_ID,
-  chainName: "peaq Mainnet",
-  nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 },
-  rpcUrls: ["https://quicknode1.peaq.xyz"],
-  blockExplorerUrls: ["https://peaq.subscan.io/"]
+ chainId: PEAQ_CHAIN_ID,
+ chainName: "peaq Mainnet",
+ nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 },
+ rpcUrls: ["https://quicknode1.peaq.xyz"],
+ blockExplorerUrls: ["https://peaq.subscan.io/"]
 };
 
 const PRESALE_ABI = [
-  "function buyWithNative() external payable",
-  "function buyWithUsdc(uint256 amount) external",
-  "function previewNative(uint256 nativeAmount) external view returns (uint256,uint256,uint256,uint256)",
-  "function previewUsdc(uint256 usdcAmount) external view returns (uint256,uint256,uint256)",
-  "function currentPriceUsdMicro() external view returns (uint256)",
-  "function currentEpoch() external view returns (uint256)",
-  "function currentEpochSold() external view returns (uint256)",
-  "function currentEpochCap() external view returns (uint256)",
-  "function totalPhnSold() external view returns (uint256)",
-  "function totalPhnBurned() external view returns (uint256)",
-  "function totalUsdRaisedMicro() external view returns (uint256)",
-  "function allEpochs() external view returns (tuple(uint256 priceUsdMicro,uint256 cap,uint256 sold,bool active)[])",
-  "function nativePerUsd() external view returns (uint256)",
+ "function buyWithNative() external payable",
+ "function buyWithUsdc(uint256 amount) external",
+ "function previewNative(uint256 nativeAmount) external view returns (uint256,uint256,uint256,uint256)",
+ "function previewUsdc(uint256 usdcAmount) external view returns (uint256,uint256,uint256)",
+ "function currentPriceUsdMicro() external view returns (uint256)",
+ "function currentEpoch() external view returns (uint256)",
+ "function currentEpochSold() external view returns (uint256)",
+ "function currentEpochCap() external view returns (uint256)",
+ "function totalPhnSold() external view returns (uint256)",
+ "function totalPhnBurned() external view returns (uint256)",
+ "function totalUsdRaisedMicro() external view returns (uint256)",
+ "function allEpochs() external view returns (tuple(uint256 priceUsdMicro,uint256 cap,uint256 sold,bool active)[])",
+ "function nativePerUsd() external view returns (uint256)",
 ];
 const ERC20_ABI = [
-  "function balanceOf(address) external view returns (uint256)",
-  "function approve(address,uint256) external returns (bool)",
-  "function allowance(address,address) external view returns (uint256)",
+ "function balanceOf(address) external view returns (uint256)",
+ "function approve(address,uint256) external returns (bool)",
+ "function allowance(address,address) external view returns (uint256)",
 ];
 
 // Static epoch data until contract is deployed
 const STATIC_EPOCHS = [
-  { priceUsdMicro: 20000,  cap: "5000000", sold: "0", active: true  },
-  { priceUsdMicro: 50000,  cap: "5000000", sold: "0", active: false },
-  { priceUsdMicro: 100000, cap: "5000000", sold: "0", active: false },
-  { priceUsdMicro: 200000, cap: "5000000", sold: "0", active: false },
+ { priceUsdMicro: 20000, cap: "5000000", sold: "0", active: true },
+ { priceUsdMicro: 50000, cap: "5000000", sold: "0", active: false },
+ { priceUsdMicro: 100000, cap: "5000000", sold: "0", active: false },
+ { priceUsdMicro: 200000, cap: "5000000", sold: "0", active: false },
 ];
 
 let provider = null, signer = null, account = null;
@@ -438,237 +442,237 @@ let nativeBalance = 0n, usdcBalance = 0n;
 let selectedCurrency = "peaq";
 let nativePerUsdRate = 2n * 10n**18n; // fallback: PEAQ = $0.50
 
-// ── EPOCH RENDER ──────────────────────────────────────────────────────────────
+// EPOCH RENDER 
 function renderEpochs(epochs) {
-  // Track bar
-  const track = document.getElementById("epochTrack");
-  track.innerHTML = "";
-  epochs.forEach((e, i) => {
-    const priceUsd = (Number(e.priceUsdMicro || e.priceUsdMicro) / 1_000_000).toFixed(2);
-    const cls = e.active ? "active" : (Number(e.sold) > 0 ? "done" : "upcoming");
-    track.innerHTML += `
-      <div class="epoch-node">
-        <div class="epoch-price ${cls}">$${priceUsd}</div>
-        <div class="epoch-dot ${cls}"></div>
-        <div class="epoch-label">Epoch ${i+1}</div>
-      </div>`;
-  });
+ // Track bar
+ const track = document.getElementById("epochTrack");
+ track.innerHTML = "";
+ epochs.forEach((e, i) => {
+ const priceUsd = (Number(e.priceUsdMicro || e.priceUsdMicro) / 1_000_000).toFixed(2);
+ const cls = e.active ? "active" : (Number(e.sold) > 0 ? "done" : "upcoming");
+ track.innerHTML += `
+ <div class="epoch-node">
+ <div class="epoch-price ${cls}">$${priceUsd}</div>
+ <div class="epoch-dot ${cls}"></div>
+ <div class="epoch-label">Epoch ${i+1}</div>
+ </div>`;
+ });
 
-  // Table
-  const table = document.getElementById("epochTable");
-  table.innerHTML = "";
-  epochs.forEach((e, i) => {
-    const priceUsd = (Number(e.priceUsdMicro) / 1_000_000).toFixed(2);
-    const sold = parseFloat(typeof e.sold === "bigint" ? formatE(e.sold) : e.sold).toLocaleString();
-    const cap  = parseFloat(typeof e.cap === "bigint"  ? formatE(e.cap)  : e.cap ).toLocaleString();
-    const cls  = e.active ? "active-row" : (Number(e.sold) > 0 ? "done-row" : "");
-    const badgeCls = e.active ? "live" : (Number(e.sold) > 0 ? "done" : "up");
-    const badgeTxt = e.active ? "🔴 Live" : (Number(e.sold) > 0 ? "✓ Done" : "Upcoming");
-    table.innerHTML += `
-      <div class="epoch-row ${cls}">
-        <span class="e-idx mono">Epoch ${i+1}</span>
-        <span class="e-price${e.active?' pink':''}">$${priceUsd} <span style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">/ PHN</span></span>
-        <span class="e-cap">${sold} / ${cap} PHN</span>
-        <span class="e-status"><span class="e-badge ${badgeCls}">${badgeTxt}</span></span>
-      </div>`;
-  });
+ // Table
+ const table = document.getElementById("epochTable");
+ table.innerHTML = "";
+ epochs.forEach((e, i) => {
+ const priceUsd = (Number(e.priceUsdMicro) / 1_000_000).toFixed(2);
+ const sold = parseFloat(typeof e.sold === "bigint" ? formatE(e.sold) : e.sold).toLocaleString();
+ const cap = parseFloat(typeof e.cap === "bigint" ? formatE(e.cap) : e.cap ).toLocaleString();
+ const cls = e.active ? "active-row" : (Number(e.sold) > 0 ? "done-row" : "");
+ const badgeCls = e.active ? "live" : (Number(e.sold) > 0 ? "done" : "up");
+ const badgeTxt = e.active ? "x Live" : (Number(e.sold) > 0 ? "S Done" : "Upcoming");
+ table.innerHTML += `
+ <div class="epoch-row ${cls}">
+ <span class="e-idx mono">Epoch ${i+1}</span>
+ <span class="e-price${e.active?' pink':''}">$${priceUsd} <span style="font-size:11px;color:var(--muted);font-family:var(--font-mono)">/ PHN</span></span>
+ <span class="e-cap">${sold} / ${cap} PHN</span>
+ <span class="e-status"><span class="e-badge ${badgeCls}">${badgeTxt}</span></span>
+ </div>`;
+ });
 
-  // Progress
-  const active = epochs.find(e => e.active) || epochs[0];
-  const soldN = Number(typeof active.sold === "bigint" ? active.sold : BigInt(active.sold)) / 1e18;
-  const capN  = Number(typeof active.cap  === "bigint" ? active.cap  : BigInt(active.cap))  / 1e18;
-  const pct   = capN > 0 ? Math.min(100, (soldN / capN) * 100) : 0;
-  document.getElementById("progressBar").style.width = pct + "%";
-  document.getElementById("progressPct").textContent = pct.toFixed(1) + "%";
-  document.getElementById("progressSold").textContent = soldN.toLocaleString(undefined,{maximumFractionDigits:0}) + " PHN sold";
-  document.getElementById("progressCap").textContent  = capN.toLocaleString(undefined,{maximumFractionDigits:0}) + " cap";
+ // Progress
+ const active = epochs.find(e => e.active) || epochs[0];
+ const soldN = Number(typeof active.sold === "bigint" ? active.sold : BigInt(active.sold)) / 1e18;
+ const capN = Number(typeof active.cap === "bigint" ? active.cap : BigInt(active.cap)) / 1e18;
+ const pct = capN > 0 ? Math.min(100, (soldN / capN) * 100) : 0;
+ document.getElementById("progressBar").style.width = pct + "%";
+ document.getElementById("progressPct").textContent = pct.toFixed(1) + "%";
+ document.getElementById("progressSold").textContent = soldN.toLocaleString(undefined,{maximumFractionDigits:0}) + " PHN sold";
+ document.getElementById("progressCap").textContent = capN.toLocaleString(undefined,{maximumFractionDigits:0}) + " cap";
 
-  // Next price warning
-  const activeIdx = epochs.findIndex(e => e.active);
-  const next = epochs[activeIdx + 1];
-  if (next) {
-    const nextPrice = (Number(next.priceUsdMicro) / 1_000_000).toFixed(2);
-    document.getElementById("nextPriceWarn").textContent = `⚡ Next epoch: $${nextPrice} — get in before the price jump`;
-  }
+ // Next price warning
+ const activeIdx = epochs.findIndex(e => e.active);
+ const next = epochs[activeIdx + 1];
+ if (next) {
+ const nextPrice = (Number(next.priceUsdMicro) / 1_000_000).toFixed(2);
+ document.getElementById("nextPriceWarn").textContent = `a Next epoch: $${nextPrice} get in before the price jump`;
+ }
 }
 
-// ── CURRENCY ──────────────────────────────────────────────────────────────────
+// CURRENCY 
 function setCurrency(c) {
-  if (c === "bnb" || c === "eth") return; // not yet
-  selectedCurrency = c;
-  document.getElementById("tabPeaq").classList.toggle("active", c === "peaq");
-  document.getElementById("tabUsdc").classList.toggle("active", c === "usdc");
-  document.getElementById("paySymbol").textContent = c === "usdc" ? "USDC" : "PEAQ";
-  updateCalc();
+ if (c === "bnb" || c === "eth") return; // not yet
+ selectedCurrency = c;
+ document.getElementById("tabPeaq").classList.toggle("active", c === "peaq");
+ document.getElementById("tabUsdc").classList.toggle("active", c === "usdc");
+ document.getElementById("paySymbol").textContent = c === "usdc" ? "USDC" : "PEAQ";
+ updateCalc();
 }
 
 function setMax() {
-  const max = selectedCurrency === "usdc" ? usdcBalance : nativeBalance;
-  if (max > 0n) {
-    document.getElementById("payInput").value = formatE(max);
-    updateCalc();
-  }
+ const max = selectedCurrency === "usdc" ? usdcBalance : nativeBalance;
+ if (max > 0n) {
+ document.getElementById("payInput").value = formatE(max);
+ updateCalc();
+ }
 }
 
-// ── CALC ──────────────────────────────────────────────────────────────────────
+// CALC 
 function updateCalc() {
-  const rawInput = parseFloat(document.getElementById("payInput").value) || 0;
-  const price = 0.02; // $0.02 USD — fallback until contract
-  let usdVal = 0, grossPhn = 0;
+ const rawInput = parseFloat(document.getElementById("payInput").value) || 0;
+ const price = 0.02; // $0.02 USD fallback until contract
+ let usdVal = 0, grossPhn = 0;
 
-  if (selectedCurrency === "usdc") {
-    usdVal    = rawInput;
-    grossPhn  = rawInput / price;
-  } else {
-    // Estimate based on nativePerUsd
-    const nativeUsd = Number(nativePerUsdRate) / 1e18; // native per $1
-    usdVal   = rawInput / nativeUsd;
-    grossPhn = usdVal / price;
-  }
+ if (selectedCurrency === "usdc") {
+ usdVal = rawInput;
+ grossPhn = rawInput / price;
+ } else {
+ // Estimate based on nativePerUsd
+ const nativeUsd = Number(nativePerUsdRate) / 1e18; // native per $1
+ usdVal = rawInput / nativeUsd;
+ grossPhn = usdVal / price;
+ }
 
-  const burnPhn     = grossPhn * 0.0025;
-  const treasuryPhn = grossPhn * 0.0175;
-  const netPhn      = grossPhn * 0.98;
+ const burnPhn = grossPhn * 0.0025;
+ const treasuryPhn = grossPhn * 0.0175;
+ const netPhn = grossPhn * 0.98;
 
-  document.getElementById("phnOut").textContent      = fmt(netPhn);
-  document.getElementById("usdVal").textContent       = "$" + usdVal.toFixed(2);
-  document.getElementById("grossPhn").textContent     = fmt(grossPhn);
-  document.getElementById("burnAmt").textContent      = "-" + fmt(burnPhn);
-  document.getElementById("treasuryAmt").textContent  = "-" + fmt(treasuryPhn);
-  document.getElementById("netPhn").textContent       = fmt(netPhn);
+ document.getElementById("phnOut").textContent = fmt(netPhn);
+ document.getElementById("usdVal").textContent = "$" + usdVal.toFixed(2);
+ document.getElementById("grossPhn").textContent = fmt(grossPhn);
+ document.getElementById("burnAmt").textContent = "-" + fmt(burnPhn);
+ document.getElementById("treasuryAmt").textContent = "-" + fmt(treasuryPhn);
+ document.getElementById("netPhn").textContent = fmt(netPhn);
 
-  const buyBtn = document.getElementById("buyBtn");
-  if (buyBtn) {
-    buyBtn.disabled = rawInput <= 0;
-    buyBtn.textContent = rawInput > 0 ? `Buy ${fmt(netPhn)} PHN →` : "Enter amount above";
-  }
+ const buyBtn = document.getElementById("buyBtn");
+ if (buyBtn) {
+ buyBtn.disabled = rawInput <= 0;
+ buyBtn.textContent = rawInput > 0 ? `Buy ${fmt(netPhn)} PHN ` : "Enter amount above";
+ }
 }
 
 function fmt(n) {
-  if (n >= 1000000) return (n/1000000).toFixed(2) + "M";
-  if (n >= 1000) return (n/1000).toFixed(2) + "K";
-  return n.toFixed(2);
+ if (n >= 1000000) return (n/1000000).toFixed(2) + "M";
+ if (n >= 1000) return (n/1000).toFixed(2) + "K";
+ return n.toFixed(2);
 }
 function formatE(wei) {
-  return typeof ethers !== "undefined" ? ethers.formatEther(wei) : String(Number(wei) / 1e18);
+ return typeof ethers !== "undefined" ? ethers.formatEther(wei) : String(Number(wei) / 1e18);
 }
 
-// ── WALLET ────────────────────────────────────────────────────────────────────
+// WALLET 
 async function connectWallet() {
-  if (!window.ethereum) { alert("Please install MetaMask."); return; }
-  try {
-    if (typeof ethers === "undefined") { alert("Loading — try again in a second."); return; }
-    await window.ethereum.request({ method: "eth_requestAccounts" });
-    provider = new ethers.BrowserProvider(window.ethereum);
-    let chainId = (await provider.getNetwork()).chainId;
-    if (chainId !== 3338n) {
-      try {
-        await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: PEAQ_CHAIN_ID }] });
-      } catch (switchError) {
-        await window.ethereum.request({ method: "wallet_addEthereumChain", params: [PEAQ_CHAIN_PARAMS] });
-      }
-      provider = new ethers.BrowserProvider(window.ethereum);
-    }
-    signer   = await provider.getSigner();
-    account  = await signer.getAddress();
+ if (!window.ethereum) { alert("Please install MetaMask."); return; }
+ try {
+ if (typeof ethers === "undefined") { alert("Loading try again in a second."); return; }
+ await window.ethereum.request({ method: "eth_requestAccounts" });
+ provider = new ethers.BrowserProvider(window.ethereum);
+ let chainId = (await provider.getNetwork()).chainId;
+ if (chainId !== 3338n) {
+ try {
+ await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: PEAQ_CHAIN_ID }] });
+ } catch (switchError) {
+ await window.ethereum.request({ method: "wallet_addEthereumChain", params: [PEAQ_CHAIN_PARAMS] });
+ }
+ provider = new ethers.BrowserProvider(window.ethereum);
+ }
+ signer = await provider.getSigner();
+ account = await signer.getAddress();
 
-    document.getElementById("walletNotConnected").style.display = "none";
-    document.getElementById("walletConnected").style.display    = "block";
+ document.getElementById("walletNotConnected").style.display = "none";
+ document.getElementById("walletConnected").style.display = "block";
 
-    if (PRESALE_CA && PRESALE_CA !== "DEPLOY_PRESALE_ADDRESS_HERE") {
-      presaleContract = new ethers.Contract(PRESALE_CA, PRESALE_ABI, signer);
-    }
+ if (PRESALE_CA && PRESALE_CA !== "DEPLOY_PRESALE_ADDRESS_HERE") {
+ presaleContract = new ethers.Contract(PRESALE_CA, PRESALE_ABI, signer);
+ }
 
-    await refreshBalances();
-    window.ethereum.on("accountsChanged", () => location.reload());
-  } catch(e) { console.error(e); }
+ await refreshBalances();
+ window.ethereum.on("accountsChanged", () => location.reload());
+ } catch(e) { console.error(e); }
 }
 
 async function refreshBalances() {
-  if (!account) return;
-  try {
-    nativeBalance = await provider.getBalance(account);
-    const nbFormatted = parseFloat(formatE(nativeBalance)).toFixed(4);
-    document.getElementById("nativeBal").textContent = nbFormatted;
+ if (!account) return;
+ try {
+ nativeBalance = await provider.getBalance(account);
+ const nbFormatted = parseFloat(formatE(nativeBalance)).toFixed(4);
+ document.getElementById("nativeBal").textContent = nbFormatted;
 
-    // Try to refresh from contract
-    if (presaleContract) {
-      try {
-        const rate = await presaleContract.nativePerUsd();
-        nativePerUsdRate = rate;
-        const priceUsdMicro = await presaleContract.currentPriceUsdMicro();
-        const priceUsd = Number(priceUsdMicro) / 1_000_000;
-        document.getElementById("currentPriceDisplay").textContent = "$" + priceUsd.toFixed(4);
+ // Try to refresh from contract
+ if (presaleContract) {
+ try {
+ const rate = await presaleContract.nativePerUsd();
+ nativePerUsdRate = rate;
+ const priceUsdMicro = await presaleContract.currentPriceUsdMicro();
+ const priceUsd = Number(priceUsdMicro) / 1_000_000;
+ document.getElementById("currentPriceDisplay").textContent = "$" + priceUsd.toFixed(4);
 
-        const epochs = await presaleContract.allEpochs();
-        renderEpochs(epochs);
+ const epochs = await presaleContract.allEpochs();
+ renderEpochs(epochs);
 
-        const burned  = await presaleContract.totalPhnBurned();
-        const raised  = await presaleContract.totalUsdRaisedMicro();
-        const sold    = await presaleContract.totalPhnSold();
-        document.getElementById("burnTotal").textContent   = parseFloat(formatE(burned)).toLocaleString() + " PHN";
-        document.getElementById("statRaised").textContent  = "$" + (Number(raised) / 1_000_000).toLocaleString();
-        document.getElementById("statSold").textContent    = parseFloat(formatE(sold)).toLocaleString();
-      } catch(e) { console.log("Contract not yet deployed"); }
-    }
-    updateCalc();
-  } catch(e) { console.error(e); }
+ const burned = await presaleContract.totalPhnBurned();
+ const raised = await presaleContract.totalUsdRaisedMicro();
+ const sold = await presaleContract.totalPhnSold();
+ document.getElementById("burnTotal").textContent = parseFloat(formatE(burned)).toLocaleString() + " PHN";
+ document.getElementById("statRaised").textContent = "$" + (Number(raised) / 1_000_000).toLocaleString();
+ document.getElementById("statSold").textContent = parseFloat(formatE(sold)).toLocaleString();
+ } catch(e) { console.log("Contract not yet deployed"); }
+ }
+ updateCalc();
+ } catch(e) { console.error(e); }
 }
 
-// ── BUY ───────────────────────────────────────────────────────────────────────
+// BUY 
 async function doBuy() {
-  if (!presaleContract) { alert("Connect to peaq Mainnet and try again. Presale contract is live."); return; }
-  const rawInput = parseFloat(document.getElementById("payInput").value);
-  if (!rawInput || rawInput <= 0) return;
+ if (!presaleContract) { alert("Connect to peaq Mainnet and try again. Presale contract is live."); return; }
+ const rawInput = parseFloat(document.getElementById("payInput").value);
+ if (!rawInput || rawInput <= 0) return;
 
-  const btn = document.getElementById("buyBtn");
-  try {
-    btn.disabled = true;
-    if (selectedCurrency === "usdc") {
-      // USDC buy
-      const usdcAmt = ethers.parseUnits(rawInput.toString(), 6);
-      const usdcCa  = ""; // set after deployment
-      const usdcC   = new ethers.Contract(usdcCa, ERC20_ABI, signer);
-      btn.textContent = "Approving USDC…";
-      const allow = await usdcC.allowance(account, PRESALE_CA);
-      if (allow < usdcAmt) {
-        const apTx = await usdcC.approve(PRESALE_CA, ethers.MaxUint256);
-        await apTx.wait();
-      }
-      btn.textContent = "Buying…";
-      const tx = await presaleContract.buyWithUsdc(usdcAmt);
-      await tx.wait();
-    } else {
-      // PEAQ native buy
-      const value = ethers.parseEther(rawInput.toString());
-      btn.textContent = "Confirming…";
-      const tx = await presaleContract.buyWithNative({ value });
-      await tx.wait();
-    }
-    btn.textContent = "✓ Purchase Complete!";
-    document.getElementById("payInput").value = "";
-    updateCalc();
-    await refreshBalances();
-    setTimeout(() => { btn.textContent = "Buy PHN →"; btn.disabled = false; }, 4000);
-  } catch(e) {
-    console.error(e);
-    btn.textContent = "Buy PHN →";
-    btn.disabled = false;
-    alert("Transaction failed: " + (e.reason || e.message));
-  }
+ const btn = document.getElementById("buyBtn");
+ try {
+ btn.disabled = true;
+ if (selectedCurrency === "usdc") {
+ // USDC buy
+ const usdcAmt = ethers.parseUnits(rawInput.toString(), 6);
+ const usdcCa = ""; // set after deployment
+ const usdcC = new ethers.Contract(usdcCa, ERC20_ABI, signer);
+ btn.textContent = "Approving USDC   ";
+ const allow = await usdcC.allowance(account, PRESALE_CA);
+ if (allow < usdcAmt) {
+ const apTx = await usdcC.approve(PRESALE_CA, ethers.MaxUint256);
+ await apTx.wait();
+ }
+ btn.textContent = "Buying   ";
+ const tx = await presaleContract.buyWithUsdc(usdcAmt);
+ await tx.wait();
+ } else {
+ // PEAQ native buy
+ const value = ethers.parseEther(rawInput.toString());
+ btn.textContent = "Confirming   ";
+ const tx = await presaleContract.buyWithNative({ value });
+ await tx.wait();
+ }
+ btn.textContent = "S Purchase Complete!";
+ document.getElementById("payInput").value = "";
+ updateCalc();
+ await refreshBalances();
+ setTimeout(() => { btn.textContent = "Buy PHN "; btn.disabled = false; }, 4000);
+ } catch(e) {
+ console.error(e);
+ btn.textContent = "Buy PHN ";
+ btn.disabled = false;
+ alert("Transaction failed: " + (e.reason || e.message));
+ }
 }
 
-// ── INIT ──────────────────────────────────────────────────────────────────────
+// INIT 
 const es = document.createElement("script");
 es.src = "https://cdnjs.cloudflare.com/ajax/libs/ethers/6.7.0/ethers.umd.min.js";
 document.head.appendChild(es);
 
 window.addEventListener("load", () => {
-  renderEpochs(STATIC_EPOCHS);
-  updateCalc();
-  if (window.ethereum) {
-    window.ethereum.request({ method: "eth_accounts" }).then(a => { if (a.length) connectWallet(); });
-  }
+ renderEpochs(STATIC_EPOCHS);
+ updateCalc();
+ if (window.ethereum) {
+ window.ethereum.request({ method: "eth_accounts" }).then(a => { if (a.length) connectWallet(); });
+ }
 });
 </script>
 </body>

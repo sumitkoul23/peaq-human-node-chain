@@ -1,0 +1,112 @@
+{
+  "generatedAt": "2026-05-28T22:54:51.934Z",
+  "viewports": [
+    {
+      "name": "mobile-small",
+      "width": 360,
+      "height": 740
+    },
+    {
+      "name": "mobile",
+      "width": 390,
+      "height": 844
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "name": "desktop",
+      "width": 1440,
+      "height": 900
+    }
+  ],
+  "results": [
+    {
+      "page": "about.html",
+      "findings": []
+    },
+    {
+      "page": "achievements.html",
+      "findings": []
+    },
+    {
+      "page": "activate-node.html",
+      "findings": []
+    },
+    {
+      "page": "auth.html",
+      "findings": []
+    },
+    {
+      "page": "buy.html",
+      "findings": []
+    },
+    {
+      "page": "dashboard/index.html",
+      "findings": []
+    },
+    {
+      "page": "developers.html",
+      "findings": []
+    },
+    {
+      "page": "dex.html",
+      "findings": []
+    },
+    {
+      "page": "download.html",
+      "findings": []
+    },
+    {
+      "page": "exchange.html",
+      "findings": []
+    },
+    {
+      "page": "governance.html",
+      "findings": []
+    },
+    {
+      "page": "index.html",
+      "findings": []
+    },
+    {
+      "page": "liquidity.html",
+      "findings": []
+    },
+    {
+      "page": "offline.html",
+      "findings": []
+    },
+    {
+      "page": "roadmap.html",
+      "findings": []
+    },
+    {
+      "page": "staking.html",
+      "findings": []
+    },
+    {
+      "page": "support.html",
+      "findings": []
+    },
+    {
+      "page": "validators.html",
+      "findings": []
+    },
+    {
+      "page": "verify.html",
+      "findings": []
+    },
+    {
+      "page": "vesting.html",
+      "findings": []
+    },
+    {
+      "page": "wallet.html",
+      "findings": []
+    }
+  ],
+  "cssFindings": []
+}

@@ -1,0 +1,96 @@
+ <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PHN Sign In | Wallet, Binance Wallet and Email</title>
+<meta name="description" content="Sign in to Peaq Human Node with MetaMask, Binance Wallet, WalletConnect-ready wallets, or staged email/password auth.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
+</head>
+<body class="phn-page">
+<header class="phn-topbar">
+  <nav class="phn-nav">
+    <a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a>
+    <div class="phn-links"><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a class="active" href="auth.html">Sign In</a></div>
+    <div class="phn-actions"><button class="phn-btn primary" onclick="connectPhnWallet()">Connect Wallet</button></div>
+    <button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button>
+  </nav>
+</header>
+<div class="phn-mobile-drawer">
+  <a href="index.html">Home</a><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="support.html">Support</a>
+</div>
+
+<main class="phn-shell">
+  <section class="phn-hero">
+    <div>
+      <span class="phn-kicker">Account access</span>
+      <h1 class="phn-title">Sign in with wallet first, email second.</h1>
+      <p class="phn-lead">PHN accounts should be wallet-native because staking, presale, vesting and node ownership are on-chain. Email/password is staged for support and non-custodial profile access after a backend is connected.</p>
+      <div class="phn-status" id="authStatus" data-wallet-status></div>
+    </div>
+    <article class="phn-panel">
+      <span class="phn-tag green">Recommended</span>
+      <h2>Wallet sign-in</h2>
+      <div class="phn-grid two" style="margin-top:16px">
+        <button class="phn-btn primary" onclick="connectPhnWallet('metamask','#authStatus')">MetaMask</button>
+        <button class="phn-btn" onclick="connectPhnWallet('binance','#authStatus')">Binance Wallet</button>
+        <button class="phn-btn ghost" onclick="connectPhnWallet('any','#authStatus')">Injected Wallet</button>
+        <button class="phn-btn ghost" onclick="document.getElementById('walletConnectNote').classList.add('show')">WalletConnect</button>
+      </div>
+      <div class="phn-status warn" id="walletConnectNote">WalletConnect needs a project ID before production. Keep this staged until the domain and WalletConnect Cloud project are configured.</div>
+    </article>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-grid two">
+      <article class="phn-panel">
+        <span class="phn-tag">Connected account</span>
+        <h2>Session status</h2>
+        <p>Wallet: <span class="phn-code" data-wallet-address>Not connected</span></p>
+        <p>Chain: <span class="phn-code">peaq Mainnet 3338</span></p>
+        <div class="phn-hero-actions">
+          <button class="phn-btn" onclick="addPeaqNetwork('#authStatus')">Add peaq Network</button>
+          <button class="phn-btn" onclick="addPhnToken('#authStatus')">Add PHN Token</button>
+        </div>
+      </article>
+      <article class="phn-panel">
+        <span class="phn-tag amber">Staged</span>
+        <h2>Email and password</h2>
+        <p>Email auth should use Supabase, Firebase Auth, or another audited auth backend. The site must not store passwords in browser storage or static files.</p>
+        <form class="phn-form-grid" onsubmit="emailSignupDemo(event)">
+          <label>Email<input class="phn-input" type="email" placeholder="you@example.com" autocomplete="email"></label>
+          <label>Password<input class="phn-input" type="password" placeholder="Backend required" autocomplete="new-password"></label>
+          <button class="phn-btn warn" type="submit">Request email auth setup</button>
+        </form>
+      </article>
+    </div>
+  </section>
+
+  <section class="phn-section">
+    <article class="phn-panel">
+      <span class="phn-tag pink">Access model</span>
+      <h2>How users should enter PHN</h2>
+      <div class="phn-steps">
+        <div class="phn-step"><div><h3>Connect wallet</h3><p>MetaMask or Binance Wallet signs the user into the peaq network without sharing private keys.</p></div></div>
+        <div class="phn-step"><div><h3>Buy, stake or activate</h3><p>The same wallet can use presale, staking, PHN wallet, node activation and vesting pages.</p></div></div>
+        <div class="phn-step"><div><h3>Add email profile later</h3><p>Email is useful for support tickets and notifications, but on-chain ownership remains wallet-based.</p></div></div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="phn-footer">
+  <div class="phn-shell phn-footer-grid">
+    <div><strong>Peaq Human Node</strong><p>Wallet-native account access by Skymetric Consulting LLP.</p></div>
+    <div><strong>App</strong><a href="buy.html">Buy PHN</a><a href="staking.html">Staking</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a></div>
+    <div><strong>Protocol</strong><a href="activate-node.html">Run Node</a><a href="vesting.html">Vesting</a><a href="verify.html">Verify</a><a href="support.html">Support</a></div>
+    <div><strong>Company</strong><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="about.html">About</a></div>
+  </div>
+</footer>
+</body>
+</html>

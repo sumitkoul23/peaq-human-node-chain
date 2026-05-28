@@ -1,75 +1,86 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>PHN Roadmap | Skymetric Consulting LLP</title>
-<meta name="description" content="The PHN roadmap from Skymetric Consulting LLP: peaq-first DePIN launch, staking, custom exchange, future chain, utility token, games, and governance.">
-<style>
-:root{--bg:#030508;--panel:#0c1420;--line:#1a2840;--text:#e8f0fe;--muted:#7890a8;--cyan:#00e5ff;--green:#00ff88;--pink:#f472b6;--amber:#ffb800}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.6}a{color:inherit}main{max-width:1180px;margin:0 auto;padding:36px 24px 80px}.nav{display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:56px}.brand{font-weight:900;text-decoration:none;letter-spacing:.02em}.links{display:flex;gap:20px;flex-wrap:wrap}.links a{font-size:13px;color:var(--muted);text-decoration:none;text-transform:uppercase;letter-spacing:.08em}.links a:hover{color:var(--cyan)}.cta{background:var(--cyan);color:#030508;padding:10px 18px;border-radius:4px;font-weight:800;text-decoration:none;font-size:13px}.eyebrow{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--cyan);font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:14px}h1{font-size:clamp(42px,6vw,74px);line-height:1;margin:0 0 20px;max-width:880px}h2{font-size:clamp(28px,4vw,44px);margin:0 0 14px}.lead{font-size:18px;color:var(--muted);max-width:760px;margin:0 0 44px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:24px}.card h3{margin:0 0 10px;font-size:18px}.card p,.card li{color:var(--muted);font-size:14px}.tag{display:inline-block;margin-bottom:14px;color:var(--cyan);background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.18);padding:5px 10px;border-radius:999px;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:11px;text-transform:uppercase}.section{margin-top:86px}.timeline{display:grid;gap:16px}.phase{display:grid;grid-template-columns:160px 1fr;gap:22px;align-items:start}.phase-time{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--green);font-size:13px}.phase-body{border-left:2px solid var(--line);padding-left:24px}.phase-body h3{margin:0 0 8px;font-size:20px}.phase-body p{margin:0;color:var(--muted)}.pill-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}.pill{border:1px solid var(--line);border-radius:999px;padding:6px 10px;color:var(--muted);font-size:12px}.notice{margin-top:64px;padding:22px;border:1px solid rgba(255,184,0,.25);background:rgba(255,184,0,.06);border-radius:8px;color:#d8c38a}.notice strong{color:var(--amber)}footer{margin-top:80px;border-top:1px solid var(--line);padding-top:28px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap}@media(max-width:820px){.grid{grid-template-columns:1fr}.phase{grid-template-columns:1fr}.links{display:none}.nav{align-items:flex-start}.phase-body{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:16px}}
-</style>
+<meta name="description" content="Skymetric Consulting LLP roadmap for PHN, NexaFlow Agents, future chain, games, utility token and governance token.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
 </head>
-<body>
-<main>
-  <nav class="nav">
-    <a class="brand" href="index.html">PEAQ HUMAN NODE</a>
-    <div class="links">
-      <a href="index.html">Home</a>
-      <a href="buy.html">Buy</a>
-      <a href="staking.html">Staking</a>
-      <a href="exchange.html">Exchange</a>
-      <a href="governance.html">Governance</a>
-    </div>
-    <a class="cta" href="buy.html">Buy PHN</a>
+<body class="phn-page">
+<header class="phn-topbar">
+  <nav class="phn-nav">
+    <a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a>
+    <div class="phn-links"><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="download.html">Download</a><a class="active" href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a></div>
+    <div class="phn-actions"><a class="phn-btn" href="https://nexaflowagents.netlify.app" target="_blank" rel="noopener">NexaFlow</a><a class="phn-btn primary" href="buy.html">Buy PHN</a></div>
+    <button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button>
   </nav>
+</header>
+<div class="phn-mobile-drawer">
+  <a href="index.html">Home</a><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="vesting.html">Vesting</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a>
+</div>
 
-  <div class="eyebrow">Skymetric Consulting LLP ecosystem roadmap</div>
-  <h1>From peaq-first DePIN to a human-verified Web3 ecosystem.</h1>
-  <p class="lead">PHN starts with verified node rewards on peaq and BSC. The longer arc is bigger: our own chain, utility token, games, and governance designed around real human participation instead of bot-driven extraction.</p>
-
-  <section class="grid">
-    <article class="card"><span class="tag">Now</span><h3>PHN DePIN launch</h3><p>Presale, staking, identity-gated nodes, token verification, and the official PHN exchange surface.</p></article>
-    <article class="card"><span class="tag">Next</span><h3>Skymetric Chain</h3><p>An EVM-compatible chain for verified DePIN, gaming, identity, and low-cost utility transactions.</p></article>
-    <article class="card"><span class="tag">Utility</span><h3>SKY token</h3><p>A future chain utility token for gas, app fees, game actions, NFT minting, and validator economics.</p></article>
-    <article class="card"><span class="tag">Governance</span><h3>SKYGOV</h3><p>A non-transferable governance credential earned through staking, node operation, and contribution.</p></article>
+<main class="phn-shell">
+  <section class="phn-hero">
+    <div>
+      <span class="phn-kicker">Skymetric Consulting LLP roadmap</span>
+      <h1 class="phn-title">PHN starts the network. NexaFlow starts the agent layer.</h1>
+      <p class="phn-lead">The roadmap is peaq-first: launch PHN, make node activation usable, fund staking, grow liquidity, then connect AI agents, games, utility tokens and governance into one Skymetric ecosystem.</p>
+      <div class="phn-hero-actions">
+        <a class="phn-btn primary" href="achievements.html">View achievements</a>
+        <a class="phn-btn" href="https://nexaflowagents.netlify.app" target="_blank" rel="noopener">Open NexaFlow Agents</a>
+        <a class="phn-btn ghost" href="download.html">Install Beacon</a>
+      </div>
+    </div>
+    <article class="phn-panel">
+      <span class="phn-tag pink">Ongoing project</span>
+      <h2>NexaFlow Agents</h2>
+      <p>NexaFlow Agents is listed as an active Skymetric project and future automation layer for PHN operations: campaign workflows, support triage, listing checklists, node operator onboarding and performance reporting.</p>
+      <p><code>https://nexaflowagents.netlify.app</code></p>
+    </article>
   </section>
 
-  <section class="section">
-    <h2>Execution Phases</h2>
-    <div class="timeline">
-      <div class="phase">
-        <div class="phase-time">Phase 1 · 2026</div>
-        <div class="phase-body"><h3>peaq-first PHN network</h3><p>Launch PHN on peaq and BSC, complete Subscan verification, presale, staking, vesting, support, and exchange surfaces.</p><div class="pill-row"><span class="pill">PHN presale</span><span class="pill">Staking</span><span class="pill">Node rewards</span><span class="pill">Burn fee</span></div></div>
-      </div>
-      <div class="phase">
-        <div class="phase-time">Phase 2 · 2026</div>
-        <div class="phase-body"><h3>Liquidity and multi-chain expansion</h3><p>Build liquidity depth first, then expand routing to BNB, USDC, ETH, BTC wrappers, and cross-chain liquidity once the peaq base is stable.</p><div class="pill-row"><span class="pill">PHN/PEAQ</span><span class="pill">PHN/BNB</span><span class="pill">USDC route</span><span class="pill">LayerZero</span></div></div>
-      </div>
-      <div class="phase">
-        <div class="phase-time">Phase 3 · 2027</div>
-        <div class="phase-body"><h3>Skymetric Chain</h3><p>Design and test an EVM-compatible chain focused on verified humans, verified machines, cheap transactions, native DePIN tooling, and app-level identity.</p><div class="pill-row"><span class="pill">Testnet</span><span class="pill">Explorer</span><span class="pill">Bridge</span><span class="pill">Validator set</span></div></div>
-      </div>
-      <div class="phase">
-        <div class="phase-time">Phase 4 · 2027+</div>
-        <div class="phase-body"><h3>Games, utility tokens, and governance</h3><p>Launch node-themed games, in-game utility tokens, SKY gas utility, and SKYGOV governance so users can help steer chain upgrades, treasury use, game mechanics, and ecosystem listings.</p><div class="pill-row"><span class="pill">NodeRunner</span><span class="pill">Proof of Human</span><span class="pill">SKY</span><span class="pill">SKYGOV</span></div></div>
-      </div>
+  <section class="phn-section">
+    <div class="phn-section-head"><div><span class="phn-tag green">Execution phases</span><h2>Roadmap by delivery order</h2></div></div>
+    <div class="phn-steps">
+      <div class="phn-step"><div><h3>Phase 1: peaq-first PHN launch</h3><p>Presale, staking, vesting, verify page, PHN wallet console, node activation, PWA download and support surfaces.</p><div class="phn-hero-actions"><a class="phn-btn" href="buy.html">Presale</a><a class="phn-btn" href="staking.html">Staking</a><a class="phn-btn" href="activate-node.html">Run Node</a></div></div></div>
+      <div class="phn-step"><div><h3>Phase 2: liquidity and listings</h3><p>Provide PHN liquidity, lock LP tokens, finish Subscan/project listings, and make PHN exchange route through controlled app surfaces.</p><div class="phn-hero-actions"><a class="phn-btn" href="liquidity.html">Liquidity</a><a class="phn-btn" href="verify.html">Verify</a><a class="phn-btn" href="exchange.html">Exchange</a></div></div></div>
+      <div class="phn-step"><div><h3>Phase 3: NexaFlow automation layer</h3><p>Use NexaFlow Agents to manage content planning, launch reporting, SEO tasks, support routing and campaign operations.</p><div class="phn-hero-actions"><a class="phn-btn" href="https://nexaflowagents.netlify.app" target="_blank" rel="noopener">Open NexaFlow</a><a class="phn-btn" href="support.html">Support</a></div></div></div>
+      <div class="phn-step"><div><h3>Phase 4: Skymetric Chain</h3><p>Plan an EVM-compatible chain for verified DePIN, agent payments, game actions, low-cost utility transactions and native wallet tooling.</p></div></div>
+      <div class="phn-step"><div><h3>Phase 5: Games, utility token and governance</h3><p>Launch node-themed games, a future SKY utility token, and earned SKYGOV governance credentials for contributors, stakers and node operators.</p></div></div>
     </div>
   </section>
 
-  <section class="section grid">
-    <article class="card"><h3>Games</h3><p>Planned games include NodeRunner, Proof of Human, and DePIN Wars. Games are designed to create utility loops for node identity, PHN rewards, and future SKY usage.</p></article>
-    <article class="card"><h3>Utility Tokens</h3><p>PHN remains the node reward and staking token. SKY is planned as a future chain utility token for gas, apps, games, and ecosystem fees.</p></article>
-    <article class="card"><h3>Governance Tokens</h3><p>SKYGOV is planned as an earned, soulbound governance credential rather than a speculative market token.</p></article>
-    <article class="card"><h3>Own Chain</h3><p>Skymetric Chain is planned after PHN has proven demand, liquidity, node traction, and community operations.</p></article>
+  <section class="phn-section">
+    <div class="phn-grid four">
+      <article class="phn-card"><span class="phn-tag">Own chain</span><h3>Skymetric Chain</h3><p>Future EVM-compatible chain with explorer, bridge, validator set and app-level identity.</p></article>
+      <article class="phn-card"><span class="phn-tag pink">Games</span><h3>NodeRunner and more</h3><p>NodeRunner, Proof of Human and DePIN Wars are planned as utility loops around identity and node rewards.</p></article>
+      <article class="phn-card"><span class="phn-tag green">Utility</span><h3>SKY token</h3><p>Future utility token for gas, app fees, games, NFTs, agent actions and ecosystem services.</p></article>
+      <article class="phn-card"><span class="phn-tag amber">Governance</span><h3>SKYGOV</h3><p>Earned governance credential for upgrades, treasury decisions and future chain parameters.</p></article>
+    </div>
   </section>
 
-  <div class="notice"><strong>Roadmap note:</strong> Future chain, game, SKY, and SKYGOV plans are development targets, not live products or investment guarantees. Current execution priority remains PHN on peaq, verified listings, presale, staking, and liquidity.</div>
-
-  <footer>
-    <span>© 2026 Skymetric Consulting LLP · Peaq Human Node</span>
-    <span>PHN contract: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</span>
-  </footer>
+  <section class="phn-section">
+    <article class="phn-panel">
+      <span class="phn-tag amber">Important</span>
+      <h2>Roadmap disclosure</h2>
+      <p>Future chain, game, utility token and governance plans are development targets, not live products and not investment guarantees. Current priority remains PHN on peaq: wallet UX, node activation, presale, staking, liquidity and listings.</p>
+    </article>
+  </section>
 </main>
+
+<footer class="phn-footer">
+  <div class="phn-shell phn-footer-grid">
+    <div><strong>Skymetric Consulting LLP</strong><p>Building PHN, NexaFlow Agents and future verified Web3 products.</p></div>
+    <div><strong>PHN</strong><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="download.html">Download</a></div>
+    <div><strong>Roadmap</strong><a href="achievements.html">Achievements</a><a href="developers.html">Developers</a><a href="governance.html">Governance</a><a href="vesting.html">Vesting</a></div>
+    <div><strong>External</strong><a href="https://nexaflowagents.netlify.app" target="_blank" rel="noopener">NexaFlow Agents</a><a href="support.html">Support</a><a href="about.html">About</a></div>
+  </div>
+</footer>
 </body>
 </html>

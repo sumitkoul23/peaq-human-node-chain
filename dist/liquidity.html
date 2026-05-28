@@ -1,111 +1,194 @@
-<!doctype html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PHN Liquidity Console | Skymetric Consulting LLP</title>
-<meta name="description" content="Owner liquidity console for PHN on peaq: fund presale inventory, fund staking rewards, and prepare future DEX liquidity.">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PHN Liquidity Console | Skymetric Consulting LLP - Peaq Human Node</title>
+<meta name="description" content="Owner liquidity console for PHN on peaq: fund presale inventory, fund staking rewards, and prepare future DEX liquidity."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
 <style>
-:root{--bg:#030508;--panel:#0c1420;--line:#1a2840;--text:#e8f0fe;--muted:#7890a8;--cyan:#00e5ff;--green:#00ff88;--pink:#f472b6;--amber:#ffb800;--red:#ff5b6e}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55}main{max-width:1120px;margin:0 auto;padding:34px 22px 80px}.nav{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:42px}.brand{font-weight:900;text-decoration:none;color:var(--text)}.nav a{color:var(--muted);text-decoration:none}.cta{background:var(--cyan);color:#030508!important;padding:10px 16px;border-radius:4px;font-weight:800}.eyebrow{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--cyan);font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}h1{font-size:clamp(38px,5vw,64px);line-height:1;margin:0 0 16px}.lead{font-size:17px;color:var(--muted);max-width:780px;margin:0 0 34px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px}.card h2,.card h3{margin:0 0 10px}.card p,.card li{color:var(--muted);font-size:14px}.rows{display:grid;gap:10px;margin-top:18px}.row{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:10px;color:var(--muted);font-size:14px}.row strong{color:var(--text);text-align:right;word-break:break-all}label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin:18px 0 8px}input{width:100%;background:#07101d;border:1px solid var(--line);border-radius:6px;color:var(--text);padding:13px;font-size:16px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}button{background:var(--cyan);color:#030508;border:0;border-radius:4px;padding:12px 16px;font-weight:900;cursor:pointer}button.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}.notice{border:1px solid rgba(255,184,0,.25);background:rgba(255,184,0,.06);border-radius:8px;padding:16px;color:#d8c38a;margin-top:18px}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}code{color:var(--cyan);word-break:break-all}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}@media(max-width:880px){.grid,.steps{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}}
+:root{--black:#030508;--deep:#070c14;--card:#0c1420;--border:#1a2840;--cyan:#00e5ff;--green:#00ff88;--pink:#f472b6;--amber:#ffb800;--red:#ff4444;--text:#e8f0fe;--muted:#6b8299;--font-display:'Syne',sans-serif;--font-mono:'DM Mono',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:var(--text);font-family:var(--font-display);line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.4}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(180deg,rgba(3,5,8,.95) 0%,transparent 100%);backdrop-filter:blur(8px)}
+.nav-logo{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px var(--cyan)}50%{box-shadow:0 0 24px var(--cyan),0 0 40px var(--cyan)}}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.nav-cta{background:var(--cyan);color:var(--black);font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;padding:10px 22px;border-radius:4px;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:#fff;box-shadow:0 0 24px rgba(0,229,255,.5)}
+
+main{position:relative;z-index:10;max-width:1120px;margin:0 auto;padding:120px 22px 80px}
+.eyebrow{font-family:var(--font-mono);color:var(--cyan);font-size:12px;text-transform:uppercase;letter-spacing:.15em;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:'';display:block;width:24px;height:1px;background:var(--cyan)}
+h1{font-size:clamp(38px,5vw,64px);line-height:1.1;margin-bottom:16px;font-weight:800;letter-spacing:-.03em}
+.lead{font-size:17px;color:var(--muted);max-width:780px;margin-bottom:48px;line-height:1.7}
+
+.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:24px;align-items:start}
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px;position:relative;overflow:hidden;transition:all .3s}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);opacity:0;transition:opacity .3s}
+.card:hover{border-color:rgba(0,229,255,.2);transform:translateY(-2px)}
+.card:hover::before{opacity:1}
+.card h2{font-size:20px;font-weight:700;margin-bottom:12px;letter-spacing:-.01em}
+.card h3{font-size:16px;font-weight:700;margin-bottom:8px;color:var(--cyan)}
+.card p,.card li{color:var(--muted);font-size:14px;line-height:1.6}
+
+.rows{display:grid;gap:12px;margin:20px 0}
+.row{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--border);padding-bottom:12px;color:var(--muted);font-size:14px}
+.row span{font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.row strong{color:var(--text);text-align:right;word-break:break-all;font-family:var(--font-mono)}
+
+label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin:20px 0 8px;font-family:var(--font-mono)}
+input{width:100%;background:#07101d;border:1px solid var(--border);border-radius:8px;color:var(--text);padding:14px;font-size:16px;font-family:var(--font-mono);outline:none;transition:border-color .2s}
+input:focus{border-color:rgba(0,229,255,.4)}
+
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}
+button{background:var(--cyan);color:var(--black);border:0;border-radius:6px;padding:12px 20px;font-family:var(--font-display);font-weight:800;font-size:14px;cursor:pointer;transition:all .3s}
+button:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(0,229,255,.3)}
+button.secondary{background:transparent;color:var(--text);border:1px solid var(--border)}
+button.secondary:hover{border-color:var(--cyan);color:var(--cyan);box-shadow:none}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none!important;box-shadow:none!important}
+
+.notice{border:1px solid rgba(255,184,0,.2);background:rgba(255,184,0,.04);border-radius:10px;padding:18px;color:#d8c38a;margin-top:24px;font-size:13px;line-height:1.6}
+.notice strong{color:var(--amber)}
+.ok{color:var(--green)}
+.warn{color:var(--amber)}
+.bad{color:var(--red)}
+code{color:var(--cyan);word-break:break-all;font-family:var(--font-mono);background:rgba(0,229,255,.05);padding:2px 6px;border-radius:4px}
+.mono{font-family:var(--font-mono)}
+
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.steps p{margin-top:8px}
+
+ol{padding-left:18px;margin-top:12px;display:flex;flex-direction:column;gap:10px}
+ol li{color:var(--muted);font-size:13px}
+
+@media(max-width:880px){
+ .grid,.steps{grid-template-columns:1fr}
+ nav{padding:16px 24px}
+ .nav-links{display:none}
+}
 </style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<script defer src="phn-app.js?v=20260529f"></script>
 </head>
 <body>
+<div class="grid-bg"></div>
 <main>
-  <nav class="nav">
-    <a class="brand" href="index.html">PEAQ HUMAN NODE</a>
-    <div class="actions" style="margin:0">
-      <a href="buy.html">Presale</a>
-      <a href="staking.html">Staking</a>
-      <a class="cta" href="exchange.html">Exchange</a>
-    </div>
-  </nav>
+ <nav class="nav">
+ <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
+ <ul class="nav-links">
+ <li><a href="buy.html">Presale</a></li>
+ <li><a href="staking.html">Staking</a></li>
+ <li><a href="exchange.html">Exchange</a></li>
+ </ul>
+ <a class="nav-cta" href="exchange.html">DEX Swap </a>
+ </nav>
 
-  <div class="eyebrow">Owner liquidity process</div>
-  <h1>Fund PHN liquidity paths on peaq.</h1>
-  <p class="lead">This console starts the operational liquidity process: fund presale inventory, fund staking rewards, collect PEAQ through presale, then use that treasury PEAQ plus PHN inventory for the first DEX pool.</p>
+ <div class="eyebrow">Owner Liquidity Console</div>
+ <h1>Fund PHN Liquidity Paths</h1>
+ <p class="lead">Operational node rewards and presale registry console. Use this workspace to transfer PHN inventory, fund the active staking rewards pool, and review the live on-chain contract configurations on peaq Mainnet.</p>
 
-  <section class="grid">
-    <div>
-      <article class="card">
-        <h2>Wallet Status</h2>
-        <p>Connect the owner wallet. Only the owner/admin wallet can fund staking because <code>fundRewardPool()</code> is admin-gated.</p>
-        <div class="rows">
-          <div class="row"><span>Connected wallet</span><strong id="account">Not connected</strong></div>
-          <div class="row"><span>Network</span><strong id="network">-</strong></div>
-          <div class="row"><span>PEAQ balance</span><strong id="peaqBal">-</strong></div>
-          <div class="row"><span>PHN balance</span><strong id="phnBal">-</strong></div>
-          <div class="row"><span>Presale PHN inventory</span><strong id="presaleBal">-</strong></div>
-          <div class="row"><span>Staking reward pool</span><strong id="stakingPool">-</strong></div>
-        </div>
-        <div class="actions">
-          <button onclick="connect()">Connect Owner Wallet</button>
-          <button class="secondary" onclick="addPeaq()">Add peaq Network</button>
-          <button class="secondary" onclick="refresh()">Refresh</button>
-        </div>
-      </article>
+ <section class="grid">
+ <div>
+ <article class="card">
+ <h2>Wallet Status</h2>
+ <p>Connect the authorized owner/deployer wallet. Staking rewards allocation requires signing permissions from the administrator contract role.</p>
+ <div class="rows">
+ <div class="row"><span>Connected wallet</span><strong id="account">Not connected</strong></div>
+ <div class="row"><span>Network</span><strong id="network">-</strong></div>
+ <div class="row"><span>PEAQ balance</span><strong id="peaqBal">-</strong></div>
+ <div class="row"><span>PHN balance</span><strong id="phnBal">-</strong></div>
+ <div class="row"><span>Presale PHN inventory</span><strong id="presaleBal">-</strong></div>
+ <div class="row"><span>Staking reward pool</span><strong id="stakingPool">-</strong></div>
+ </div>
+ <div class="actions">
+ <button onclick="connect()">Connect Owner Wallet</button>
+ <button class="secondary" onclick="addPeaq()">Add peaq Network</button>
+ <button class="secondary" onclick="refresh()">Refresh</button>
+ </div>
+ </article>
 
-      <article class="card" style="margin-top:18px">
-        <h2>1. Fund Presale Inventory</h2>
-        <p>Transfers PHN from the owner wallet into the PHNPresale contract. Purchases cannot complete until this inventory is funded.</p>
-        <label>PHN to transfer to presale</label>
-        <input id="presaleAmount" value="5000000" inputmode="decimal">
-        <div class="actions">
-          <button onclick="fundPresale()">Transfer PHN to Presale</button>
-        </div>
-      </article>
+ <article class="card" style="margin-top:20px">
+ <h2>1. Fund Presale Inventory</h2>
+ <p>Transfer PHN from the administrator wallet into the PHNPresale contract. Token distribution cannot execute until the presale address holds sufficient inventory.</p>
+ <label>PHN to transfer to presale</label>
+ <input id="presaleAmount" value="5000000" inputmode="decimal">
+ <div class="actions">
+ <button onclick="fundPresale()">Transfer PHN to Presale</button>
+ </div>
+ </article>
 
-      <article class="card" style="margin-top:18px">
-        <h2>2. Fund Staking Rewards</h2>
-        <p>Approves the staking contract and calls <code>fundRewardPool()</code>. Default amount is the planned 10M PHN rewards pool.</p>
-        <label>PHN to fund staking</label>
-        <input id="stakingAmount" value="10000000" inputmode="decimal">
-        <div class="actions">
-          <button onclick="approveStaking()">Approve Staking</button>
-          <button onclick="fundStaking()">Fund Reward Pool</button>
-        </div>
-      </article>
-    </div>
+ <article class="card" style="margin-top:20px">
+ <h2>2. Fund Staking Rewards</h2>
+ <p>Approve the staking contract allowance and invoke <code>fundRewardPool()</code>. Default corresponds to the planned 10M PHN community rewards allocation.</p>
+ <label>PHN to fund staking</label>
+ <input id="stakingAmount" value="10000000" inputmode="decimal">
+ <div class="actions">
+ <button class="secondary" onclick="approveStaking()">Approve Staking</button>
+ <button onclick="fundStaking()">Fund Reward Pool</button>
+ </div>
+ </article>
+ </div>
 
-    <aside>
-      <article class="card">
-        <h2>Custom Network</h2>
-        <div class="rows">
-          <div class="row"><span>Network</span><strong>peaq Mainnet</strong></div>
-          <div class="row"><span>RPC URL</span><strong>https://quicknode1.peaq.xyz</strong></div>
-          <div class="row"><span>Chain ID</span><strong>3338</strong></div>
-          <div class="row"><span>Currency</span><strong>PEAQ</strong></div>
-          <div class="row"><span>Explorer</span><strong>https://peaq.subscan.io/</strong></div>
-        </div>
-      </article>
+ <aside>
+ <article class="card">
+ <h2>Custom Network</h2>
+ <div class="rows">
+ <div class="row"><span>Network</span><strong>peaq Mainnet</strong></div>
+ <div class="row"><span>RPC URL</span><strong>https://quicknode1.peaq.xyz</strong></div>
+ <div class="row"><span>Chain ID</span><strong>3338</strong></div>
+ <div class="row"><span>Currency</span><strong>PEAQ</strong></div>
+ <div class="row"><span>Explorer</span><strong>https://peaq.subscan.io/</strong></div>
+ </div>
+ </article>
 
-      <article class="card" style="margin-top:18px">
-        <h2>Live Contracts</h2>
-        <p><strong>PHN:</strong><br><code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code></p>
-        <p><strong>Presale:</strong><br><code>0x334D6748a105Aa857890375a811bf51a0182a757</code></p>
-        <p><strong>Staking:</strong><br><code>0x2926c13A0f82b0462f686bbd6c67Fe78a444589A</code></p>
-      </article>
+ <article class="card" style="margin-top:20px">
+ <h2>Live Contracts</h2>
+ <p style="margin-bottom:12px"><strong>PHN Token:</strong><br><code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code></p>
+ <p style="margin-bottom:12px"><strong>Presale:</strong><br><code>0x334D6748a105Aa857890375a811bf51a0182a757</code></p>
+ <p style="margin-bottom:12px"><strong>Staking:</strong><br><code>0x2926c13A0f82b0462f686bbd6c67Fe78a444589A</code></p>
+ </article>
 
-      <article class="card" style="margin-top:18px">
-        <h2>DEX Liquidity Sequence</h2>
-        <ol>
-          <li>Fund presale inventory.</li>
-          <li>Let presale collect PEAQ into treasury.</li>
-          <li>Reserve PHN inventory for pool creation.</li>
-          <li>Create PHN/PEAQ pool when router/pair is selected.</li>
-          <li>Lock LP tokens and publish lock transaction.</li>
-        </ol>
-        <div class="notice"><strong>Note:</strong> BSC PancakeSwap liquidity is blocked until the BSC PHN contract is deployed and the deployer has BNB gas.</div>
-      </article>
-    </aside>
-  </section>
+ <article class="card" style="margin-top:20px">
+ <h2>DEX Liquidity Sequence</h2>
+ <ol>
+ <li>Initialize the presale inventory via step 1.</li>
+ <li>Accrue native PEAQ into the treasury from direct community purchases.</li>
+ <li>Reserve the remaining PHN supply allocation for PancakeSwap/DEX.</li>
+ <li>Establish the primary liquidity pool pair on BSC/peaq networks.</li>
+ <li>Lock the LP tokens permanently and publish the verification hash.</li>
+ </ol>
+ <div class="notice">
+ <strong>BSC Alert:</strong> mudra/LP lock routing is restricted until BSC contract deployments are fully initialized and the administrator address holds BNB gas reserves.
+ </div>
+ </article>
+ </aside>
+ </section>
 
-  <section class="steps">
-    <article class="card"><h3>Presale Liquidity</h3><p>Presale creates immediate buy-side access while treasury accumulates PEAQ for later pool depth.</p></article>
-    <article class="card"><h3>Staking Liquidity</h3><p>Funded staking reduces circulating pressure by giving holders a reason to lock tokens.</p></article>
-    <article class="card"><h3>DEX Liquidity</h3><p>DEX pool comes after enough PEAQ and PHN are reserved, then LP is locked for trust.</p></article>
-  </section>
+ <section class="steps">
+ <article class="card">
+ <h3>Presale Liquidity</h3>
+ <p>Immediate buy-side access while the treasury accumulates PEAQ reserves for subsequent secondary market support.</p>
+ </article>
+ <article class="card">
+ <h3>Staking Liquidity</h3>
+ <p>Allocated rewards pool designed to incentivize long-term locking and minimize immediate circulation velocity.</p>
+ </article>
+ <article class="card">
+ <h3>DEX Liquidity</h3>
+ <p>Automated market maker pool deployed using reserved PHN + treasury PEAQ once network launch benchmarks are met.</p>
+ </article>
+ </section>
 </main>
 
 <script>
@@ -122,63 +205,99 @@ function units(v){ return ethers.parseEther(String(v || "0")); }
 function fmt(v){ return Number(ethers.formatEther(v)).toLocaleString(undefined,{maximumFractionDigits:4}); }
 
 async function addPeaq(){
-  if (!window.ethereum) return alert("MetaMask not found.");
-  await window.ethereum.request({ method:"wallet_addEthereumChain", params:[PEAQ_PARAMS] });
+ if (!window.ethereum) return alert("MetaMask not found.");
+ await window.ethereum.request({ method:"wallet_addEthereumChain", params:[PEAQ_PARAMS] });
 }
 
 async function connect(){
-  if (!window.ethereum) return alert("MetaMask not found.");
-  await window.ethereum.request({ method:"eth_requestAccounts" });
-  provider = new ethers.BrowserProvider(window.ethereum);
-  const net = await provider.getNetwork();
-  if (net.chainId !== 3338n) {
-    try { await window.ethereum.request({ method:"wallet_switchEthereumChain", params:[{ chainId: PEAQ_CHAIN_ID }] }); }
-    catch { await addPeaq(); }
-    provider = new ethers.BrowserProvider(window.ethereum);
-  }
-  signer = await provider.getSigner();
-  account = await signer.getAddress();
-  phn = new ethers.Contract(PHN, ERC20, signer);
-  staking = new ethers.Contract(STAKING, STAKING_ABI, signer);
-  await refresh();
+ if (!window.ethereum) return alert("MetaMask not found.");
+ try {
+ await window.ethereum.request({ method:"eth_requestAccounts" });
+ provider = new ethers.BrowserProvider(window.ethereum);
+ const net = await provider.getNetwork();
+ if (net.chainId !== 3338n) {
+ try { await window.ethereum.request({ method:"wallet_switchEthereumChain", params:[{ chainId: PEAQ_CHAIN_ID }] }); }
+ catch { await addPeaq(); }
+ provider = new ethers.BrowserProvider(window.ethereum);
+ }
+ signer = await provider.getSigner();
+ account = await signer.getAddress();
+ phn = new ethers.Contract(PHN, ERC20, signer);
+ staking = new ethers.Contract(STAKING, STAKING_ABI, signer);
+ await refresh();
+ } catch (err) {
+ console.error(err);
+ alert("Connection failed: " + (err.message || err));
+ }
 }
 
 async function refresh(){
-  if (!provider || !account) return;
-  const net = await provider.getNetwork();
-  document.getElementById("account").textContent = account;
-  document.getElementById("network").textContent = `${net.name || "peaq"} (${net.chainId})`;
-  document.getElementById("peaqBal").textContent = `${fmt(await provider.getBalance(account))} PEAQ`;
-  document.getElementById("phnBal").textContent = `${fmt(await phn.balanceOf(account))} PHN`;
-  document.getElementById("presaleBal").textContent = `${fmt(await phn.balanceOf(PRESALE))} PHN`;
-  document.getElementById("stakingPool").textContent = `${fmt(await staking.rewardPoolRemaining())} PHN`;
+ if (!provider || !account) return;
+ try {
+ const net = await provider.getNetwork();
+ document.getElementById("account").textContent = account.slice(0,6) + "..." + account.slice(-4);
+ document.getElementById("network").textContent = `${net.name || "peaq"} (${net.chainId})`;
+ document.getElementById("peaqBal").textContent = `${fmt(await provider.getBalance(account))} PEAQ`;
+ 
+ try {
+ document.getElementById("phnBal").textContent = `${fmt(await phn.balanceOf(account))} PHN`;
+ } catch (e) {
+ document.getElementById("phnBal").textContent = "Error";
+ }
+ 
+ try {
+ document.getElementById("presaleBal").textContent = `${fmt(await phn.balanceOf(PRESALE))} PHN`;
+ } catch (e) {
+ document.getElementById("presaleBal").textContent = "Error";
+ }
+ 
+ try {
+ document.getElementById("stakingPool").textContent = `${fmt(await staking.rewardPoolRemaining())} PHN`;
+ } catch (e) {
+ document.getElementById("stakingPool").textContent = "Error / Deployed soon";
+ }
+ } catch (e) {
+ console.error(e);
+ }
 }
 
 async function fundPresale(){
-  if (!phn) await connect();
-  const amount = units(document.getElementById("presaleAmount").value);
-  const tx = await phn.transfer(PRESALE, amount);
-  alert("Presale funding submitted: " + tx.hash);
-  await tx.wait();
-  await refresh();
+ if (!phn) { await connect(); if (!phn) return; }
+ const amount = units(document.getElementById("presaleAmount").value);
+ try {
+ const tx = await phn.transfer(PRESALE, amount);
+ alert("Presale funding submitted: " + tx.hash);
+ await tx.wait();
+ await refresh();
+ } catch(e) {
+ alert("Transaction failed: " + (e.reason || e.message));
+ }
 }
 
 async function approveStaking(){
-  if (!phn) await connect();
-  const amount = units(document.getElementById("stakingAmount").value);
-  const tx = await phn.approve(STAKING, amount);
-  alert("Staking approval submitted: " + tx.hash);
-  await tx.wait();
-  await refresh();
+ if (!phn) { await connect(); if (!phn) return; }
+ const amount = units(document.getElementById("stakingAmount").value);
+ try {
+ const tx = await phn.approve(STAKING, amount);
+ alert("Staking approval submitted: " + tx.hash);
+ await tx.wait();
+ await refresh();
+ } catch(e) {
+ alert("Transaction failed: " + (e.reason || e.message));
+ }
 }
 
 async function fundStaking(){
-  if (!staking) await connect();
-  const amount = units(document.getElementById("stakingAmount").value);
-  const tx = await staking.fundRewardPool(amount);
-  alert("Staking pool funding submitted: " + tx.hash);
-  await tx.wait();
-  await refresh();
+ if (!staking) { await connect(); if (!staking) return; }
+ const amount = units(document.getElementById("stakingAmount").value);
+ try {
+ const tx = await staking.fundRewardPool(amount);
+ alert("Staking pool funding submitted: " + tx.hash);
+ await tx.wait();
+ await refresh();
+ } catch(e) {
+ alert("Transaction failed: " + (e.reason || e.message));
+ }
 }
 </script>
 </body>

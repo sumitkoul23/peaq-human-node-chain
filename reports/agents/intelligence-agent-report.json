@@ -1,0 +1,127 @@
+{
+  "generatedAt": "2026-05-28T22:54:53.111Z",
+  "targets": [
+    "https://www.peaq.network/",
+    "https://depinscan.io/",
+    "https://www.helium.com/",
+    "https://iotex.io/",
+    "https://rendernetwork.com/",
+    "https://www.phantom.com/",
+    "https://backpack.app/"
+  ],
+  "results": [
+    {
+      "url": "https://www.peaq.network/",
+      "ok": true,
+      "status": 200,
+      "ms": 1424,
+      "title": "peaq",
+      "description": "",
+      "signals": {
+        "hasOg": true,
+        "hasTwitter": true,
+        "hasCanonical": true,
+        "hasCsp": false,
+        "hasHsts": true
+      }
+    },
+    {
+      "url": "https://depinscan.io/",
+      "ok": true,
+      "status": 200,
+      "ms": 767,
+      "title": "DePINscan - The Ultimate DePIN Explorer &amp; Analytics Platform",
+      "description": "Explore and analyze 500+ DePIN (Decentralized Physical Infrastructure Network) projects. Track market cap, devices, tokens, and real-time metrics across IoTeX, Solana, Polygon, and Ethereum blockchains. The comprehensive DePIN database for investors and developers.",
+      "signals": {
+        "hasOg": true,
+        "hasTwitter": true,
+        "hasCanonical": true,
+        "hasCsp": false,
+        "hasHsts": false
+      }
+    },
+    {
+      "url": "https://www.helium.com/",
+      "ok": true,
+      "status": 200,
+      "ms": 510,
+      "title": "Helium - Own the Air",
+      "description": "Helium allows anyone to build and own massive wireless networks.",
+      "signals": {
+        "hasOg": true,
+        "hasTwitter": true,
+        "hasCanonical": true,
+        "hasCsp": true,
+        "hasHsts": true
+      }
+    },
+    {
+      "url": "https://iotex.io/",
+      "ok": true,
+      "status": 200,
+      "ms": 106,
+      "title": "IoTeX | where AI touches life",
+      "description": "The open ecosystem for real-world AI, transforming data from physical machine networks into collective intelligence that will power the next generation of AI.",
+      "signals": {
+        "hasOg": true,
+        "hasTwitter": true,
+        "hasCanonical": true,
+        "hasCsp": false,
+        "hasHsts": true
+      }
+    },
+    {
+      "url": "https://rendernetwork.com/",
+      "ok": true,
+      "status": 200,
+      "ms": 683,
+      "title": "Render Network",
+      "description": "Try the leading decentralized GPU computing platform today at: https://rendernetwork.com/",
+      "signals": {
+        "hasOg": true,
+        "hasTwitter": true,
+        "hasCanonical": false,
+        "hasCsp": false,
+        "hasHsts": true
+      }
+    },
+    {
+      "url": "https://www.phantom.com/",
+      "ok": true,
+      "status": 200,
+      "ms": 445,
+      "title": "Phantom: The money app that&#x27;ll take you places",
+      "description": "Your home for trading crypto, predictions, and more",
+      "signals": {
+        "hasOg": true,
+        "hasTwitter": true,
+        "hasCanonical": true,
+        "hasCsp": false,
+        "hasHsts": false
+      }
+    },
+    {
+      "url": "https://backpack.app/",
+      "ok": true,
+      "status": 200,
+      "ms": 492,
+      "title": "Backpack: Crypto Exchange &amp; Wallet | Solana, Ethereum &amp; BTC",
+      "description": "Backpack offers a robust, user-friendly platform for seamlessly trading, managing, and securing your cryptocurrency assets.",
+      "signals": {
+        "hasOg": true,
+        "hasTwitter": true,
+        "hasCanonical": false,
+        "hasCsp": false,
+        "hasHsts": true
+      }
+    }
+  ],
+  "recommendations": [
+    "Keep PHN homepage product-first: Buy, Stake, Run Node, Wallet, Download.",
+    "Use real PHN logo consistently in all nav bars and PWA metadata.",
+    "Keep above-the-fold proof points visible: token address, presale, staking pool, peaq Mainnet.",
+    "Use short action labels on mobile buttons; avoid emoji-dependent labels.",
+    "Publish weekly achievement and listing updates for search freshness.",
+    "Do not copy competitor layouts. Extract patterns only: clarity, proof, trust, mobile speed, security warnings."
+  ]
+}

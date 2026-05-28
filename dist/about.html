@@ -1,40 +1,27 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>About PHN | Skymetric Consulting LLP</title>
-<meta name="description" content="About Peaq Human Node, the identity-gated DePIN token by Skymetric Consulting LLP.">
-<style>
-body{font-family:Inter,Segoe UI,sans-serif;background:#f7fbff;color:#0c1930;margin:0}main{max-width:960px;margin:auto;padding:40px 20px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:34px}.top a{color:#356dff;text-decoration:none;font-weight:700}.card{background:white;border:1px solid rgba(28,78,120,.12);border-radius:18px;padding:24px;margin-top:16px}h1,h2{margin-top:0}p,li{color:#5f7188;line-height:1.7}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.badge{display:inline-block;background:#e8fbff;color:#0a8b9a;border:1px solid #b7edf4;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}@media(max-width:760px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
-</style>
+<meta name="description" content="About Peaq Human Node by Skymetric Consulting LLP.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
 </head>
-<body>
-<main>
-  <div class="top">
-    <a href="index.html">← Peaq Human Node</a>
-    <a href="roadmap.html">Ecosystem Roadmap →</a>
-  </div>
-  <span class="badge">Skymetric Consulting LLP</span>
-  <h1>A verified machine economy with a bigger Web3 roadmap.</h1>
-  <p>Peaq Human Node (PHN) is built by Skymetric Consulting LLP as a peaq-first DePIN protocol. Machines do not earn anonymously; they earn after identity, operator, and heartbeat checks.</p>
-
-  <section class="grid">
-    <article class="card"><h2>What PHN is</h2><p>PHN is the node reward, staking, and utility layer for verified human-operated compute nodes.</p></article>
-    <article class="card"><h2>Economy model</h2><p>PHN uses presale epochs, transparent staking, vesting, burn fees, treasury routing, and future governance controls.</p></article>
-    <article class="card"><h2>Liquidity plan</h2><p>The priority is peaq-first liquidity, then stablecoin routes, then BNB and cross-chain expansion after the base is stable.</p></article>
-    <article class="card"><h2>Future ecosystem</h2><p>The roadmap expands toward Skymetric Chain, SKY utility token, SKYGOV governance, and games that use verified identity as a core mechanic.</p></article>
+<body class="phn-page">
+<header class="phn-topbar"><nav class="phn-nav"><a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a><div class="phn-links"><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="download.html">Download</a><a href="roadmap.html">Roadmap</a><a class="active" href="about.html">About</a></div><div class="phn-actions"><a class="phn-btn primary" href="buy.html">Buy PHN</a></div><button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button></nav></header>
+<div class="phn-mobile-drawer"><a href="index.html">Home</a><a href="wallet.html">Wallet</a><a href="vesting.html">Vesting</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a></div>
+<main class="phn-shell">
+  <section class="phn-hero">
+    <div><span class="phn-kicker">Skymetric Consulting LLP</span><h1 class="phn-title">A peaq-first DePIN project for verified human-operated machines.</h1><p class="phn-lead">Peaq Human Node is the launch token and app layer for a broader Skymetric ecosystem: PHN node rewards, NexaFlow Agents automation, future Skymetric Chain, games, utility tokens and earned governance.</p><div class="phn-hero-actions"><a class="phn-btn primary" href="achievements.html">Achievements</a><a class="phn-btn" href="roadmap.html">Roadmap</a><a class="phn-btn ghost" href="support.html">Support</a></div></div>
+    <article class="phn-panel"><span class="phn-tag green">Company</span><h2>Skymetric Consulting LLP</h2><p>The company direction is practical: launch PHN on peaq, build useful app surfaces, prove traction, then expand toward automation, games and chain infrastructure.</p></article>
   </section>
-
-  <section class="card">
-    <h2>Long-Term Direction</h2>
-    <ul>
-      <li>Build Skymetric Chain as a future EVM-compatible chain for verified DePIN and games.</li>
-      <li>Launch games such as NodeRunner, Proof of Human, and DePIN Wars after PHN has traction.</li>
-      <li>Introduce SKY as a future utility token for gas, app fees, games, and ecosystem services.</li>
-      <li>Introduce SKYGOV as an earned governance credential for contributors, stakers, and verified node operators.</li>
-    </ul>
-  </section>
+  <section class="phn-section"><div class="phn-grid four"><article class="phn-card"><h3>PHN</h3><p>Node reward, staking and DePIN participation token.</p></article><article class="phn-card"><h3>NexaFlow Agents</h3><p>Ongoing AI automation project for operations and growth.</p></article><article class="phn-card"><h3>Skymetric Chain</h3><p>Future EVM-compatible chain for verified apps and games.</p></article><article class="phn-card"><h3>Governance</h3><p>Future earned governance for contributors and operators.</p></article></div></section>
 </main>
+<footer class="phn-footer"><div class="phn-shell phn-footer-grid"><div><strong>Peaq Human Node</strong><p>Built by Skymetric Consulting LLP.</p></div><div><strong>App</strong><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="download.html">Download</a></div><div><strong>Protocol</strong><a href="activate-node.html">Run Node</a><a href="vesting.html">Vesting</a><a href="verify.html">Verify</a></div><div><strong>Company</strong><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a></div></div></footer>
 </body>
 </html>

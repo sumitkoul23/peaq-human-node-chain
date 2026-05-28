@@ -1,23 +1,25 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Peaq Human Node ($PHN) — Identity-Gated DePIN Token on BSC + peaq</title>
+<title>Peaq Human Node ($PHN)    Identity-Gated DePIN Token on BSC + peaq</title>
 <meta name="description" content="Run a verified human node on BSC + peaq network and earn $PHN. Identity-gated DePIN with 100M fixed supply, presale at $0.02, staking up to 25% APY, and 0.25% burn on every purchase."/>
 <meta name="keywords" content="PHN token, Peaq Human Node, DePIN token 2026, peaq network, BSC DePIN, identity gated node, earn crypto running node, DePIN presale"/>
-<meta property="og:title" content="Peaq Human Node ($PHN) — Identity-Gated DePIN Token"/>
+<meta property="og:title" content="Peaq Human Node ($PHN)    Identity-Gated DePIN Token"/>
 <meta property="og:description" content="Run a node. Prove you're human. Earn PHN. Presale live at $0.02. 100M fixed supply, 25% APY staking, burn on every buy."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://peaqhumannode.netlify.app"/>
 <meta property="og:image" content="https://peaqhumannode.netlify.app/assets/phn-hero-3d.png"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:site" content="@PeaqHumanNode"/>
-<meta name="twitter:title" content="Peaq Human Node ($PHN) — DePIN Presale Live at $0.02"/>
+<meta name="twitter:title" content="Peaq Human Node ($PHN)    DePIN Presale Live at $0.02"/>
 <meta name="twitter:description" content="Identity-gated compute rewards on BSC + peaq. Presale open. 25% APY staking. 0.25% burned on every purchase."/>
 <meta name="twitter:image" content="https://peaqhumannode.netlify.app/assets/phn-hero-3d.png"/>
 <link rel="canonical" href="https://peaqhumannode.netlify.app/"/>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml"/>
+<link rel="manifest" href="manifest.webmanifest"/>
+<meta name="theme-color" content="#00e5ff"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -37,6 +39,7 @@
 <script defer data-domain="peaqhumannode.netlify.app" src="https://plausible.io/js/script.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script defer src="phn-app.js?v=20260529f"></script>
 <style>
 :root {
   --black: #030508;
@@ -62,7 +65,7 @@ body{
   line-height:1.6;
 }
 
-/* ── NOISE OVERLAY ── */
+/*        NOISE OVERLAY        */
 body::before{
   content:'';
   position:fixed;
@@ -73,7 +76,7 @@ body::before{
   opacity:.4;
 }
 
-/* ── GRID BACKGROUND ── */
+/*        GRID BACKGROUND        */
 .grid-bg{
   position:fixed;
   inset:0;
@@ -85,7 +88,7 @@ body::before{
   z-index:0;
 }
 
-/* ── NAV ── */
+/*        NAV        */
 nav{
   position:fixed;
   top:0;left:0;right:0;
@@ -130,7 +133,7 @@ nav{
 }
 .nav-cta:hover{background:#fff;box-shadow:0 0 24px rgba(0,229,255,.5)}
 
-/* ── HERO ── */
+/*        HERO        */
 .hero{
   position:relative;
   min-height:100vh;
@@ -246,7 +249,7 @@ h1{
   font-family:var(--font-mono);
 }
 
-/* ── NODE NETWORK VISUAL ── */
+/*        NODE NETWORK VISUAL        */
 .hero-visual{
   position:absolute;
   right:-60px;top:50%;
@@ -259,11 +262,11 @@ h1{
   opacity:.85;
 }
 
-/* ── SECTIONS ── */
+/*        SECTIONS        */
 section{position:relative;z-index:10}
 .section-inner{max-width:1200px;margin:0 auto;padding:0 48px}
 
-/* ── HOW IT WORKS ── */
+/*        HOW IT WORKS        */
 .how{
   padding:120px 0;
 }
@@ -325,7 +328,7 @@ h2{
 }
 .step p{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* ── TOKENOMICS ── */
+/*        TOKENOMICS        */
 .tokenomics{padding:120px 0;background:var(--deep)}
 .token-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
 
@@ -353,7 +356,7 @@ h2{
 .alloc-bar-wrap{flex:2;height:4px;background:var(--border);border-radius:2px;overflow:hidden}
 .alloc-bar{height:100%;border-radius:2px;transition:width 1s ease}
 
-/* ── FEATURES ── */
+/*        FEATURES        */
 .features{padding:120px 0}
 .features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .feat-card{
@@ -378,7 +381,7 @@ h2{
 .feat-card h3{font-size:18px;font-weight:700;margin-bottom:10px;letter-spacing:-.01em}
 .feat-card p{font-size:14px;color:var(--muted);line-height:1.7}
 
-/* ── CONTRACT / LISTING ── */
+/*        CONTRACT / LISTING        */
 .listing{padding:120px 0;background:var(--deep)}
 .listing-inner{
   max-width:900px;
@@ -429,7 +432,7 @@ h2{
   color:var(--amber);
 }
 
-/* ── EXCHANGE ── */
+/*        EXCHANGE        */
 .exchange{padding:120px 0}
 .exchange-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
 .exchange-card{
@@ -458,7 +461,7 @@ h2{
   padding:4px 10px;
 }
 
-/* ── FOOTER ── */
+/*        FOOTER        */
 footer{
   border-top:1px solid var(--border);
   padding:64px 48px;
@@ -486,7 +489,7 @@ footer{
 }
 .footer-bottom p{font-size:12px;color:var(--muted);font-family:var(--font-mono)}
 
-/* ── ANIMATIONS ── */
+/*        ANIMATIONS        */
 @keyframes fadeUp{
   from{opacity:0;transform:translateY(24px)}
   to{opacity:1;transform:translateY(0)}
@@ -497,7 +500,7 @@ footer{
 }
 .reveal.visible{opacity:1;transform:none}
 
-/* ── TICKER MARQUEE ── */
+/*        TICKER MARQUEE        */
 .ticker{
   background:var(--card);
   border-top:1px solid var(--border);
@@ -554,44 +557,46 @@ footer{
   <ul class="nav-links">
     <li><a href="#how">How It Works</a></li>
     <li><a href="#tokenomics">Tokenomics</a></li>
-    <li><a href="staking.html">Staking ⚡</a></li>
+    <li><a href="staking.html">Staking</a></li>
+    <li><a href="activate-node.html">Run Node</a></li>
+    <li><a href="wallet.html">Wallet</a></li>
+    <li><a href="download.html">Download</a></li>
     <li><a href="exchange.html">Exchange</a></li>
-    <li><a href="liquidity.html">Liquidity</a></li>
-    <li><a href="verify.html">Verify ✓</a></li>
     <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="achievements.html">Achievements</a></li>
     <li><a href="support.html">Support</a></li>
   </ul>
-  <a class="nav-cta" href="buy.html">Buy PHN — $0.02 →</a>
+  <a class="nav-cta" href="buy.html">Buy PHN - $0.02</a>
 </nav>
 
 <!-- TICKER -->
 <div class="ticker" style="margin-top:72px">
   <div class="ticker-track" id="ticker">
-    <span class="ticker-item">PHN <span class="up">▲ LIVE</span></span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">BSC MAINNET <span class="up">✓ ACTIVE</span></span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">PEAQ MAINNET <span class="up">✓ ACTIVE</span></span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">TOTAL SUPPLY · 100,000,000 PHN</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">LAYERZERO OFT · CROSS-CHAIN</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">IDENTITY-GATED · COMPUTE REWARDS</span>
-    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">PHN <span class="up">    LIVE</span></span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">BSC MAINNET <span class="up"> S  ACTIVE</span></span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">PEAQ MAINNET <span class="up"> S  ACTIVE</span></span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">TOTAL SUPPLY   100,000,000 PHN</span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">LAYERZERO OFT   CROSS-CHAIN</span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">IDENTITY-GATED   COMPUTE REWARDS</span>
+    <span class="ticker-item ticker-sep"> </span>
     <!-- duplicate for seamless loop -->
-    <span class="ticker-item">PHN <span class="up">▲ LIVE</span></span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">BSC MAINNET <span class="up">✓ ACTIVE</span></span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">PEAQ MAINNET <span class="up">✓ ACTIVE</span></span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">TOTAL SUPPLY · 100,000,000 PHN</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">LAYERZERO OFT · CROSS-CHAIN</span>
-    <span class="ticker-item ticker-sep">·</span>
-    <span class="ticker-item">IDENTITY-GATED · COMPUTE REWARDS</span>
-    <span class="ticker-item ticker-sep">·</span>
+    <span class="ticker-item">PHN <span class="up">    LIVE</span></span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">BSC MAINNET <span class="up"> S  ACTIVE</span></span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">PEAQ MAINNET <span class="up"> S  ACTIVE</span></span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">TOTAL SUPPLY   100,000,000 PHN</span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">LAYERZERO OFT   CROSS-CHAIN</span>
+    <span class="ticker-item ticker-sep"> </span>
+    <span class="ticker-item">IDENTITY-GATED   COMPUTE REWARDS</span>
+    <span class="ticker-item ticker-sep"> </span>
   </div>
 </div>
 
@@ -600,20 +605,21 @@ footer{
   <div class="hero-orb"></div>
   <div class="hero-orb-2"></div>
   <div class="hero-content">
-    <div class="hero-badge"><span class="hero-badge-dot"></span>BEP-20 · peaq DeFi · LayerZero OFT</div>
+    <div class="hero-badge"><span class="hero-badge-dot"></span>BEP-20   peaq DeFi   LayerZero OFT</div>
     <h1>
       Compute Rewards<br>
       <span class="h1-accent">for Verified</span>
       <span class="h1-line2">Human Nodes.</span>
     </h1>
     <p class="hero-desc">
-      PHN is the native token of the Peaq Human Node network — an identity-gated, 
+      PHN is the native token of the Peaq Human Node network    an identity-gated, 
       heartbeat-driven compute reward system spanning BSC and peaq mainnets. 
       Run a node. Prove you're human. Earn PHN.
     </p>
     <div class="hero-actions">
-      <a href="buy.html" class="btn-primary">🔥 Buy PHN — $0.02 Presale</a>
-      <a href="activate-node.html" class="btn-secondary">⚡ Run a Node</a>
+      <a href="buy.html" class="btn-primary">Buy PHN - $0.02 Presale</a>
+      <a href="activate-node.html" class="btn-secondary">Run a Node</a>
+      <a href="download.html" class="btn-secondary">Install PHN Beacon</a>
     </div>
     <div class="hero-stats">
       <div class="stat-item">
@@ -707,21 +713,21 @@ footer{
     <div class="steps reveal">
       <div class="step">
         <div class="step-num">Step 01</div>
-        <div class="step-icon">🔐</div>
+        <div class="step-icon"> x  </div>
         <h3>Triple Identity Verification</h3>
         <p>Every node must pass three gates simultaneously: a hashed PC identity, a human-attestation hash, and a peaq machine DID string. No spoofing. No bots.</p>
       </div>
       <div class="step">
         <div class="step-num">Step 02</div>
-        <div class="step-icon">💓</div>
+        <div class="step-icon"> x  </div>
         <h3>Heartbeat & Accrual</h3>
-        <p>Registered node operators call <code style="font-family:var(--font-mono);font-size:12px;color:var(--cyan)">heartbeat()</code> on NodeEarningsManager. Each valid heartbeat accrues PHN at the configured policy rate — only for active, verified nodes.</p>
+        <p>Registered node operators call <code style="font-family:var(--font-mono);font-size:12px;color:var(--cyan)">heartbeat()</code> on NodeEarningsManager. Each valid heartbeat accrues PHN at the configured policy rate    only for active, verified nodes.</p>
       </div>
       <div class="step">
         <div class="step-num">Step 03</div>
-        <div class="step-icon">⚡</div>
+        <div class="step-icon"> a </div>
         <h3>Claim from the Vault</h3>
-        <p>Call <code style="font-family:var(--font-mono);font-size:12px;color:var(--cyan)">claim()</code> to withdraw earned PHN directly from the NodeRewardVault. Privileged controls route through a timelock — no rug, no surprises.</p>
+        <p>Call <code style="font-family:var(--font-mono);font-size:12px;color:var(--cyan)">claim()</code> to withdraw earned PHN directly from the NodeRewardVault. Privileged controls route through a timelock    no rug, no surprises.</p>
       </div>
     </div>
 
@@ -730,23 +736,23 @@ footer{
       <div>
         <div class="section-label" style="margin-bottom:12px">Architecture</div>
         <h3 style="font-size:28px;font-weight:800;margin-bottom:16px;letter-spacing:-.02em">Cross-Chain via LayerZero OFT</h3>
-        <p style="font-size:14px;color:var(--muted);line-height:1.7">PHN uses LayerZero's Omnichain Fungible Token standard. BSC is the canonical mint chain — peaq participates through burn/mint bridging, keeping the global supply fixed at exactly 100M. No accidental doubling.</p>
+        <p style="font-size:14px;color:var(--muted);line-height:1.7">PHN uses LayerZero's Omnichain Fungible Token standard. BSC is the canonical mint chain    peaq participates through burn/mint bridging, keeping the global supply fixed at exactly 100M. No accidental doubling.</p>
       </div>
       <div style="display:flex;flex-direction:column;gap:16px">
         <div style="display:flex;align-items:center;gap:16px;padding:16px;background:var(--deep);border-radius:8px;border:1px solid var(--border)">
-          <span style="font-size:24px">🔶</span>
+          <span style="font-size:24px"> x  </span>
           <div>
             <div style="font-weight:700;font-size:14px">BSC Mainnet</div>
-            <div style="font-size:12px;color:var(--muted);font-family:var(--font-mono)">Canonical Mint Chain · Full 100M Supply</div>
+            <div style="font-size:12px;color:var(--muted);font-family:var(--font-mono)">Canonical Mint Chain   Full 100M Supply</div>
           </div>
           <div style="margin-left:auto" class="chain-badge">Primary</div>
         </div>
-        <div style="text-align:center;font-size:20px;color:var(--muted)">⇅ LayerZero Bridge</div>
+        <div style="text-align:center;font-size:20px;color:var(--muted)"> !& LayerZero Bridge</div>
         <div style="display:flex;align-items:center;gap:16px;padding:16px;background:var(--deep);border-radius:8px;border:1px solid var(--border)">
-          <span style="font-size:24px">🟦</span>
+          <span style="font-size:24px"> xx </span>
           <div>
             <div style="font-weight:700;font-size:14px">peaq Mainnet</div>
-            <div style="font-size:12px;color:var(--muted);font-family:var(--font-mono)">Node Rewards · Identity Registry</div>
+            <div style="font-size:12px;color:var(--muted);font-family:var(--font-mono)">Node Rewards   Identity Registry</div>
           </div>
           <div style="margin-left:auto" class="chain-badge" style="color:var(--cyan);border-color:rgba(0,229,255,.2);background:rgba(0,229,255,.08)">Active</div>
         </div>
@@ -760,25 +766,25 @@ footer{
   <div class="section-inner">
     <div class="section-label">Economics</div>
     <h2>Token Distribution</h2>
-    <p class="section-desc">Fixed supply. No inflation. Five transparent allocations — including a live 10M staking rewards pool.</p>
+    <p class="section-desc">Fixed supply. No inflation. Five transparent allocations    including a live 10M staking rewards pool.</p>
     <div class="token-grid reveal">
       <div class="token-chart">
         <div class="donut-wrap">
           <svg viewBox="0 0 300 300" width="300" height="300" style="transform:rotate(-90deg)">
-            <!-- circumference = 2π×110 = 690.97 -->
-            <!-- Node Rewards: 30% → 207.3 -->
+            <!-- circumference = 2   110 = 690.97 -->
+            <!-- Node Rewards: 30%     207.3 -->
             <circle cx="150" cy="150" r="110" fill="none" stroke="#00e5ff" stroke-width="40"
               stroke-dasharray="207.3 483.7" stroke-dashoffset="0" opacity="0.9"/>
-            <!-- Founder: 40% → 276.4, offset -207.3 -->
+            <!-- Founder: 40%     276.4, offset -207.3 -->
             <circle cx="150" cy="150" r="110" fill="none" stroke="#ffb800" stroke-width="40"
               stroke-dasharray="276.4 414.6" stroke-dashoffset="-207.3" opacity="0.85"/>
-            <!-- Staking Pool: 10% → 69.1, offset -483.7 -->
+            <!-- Staking Pool: 10%     69.1, offset -483.7 -->
             <circle cx="150" cy="150" r="110" fill="none" stroke="#f472b6" stroke-width="40"
               stroke-dasharray="69.1 621.9" stroke-dashoffset="-483.7" opacity="0.9"/>
-            <!-- Liquidity: 12% → 82.9, offset -552.8 -->
+            <!-- Liquidity: 12%     82.9, offset -552.8 -->
             <circle cx="150" cy="150" r="110" fill="none" stroke="#00ff88" stroke-width="40"
               stroke-dasharray="82.9 608.1" stroke-dashoffset="-552.8" opacity="0.85"/>
-            <!-- Ecosystem: 8% → 55.3, offset -635.7 -->
+            <!-- Ecosystem: 8%     55.3, offset -635.7 -->
             <circle cx="150" cy="150" r="110" fill="none" stroke="#a78bfa" stroke-width="40"
               stroke-dasharray="55.3 635.7" stroke-dashoffset="-635.7" opacity="0.85"/>
           </svg>
@@ -790,7 +796,7 @@ footer{
       </div>
       <div class="token-details">
         <h2>PHN Allocation</h2>
-        <p class="token-detail-desc">Every token accounted for. 10M PHN is reserved exclusively for staking rewards — distributed to holders who lock PHN in the staking contract.</p>
+        <p class="token-detail-desc">Every token accounted for. 10M PHN is reserved exclusively for staking rewards    distributed to holders who lock PHN in the staking contract.</p>
         <div class="alloc-list">
           <div class="alloc-item">
             <div class="alloc-color" style="background:#ffb800"></div>
@@ -824,12 +830,12 @@ footer{
           </div>
         </div>
         <div style="margin-top:32px;padding:20px;background:rgba(244,114,182,.06);border:1px solid rgba(244,114,182,.2);border-radius:8px">
-          <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f472b6;font-family:var(--font-mono);margin-bottom:8px">⚡ Staking Rewards — 10M PHN Live</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7">Stake PHN and earn up to <strong style="color:var(--text)">25% APY</strong>. Three tiers: Flex (8%), Locked 90d (15%), Vault 180d (25%). Rewards accrue per second from a dedicated 10M PHN pool. <a href="staking.html" style="color:#f472b6;text-decoration:none">→ Start staking</a></div>
+          <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#f472b6;font-family:var(--font-mono);margin-bottom:8px"> a  Staking Rewards    10M PHN Live</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7">Stake PHN and earn up to <strong style="color:var(--text)">25% APY</strong>. Three tiers: Flex (8%), Locked 90d (15%), Vault 180d (25%). Rewards accrue per second from a dedicated 10M PHN pool. <a href="staking.html" style="color:#f472b6;text-decoration:none">    Start staking</a></div>
         </div>
         <div style="margin-top:16px;padding:20px;background:rgba(255,184,0,.06);border:1px solid rgba(255,184,0,.15);border-radius:8px">
           <div style="font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);font-family:var(--font-mono);margin-bottom:8px">Vesting Schedule</div>
-          <div style="font-size:14px;color:var(--muted);line-height:1.7">40M PHN founder allocation releases linearly over 24 months via <strong style="color:var(--text)">FounderVestingWallet.sol</strong>. All privileged actions use a <strong style="color:var(--text)">LaunchTimelock</strong> — no immediate execution.</div>
+          <div style="font-size:14px;color:var(--muted);line-height:1.7">40M PHN founder allocation releases linearly over 24 months via <strong style="color:var(--text)">FounderVestingWallet.sol</strong>. All privileged actions use a <strong style="color:var(--text)">LaunchTimelock</strong>    no immediate execution.</div>
         </div>
       </div>
     </div>
@@ -844,32 +850,32 @@ footer{
     <p class="section-desc">Six smart contracts. Two chains. One human-verified compute economy.</p>
     <div class="features-grid reveal">
       <div class="feat-card">
-        <div class="feat-icon">🧬</div>
+        <div class="feat-icon"> x  </div>
         <h3>Triple Identity Gating</h3>
         <p>Nodes must prove hardware identity, human attestation, and peaq machine DID simultaneously. The strongest Sybil resistance in DePIN.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">⏳</div>
+        <div class="feat-icon"> </div>
         <h3>Timelock Governance</h3>
         <p>All privileged contract controls pass through <code style="color:var(--cyan);font-size:12px">LaunchTimelock.sol</code>. No hot-wallet authority over protocol funds.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🌐</div>
+        <div class="feat-icon"> xR </div>
         <h3>LayerZero OFT Bridge</h3>
-        <p>True omnichain token via LayerZero. Fixed 100M global supply maintained through burn/mint bridging — not duplicated across chains.</p>
+        <p>True omnichain token via LayerZero. Fixed 100M global supply maintained through burn/mint bridging    not duplicated across chains.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">📡</div>
+        <div class="feat-icon"> x  </div>
         <h3>Heartbeat Accrual</h3>
         <p>Earning is tied to node liveness. Dead nodes earn nothing. Active, verified operators are rewarded continuously for uptime.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🔒</div>
+        <div class="feat-icon"> x  </div>
         <h3>24-Month Linear Vesting</h3>
         <p>The entire founder allocation of 50M PHN unlocks gradually over 24 months. No cliff dumps. Long-term skin in the game.</p>
       </div>
       <div class="feat-card">
-        <div class="feat-icon">🛡️</div>
+        <div class="feat-icon"> x:  </div>
         <h3>OpenZeppelin v5</h3>
         <p>All contracts built on OpenZeppelin v5 with Solidity 0.8.24 and optimizer enabled. Security-first from the ground up.</p>
       </div>
@@ -902,9 +908,9 @@ footer{
       <div class="contract-row">
         <span class="contract-key">Network</span>
         <span class="contract-val">
-          <span class="chain-badge">peaq Mainnet · Chain 3338</span>
+          <span class="chain-badge">peaq Mainnet   Chain 3338</span>
           &nbsp;
-          <span class="chain-badge" style="color:var(--cyan);border-color:rgba(0,229,255,.2);background:rgba(0,229,255,.08)">BSC Mainnet · Chain 56</span>
+          <span class="chain-badge" style="color:var(--cyan);border-color:rgba(0,229,255,.2);background:rgba(0,229,255,.08)">BSC Mainnet   Chain 56</span>
         </span>
       </div>
       <div class="contract-row">
@@ -917,18 +923,18 @@ footer{
       </div>
       <div class="contract-row">
         <span class="contract-key">Standard</span>
-        <span class="contract-val">BEP-20 · LayerZero OFT</span>
+        <span class="contract-val">BEP-20   LayerZero OFT</span>
       </div>
       <div class="contract-row">
         <span class="contract-key">Solidity Version</span>
-        <span class="contract-val">0.8.24 · OpenZeppelin v5</span>
+        <span class="contract-val">0.8.24   OpenZeppelin v5</span>
       </div>
     </div>
 
     <!-- Add to wallet -->
     <div style="margin-top:24px;text-align:center">
       <button onclick="addToWallet()" style="background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);color:var(--cyan);font-family:var(--font-display);font-weight:600;font-size:13px;letter-spacing:.04em;padding:12px 24px;border-radius:6px;cursor:pointer;transition:all .2s" onmouseover="this.style.background='rgba(0,229,255,.16)'" onmouseout="this.style.background='rgba(0,229,255,.08)'">
-        🦊 Add PHN to MetaMask
+         x ` Add PHN to MetaMask
       </button>
     </div>
   </div>
@@ -942,28 +948,40 @@ footer{
     <p class="section-desc">Trade PHN on decentralized exchanges or bridge cross-chain via LayerZero.</p>
     <div class="exchange-cards reveal">
       <a href="exchange.html" class="exchange-card">
-        <div class="exchange-card-icon">🥞</div>
+        <div class="exchange-card-icon"> x ~</div>
         <h3>PancakeSwap</h3>
         <p>Swap PHN on BSC's largest DEX. Add liquidity to the PHN/BNB pool.</p>
-        <span class="exchange-tag">BSC · Live</span>
+        <span class="exchange-tag">BSC   Live</span>
       </a>
       <a href="staking.html" class="exchange-card" style="border-color:rgba(244,114,182,.2)">
-        <div class="exchange-card-icon">💎</div>
+        <div class="exchange-card-icon"> x }</div>
         <h3>PHN Staking</h3>
         <p>Lock PHN and earn up to 25% APY. Flex, Locked, and Vault tiers. 10M PHN reward pool.</p>
-        <span class="exchange-tag" style="color:#f472b6;background:rgba(244,114,182,.08)">Up to 25% APY · Live</span>
+        <span class="exchange-tag" style="color:#f472b6;background:rgba(244,114,182,.08)">Up to 25% APY   Live</span>
       </a>
       <a href="wallet.html" class="exchange-card">
-        <div class="exchange-card-icon">🌉</div>
+        <div class="exchange-card-icon"> xR0</div>
         <h3>Cross-Chain Bridge</h3>
         <p>Move PHN between BSC and peaq via LayerZero OFT bridge.</p>
-        <span class="exchange-tag">LayerZero · OFT</span>
+        <span class="exchange-tag">LayerZero   OFT</span>
       </a>
       <a href="liquidity.html" class="exchange-card">
-        <div class="exchange-card-icon">💧</div>
+        <div class="exchange-card-icon"> x  </div>
         <h3>Liquidity Console</h3>
         <p>Fund presale inventory, staking rewards, and prepare the first PHN/PEAQ liquidity pool.</p>
-        <span class="exchange-tag">Owner · peaq</span>
+        <span class="exchange-tag">Owner   peaq</span>
+      </a>
+      <a href="download.html" class="exchange-card">
+        <div class="exchange-card-icon">   </div>
+        <h3>PHN Beacon App</h3>
+        <p>Install the PHN web3 app on Android, iOS, iPadOS, Windows and macOS as a free PWA.</p>
+        <span class="exchange-tag">PWA   Live</span>
+      </a>
+      <a href="activate-node.html" class="exchange-card">
+        <div class="exchange-card-icon"> R </div>
+        <h3>Run a Node</h3>
+        <p>Generate node commands, attach wallet identity, add peaq DID and submit for attestation.</p>
+        <span class="exchange-tag">Node   Guided</span>
       </a>
     </div>
   </div>
@@ -977,22 +995,34 @@ footer{
     <p class="section-desc">PHN starts peaq-first. The longer vision is a verified-human Web3 ecosystem: our own chain, games, utility tokens, and earned governance.</p>
     <div class="exchange-cards reveal">
       <a href="roadmap.html" class="exchange-card">
-        <div class="exchange-card-icon">⛓️</div>
+        <div class="exchange-card-icon"> :  </div>
         <h3>Own Chain</h3>
         <p>Skymetric Chain is planned as an EVM-compatible chain for verified DePIN, gaming, identity, and low-cost utility transactions.</p>
-        <span class="exchange-tag">Future · Chain</span>
+        <span class="exchange-tag">Future   Chain</span>
       </a>
       <a href="roadmap.html" class="exchange-card">
-        <div class="exchange-card-icon">🎮</div>
+        <div class="exchange-card-icon"> x} </div>
         <h3>Games</h3>
         <p>NodeRunner, Proof of Human, and DePIN Wars are planned to turn verified node participation into playable utility loops.</p>
-        <span class="exchange-tag">Future · Gaming</span>
+        <span class="exchange-tag">Future   Gaming</span>
       </a>
       <a href="roadmap.html" class="exchange-card">
-        <div class="exchange-card-icon">🗳️</div>
+        <div class="exchange-card-icon"> x   </div>
         <h3>Utility & Governance</h3>
         <p>SKY is planned for chain utility. SKYGOV is planned as an earned, soulbound governance credential for real contributors.</p>
-        <span class="exchange-tag">Future · DAO</span>
+        <span class="exchange-tag">Future   DAO</span>
+      </a>
+      <a href="https://nexaflowagents.netlify.app" target="_blank" rel="noopener" class="exchange-card">
+        <div class="exchange-card-icon">NF</div>
+        <h3>NexaFlow Agents</h3>
+        <p>Ongoing Skymetric project for automation, campaign planning, support routing, SEO reporting, and launch operations.</p>
+        <span class="exchange-tag">Ongoing   Agents</span>
+      </a>
+      <a href="achievements.html" class="exchange-card">
+        <div class="exchange-card-icon">OK</div>
+        <h3>Achievements</h3>
+        <p>Track shipped PHN proof points: live contracts, funded presale, staking pool, PWA and listing preparation.</p>
+        <span class="exchange-tag">Evidence   Live</span>
       </a>
     </div>
   </div>
@@ -1000,12 +1030,12 @@ footer{
 
 <!-- CTA BAND -->
 <div style="position:relative;z-index:10;padding:80px 48px;text-align:center;background:linear-gradient(135deg,rgba(0,229,255,.04),rgba(0,255,136,.03))">
-  <div class="section-label" style="justify-content:center">Presale Live — Epoch 1</div>
+  <div class="section-label" style="justify-content:center">Presale Live    Epoch 1</div>
   <h2 style="margin-bottom:16px;font-size:clamp(32px,4vw,52px)">Get PHN at <span style="color:var(--cyan)">$0.02</span> Before Price Rises</h2>
   <p style="font-size:16px;color:var(--muted);max-width:480px;margin:0 auto 40px;line-height:1.7">Epoch 1 presale is open now. Buy PHN directly on-site with PEAQ or USDC. Price increases to $0.05 in Epoch 2. 0.25% of every purchase is permanently burned.</p>
   <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-    <a href="buy.html" class="btn-primary">🔥 Buy PHN Now — $0.02</a>
-    <a href="activate-node.html" class="btn-secondary">⚡ Run a Node</a>
+    <a href="buy.html" class="btn-primary"> x   Buy PHN Now    $0.02</a>
+    <a href="activate-node.html" class="btn-secondary"> a  Run a Node</a>
   </div>
 </div>
 
@@ -1023,14 +1053,18 @@ footer{
         <li><a href="#tokenomics">Tokenomics</a></li>
         <li><a href="#contract">Contract</a></li>
         <li><a href="roadmap.html">Roadmap</a></li>
+        <li><a href="achievements.html">Achievements</a></li>
         <li><a href="vesting.html">Vesting</a></li>
       </ul>
     </div>
     <div class="footer-links-group">
       <h4>App</h4>
       <ul class="footer-links">
-        <li><a href="buy.html">Buy PHN — $0.02</a></li>
+        <li><a href="buy.html">Buy PHN    $0.02</a></li>
         <li><a href="staking.html">Staking</a></li>
+        <li><a href="wallet.html">Wallet</a></li>
+        <li><a href="download.html">Download App</a></li>
+        <li><a href="auth.html">Sign In</a></li>
         <li><a href="liquidity.html">Liquidity</a></li>
         <li><a href="activate-node.html">Activate Node</a></li>
         <li><a href="exchange.html">Exchange</a></li>
@@ -1043,13 +1077,14 @@ footer{
         <li><a href="https://t.me/PeaqHumanNode" target="_blank" rel="noopener">Telegram</a></li>
         <li><a href="https://x.com/PeaqHumanNode" target="_blank" rel="noopener">Twitter / X</a></li>
         <li><a href="https://github.com/PeaqHumanNode" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://nexaflowagents.netlify.app" target="_blank" rel="noopener">NexaFlow Agents</a></li>
         <li><a href="https://coinsniper.net" target="_blank" rel="noopener">CoinSniper</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <p>Contract: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</p>
-    <p>© 2026 Skymetric Consulting LLP · Peaq Human Node</p>
+    <p>  2026 Skymetric Consulting LLP   Peaq Human Node</p>
   </div>
 </footer>
 

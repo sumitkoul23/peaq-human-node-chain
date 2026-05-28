@@ -1,40 +1,24 @@
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>PHN Governance | Skymetric Consulting LLP</title>
-<meta name="description" content="PHN governance roadmap: timelock controls today, earned SKYGOV governance later, and community voting for treasury, validators, games, and future chain upgrades.">
-<style>
-body{font-family:Inter,Segoe UI,sans-serif;background:#f7fbff;color:#0c1930;margin:0}main{max-width:960px;margin:auto;padding:40px 20px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:34px}.top a{color:#356dff;text-decoration:none;font-weight:700}.card{background:#fff;border:1px solid rgba(28,78,120,.12);border-radius:18px;padding:24px;margin-top:16px}h1,h2{margin-top:0}p,li{color:#5f7188;line-height:1.7}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}.badge{display:inline-block;background:#e8fbff;color:#0a8b9a;border:1px solid #b7edf4;border-radius:999px;padding:5px 10px;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}@media(max-width:760px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;flex-direction:column}}
-</style>
+<title>PHN Governance | Peaq Human Node</title>
+<meta name="description" content="PHN governance roadmap: timelock controls today and earned SKYGOV governance later.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
 </head>
-<body>
-<main>
-  <div class="top">
-    <a href="index.html">← Peaq Human Node</a>
-    <a href="roadmap.html">Full Roadmap →</a>
-  </div>
-  <span class="badge">Governance roadmap</span>
-  <h1>Governance starts with timelocks and grows into earned community control.</h1>
-  <p>PHN governance is intentionally phased. The current priority is secure launch execution through LaunchTimelock controls. The future target is SKYGOV: a non-transferable governance credential earned by verified node operators, stakers, contributors, and game participants.</p>
-
-  <section class="grid">
-    <article class="card"><h2>Today: Timelock Controls</h2><p>Privileged protocol actions route through LaunchTimelock so core parameters cannot be changed instantly from a hot wallet.</p></article>
-    <article class="card"><h2>Next: Governance Staking</h2><p>PHN staking becomes the first participation signal for voting eligibility, proposal access, and contributor reputation.</p></article>
-    <article class="card"><h2>Future: SKYGOV</h2><p>SKYGOV is planned as a soulbound governance credential. It is earned through real contribution, not bought from a market.</p></article>
-    <article class="card"><h2>Scope of Votes</h2><p>Expected voting scope includes treasury direction, validator criteria, game mechanics, exchange listings, grants, and chain upgrade priorities.</p></article>
-  </section>
-
-  <section class="card">
-    <h2>Governance Principles</h2>
-    <ul>
-      <li>Security first: no instant privileged changes.</li>
-      <li>Humans over bots: governance weight comes from verified participation.</li>
-      <li>Utility over speculation: governance tokens should steer systems, not become another hype asset.</li>
-      <li>Phased decentralization: Skymetric Consulting LLP executes launch, then progressively hands control to proven contributors.</li>
-    </ul>
-  </section>
+<body class="phn-page">
+<header class="phn-topbar"><nav class="phn-nav"><a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a><div class="phn-links"><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="vesting.html">Vesting</a><a href="roadmap.html">Roadmap</a><a class="active" href="governance.html">Governance</a></div><div class="phn-actions"><a class="phn-btn primary" href="staking.html">Stake PHN</a></div><button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button></nav></header>
+<div class="phn-mobile-drawer"><a href="index.html">Home</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a></div>
+<main class="phn-shell">
+  <section class="phn-hero"><div><span class="phn-kicker">Governance roadmap</span><h1 class="phn-title">Governance starts with security, then moves to earned control.</h1><p class="phn-lead">PHN launch governance should prioritize timelocks, transparent treasury movement and verified contributors. SKYGOV is planned as an earned credential rather than a market token.</p><div class="phn-hero-actions"><a class="phn-btn primary" href="vesting.html">Vesting policy</a><a class="phn-btn" href="roadmap.html">Roadmap</a><a class="phn-btn ghost" href="verify.html">Verify</a></div></div><article class="phn-panel"><span class="phn-tag amber">Future token</span><h2>SKYGOV</h2><p>Planned as an earned governance credential for verified node operators, contributors, stakers and future game participants.</p></article></section>
+  <section class="phn-section"><div class="phn-grid four"><article class="phn-card"><h3>Timelock first</h3><p>Privileged actions should not execute instantly from a hot wallet.</p></article><article class="phn-card"><h3>Verified voters</h3><p>Governance weight should come from real participation.</p></article><article class="phn-card"><h3>Treasury reports</h3><p>Monthly reports should cover presale, liquidity, staking and ecosystem wallets.</p></article><article class="phn-card"><h3>Future votes</h3><p>Validator criteria, grants, games, listings and chain upgrade priorities.</p></article></div></section>
 </main>
+<footer class="phn-footer"><div class="phn-shell phn-footer-grid"><div><strong>Governance</strong><p>Security-first governance path for PHN.</p></div><div><strong>App</strong><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="wallet.html">Wallet</a></div><div><strong>Protocol</strong><a href="vesting.html">Vesting</a><a href="verify.html">Verify</a><a href="liquidity.html">Liquidity</a></div><div><strong>Company</strong><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a></div></div></footer>
 </body>
 </html>

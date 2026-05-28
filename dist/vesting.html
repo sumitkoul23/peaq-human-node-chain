@@ -1,1 +1,115 @@
-<!doctype html><html><head><meta charset="utf-8"><title>PHN Vesting</title><style>body{font-family:Inter,Segoe UI,sans-serif;background:#f7fbff;color:#0c1930;margin:0}main{max-width:900px;margin:auto;padding:40px 20px}.card{background:#fff;border:1px solid rgba(28,78,120,.12);border-radius:24px;padding:24px;margin-top:16px}</style></head><body><main><h1>PHN Vesting</h1><div class="card"><h2>Sale vesting</h2><p>Round-sale allocations unlock only after the 15-day vesting lock.</p></div><div class="card"><h2>Founder vesting</h2><p>Founder allocation remains separated in a dedicated vesting wallet.</p></div></main></body></html>
+ <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PHN Vesting and Token Release | Peaq Human Node</title>
+<meta name="description" content="PHN vesting, founder release, presale delivery, staking rewards and treasury controls explained clearly.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
+</head>
+<body class="phn-page">
+<header class="phn-topbar">
+  <nav class="phn-nav">
+    <a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a>
+    <div class="phn-links"><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a class="active" href="vesting.html">Vesting</a><a href="verify.html">Verify</a><a href="roadmap.html">Roadmap</a></div>
+    <div class="phn-actions"><button class="phn-btn" onclick="connectPhnWallet()">Connect</button><a class="phn-btn primary" href="staking.html">Stake PHN</a></div>
+    <button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button>
+  </nav>
+</header>
+<div class="phn-mobile-drawer">
+  <a href="index.html">Home</a><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="roadmap.html">Roadmap</a><a href="support.html">Support</a>
+</div>
+
+<main class="phn-shell">
+  <section class="phn-hero">
+    <div>
+      <span class="phn-kicker">Token release policy</span>
+      <h1 class="phn-title">Vesting that users can understand before they buy.</h1>
+      <p class="phn-lead">PHN uses fixed supply, separated operating buckets, visible contract addresses and staged release logic. This page explains what is live, what is funded, and what needs governance or admin action.</p>
+      <div class="phn-hero-actions">
+        <a class="phn-btn primary" href="verify.html">Verify contracts</a>
+        <a class="phn-btn" href="staking.html">View staking pool</a>
+        <a class="phn-btn ghost" href="buy.html">Buy presale</a>
+      </div>
+      <div class="phn-status" data-wallet-status></div>
+    </div>
+    <article class="phn-panel">
+      <span class="phn-tag green">Live contract data</span>
+      <h2>Known addresses</h2>
+      <table class="phn-table">
+        <tbody>
+          <tr><td>PHN token</td><td><code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code></td></tr>
+          <tr><td>Presale</td><td><code>0x334D6748a105Aa857890375a811bf51a0182a757</code></td></tr>
+          <tr><td>Staking</td><td><code>0x2926c13A0f82b0462f686bbd6c67Fe78a444589A</code></td></tr>
+          <tr><td>Founder vesting wallet</td><td><code>0xaBe58dD0199118c3705AfAc45B62873D1Fc4fB1e</code></td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-section-head"><div><span class="phn-tag">Allocation clarity</span><h2>Launch allocation view</h2></div></div>
+    <table class="phn-table">
+      <thead><tr><th>Bucket</th><th>Amount</th><th>Release model</th><th>User meaning</th></tr></thead>
+      <tbody>
+        <tr><td>Founder vesting</td><td>40M PHN target after staking redirection</td><td>Linear vesting policy, no sudden public-market release.</td><td>Team incentives stay long term.</td></tr>
+        <tr><td>Staking rewards</td><td>10M PHN funded</td><td>Distributed through PHNStaking per tier and elapsed time.</td><td>Rewards come from a known pool, not hidden minting.</td></tr>
+        <tr><td>Node rewards</td><td>20M PHN</td><td>Reserved for verified node operators and heartbeat-based rewards.</td><td>Node earning requires identity and activity checks.</td></tr>
+        <tr><td>Ecosystem and growth</td><td>20M PHN base bucket</td><td>Listings, grants, partnerships, support and operations.</td><td>Used to grow peaq-first adoption.</td></tr>
+        <tr><td>Liquidity</td><td>10M PHN base bucket</td><td>Liquidity provisioning and market route support.</td><td>Pairs must be created and locked transparently.</td></tr>
+      </tbody>
+    </table>
+    <p style="color:var(--muted);margin-top:14px">Note: the deployed token originally minted fixed buckets on-chain. The operating plan now redirects 10M PHN into the staking reward pool, which is why the public tokenomics page separates staking from the original founder bucket.</p>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-grid three">
+      <article class="phn-card">
+        <span class="phn-tag green">Presale</span>
+        <h3>Buyer delivery</h3>
+        <p>Presale buyers receive PHN through the presale contract. Epoch pricing starts at $0.02, then advances by cap. Purchase fee is 2% total: 0.25% burn and 1.75% treasury.</p>
+        <a class="phn-btn" href="buy.html">Open presale</a>
+      </article>
+      <article class="phn-card">
+        <span class="phn-tag pink">Staking</span>
+        <h3>Reward unlocks</h3>
+        <p>Flex rewards can be claimed without a lock. Locked and Vault tiers pay higher APY for time commitment and use penalty rules for early exit.</p>
+        <a class="phn-btn" href="staking.html">Open staking</a>
+      </article>
+      <article class="phn-card">
+        <span class="phn-tag amber">Founder</span>
+        <h3>Team release</h3>
+        <p>Founder release is tracked separately and should remain visible through explorer links and future governance reports.</p>
+        <a class="phn-btn" href="verify.html">Verify wallet</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="phn-section">
+    <article class="phn-panel">
+      <span class="phn-tag">Recommended governance controls</span>
+      <h2>What should happen before scale</h2>
+      <div class="phn-steps">
+        <div class="phn-step"><div><h3>Publish monthly treasury report</h3><p>Report balances for presale, staking, liquidity and ecosystem wallets.</p></div></div>
+        <div class="phn-step"><div><h3>Lock liquidity after pair creation</h3><p>LP tokens should be locked for a clear period and linked from the verify page.</p></div></div>
+        <div class="phn-step"><div><h3>Use timelock for privileged actions</h3><p>Critical admin actions should be delayed and publicly visible before execution.</p></div></div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="phn-footer">
+  <div class="phn-shell phn-footer-grid">
+    <div><strong>Peaq Human Node</strong><p>Transparent release information for PHN holders and operators.</p></div>
+    <div><strong>App</strong><a href="buy.html">Buy PHN</a><a href="staking.html">Staking</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a></div>
+    <div><strong>Protocol</strong><a href="activate-node.html">Run Node</a><a href="verify.html">Verify</a><a href="liquidity.html">Liquidity</a><a href="validators.html">Validators</a></div>
+    <div><strong>Company</strong><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a></div>
+  </div>
+</footer>
+</body>
+</html>

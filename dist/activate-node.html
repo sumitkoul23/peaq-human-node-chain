@@ -1,1 +1,105 @@
-<!doctype html><html><head><meta charset="utf-8"><title>Activate a PHN Node</title><style>body{font-family:Inter,Segoe UI,sans-serif;background:#f7fbff;color:#0c1930;margin:0}main{max-width:960px;margin:auto;padding:40px 20px}.card{background:#fff;border:1px solid rgba(28,78,120,.12);border-radius:24px;padding:24px;margin-top:16px}pre{background:#eef6ff;padding:16px;border-radius:16px;overflow:auto}</style></head><body><main><h1>Activate a PHN Node</h1><div class="card"><h2>Windows</h2><pre>npm run phn-node -- init\nnpm run phn-node -- set-operator 0xYourWallet\nnpm run phn-node -- set-did did:peaq:your-machine\nnpm run phn-node -- doctor\nnpm run phn-node -- registration-payload</pre></div><div class="card"><h2>macOS</h2><pre>npm run phn-node -- init\nnpm run phn-node -- set-operator 0xYourWallet\nnpm run phn-node -- set-did did:peaq:your-machine</pre></div><div class="card"><h2>Linux / Ubuntu</h2><pre>sudo apt update\nsudo apt install -y git nodejs npm\nnpm run phn-node -- init\nnpm run phn-node -- doctor</pre></div><div class="card"><h2>Mobile app</h2><p>Install PHN Beacon, connect wallet, verify device, attach machine DID, start node mode, keep heartbeat active, and claim rewards.</p></div></main></body></html>
+ <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Run a PHN Node | Peaq Human Node</title>
+<meta name="description" content="Activate a PHN node with wallet, device identity, peaq DID and heartbeat commands.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
+</head>
+<body class="phn-page">
+<header class="phn-topbar">
+  <nav class="phn-nav">
+    <a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a>
+    <div class="phn-links"><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a class="active" href="activate-node.html">Run Node</a><a href="validators.html">Validators</a><a href="download.html">Download</a><a href="support.html">Support</a></div>
+    <div class="phn-actions"><button class="phn-btn" onclick="connectPhnWallet()">Connect</button><a class="phn-btn primary" href="download.html">Install App</a></div>
+    <button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button>
+  </nav>
+</header>
+<div class="phn-mobile-drawer">
+  <a href="index.html">Home</a><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="vesting.html">Vesting</a><a href="roadmap.html">Roadmap</a><a href="support.html">Support</a>
+  <button class="phn-btn" onclick="connectPhnWallet()">Connect Wallet</button>
+</div>
+
+<main class="phn-shell">
+  <section class="phn-hero">
+    <div>
+      <span class="phn-kicker">Node activation</span>
+      <h1 class="phn-title">Run a verified human node on peaq.</h1>
+      <p class="phn-lead">This page turns the technical node flow into a guided operator console: connect wallet, create local identity, attach peaq DID, generate registration payload, then submit for attestation.</p>
+      <div class="phn-hero-actions">
+        <button class="phn-btn primary" onclick="connectPhnWallet()">Connect operator wallet</button>
+        <button class="phn-btn" onclick="generateNodeCommands()">Generate commands</button>
+        <a class="phn-btn ghost" href="download.html">Install Beacon app</a>
+      </div>
+      <div class="phn-status" id="nodeStatus" data-wallet-status></div>
+    </div>
+    <article class="phn-panel">
+      <span class="phn-tag green">Node requirements</span>
+      <h2>Minimum setup</h2>
+      <table class="phn-table">
+        <tbody>
+          <tr><td>Wallet</td><td>MetaMask or Binance Wallet on peaq Mainnet.</td></tr>
+          <tr><td>Device</td><td>Windows, macOS or Linux machine with Node.js.</td></tr>
+          <tr><td>Identity</td><td>Local machine hash plus peaq Machine DID.</td></tr>
+          <tr><td>Review</td><td>Operator attestation is required before rewards.</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-grid two">
+      <article class="phn-panel">
+        <span class="phn-tag">Command generator</span>
+        <h2>Build your node command pack</h2>
+        <div class="phn-form-grid">
+          <label>Operator wallet<input class="phn-input" id="nodeWallet" placeholder="0xYourWallet" oninput="generateNodeCommands()"></label>
+          <label>peaq Machine DID<input class="phn-input" id="nodeDid" placeholder="did:peaq:your-machine" oninput="generateNodeCommands()"></label>
+          <label>Platform<select class="phn-select" id="nodePlatform" onchange="generateNodeCommands()"><option value="windows">Windows</option><option value="macos">macOS</option><option value="linux">Linux / Ubuntu</option></select></label>
+        </div>
+        <pre class="phn-code-block" id="nodeCommands"></pre>
+        <div class="phn-hero-actions">
+          <button class="phn-btn" data-copy="" onclick="copyPhnText(document.getElementById('nodeCommands').textContent,'#nodeStatus')">Copy commands</button>
+          <a class="phn-btn ghost" href="developers.html">Developer docs</a>
+        </div>
+      </article>
+      <article class="phn-panel">
+        <span class="phn-tag amber">Manual approval</span>
+        <h2>Why activation has a review step</h2>
+        <p>PHN rewards should go to real human-operated machines, not automated farms. The contract flow uses NodeIdentityRegistry and heartbeat-based reward accrual, but the project must still verify operator identity before a node becomes active.</p>
+        <div class="phn-steps">
+          <div class="phn-step"><div><h3>Create local identity</h3><p>The CLI hashes machine identity locally and stores the node profile on your computer.</p></div></div>
+          <div class="phn-step"><div><h3>Submit payload</h3><p>Send the generated payload through support or the validator terminal.</p></div></div>
+          <div class="phn-step"><div><h3>Start heartbeats</h3><p>After attestation, active nodes call heartbeat and accrue PHN rewards.</p></div></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-section-head"><div><span class="phn-tag pink">Operator map</span><h2>Everything node users need</h2></div></div>
+    <div class="phn-grid four">
+      <a class="phn-card interactive" href="wallet.html"><h3>PHN Wallet</h3><p>Manage PHN, PEAQ and app wallet actions.</p></a>
+      <a class="phn-card interactive" href="staking.html"><h3>Stake PHN</h3><p>Stake into Flex, Locked or Vault tiers.</p></a>
+      <a class="phn-card interactive" href="validators.html"><h3>Validator Terminal</h3><p>Monitor operator status and reward health.</p></a>
+      <a class="phn-card interactive" href="support.html"><h3>Submit Payload</h3><p>Open a support ticket with node registration data.</p></a>
+    </div>
+  </section>
+</main>
+
+<footer class="phn-footer">
+  <div class="phn-shell phn-footer-grid">
+    <div><strong>Peaq Human Node</strong><p>Verified node activation for the PHN DePIN network.</p></div>
+    <div><strong>App</strong><a href="download.html">Download</a><a href="auth.html">Sign In</a><a href="wallet.html">Wallet</a></div>
+    <div><strong>Protocol</strong><a href="buy.html">Buy PHN</a><a href="staking.html">Staking</a><a href="vesting.html">Vesting</a><a href="verify.html">Verify</a></div>
+    <div><strong>Company</strong><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a></div>
+  </div>
+</footer>
+</body>
+</html>

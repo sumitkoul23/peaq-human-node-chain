@@ -1,0 +1,129 @@
+ <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Download PHN Beacon | Peaq Human Node</title>
+<meta name="description" content="Install PHN Beacon on Android, iOS, iPadOS, Windows, macOS and browser. PWA install is live; native packages are staged for signed builds.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
+</head>
+<body class="phn-page">
+<header class="phn-topbar">
+  <nav class="phn-nav">
+    <a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a>
+    <div class="phn-links">
+      <a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a class="active" href="download.html">Download</a><a href="support.html">Support</a>
+    </div>
+    <div class="phn-actions"><button class="phn-btn" onclick="connectPhnWallet()">Connect</button><a class="phn-btn primary" href="buy.html">Buy PHN</a></div>
+    <button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button>
+  </nav>
+</header>
+<div class="phn-mobile-drawer">
+  <a href="index.html">Home</a><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="vesting.html">Vesting</a><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a>
+  <button class="phn-btn" onclick="connectPhnWallet()">Connect Wallet</button>
+</div>
+
+<main class="phn-shell">
+  <section class="phn-hero">
+    <div>
+      <span class="phn-kicker">PHN Beacon app center</span>
+      <h1 class="phn-title">Install PHN on every device without paid app stores first.</h1>
+      <p class="phn-lead">The live path is a free installable PWA for Android, iOS, iPadOS, Windows and macOS. Native signed installers are tracked separately so the website stays honest and professional.</p>
+      <div class="phn-hero-actions">
+        <button class="phn-btn primary" onclick="installPhnApp()">Install PHN Beacon</button>
+        <a class="phn-btn" href="activate-node.html">Run a node</a>
+        <a class="phn-btn ghost" href="wallet.html">Open wallet</a>
+      </div>
+      <div class="phn-status" data-install-status></div>
+    </div>
+    <div class="phn-visual">
+      <img src="assets/phn-hero-3d.png" alt="PHN Beacon device interface">
+      <div class="overlay">
+        <div class="phn-chip"><small>Install</small><strong data-install-ready>Browser ready</strong></div>
+        <div class="phn-chip"><small>Network</small><strong>peaq 3338</strong></div>
+        <div class="phn-chip"><small>Mode</small><strong>PWA live</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-section-head">
+      <div><span class="phn-tag green">Available now</span><h2>Free install options</h2></div>
+      <a class="phn-btn" href="auth.html">Sign-in options</a>
+    </div>
+    <div class="phn-grid three">
+      <article class="phn-card">
+        <span class="phn-tag green">Android</span>
+        <h3>Android PWA</h3>
+        <p>Open this page in Chrome on Android, tap Install, and PHN Beacon appears like an app. This works today with no Play Store fee.</p>
+        <button class="phn-btn primary" onclick="installPhnApp()">Install on Android</button>
+      </article>
+      <article class="phn-card">
+        <span class="phn-tag green">iOS and iPadOS</span>
+        <h3>Home Screen App</h3>
+        <p>Open in Safari, tap Share, then Add to Home Screen. Wallet actions still use MetaMask or WalletConnect-compatible wallets.</p>
+        <button class="phn-btn" onclick="installPhnApp()">Show iOS steps</button>
+      </article>
+      <article class="phn-card">
+        <span class="phn-tag green">Windows and macOS</span>
+        <h3>Desktop PWA</h3>
+        <p>Install from Chrome, Edge, Brave or Arc. It opens in a standalone window and keeps the PHN app shell cached offline.</p>
+        <button class="phn-btn" onclick="installPhnApp()">Install desktop app</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-section-head">
+      <div><span class="phn-tag amber">Native packaging</span><h2>Executable build status</h2></div>
+      <a class="phn-btn ghost" href="developers.html">Developer docs</a>
+    </div>
+    <table class="phn-table">
+      <thead><tr><th>Platform</th><th>Status</th><th>Reason</th><th>Next action</th></tr></thead>
+      <tbody>
+        <tr><td>Android APK</td><td><span class="phn-tag amber">Source ready</span></td><td>Android project exists, but Gradle/Android SDK are not configured on this machine.</td><td>Install Android Studio or Gradle wrapper, then run the release build script.</td></tr>
+        <tr><td>Windows EXE</td><td><span class="phn-tag amber">Planned</span></td><td>Best route is Electron/Tauri wrapper around the PWA after app shell is stable.</td><td>Create signed desktop build once signing/cert path is available.</td></tr>
+        <tr><td>macOS DMG</td><td><span class="phn-tag amber">Planned</span></td><td>Requires macOS build host and Apple signing/notarization.</td><td>Build from macOS CI or a Mac machine.</td></tr>
+        <tr><td>iOS IPA</td><td><span class="phn-tag amber">Planned</span></td><td>Requires Apple Developer account, Xcode and signing profiles.</td><td>Use PWA until native Apple distribution is funded.</td></tr>
+        <tr><td>Browser Extension</td><td><span class="phn-tag amber">Prototype</span></td><td>Source exists as a companion extension prototype.</td><td>Finish wallet-safe extension scope and submit manually.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-grid two">
+      <article class="phn-panel">
+        <span class="phn-tag pink">Beacon scope</span>
+        <h2>What the app does now</h2>
+        <ul>
+          <li>Connects MetaMask and injected wallets to peaq Mainnet.</li>
+          <li>Opens presale, staking, exchange, vesting, support and node activation pages.</li>
+          <li>Installs as a PWA with offline shell caching.</li>
+          <li>Provides a truthful launch path before native signing budgets exist.</li>
+        </ul>
+      </article>
+      <article class="phn-panel">
+        <span class="phn-tag">Security policy</span>
+        <h2>No seed phrase custody</h2>
+        <p>PHN Beacon is not a custodial wallet. It never asks for private keys or seed phrases. Wallet actions remain inside MetaMask, Binance Wallet, WalletConnect-compatible wallets, or the future PHN wallet after a formal security review.</p>
+        <a class="phn-btn" href="wallet.html">Open PHN wallet console</a>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="phn-footer">
+  <div class="phn-shell phn-footer-grid">
+    <div><strong>Peaq Human Node</strong><p>Built by Skymetric Consulting LLP. peaq-first DePIN token, staking and node activation app.</p></div>
+    <div><strong>App</strong><a href="buy.html">Buy PHN</a><a href="staking.html">Staking</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a></div>
+    <div><strong>Protocol</strong><a href="activate-node.html">Run Node</a><a href="vesting.html">Vesting</a><a href="verify.html">Verify</a><a href="liquidity.html">Liquidity</a></div>
+    <div><strong>Company</strong><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="support.html">Support</a><a href="about.html">About</a></div>
+  </div>
+</footer>
+</body>
+</html>

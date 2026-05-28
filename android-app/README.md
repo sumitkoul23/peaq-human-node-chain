@@ -1,21 +1,27 @@
-# PHN Beacon Android App
+# PHN Beacon Android
 
-Beacon-style Android companion for PHN operators.
+This is the native Android source for PHN Beacon.
 
-## Product shape
-- connect wallet
-- verify device
-- start node
-- heartbeat loop
-- reward balance
-- uptime score
-- milestone progression
+Current production install path is the PWA at `dist/download.html`. Native APK release requires Android Studio/SDK and Gradle. Do not upload a fake APK to the website.
 
-## Next production work
-- WalletConnect / MetaMask Mobile signing
-- peaq RPC reads and signed transactions
-- secure device identity
-- foreground service for node running
-- real uptime proofs
-- push notifications
-- streaks, leaderboards, and quests
+## Build requirements
+
+- Android Studio or Android SDK configured.
+- `ANDROID_HOME` or `ANDROID_SDK_ROOT` set.
+- Gradle installed, or a Gradle wrapper generated from Android Studio.
+
+## Build command
+
+From the repository root:
+
+```powershell
+npm run apk:build
+```
+
+The script copies the newest APK to:
+
+```text
+dist/downloads/phn-beacon-android.apk
+```
+
+Only link that APK publicly after testing it on a real Android device.

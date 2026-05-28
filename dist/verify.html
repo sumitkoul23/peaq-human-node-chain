@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>PHN Token Verification — Peaq Human Node</title>
+<title>PHN Token Verification - Peaq Human Node</title>
 <meta name="description" content="Verify PHN token authenticity. Check contract address, LP lock status, BscScan verification, and trust signals."/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
@@ -56,192 +56,196 @@ h1{font-size:clamp(36px,5vw,56px);font-weight:800;letter-spacing:-.03em;margin-b
 .scam-box .mono{font-family:var(--font-mono);color:var(--text);background:rgba(255,68,68,.06);padding:2px 8px;border-radius:4px}
 @media(max-width:600px){.page{padding:100px 24px 60px}.links-grid{grid-template-columns:1fr 1fr}nav{padding:16px 24px}}
 </style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<script defer src="phn-app.js?v=20260529f"></script>
 </head>
 <body>
 <div class="grid-bg"></div>
 <nav>
-  <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
-  <div style="display:flex;gap:24px;align-items:center">
-    <a href="staking.html" style="font-family:var(--font-mono);font-size:12px;color:var(--muted);text-decoration:none">Staking</a>
-    <a href="buy.html" style="font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;background:var(--cyan);color:var(--black);padding:8px 18px;border-radius:4px;text-decoration:none">Buy PHN →</a>
-  </div>
+ <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
+ <div style="display:flex;gap:24px;align-items:center">
+ <a href="staking.html" style="font-family:var(--font-mono);font-size:12px;color:var(--muted);text-decoration:none">Staking</a>
+ <a href="buy.html" style="font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;background:var(--cyan);color:var(--black);padding:8px 18px;border-radius:4px;text-decoration:none">Buy PHN </a>
+ </div>
 </nav>
 
 <div class="page">
-  <div class="section-label">Trust & Safety</div>
-  <h1>Token Verification</h1>
-  <p class="page-desc">Verify you have the real $PHN. Check every trust signal before buying. Always verify the contract address independently.</p>
+ <div class="section-label">Trust & Safety</div>
+ <h1>Token Verification</h1>
+ <p class="page-desc">Verify you have the real $PHN. Check every trust signal before buying. Always verify the contract address independently.</p>
 
-  <!-- Trust Signals -->
-  <div class="trust-grid">
-    <div class="trust-row pass">
-      <div class="trust-icon">📜</div>
-      <div class="trust-body">
-        <div class="trust-title">Contract Address Confirmed</div>
-        <div class="trust-detail">0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B · BSC Mainnet</div>
-      </div>
-      <div class="trust-status"><span class="badge green">✓ Official</span></div>
-    </div>
-    <div class="trust-row pass">
-      <div class="trust-icon">🔒</div>
-      <div class="trust-body">
-        <div class="trust-title">Fixed Supply — No Mint Authority</div>
-        <div class="trust-detail">100,000,000 PHN max supply · mint disabled post-deploy</div>
-      </div>
-      <div class="trust-status"><span class="badge green">✓ Verified</span></div>
-    </div>
-    <div class="trust-row pass">
-      <div class="trust-icon">⏳</div>
-      <div class="trust-body">
-        <div class="trust-title">Founder Vesting — 24 Months Linear</div>
-        <div class="trust-detail">40M PHN · FounderVestingWallet.sol · no cliff · no lump sum</div>
-      </div>
-      <div class="trust-status"><span class="badge green">✓ On-chain</span></div>
-    </div>
-    <div class="trust-row pass">
-      <div class="trust-icon">🏛️</div>
-      <div class="trust-body">
-        <div class="trust-title">Timelock on All Privileged Actions</div>
-        <div class="trust-detail">LaunchTimelock.sol · no hot-wallet execution · community can react</div>
-      </div>
-      <div class="trust-status"><span class="badge green">✓ On-chain</span></div>
-    </div>
-    <div class="trust-row pass">
-      <div class="trust-icon">🛡️</div>
-      <div class="trust-body">
-        <div class="trust-title">OpenZeppelin v5 Contracts</div>
-        <div class="trust-detail">Solidity 0.8.24 · industry-standard audited library</div>
-      </div>
-      <div class="trust-status"><span class="badge green">✓ Verified</span></div>
-    </div>
-    <div class="trust-row pass">
-      <div class="trust-icon">🌐</div>
-      <div class="trust-body">
-        <div class="trust-title">LayerZero OFT Cross-Chain</div>
-        <div class="trust-detail">BSC ↔ peaq bridge · burn/mint · global supply always 100M</div>
-      </div>
-      <div class="trust-status"><span class="badge green">✓ Deployed</span></div>
-    </div>
-    <div class="trust-row warn">
-      <div class="trust-icon">💧</div>
-      <div class="trust-body">
-        <div class="trust-title">Liquidity Lock</div>
-        <div class="trust-detail" id="lpStatus">LP lock TX: pending — check back after launch</div>
-      </div>
-      <div class="trust-status"><span class="badge amber" id="lpBadge">Pending</span></div>
-    </div>
-    <div class="trust-row warn">
-      <div class="trust-icon">🔍</div>
-      <div class="trust-body">
-        <div class="trust-title">BscScan Source Verification</div>
-        <div class="trust-detail">Contract source code — verify at bscscan.com #code tab</div>
-      </div>
-      <div class="trust-status">
-        <a class="badge amber" href="https://bscscan.com/address/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B#code" target="_blank" style="text-decoration:none">Check ↗</a>
-      </div>
-    </div>
-    <div class="trust-row pending">
-      <div class="trust-icon">💎</div>
-      <div class="trust-body">
-        <div class="trust-title">Staking Rewards Pool — 10M PHN</div>
-        <div class="trust-detail">PHNStaking.sol · FLEX 8% · LOCKED 15% · VAULT 25% APY</div>
-      </div>
-      <div class="trust-status">
-        <a class="badge cyan" href="staking.html" style="text-decoration:none">Stake ↗</a>
-      </div>
-    </div>
-  </div>
+ <!-- Trust Signals -->
+ <div class="trust-grid">
+ <div class="trust-row pass">
+ <div class="trust-icon">xS</div>
+ <div class="trust-body">
+ <div class="trust-title">Contract Address Confirmed</div>
+ <div class="trust-detail">0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B    BSC Mainnet</div>
+ </div>
+ <div class="trust-status"><span class="badge green">S Official</span></div>
+ </div>
+ <div class="trust-row pass">
+ <div class="trust-icon">x</div>
+ <div class="trust-body">
+ <div class="trust-title">Fixed Supply No Mint Authority</div>
+ <div class="trust-detail">100,000,000 PHN max supply    mint disabled post-deploy</div>
+ </div>
+ <div class="trust-status"><span class="badge green">S Verified</span></div>
+ </div>
+ <div class="trust-row pass">
+ <div class="trust-icon">   </div>
+ <div class="trust-body">
+ <div class="trust-title">Founder Vesting 24 Months Linear</div>
+ <div class="trust-detail">40M PHN    FounderVestingWallet.sol    no cliff    no lump sum</div>
+ </div>
+ <div class="trust-status"><span class="badge green">S On-chain</span></div>
+ </div>
+ <div class="trust-row pass">
+ <div class="trust-icon">x:   </div>
+ <div class="trust-body">
+ <div class="trust-title">Timelock on All Privileged Actions</div>
+ <div class="trust-detail">LaunchTimelock.sol    no hot-wallet execution    community can react</div>
+ </div>
+ <div class="trust-status"><span class="badge green">S On-chain</span></div>
+ </div>
+ <div class="trust-row pass">
+ <div class="trust-icon">x:   </div>
+ <div class="trust-body">
+ <div class="trust-title">OpenZeppelin v5 Contracts</div>
+ <div class="trust-detail">Solidity 0.8.24    industry-standard audited library</div>
+ </div>
+ <div class="trust-status"><span class="badge green">S Verified</span></div>
+ </div>
+ <div class="trust-row pass">
+ <div class="trust-icon">xR</div>
+ <div class="trust-body">
+ <div class="trust-title">LayerZero OFT Cross-Chain</div>
+ <div class="trust-detail">BSC peaq bridge    burn/mint    global supply always 100M</div>
+ </div>
+ <div class="trust-status"><span class="badge green">S Deployed</span></div>
+ </div>
+ <div class="trust-row warn">
+ <div class="trust-icon">x</div>
+ <div class="trust-body">
+ <div class="trust-title">Liquidity Lock</div>
+ <div class="trust-detail" id="lpStatus">LP lock TX: pending check back after launch</div>
+ </div>
+ <div class="trust-status"><span class="badge amber" id="lpBadge">Pending</span></div>
+ </div>
+ <div class="trust-row warn">
+ <div class="trust-icon">x</div>
+ <div class="trust-body">
+ <div class="trust-title">BscScan Source Verification</div>
+ <div class="trust-detail">Contract source code verify at bscscan.com #code tab</div>
+ </div>
+ <div class="trust-status">
+ <a class="badge amber" href="https://bscscan.com/address/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B#code" target="_blank" style="text-decoration:none">Check </a>
+ </div>
+ </div>
+ <div class="trust-row pending">
+ <div class="trust-icon">x}</div>
+ <div class="trust-body">
+ <div class="trust-title">Staking Rewards Pool 10M PHN</div>
+ <div class="trust-detail">PHNStaking.sol    FLEX 8%    LOCKED 15%    VAULT 25% APY</div>
+ </div>
+ <div class="trust-status">
+ <a class="badge cyan" href="staking.html" style="text-decoration:none">Stake </a>
+ </div>
+ </div>
+ </div>
 
-  <!-- Contract Details -->
-  <div class="contract-card">
-    <h2>Official Contract Details</h2>
-    <div class="c-row">
-      <span class="c-key">Token Name</span>
-      <span class="c-val">Peaq Human Node</span>
-    </div>
-    <div class="c-row">
-      <span class="c-key">Symbol</span>
-      <span class="c-val">PHN</span>
-    </div>
-    <div class="c-row">
-      <span class="c-key">Contract (BSC)</span>
-      <span class="c-val" style="font-size:12px">
-        0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B
-        <button class="copy-btn" onclick="navigator.clipboard.writeText('0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B');this.textContent='✓';setTimeout(()=>this.textContent='COPY',2000)">COPY</button>
-      </span>
-    </div>
-    <div class="c-row">
-      <span class="c-key">Chain</span>
-      <span class="c-val">BSC Mainnet (56) + peaq Mainnet (3338)</span>
-    </div>
-    <div class="c-row">
-      <span class="c-key">Standard</span>
-      <span class="c-val">BEP-20 / LayerZero OFT</span>
-    </div>
-    <div class="c-row">
-      <span class="c-key">Total Supply</span>
-      <span class="c-val">100,000,000 PHN (fixed)</span>
-    </div>
-    <div class="c-row">
-      <span class="c-key">Decimals</span>
-      <span class="c-val">18</span>
-    </div>
-    <div class="c-row">
-      <span class="c-key">Compiler</span>
-      <span class="c-val">Solidity 0.8.24 · OpenZeppelin v5</span>
-    </div>
-  </div>
+ <!-- Contract Details -->
+ <div class="contract-card">
+ <h2>Official Contract Details</h2>
+ <div class="c-row">
+ <span class="c-key">Token Name</span>
+ <span class="c-val">Peaq Human Node</span>
+ </div>
+ <div class="c-row">
+ <span class="c-key">Symbol</span>
+ <span class="c-val">PHN</span>
+ </div>
+ <div class="c-row">
+ <span class="c-key">Contract (BSC)</span>
+ <span class="c-val" style="font-size:12px">
+ 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B
+ <button class="copy-btn" onclick="navigator.clipboard.writeText('0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B');this.textContent='S';setTimeout(()=>this.textContent='COPY',2000)">COPY</button>
+ </span>
+ </div>
+ <div class="c-row">
+ <span class="c-key">Chain</span>
+ <span class="c-val">BSC Mainnet (56) + peaq Mainnet (3338)</span>
+ </div>
+ <div class="c-row">
+ <span class="c-key">Standard</span>
+ <span class="c-val">BEP-20 / LayerZero OFT</span>
+ </div>
+ <div class="c-row">
+ <span class="c-key">Total Supply</span>
+ <span class="c-val">100,000,000 PHN (fixed)</span>
+ </div>
+ <div class="c-row">
+ <span class="c-key">Decimals</span>
+ <span class="c-val">18</span>
+ </div>
+ <div class="c-row">
+ <span class="c-key">Compiler</span>
+ <span class="c-val">Solidity 0.8.24    OpenZeppelin v5</span>
+ </div>
+ </div>
 
-  <!-- Verify Links -->
-  <div class="section-label">Verify On-Chain</div>
-  <div class="links-grid">
-    <a class="link-card" href="https://bscscan.com/token/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
-      <div class="link-card-icon">🔍</div>
-      <div class="link-card-name">BscScan</div>
-      <div class="link-card-desc">Token page · holders · txns</div>
-    </a>
-    <a class="link-card" href="https://poocoin.app/tokens/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
-      <div class="link-card-icon">📊</div>
-      <div class="link-card-name">PooCoin</div>
-      <div class="link-card-desc">BSC chart · liquidity</div>
-    </a>
-    <a class="link-card" href="https://www.dextools.io/app/en/bnb/" target="_blank">
-      <div class="link-card-icon">📈</div>
-      <div class="link-card-name">DexTools</div>
-      <div class="link-card-desc">Pair explorer · analytics</div>
-    </a>
-    <a class="link-card" href="https://tokensniffer.com/token/bsc/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
-      <div class="link-card-icon">🛡️</div>
-      <div class="link-card-name">Token Sniffer</div>
-      <div class="link-card-desc">Rug check · contract audit</div>
-    </a>
-    <a class="link-card" href="https://pancakeswap.finance/swap?outputCurrency=0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
-      <div class="link-card-icon">🥞</div>
-      <div class="link-card-name">PancakeSwap</div>
-      <div class="link-card-desc">Swap PHN · BSC DEX</div>
-    </a>
-    <a class="link-card" href="https://coinsniper.net" target="_blank">
-      <div class="link-card-icon">🎯</div>
-      <div class="link-card-name">CoinSniper</div>
-      <div class="link-card-desc">Community voting · listing</div>
-    </a>
-  </div>
+ <!-- Verify Links -->
+ <div class="section-label">Verify On-Chain</div>
+ <div class="links-grid">
+ <a class="link-card" href="https://bscscan.com/token/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
+ <div class="link-card-icon">x</div>
+ <div class="link-card-name">BscScan</div>
+ <div class="link-card-desc">Token page    holders    txns</div>
+ </a>
+ <a class="link-card" href="https://poocoin.app/tokens/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
+ <div class="link-card-icon">x`</div>
+ <div class="link-card-name">PooCoin</div>
+ <div class="link-card-desc">BSC chart    liquidity</div>
+ </a>
+ <a class="link-card" href="https://www.dextools.io/app/en/bnb/" target="_blank">
+ <div class="link-card-icon">x</div>
+ <div class="link-card-name">DexTools</div>
+ <div class="link-card-desc">Pair explorer    analytics</div>
+ </a>
+ <a class="link-card" href="https://tokensniffer.com/token/bsc/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
+ <div class="link-card-icon">x:   </div>
+ <div class="link-card-name">Token Sniffer</div>
+ <div class="link-card-desc">Rug check    contract audit</div>
+ </a>
+ <a class="link-card" href="https://pancakeswap.finance/swap?outputCurrency=0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">
+ <div class="link-card-icon">x~</div>
+ <div class="link-card-name">PancakeSwap</div>
+ <div class="link-card-desc">Swap PHN    BSC DEX</div>
+ </a>
+ <a class="link-card" href="https://coinsniper.net" target="_blank">
+ <div class="link-card-icon">x}</div>
+ <div class="link-card-name">CoinSniper</div>
+ <div class="link-card-desc">Community voting    listing</div>
+ </a>
+ </div>
 
-  <!-- Scam Warning -->
-  <div class="scam-box">
-    <h3>⚠️ Scam Warning — How to Stay Safe</h3>
-    <p>Fake PHN tokens exist. Always verify you are using the official contract address before trading or staking:</p>
-    <p><span class="mono">0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</span></p>
-    <p style="margin-top:12px">Rules that protect you:</p>
-    <p>• The PHN team will <strong>never DM you first</strong> asking for funds, private keys, or seed phrases.<br>
-    • There is <strong>no "early access" sale</strong> or private presale — any account claiming this is fake.<br>
-    • All official links start with <strong>t.me/PeaqHumanNode</strong> and <strong>x.com/PeaqHumanNode</strong>.<br>
-    • When in doubt, verify the contract address on BscScan directly.</p>
-  </div>
+ <!-- Scam Warning -->
+ <div class="scam-box">
+ <h3>a    Scam Warning How to Stay Safe</h3>
+ <p>Fake PHN tokens exist. Always verify you are using the official contract address before trading or staking:</p>
+ <p><span class="mono">0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</span></p>
+ <p style="margin-top:12px">Rules that protect you:</p>
+ <p>    The PHN team will <strong>never DM you first</strong> asking for funds, private keys, or seed phrases.<br>
+     There is <strong>no "early access" sale</strong> or private presale any account claiming this is fake.<br>
+     All official links start with <strong>t.me/PeaqHumanNode</strong> and <strong>x.com/PeaqHumanNode</strong>.<br>
+     When in doubt, verify the contract address on BscScan directly.</p>
+ </div>
 </div>
 
 <footer style="border-top:1px solid var(--border);padding:40px 48px;position:relative;z-index:10;text-align:center">
-  <p style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">Contract: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B · © 2026 Peaq Human Node</p>
+ <p style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">Contract: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B       2026 Peaq Human Node</p>
 </footer>
 </body>
 </html>

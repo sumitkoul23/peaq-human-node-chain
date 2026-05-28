@@ -1,0 +1,53 @@
+{
+  "generatedAt": "2026-05-28T22:54:58.586Z",
+  "platforms": [
+    {
+      "name": "Subscan peaq token info",
+      "status": "ready-now",
+      "url": "https://github.com/subscan-explorer/chain-asset/issues/new?template=submit-token.yml",
+      "ownerAction": "Submit prepared token metadata and PHN logo."
+    },
+    {
+      "name": "DePINscan",
+      "status": "ready-now",
+      "url": "https://depinscan.io/",
+      "ownerAction": "Create developer project, add PHN socials and contract."
+    },
+    {
+      "name": "CoinSniper",
+      "status": "ready-now",
+      "url": "https://coinsniper.net/submit",
+      "ownerAction": "Submit presale/listing form manually after account login."
+    },
+    {
+      "name": "DappBay",
+      "status": "ready-now",
+      "url": "https://dappbay.bnbchain.org/submit",
+      "ownerAction": "Submit dapp profile for BNB ecosystem visibility."
+    },
+    {
+      "name": "GeckoTerminal",
+      "status": "after-liquidity",
+      "url": "https://www.geckoterminal.com/",
+      "ownerAction": "Update token info after PHN pair exists."
+    },
+    {
+      "name": "DexScreener",
+      "status": "after-liquidity",
+      "url": "https://dexscreener.com/",
+      "ownerAction": "Update profile after pair auto-indexes."
+    },
+    {
+      "name": "CoinGecko",
+      "status": "after-liquidity",
+      "url": "https://www.coingecko.com/en/coins/new",
+      "ownerAction": "Apply after exchange pair and social proof exist."
+    },
+    {
+      "name": "CoinMarketCap",
+      "status": "after-liquidity",
+      "url": "https://coinmarketcap.com/request/",
+      "ownerAction": "Apply after liquidity, volume and social account proof."
+    }
+  ]
+}

@@ -1,1 +1,94 @@
-<!doctype html><html><head><meta charset="utf-8"><title>PHN Validator Terminal</title><style>body{font-family:Inter,Segoe UI,sans-serif;background:#f7fbff;color:#0c1930;margin:0}main{max-width:900px;margin:auto;padding:40px 20px}.card{background:#fff;border:1px solid rgba(28,78,120,.12);border-radius:24px;padding:24px;margin-top:16px}.grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}</style></head><body><main><h1>Validator Terminal</h1><p>Monitor node eligibility, reward health, treasury flows, and round-sale state.</p><div class="grid"><div class="card"><h2>Active nodes</h2><p>—</p></div><div class="card"><h2>Reward vault</h2><p>—</p></div><div class="card"><h2>Current round</h2><p>—</p></div><div class="card"><h2>Alerts</h2><p>—</p></div></div></main></body></html>
+ <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PHN Validator Terminal | Peaq Human Node</title>
+<meta name="description" content="PHN validator and node operator terminal for monitoring eligibility, heartbeat status, reward pool and activation workflow.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529f">
+<script defer src="phn-app.js?v=20260529f"></script>
+</head>
+<body class="phn-page">
+<header class="phn-topbar">
+  <nav class="phn-nav">
+    <a class="phn-brand" href="index.html"><img src="assets/phn-logo-64.png" alt="PHN"><span>PEAQ HUMAN NODE</span></a>
+    <div class="phn-links"><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="activate-node.html">Run Node</a><a class="active" href="validators.html">Validators</a><a href="verify.html">Verify</a><a href="support.html">Support</a></div>
+    <div class="phn-actions"><button class="phn-btn" onclick="connectPhnWallet()">Connect</button><a class="phn-btn primary" href="activate-node.html">Activate Node</a></div>
+    <button class="phn-menu" onclick="togglePhnMenu()" aria-label="Menu">=</button>
+  </nav>
+</header>
+<div class="phn-mobile-drawer">
+  <a href="index.html">Home</a><a href="activate-node.html">Run Node</a><a href="wallet.html">Wallet</a><a href="download.html">Download</a><a href="vesting.html">Vesting</a><a href="roadmap.html">Roadmap</a><a href="support.html">Support</a>
+</div>
+
+<main class="phn-shell">
+  <section class="phn-hero">
+    <div>
+      <span class="phn-kicker">Validator terminal</span>
+      <h1 class="phn-title">Node health, rewards and eligibility in one place.</h1>
+      <p class="phn-lead">This is the operator-facing terminal for PHN activation. It gives users a readable status model while contract-connected live dashboards are expanded.</p>
+      <div class="phn-hero-actions">
+        <button class="phn-btn primary" onclick="connectPhnWallet()">Connect operator wallet</button>
+        <a class="phn-btn" href="activate-node.html">Generate node payload</a>
+        <a class="phn-btn ghost" href="support.html">Submit review</a>
+      </div>
+      <div class="phn-status" data-wallet-status></div>
+    </div>
+    <article class="phn-panel">
+      <span class="phn-tag amber">Current terminal mode</span>
+      <h2>Readiness checks</h2>
+      <table class="phn-table">
+        <tbody>
+          <tr><td>Wallet connected</td><td><span data-wallet-address>Not connected</span></td></tr>
+          <tr><td>peaq network</td><td>Required: chain 3338</td></tr>
+          <tr><td>Node identity</td><td>Generate from Activate Node page</td></tr>
+          <tr><td>Attestation</td><td>Manual review before active rewards</td></tr>
+        </tbody>
+      </table>
+    </article>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-grid four">
+      <article class="phn-card"><span class="phn-label">Active nodes</span><div class="phn-stat">Pending</div><p>Live registry readout will display after the attester flow is public.</p></article>
+      <article class="phn-card"><span class="phn-label">Reward vault</span><div class="phn-stat">20M</div><p>Node reward bucket reserved for verified human-operated machines.</p></article>
+      <article class="phn-card"><span class="phn-label">Heartbeat</span><div class="phn-stat">On-chain</div><p>Active nodes use heartbeat calls for reward accrual.</p></article>
+      <article class="phn-card"><span class="phn-label">Review</span><div class="phn-stat">Manual</div><p>Operator review prevents bot farms from extracting rewards.</p></article>
+    </div>
+  </section>
+
+  <section class="phn-section">
+    <div class="phn-grid two">
+      <article class="phn-panel">
+        <span class="phn-tag green">Operator checklist</span>
+        <h2>Before requesting activation</h2>
+        <div class="phn-steps">
+          <div class="phn-step"><div><h3>Connect wallet on peaq</h3><p>The operator address becomes the node owner address.</p></div></div>
+          <div class="phn-step"><div><h3>Generate registration payload</h3><p>Use the CLI command generator on the Run Node page.</p></div></div>
+          <div class="phn-step"><div><h3>Submit support ticket</h3><p>Include wallet, node ID, pc identity hash, human hash and peaq Machine DID.</p></div></div>
+        </div>
+      </article>
+      <article class="phn-panel">
+        <span class="phn-tag">Contracts used</span>
+        <h2>Node contract model</h2>
+        <p><code>NodeIdentityRegistry</code> stores verified node identities. <code>NodeRewardVault</code> holds reward allocation. <code>NodeEarningsManager</code> manages heartbeat-based earning.</p>
+        <div class="phn-hero-actions"><a class="phn-btn" href="developers.html">Developer docs</a><a class="phn-btn ghost" href="verify.html">Verify token</a></div>
+      </article>
+    </div>
+  </section>
+</main>
+
+<footer class="phn-footer">
+  <div class="phn-shell phn-footer-grid">
+    <div><strong>Peaq Human Node</strong><p>Validator terminal and operator readiness page.</p></div>
+    <div><strong>Node</strong><a href="activate-node.html">Run Node</a><a href="support.html">Submit Payload</a><a href="download.html">Install Beacon</a></div>
+    <div><strong>Token</strong><a href="buy.html">Buy</a><a href="staking.html">Staking</a><a href="vesting.html">Vesting</a><a href="verify.html">Verify</a></div>
+    <div><strong>Company</strong><a href="roadmap.html">Roadmap</a><a href="achievements.html">Achievements</a><a href="about.html">About</a></div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,1 +1,931 @@
-<!doctype html><html><head><meta charset="utf-8"><title>PHN Wallet</title><style>body{font-family:Inter,Segoe UI,sans-serif;background:#f7fbff;color:#0c1930;margin:0}main{max-width:860px;margin:auto;padding:40px 20px}.card{background:white;border:1px solid rgba(28,78,120,.12);border-radius:24px;padding:24px;margin-top:16px}button{padding:14px 18px;border:0;border-radius:999px;background:#356dff;color:#fff}.row{display:flex;justify-content:space-between;margin-top:12px}</style></head><body><main><h1>PHN Wallet</h1><button id="connect">Connect MetaMask</button><div class="card"><div class="row"><span>Address</span><span id="address">Not connected</span></div><div class="row"><span>PEAQ</span><span id="peaq">—</span></div><div class="row"><span>PHN</span><span id="phn">—</span></div></div></main><script type="module">import{BrowserProvider,Contract,formatEther,formatUnits}from"https://cdn.jsdelivr.net/npm/ethers@6.13.5/+esm";const PHN="0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B",abi=["function balanceOf(address) view returns (uint256)"],$=id=>document.getElementById(id);$("connect").onclick=async()=>{if(!window.ethereum)return alert("MetaMask not detected");const p=new BrowserProvider(window.ethereum),[a]=await p.send("eth_requestAccounts",[]);$("address").textContent=a;$("peaq").textContent=`${formatEther(await p.getBalance(a))} PEAQ`;$("phn").textContent=`${formatUnits(await new Contract(PHN,abi,p).balanceOf(a),18)} PHN`;};</script></body></html>
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>PHN Wallet - Manage and Send Balances | Peaq Human Node</title>
+ <meta name="description"
+ content="Official Peaq Human Node wallet console. View and send PEAQ, BNB, PHN, and USDC across BSC and peaq mainnets." />
+ <link rel="preconnect" href="https://fonts.googleapis.com" />
+ <link
+ href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap"
+ rel="stylesheet" />
+ <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+ <style>
+ :root {
+ --black: #030508;
+ --deep: #070c14;
+ --card: #0c1420;
+ --border: #1a2840;
+ --cyan: #00e5ff;
+ --green: #00ff88;
+ --pink: #f472b6;
+ --amber: #ffb800;
+ --red: #ff4444;
+ --text: #e8f0fe;
+ --muted: #6b8299;
+ --font-display: 'Syne', sans-serif;
+ --font-mono: 'DM Mono', monospace
+ }
+
+ *,
+ *::before,
+ *::after {
+ box-sizing: border-box;
+ margin: 0;
+ padding: 0
+ }
+
+ body {
+ background: var(--black);
+ color: var(--text);
+ font-family: var(--font-display);
+ line-height: 1.6;
+ overflow-x: hidden
+ }
+
+ body::before {
+ content: '';
+ position: fixed;
+ inset: 0;
+ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+ pointer-events: none;
+ z-index: 1000;
+ opacity: .4
+ }
+
+ .grid-bg {
+ position: fixed;
+ inset: 0;
+ background-image: linear-gradient(rgba(0, 229, 255, .03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 229, 255, .03) 1px, transparent 1px);
+ background-size: 60px 60px;
+ pointer-events: none;
+ z-index: 0
+ }
+
+ nav {
+ position: fixed;
+ top: 0;
+ left: 0;
+ right: 0;
+ z-index: 900;
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+ padding: 20px 48px;
+ background: linear-gradient(180deg, rgba(3, 5, 8, .95) 0%, transparent 100%);
+ backdrop-filter: blur(8px)
+ }
+
+ .nav-logo {
+ font-size: 18px;
+ font-weight: 800;
+ display: flex;
+ align-items: center;
+ gap: 10px;
+ text-decoration: none;
+ color: var(--text)
+ }
+
+ .logo-dot {
+ width: 10px;
+ height: 10px;
+ border-radius: 50%;
+ background: var(--cyan);
+ box-shadow: 0 0 12px var(--cyan);
+ animation: pulse 2s ease-in-out infinite
+ }
+
+ @keyframes pulse {
+
+ 0%,
+ 100% {
+ box-shadow: 0 0 8px var(--cyan)
+ }
+
+ 50% {
+ box-shadow: 0 0 24px var(--cyan), 0 0 40px var(--cyan)
+ }
+ }
+
+ .nav-links {
+ display: flex;
+ gap: 24px;
+ list-style: none
+ }
+
+ .nav-links a {
+ font-size: 13px;
+ font-weight: 500;
+ letter-spacing: .08em;
+ text-transform: uppercase;
+ color: var(--muted);
+ text-decoration: none;
+ transition: color .2s
+ }
+
+ .nav-links a:hover,
+ .nav-links a.active {
+ color: var(--cyan)
+ }
+
+ .nav-cta {
+ background: var(--cyan);
+ color: var(--black);
+ font-family: var(--font-display);
+ font-weight: 700;
+ font-size: 13px;
+ letter-spacing: .04em;
+ padding: 10px 22px;
+ border-radius: 4px;
+ text-decoration: none;
+ transition: all .2s
+ }
+
+ .nav-cta:hover {
+ background: #fff;
+ box-shadow: 0 0 24px rgba(0, 229, 255, .5)
+ }
+
+ .page {
+ position: relative;
+ z-index: 10;
+ max-width: 1100px;
+ margin: 0 auto;
+ padding: 120px 24px 80px
+ }
+
+ .section-label {
+ font-family: var(--font-mono);
+ font-size: 11px;
+ letter-spacing: .15em;
+ text-transform: uppercase;
+ color: var(--cyan);
+ margin-bottom: 16px;
+ display: flex;
+ align-items: center;
+ gap: 10px
+ }
+
+ .section-label::before {
+ content: '';
+ display: block;
+ width: 24px;
+ height: 1px;
+ background: var(--cyan)
+ }
+
+ h1 {
+ font-size: clamp(36px, 5vw, 56px);
+ font-weight: 800;
+ letter-spacing: -.03em;
+ margin-bottom: 16px
+ }
+
+ .page-desc {
+ font-size: 16px;
+ color: var(--muted);
+ max-width: 540px;
+ line-height: 1.7;
+ margin-bottom: 48px
+ }
+
+ .layout-grid {
+ display: grid;
+ grid-template-columns: 1.1fr 0.9fr;
+ gap: 28px;
+ align-items: start
+ }
+
+ .wallet-card {
+ background: var(--card);
+ border: 1px solid var(--border);
+ border-radius: 20px;
+ padding: 32px;
+ margin-bottom: 24px;
+ position: relative;
+ overflow: hidden
+ }
+
+ .wallet-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ height: 2px;
+ background: linear-gradient(90deg, transparent, var(--cyan), transparent)
+ }
+
+ .connect-btn {
+ width: 100%;
+ padding: 18px;
+ background: linear-gradient(135deg, var(--cyan), #00b8cc);
+ color: var(--black);
+ font-family: var(--font-display);
+ font-weight: 800;
+ font-size: 16px;
+ letter-spacing: .02em;
+ border: none;
+ border-radius: 10px;
+ cursor: pointer;
+ transition: all .3s;
+ margin-bottom: 24px
+ }
+
+ .connect-btn:hover {
+ transform: translateY(-2px);
+ box-shadow: 0 8px 32px rgba(0, 229, 255, .3)
+ }
+
+ .wallet-row {
+ display: flex;
+ justify-content: space-between;
+ padding: 14px 0;
+ border-bottom: 1px solid var(--border);
+ align-items: center
+ }
+
+ .wallet-row:last-child {
+ border-bottom: none
+ }
+
+ .w-key {
+ font-family: var(--font-mono);
+ font-size: 12px;
+ letter-spacing: .08em;
+ text-transform: uppercase;
+ color: var(--muted)
+ }
+
+ .w-val {
+ font-family: var(--font-mono);
+ font-size: 14px;
+ color: var(--text);
+ display: flex;
+ align-items: center;
+ gap: 10px
+ }
+
+ .copy-btn {
+ background: rgba(0, 229, 255, .08);
+ border: 1px solid rgba(0, 229, 255, .15);
+ color: var(--cyan);
+ font-family: var(--font-mono);
+ font-size: 10px;
+ padding: 4px 8px;
+ border-radius: 4px;
+ cursor: pointer;
+ transition: all .2s
+ }
+
+ .copy-btn:hover {
+ background: rgba(0, 229, 255, .18)
+ }
+
+ .balance-section-title {
+ font-size: 14px;
+ font-weight: 700;
+ color: var(--muted);
+ text-transform: uppercase;
+ letter-spacing: .1em;
+ margin-bottom: 14px;
+ font-family: var(--font-mono);
+ display: flex;
+ align-items: center;
+ gap: 8px
+ }
+
+ .balance-section-title::after {
+ content: '';
+ flex: 1;
+ height: 1px;
+ background: var(--border)
+ }
+
+ .balance-grid {
+ display: grid;
+ grid-template-columns: 1fr 1fr;
+ gap: 16px;
+ margin-bottom: 28px
+ }
+
+ .balance-card {
+ background: var(--card);
+ border: 1px solid var(--border);
+ border-radius: 16px;
+ padding: 20px;
+ display: flex;
+ flex-direction: column;
+ gap: 8px;
+ transition: all .25s;
+ cursor: pointer
+ }
+
+ .balance-card:hover {
+ border-color: rgba(0, 229, 255, .25);
+ transform: translateY(-1px)
+ }
+
+ .bal-label {
+ font-family: var(--font-mono);
+ font-size: 11px;
+ letter-spacing: .08em;
+ text-transform: uppercase;
+ color: var(--muted)
+ }
+
+ .bal-val {
+ font-size: 24px;
+ font-weight: 800;
+ color: var(--text);
+ font-family: var(--font-mono);
+ line-height: 1.2;
+ word-break: break-all
+ }
+
+ .bal-val.cyan {
+ color: var(--cyan)
+ }
+
+ .bal-val.green {
+ color: var(--green)
+ }
+
+ .bal-val.pink {
+ color: var(--pink)
+ }
+
+ .bal-val.amber {
+ color: var(--amber)
+ }
+
+ .bal-symbol {
+ font-size: 12px;
+ color: var(--muted);
+ font-weight: 400;
+ margin-left: 4px
+ }
+
+ .send-card {
+ background: var(--card);
+ border: 1px solid var(--border);
+ border-radius: 20px;
+ padding: 32px;
+ position: relative;
+ overflow: hidden
+ }
+
+ .send-card::before {
+ content: '';
+ position: absolute;
+ top: 0;
+ left: 0;
+ right: 0;
+ height: 2px;
+ background: linear-gradient(90deg, transparent, var(--pink), transparent)
+ }
+
+ .send-card h2 {
+ font-size: 20px;
+ font-weight: 700;
+ margin-bottom: 4px;
+ letter-spacing: -.01em
+ }
+
+ .send-card p.sub {
+ font-size: 13px;
+ color: var(--muted);
+ margin-bottom: 24px
+ }
+
+ .input-group {
+ margin-bottom: 20px
+ }
+
+ .input-label {
+ font-family: var(--font-mono);
+ font-size: 11px;
+ letter-spacing: .08em;
+ text-transform: uppercase;
+ color: var(--muted);
+ margin-bottom: 8px;
+ display: flex;
+ justify-content: space-between
+ }
+
+ .input-wrap {
+ display: flex;
+ background: #07101d;
+ border: 1px solid var(--border);
+ border-radius: 8px;
+ overflow: hidden;
+ transition: border-color .2s;
+ align-items: center
+ }
+
+ .input-wrap:focus-within {
+ border-color: rgba(244, 114, 182, .4)
+ }
+
+ .input-field {
+ flex: 1;
+ background: transparent;
+ border: none;
+ outline: none;
+ padding: 14px;
+ color: var(--text);
+ font-size: 15px;
+ font-family: var(--font-mono);
+ width: 100%
+ }
+
+ .select-field {
+ background: #07101d;
+ color: var(--text);
+ border: none;
+ outline: none;
+ padding: 0 14px;
+ font-family: var(--font-mono);
+ font-size: 13px;
+ height: 100%;
+ cursor: pointer
+ }
+
+ .select-field option {
+ background: var(--card)
+ }
+
+ .max-btn {
+ background: rgba(244, 114, 182, .08);
+ border: none;
+ border-left: 1px solid var(--border);
+ padding: 0 14px;
+ font-family: var(--font-mono);
+ font-size: 11px;
+ color: var(--pink);
+ cursor: pointer;
+ transition: all .2s;
+ height: 100%
+ }
+
+ .max-btn:hover {
+ background: rgba(244, 114, 182, .18)
+ }
+
+ .btn-send {
+ width: 100%;
+ padding: 16px;
+ background: linear-gradient(135deg, var(--pink), var(--pink));
+ color: #fff;
+ font-family: var(--font-display);
+ font-weight: 800;
+ font-size: 15px;
+ letter-spacing: .03em;
+ border: none;
+ border-radius: 10px;
+ cursor: pointer;
+ transition: all .3s
+ }
+
+ .btn-send:hover:not(:disabled) {
+ transform: translateY(-1px);
+ box-shadow: 0 6px 20px rgba(244, 114, 182, .3)
+ }
+
+ .btn-send:disabled {
+ opacity: .45;
+ cursor: not-allowed
+ }
+
+ .status-bar {
+ text-align: center;
+ padding: 12px;
+ font-size: 13px;
+ border-radius: 8px;
+ margin-top: 16px;
+ font-family: var(--font-mono);
+ display: none;
+ line-height: 1.4
+ }
+
+ .status-bar.show {
+ display: block
+ }
+
+ .status-bar.pending {
+ background: rgba(255, 184, 0, .08);
+ border: 1px solid rgba(255, 184, 0, .25);
+ color: var(--amber)
+ }
+
+ .status-bar.success {
+ background: rgba(0, 255, 136, .08);
+ border: 1px solid rgba(0, 255, 136, .25);
+ color: var(--green)
+ }
+
+ .status-bar.error {
+ background: rgba(255, 68, 68, .08);
+ border: 1px solid rgba(255, 68, 68, .25);
+ color: var(--red)
+ }
+
+ @media(max-width:900px) {
+ .layout-grid {
+ grid-template-columns: 1fr
+ }
+
+ nav {
+ padding: 16px 24px
+ }
+
+ .nav-links {
+ display: none
+ }
+ }
+ </style>
+
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#00e5ff">
+<script defer src="phn-app.js?v=20260529f"></script>
+</head>
+
+<body>
+ <div class="grid-bg"></div>
+ <nav>
+ <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
+ <ul class="nav-links">
+ <li><a href="buy.html">Presale</a></li>
+ <li><a href="staking.html">Staking</a></li>
+ <li><a href="exchange.html">Exchange</a></li>
+ <li><a href="wallet.html" class="active">Wallet</a></li>
+ </ul>
+ <a class="nav-cta" href="buy.html">Buy PHN </a>
+ </nav>
+
+ <div class="page">
+ <div class="section-label">Web3 Hub</div>
+ <h1>PHN Omnichain Wallet</h1>
+ <p class="page-desc">Connect your MetaMask wallet to seamlessly manage and transfer native and ERC-20 assets across
+ peaq Mainnet and BNB Smart Chain (BSC).</p>
+
+ <div class="layout-grid">
+ <!-- LEFT: Wallet Status & Balances -->
+ <div>
+ <div class="wallet-card">
+ <button class="connect-btn" id="connectBtn" onclick="connectWallet()">x` Connect MetaMask Wallet</button>
+ <div class="wallet-row">
+ <span class="w-key">Address</span>
+ <span class="w-val" id="walletAddress">Not connected</span>
+ </div>
+ <div class="wallet-row">
+ <span class="w-key">Active Network</span>
+ <span class="w-val" id="networkStatus"></span>
+ </div>
+ </div>
+
+ <!-- peaq Assets -->
+ <div class="balance-section-title">xx peaq Chain Assets</div>
+ <div class="balance-grid">
+ <div class="balance-card" onclick="selectQuickToken('peaq', 'PEAQ')">
+ <span class="bal-label">PEAQ Balance</span>
+ <div class="bal-val cyan" id="peaqBalance">0.0000 <span class="bal-symbol">PEAQ</span></div>
+ </div>
+ <div class="balance-card" onclick="selectQuickToken('peaq', 'PHN')">
+ <span class="bal-label">PHN (peaq) Balance</span>
+ <div class="bal-val green" id="phnPeaqBalance">0.00 <span class="bal-symbol">PHN</span></div>
+ </div>
+ </div>
+
+ <!-- BSC Assets -->
+ <div class="balance-section-title">x BNB Smart Chain Assets</div>
+ <div class="balance-grid">
+ <div class="balance-card" onclick="selectQuickToken('bsc', 'BNB')">
+ <span class="bal-label">BNB Balance</span>
+ <div class="bal-val amber" id="bnbBalance">0.0000 <span class="bal-symbol">BNB</span></div>
+ </div>
+ <div class="balance-card" onclick="selectQuickToken('bsc', 'USDC')">
+ <span class="bal-label">USDC (BSC) Balance</span>
+ <div class="bal-val pink" id="usdcBalance">0.00 <span class="bal-symbol">USDC</span></div>
+ </div>
+ </div>
+ </div>
+
+ <!-- RIGHT: Send Panel -->
+ <div class="send-card">
+ <h2>Send Tokens</h2>
+ <p class="sub">Transfer gas or stablecoins instantly via EVM destination address.</p>
+
+ <div class="input-group">
+ <div class="input-label">Network & Token</div>
+ <div class="input-wrap">
+ <select class="select-field" id="sendNetwork" onchange="onNetworkChange()">
+ <option value="peaq">peaq Mainnet</option>
+ <option value="bsc" selected>BNB Smart Chain</option>
+ </select>
+ <select class="select-field" id="sendToken" style="border-left: 1px solid var(--border)"
+ onchange="onTokenChange()">
+ <!-- Populated dynamically -->
+ </select>
+ </div>
+ </div>
+
+ <div class="input-group">
+ <div class="input-label">Recipient Address</div>
+ <div class="input-wrap">
+ <input class="input-field" id="sendRecipient" placeholder="0x..." />
+ </div>
+ </div>
+
+ <div class="input-group">
+ <div class="input-label">
+ <span>Amount</span>
+ <span style="color: var(--pink)" id="sendBalanceText">Max: 0.00</span>
+ </div>
+ <div class="input-wrap">
+ <input class="input-field" id="sendAmount" type="number" step="any" placeholder="0.00" />
+ <button class="max-btn" onclick="setMaxSend()">MAX</button>
+ </div>
+ </div>
+
+ <button class="btn-send" id="sendBtn" onclick="executeSend()" disabled>Connect wallet to send</button>
+
+ <div class="status-bar" id="statusBar"></div>
+ </div>
+ </div>
+ </div>
+
+ <footer style="border-top:1px solid var(--border);padding:40px 48px;position:relative;z-index:10;text-align:center">
+ <p style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">BSC Token:
+ 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B       2026 Peaq Human Node</p>
+ </footer>
+
+ <script type="module">
+ import { BrowserProvider, Contract, parseEther, parseUnits, formatEther, formatUnits } from "https://cdn.jsdelivr.net/npm/ethers@6.13.5/+esm";
+
+ const PHN = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
+ const USDC_BSC = "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d"; // Official USDC on BSC Smart Chain
+
+ const PEAQ_CHAIN_HEX = "0xD0A"; // 3338 in hex
+ const BSC_CHAIN_HEX = "0x38"; // 56 in hex
+
+ const PEAQ_PARAMS = {
+ chainId: PEAQ_CHAIN_HEX,
+ chainName: "peaq Mainnet",
+ nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 },
+ rpcUrls: ["https://quicknode1.peaq.xyz"],
+ blockExplorerUrls: ["https://peaq.subscan.io/"]
+ };
+
+ const BSC_PARAMS = {
+ chainId: BSC_CHAIN_HEX,
+ chainName: "BNB Smart Chain",
+ nativeCurrency: { name: "BNB", symbol: "BNB", decimals: 18 },
+ rpcUrls: ["https://bsc-dataseed.binance.org/"],
+ blockExplorerUrls: ["https://bscscan.com/"]
+ };
+
+ const ERC20_ABI = ["function balanceOf(address) view returns (uint256)", "function transfer(address,uint256) returns (bool)"];
+
+ let provider, signer, account;
+ let peaqBalance = 0n, phnPeaqBalance = 0n, bnbBalance = 0n, usdcBalance = 0n;
+ let activeNetworkHex = "";
+
+ // Dynamic token lists
+ const TOKENS = {
+ peaq: [
+ { symbol: "PEAQ", name: "PEAQ Native", decimals: 18, isNative: true },
+ { symbol: "PHN", name: "Peaq Human Node", decimals: 18, address: PHN }
+ ],
+ bsc: [
+ { symbol: "BNB", name: "BNB Native", decimals: 18, isNative: true },
+ { symbol: "USDC", name: "USDC Token", decimals: 18, address: USDC_BSC }
+ ]
+ };
+
+ window.connectWallet = async function () {
+ if (!window.ethereum) { showStatus("error", "MetaMask not detected"); return; }
+ const btn = document.getElementById("connectBtn");
+ try {
+ btn.disabled = true;
+ btn.textContent = "Connecting...";
+
+ await window.ethereum.request({ method: "eth_requestAccounts" });
+ provider = new BrowserProvider(window.ethereum);
+ signer = await provider.getSigner();
+ account = await signer.getAddress();
+
+ const network = await provider.getNetwork();
+ activeNetworkHex = "0x" + network.chainId.toString(16);
+
+ document.getElementById("walletAddress").innerHTML = `
+ ${account.slice(0, 6)}...${account.slice(-4)}
+ <button class="copy-btn" onclick="navigator.clipboard.writeText('${account}');this.textContent='S';setTimeout(()=>this.textContent='COPY',2000)">COPY</button>
+ `;
+
+ const isBsc = activeNetworkHex === BSC_CHAIN_HEX || network.chainId === 56n;
+ const isPeaq = activeNetworkHex === PEAQ_CHAIN_HEX || network.chainId === 3338n;
+
+ document.getElementById("networkStatus").textContent = isBsc ? "BNB Smart Chain" : (isPeaq ? "peaq Mainnet" : "Unsupported Network");
+
+ btn.textContent = "S Connected";
+ btn.style.background = "linear-gradient(135deg, var(--green), #00cc66)";
+
+ document.getElementById("sendBtn").textContent = "Send Tokens";
+ document.getElementById("sendBtn").disabled = false;
+
+ await refreshAllBalances();
+ onNetworkChange();
+
+ window.ethereum.on("accountsChanged", () => location.reload());
+ window.ethereum.on("chainChanged", () => location.reload());
+ } catch (err) {
+ console.error(err);
+ showStatus("error", err.message || "Connection failed");
+ btn.disabled = false;
+ btn.textContent = "x` Connect MetaMask Wallet";
+ }
+ };
+
+ async function refreshAllBalances() {
+ if (!account) return;
+
+ // Create providers for both networks to fetch balances in parallel regardless of active network!
+ try {
+ const peaqProvider = new ethers.JsonRpcProvider("https://quicknode1.peaq.xyz");
+ const bscProvider = new ethers.JsonRpcProvider("https://bsc-dataseed.binance.org/");
+
+ // 1. Fetch PEAQ native
+ peaqProvider.getBalance(account).then(bal => {
+ peaqBalance = bal;
+ document.getElementById("peaqBalance").innerHTML = `${parseFloat(formatEther(bal)).toFixed(4)} <span class="bal-symbol">PEAQ</span>`;
+ updateSendMaxLabel();
+ }).catch(() => { });
+
+ // 2. Fetch PHN on peaq
+ const phnPeaqContract = new Contract(PHN, ERC20_ABI, peaqProvider);
+ phnPeaqContract.balanceOf(account).then(bal => {
+ phnPeaqBalance = bal;
+ document.getElementById("phnPeaqBalance").innerHTML = `${parseFloat(formatUnits(bal, 18)).toLocaleString()} <span class="bal-symbol">PHN</span>`;
+ updateSendMaxLabel();
+ }).catch(() => { });
+
+ // 3. Fetch BNB native
+ bscProvider.getBalance(account).then(bal => {
+ bnbBalance = bal;
+ document.getElementById("bnbBalance").innerHTML = `${parseFloat(formatEther(bal)).toFixed(4)} <span class="bal-symbol">BNB</span>`;
+ updateSendMaxLabel();
+ }).catch(() => { });
+
+ // 4. Fetch USDC on BSC
+ const usdcContract = new Contract(USDC_BSC, ERC20_ABI, bscProvider);
+ usdcContract.balanceOf(account).then(bal => {
+ usdcBalance = bal;
+ document.getElementById("usdcBalance").innerHTML = `${parseFloat(formatUnits(bal, 18)).toLocaleString()} <span class="bal-symbol">USDC</span>`;
+ updateSendMaxLabel();
+ }).catch(() => { });
+
+ } catch (e) { console.error("refreshAllBalances:", e); }
+ }
+
+ window.onNetworkChange = function () {
+ const net = document.getElementById("sendNetwork").value;
+ const tokenSelect = document.getElementById("sendToken");
+ tokenSelect.innerHTML = "";
+
+ TOKENS[net].forEach(t => {
+ const opt = document.createElement("option");
+ opt.value = t.symbol;
+ opt.textContent = t.name;
+ tokenSelect.appendChild(opt);
+ });
+
+ onTokenChange();
+ };
+
+ window.onTokenChange = function () {
+ updateSendMaxLabel();
+ };
+
+ function updateSendMaxLabel() {
+ const net = document.getElementById("sendNetwork").value;
+ const sym = document.getElementById("sendToken").value;
+ let max = "0.00";
+
+ if (net === "peaq") {
+ if (sym === "PEAQ") max = formatEther(peaqBalance);
+ else if (sym === "PHN") max = formatUnits(phnPeaqBalance, 18);
+ } else if (net === "bsc") {
+ if (sym === "BNB") max = formatEther(bnbBalance);
+ else if (sym === "USDC") max = formatUnits(usdcBalance, 18);
+ }
+
+ document.getElementById("sendBalanceText").textContent = `Max: ${parseFloat(max).toFixed(4)} ${sym}`;
+ }
+
+ window.setMaxSend = function () {
+ const net = document.getElementById("sendNetwork").value;
+ const sym = document.getElementById("sendToken").value;
+ let max = "0";
+
+ if (net === "peaq") {
+ if (sym === "PEAQ") max = formatEther(peaqBalance);
+ else if (sym === "PHN") max = formatUnits(phnPeaqBalance, 18);
+ } else if (net === "bsc") {
+ if (sym === "BNB") max = formatEther(bnbBalance);
+ else if (sym === "USDC") max = formatUnits(usdcBalance, 18);
+ }
+
+ document.getElementById("sendAmount").value = max;
+ };
+
+ window.selectQuickToken = function (net, sym) {
+ document.getElementById("sendNetwork").value = net;
+ window.onNetworkChange();
+ document.getElementById("sendToken").value = sym;
+ window.onTokenChange();
+ };
+
+ window.executeSend = async function () {
+ if (!signer) { showStatus("error", "Connect wallet first"); return; }
+ const net = document.getElementById("sendNetwork").value;
+ const sym = document.getElementById("sendToken").value;
+ const recipient = document.getElementById("sendRecipient").value.trim();
+ const amtStr = document.getElementById("sendAmount").value;
+
+ if (!recipient || !recipient.startsWith("0x") || recipient.length !== 42) {
+ showStatus("error", "Please enter a valid destination address.");
+ return;
+ }
+
+ const amt = parseFloat(amtStr);
+ if (isNaN(amt) || amt <= 0) {
+ showStatus("error", "Please enter a valid positive transfer amount.");
+ return;
+ }
+
+ const targetChainHex = net === "peaq" ? PEAQ_CHAIN_HEX : BSC_CHAIN_HEX;
+ const targetParams = net === "peaq" ? PEAQ_PARAMS : BSC_PARAMS;
+
+ try {
+ showStatus("pending", `Switching network to execute ${sym} transfer...`);
+ const network = await provider.getNetwork();
+ const currentHex = "0x" + network.chainId.toString(16);
+
+ if (currentHex !== targetChainHex) {
+ try {
+ await window.ethereum.request({ method: "wallet_switchEthereumChain", params: [{ chainId: targetChainHex }] });
+ } catch (switchError) {
+ try {
+ await window.ethereum.request({ method: "wallet_addEthereumChain", params: [targetParams] });
+ } catch (addError) {
+ showStatus("error", `Please switch MetaMask to the ${net.toUpperCase()} network.`);
+ return;
+ }
+ }
+ provider = new BrowserProvider(window.ethereum);
+ signer = await provider.getSigner();
+ }
+
+ showStatus("pending", `    Confirming ${sym} transfer to ${recipient.slice(0, 6)}...`);
+
+ let tx;
+ const tokenInfo = TOKENS[net].find(t => t.symbol === sym);
+
+ if (tokenInfo.isNative) {
+ // Send Native (PEAQ or BNB)
+ tx = await signer.sendTransaction({
+ to: recipient,
+ value: parseEther(amtStr)
+ });
+ } else {
+ // Send ERC20 (PHN or USDC)
+ const contract = new Contract(tokenInfo.address, ERC20_ABI, signer);
+ tx = await contract.transfer(recipient, parseUnits(amtStr, tokenInfo.decimals));
+ }
+
+ showStatus("pending", `    Transaction pending... Hash: ${tx.hash.slice(0, 10)}...`);
+ await tx.wait();
+ showStatus("success", `S& Sent ${amtStr} ${sym} successfully!`);
+
+ document.getElementById("sendAmount").value = "";
+ document.getElementById("sendRecipient").value = "";
+ await refreshAllBalances();
+ } catch (err) {
+ console.error(err);
+ showStatus("error", err.reason || err.message || "Transaction failed");
+ }
+ };
+
+ function showStatus(type, msg) {
+ const bar = document.getElementById("statusBar");
+ bar.className = `status-bar show ${type}`;
+ bar.textContent = msg;
+ if (type === "success") setTimeout(() => bar.classList.remove("show"), 5000);
+ }
+ </script>
+</body>
+
+</html>

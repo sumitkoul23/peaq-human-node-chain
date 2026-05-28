@@ -10,7 +10,12 @@
                     "deploy:bsc":  "hardhat run scripts/deploy.js --network bsc",
                     "deploy:peaq":  "hardhat run scripts/deploy.js --network peaq",
                     "phn-node":  "node cli/phn-node.js",
-                    "web3:build":  "node scripts/buildWeb3Site.js"
+                    "web3:build":  "node scripts/buildWeb3Site.js",
+                    "apk:build":  "powershell -ExecutionPolicy Bypass -File scripts/buildAndroidApk.ps1",
+                    "agent:ui":  "node agents/ui-guardian.js",
+                    "agent:intel":  "node agents/intelligence-agent.js",
+                    "agent:marketing":  "node agents/marketing-listing-agent.js",
+                    "agents:daily":  "powershell -ExecutionPolicy Bypass -File agents/run-daily-agents.ps1"
                 },
     "devDependencies":  {
                             "@nomicfoundation/hardhat-toolbox":  "^5.0.0",
