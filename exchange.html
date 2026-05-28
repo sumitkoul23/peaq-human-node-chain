@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PHN Exchange — Swap PHN Tokens | Peaq Human Node DEX</title>
+<meta name="description" content="Swap PHN tokens directly on the official Peaq Human Node exchange. Buy or sell PHN with BNB or USDC. No third-party DEX needed — trade right here."/>
+<meta property="og:title" content="PHN Exchange — Trade Peaq Human Node Token"/>
+<meta property="og:description" content="The official PHN swap interface. Buy and sell PHN with BNB or USDC. Powered by on-chain liquidity."/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:site" content="@PeaqHumanNode"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.4/dist/ethers.umd.min.js"></script>
+<style>
+:root{
+  --black:#030508;--deep:#070c14;--card:#0c1420;--border:#1a2840;
+  --cyan:#00e5ff;--cyan-dim:#00b8cc;--green:#00ff88;--amber:#ffb800;
+  --red:#ff4444;--text:#e8f0fe;--muted:#6b8299;
+  --font-display:'Syne',sans-serif;--font-mono:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:var(--font-display);overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.4}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(180deg,rgba(3,5,8,.95) 0%,transparent 100%);backdrop-filter:blur(8px)}
+.nav-logo{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px var(--cyan)}50%{box-shadow:0 0 24px var(--cyan),0 0 40px var(--cyan)}}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:var(--cyan)}
+.nav-cta{background:var(--cyan);color:var(--black);font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;padding:10px 22px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all .2s}
+.nav-cta:hover{background:#fff;box-shadow:0 0 24px rgba(0,229,255,.5)}
+
+.page{position:relative;z-index:10;min-height:100vh;padding:120px 48px 80px;display:flex;flex-direction:column;align-items:center}
+.page-header{text-align:center;margin-bottom:48px}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
+.section-label::before{content:'';width:24px;height:1px;background:var(--cyan)}
+.section-label::after{content:'';width:24px;height:1px;background:var(--cyan)}
+h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
+.page-desc{font-size:16px;color:var(--muted);max-width:480px;margin:0 auto}
+
+/* EXCHANGE LAYOUT */
+.exchange-layout{display:grid;grid-template-columns:1fr 360px;gap:32px;max-width:1100px;width:100%;align-items:start}
+
+/* SWAP CARD */
+.swap-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px}
+.swap-title{font-size:18px;font-weight:700;margin-bottom:4px}
+.swap-subtitle{font-size:13px;color:var(--muted);margin-bottom:28px}
+
+.token-input-wrap{background:var(--deep);border:1px solid var(--border);border-radius:12px;padding:16px 20px;transition:border-color .2s}
+.token-input-wrap:focus-within{border-color:rgba(0,229,255,.4)}
+.token-input-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.token-label{font-size:12px;color:var(--muted);font-family:var(--font-mono)}
+.token-balance{font-size:12px;color:var(--muted);cursor:pointer}
+.token-balance:hover{color:var(--cyan)}
+.token-input-row{display:flex;align-items:center;gap:12px}
+.token-input{background:none;border:none;outline:none;font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--text);width:100%;min-width:0}
+.token-input::placeholder{color:var(--muted)}
+.token-select{display:flex;align-items:center;gap:8px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.15);border-radius:100px;padding:8px 14px;cursor:pointer;white-space:nowrap;font-weight:600;font-size:14px;transition:all .2s}
+.token-select:hover{background:rgba(0,229,255,.15);border-color:rgba(0,229,255,.3)}
+.token-icon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700}
+.token-usd{font-size:12px;color:var(--muted);margin-top:6px;font-family:var(--font-mono)}
+
+.swap-arrow-btn{display:flex;align-items:center;justify-content:center;margin:12px auto;width:36px;height:36px;border-radius:8px;background:var(--deep);border:1px solid var(--border);cursor:pointer;color:var(--muted);font-size:18px;transition:all .2s}
+.swap-arrow-btn:hover{border-color:var(--cyan);color:var(--cyan);transform:rotate(180deg)}
+
+.swap-details{background:var(--deep);border:1px solid var(--border);border-radius:10px;padding:16px 20px;margin:20px 0;font-size:13px}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:5px 0;color:var(--muted)}
+.detail-row span:last-child{color:var(--text);font-family:var(--font-mono)}
+.detail-row.highlight span:last-child{color:var(--cyan)}
+.detail-row.burn span:last-child{color:var(--amber)}
+
+.btn-connect{width:100%;padding:16px;border:none;border-radius:10px;font-family:var(--font-display);font-size:15px;font-weight:700;letter-spacing:.03em;cursor:pointer;transition:all .25s;margin-top:8px}
+.btn-swap{background:var(--cyan);color:var(--black)}
+.btn-swap:hover:not(:disabled){background:#fff;box-shadow:0 0 32px rgba(0,229,255,.5);transform:translateY(-1px)}
+.btn-swap:disabled{background:var(--border);color:var(--muted);cursor:not-allowed;transform:none;box-shadow:none}
+.btn-wallet{background:transparent;border:1px solid var(--border);color:var(--text)}
+.btn-wallet:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.slippage-row{display:flex;align-items:center;gap:8px;margin-bottom:20px}
+.slippage-label{font-size:12px;color:var(--muted);margin-right:4px}
+.slip-btn{background:var(--deep);border:1px solid var(--border);border-radius:6px;color:var(--muted);font-size:12px;padding:5px 10px;cursor:pointer;transition:all .2s}
+.slip-btn.active,.slip-btn:hover{border-color:var(--cyan);color:var(--cyan)}
+.slip-input{background:var(--deep);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;padding:5px 10px;width:60px;outline:none;font-family:var(--font-mono)}
+.slip-input:focus{border-color:var(--cyan)}
+
+/* PRICE IMPACT WARNING */
+.impact-warn{background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.25);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--red);margin-top:12px;display:none}
+.impact-warn.show{display:block}
+
+/* INFO PANEL */
+.info-panel{display:flex;flex-direction:column;gap:20px}
+.info-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px}
+.info-card h3{font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin-bottom:16px;font-family:var(--font-mono)}
+
+.price-display{text-align:center;padding:16px 0}
+.price-big{font-size:36px;font-weight:800;color:var(--cyan);letter-spacing:-.02em;line-height:1}
+.price-sub{font-size:13px;color:var(--muted);margin-top:6px;font-family:var(--font-mono)}
+
+.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat-box{background:var(--deep);border:1px solid var(--border);border-radius:8px;padding:14px}
+.stat-box-val{font-size:20px;font-weight:700;color:var(--text);font-family:var(--font-mono)}
+.stat-box-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+
+.pair-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.pair-tag{background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.15);border-radius:100px;padding:5px 12px;font-size:12px;color:var(--cyan);cursor:pointer;transition:all .2s}
+.pair-tag.active,.pair-tag:hover{background:rgba(0,229,255,.18);border-color:rgba(0,229,255,.4)}
+
+.chart-placeholder{background:var(--deep);border-radius:8px;height:100px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:12px;margin-top:12px;font-family:var(--font-mono);border:1px solid var(--border);position:relative;overflow:hidden}
+.chart-bars{position:absolute;bottom:0;left:0;right:0;height:100%;display:flex;align-items:flex-end;gap:2px;padding:8px}
+.chart-bar{flex:1;border-radius:2px 2px 0 0;background:rgba(0,229,255,.25);transition:height .3s}
+
+.tx-list{margin-top:8px;display:flex;flex-direction:column;gap:8px}
+.tx-row{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;background:var(--deep);border:1px solid var(--border);border-radius:8px;font-size:12px}
+.tx-type-buy{color:var(--green)}
+.tx-type-sell{color:var(--red)}
+.tx-amount{font-family:var(--font-mono);color:var(--text)}
+.tx-time{color:var(--muted);font-family:var(--font-mono)}
+
+/* STATUS */
+.status-bar{text-align:center;padding:10px;font-size:13px;border-radius:8px;margin-top:12px;font-family:var(--font-mono);display:none}
+.status-bar.show{display:block}
+.status-bar.pending{background:rgba(255,184,0,.08);border:1px solid rgba(255,184,0,.25);color:var(--amber)}
+.status-bar.success{background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);color:var(--green)}
+.status-bar.error{background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.25);color:var(--red)}
+
+/* ALERT BANNER */
+.exchange-banner{background:rgba(0,229,255,.06);border:1px solid rgba(0,229,255,.2);border-radius:12px;padding:16px 24px;text-align:center;font-size:14px;color:var(--text);max-width:1100px;width:100%;margin-bottom:32px}
+.exchange-banner strong{color:var(--cyan)}
+
+@media(max-width:900px){
+  .exchange-layout{grid-template-columns:1fr}
+  nav{padding:16px 24px}.nav-links{display:none}
+  .page{padding:100px 24px 60px}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+
+<nav>
+  <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
+  <ul class="nav-links">
+    <li><a href="buy.html">Presale</a></li>
+    <li><a href="staking.html">Staking</a></li>
+    <li><a href="exchange.html" class="active">Exchange</a></li>
+    <li><a href="vesting.html">Vesting</a></li>
+    <li><a href="verify.html">Verify</a></li>
+  </ul>
+  <button class="nav-cta" id="navConnectBtn" onclick="connectWallet()">Connect Wallet</button>
+</nav>
+
+<div class="page">
+  <div class="page-header">
+    <div class="section-label">PHN DEX</div>
+    <h1>PHN Exchange</h1>
+    <p class="page-desc">Swap PHN tokens directly. No third-party DEX required.</p>
+  </div>
+
+  <div class="exchange-banner">
+    <strong>Presale Phase:</strong> Buy PHN at <strong>$0.02</strong> in the presale before open market trading.
+    <a href="buy.html" style="color:var(--cyan);font-weight:700">→ Go to Presale</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp; Post-presale swap will be enabled after liquidity is locked.
+  </div>
+
+  <div class="exchange-layout">
+
+    <!-- SWAP CARD -->
+    <div class="swap-card">
+      <div class="swap-title">Swap Tokens</div>
+      <div class="swap-subtitle">Official PHN exchange. 1% protocol fee — 0.25% burned, 0.75% treasury.</div>
+
+      <!-- Slippage -->
+      <div class="slippage-row">
+        <span class="slippage-label">Slippage:</span>
+        <button class="slip-btn active" onclick="setSlippage(0.5,this)">0.5%</button>
+        <button class="slip-btn" onclick="setSlippage(1,this)">1%</button>
+        <button class="slip-btn" onclick="setSlippage(2,this)">2%</button>
+        <input class="slip-input" id="customSlip" placeholder="%" oninput="setSlippageCustom(this)"/>
+      </div>
+
+      <!-- From token -->
+      <div class="token-input-wrap">
+        <div class="token-input-top">
+          <span class="token-label">FROM</span>
+          <span class="token-balance" id="fromBalance" onclick="setMax()">Balance: —</span>
+        </div>
+        <div class="token-input-row">
+          <input class="token-input" id="fromAmount" type="number" placeholder="0.0" oninput="calcOutput()" min="0" step="any"/>
+          <div class="token-select" id="fromToken" onclick="togglePair()">
+            <div class="token-icon" id="fromIcon" style="background:rgba(240,185,11,.15);color:#f0b90b">B</div>
+            <span id="fromSymbol">BNB</span>
+            <span style="color:var(--muted);font-size:10px">▼</span>
+          </div>
+        </div>
+        <div class="token-usd" id="fromUsd">≈ $0.00</div>
+      </div>
+
+      <!-- Swap direction button -->
+      <div class="swap-arrow-btn" onclick="flipPair()" title="Flip pair">⇅</div>
+
+      <!-- To token -->
+      <div class="token-input-wrap">
+        <div class="token-input-top">
+          <span class="token-label">TO</span>
+          <span class="token-balance" id="toBalance">Balance: —</span>
+        </div>
+        <div class="token-input-row">
+          <input class="token-input" id="toAmount" readonly placeholder="0.0"/>
+          <div class="token-select" id="toToken" style="pointer-events:none">
+            <div class="token-icon" id="toIcon" style="background:rgba(0,229,255,.15);color:var(--cyan)">P</div>
+            <span id="toSymbol">PHN</span>
+          </div>
+        </div>
+        <div class="token-usd" id="toUsd">≈ $0.00</div>
+      </div>
+
+      <!-- Swap details -->
+      <div class="swap-details">
+        <div class="detail-row">
+          <span>Exchange Rate</span>
+          <span id="rateDisplay">—</span>
+        </div>
+        <div class="detail-row">
+          <span>Price Impact</span>
+          <span id="priceImpact">—</span>
+        </div>
+        <div class="detail-row">
+          <span>Protocol Fee (1%)</span>
+          <span id="feeDisplay">—</span>
+        </div>
+        <div class="detail-row burn">
+          <span>🔥 Burn (0.25%)</span>
+          <span id="burnDisplay">—</span>
+        </div>
+        <div class="detail-row">
+          <span>Minimum Received</span>
+          <span id="minReceived">—</span>
+        </div>
+      </div>
+
+      <div class="impact-warn" id="impactWarn">
+        ⚠️ High price impact! You may receive significantly less than expected. Consider splitting your trade.
+      </div>
+
+      <button class="btn-connect btn-wallet" id="swapBtn" onclick="handleSwap()">Connect Wallet</button>
+
+      <div class="status-bar" id="statusBar"></div>
+    </div>
+
+    <!-- INFO PANEL -->
+    <div class="info-panel">
+
+      <!-- Live Price -->
+      <div class="info-card">
+        <h3>PHN Price</h3>
+        <div class="price-display">
+          <div class="price-big" id="phnPrice">$0.0200</div>
+          <div class="price-sub" id="priceLabel">PRESALE EPOCH 1</div>
+        </div>
+        <div class="pair-tags">
+          <div class="pair-tag active" onclick="selectPair('BNB')">PHN / BNB</div>
+          <div class="pair-tag" onclick="selectPair('USDC')">PHN / USDC</div>
+        </div>
+        <div class="chart-placeholder" id="chartWrap">
+          <div class="chart-bars" id="chartBars"></div>
+        </div>
+      </div>
+
+      <!-- Pool Stats -->
+      <div class="info-card">
+        <h3>Pool Stats</h3>
+        <div class="stat-grid">
+          <div class="stat-box">
+            <div class="stat-box-val" id="statLiquidity">—</div>
+            <div class="stat-box-label">Liquidity</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val" id="statVolume">—</div>
+            <div class="stat-box-label">24h Volume</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val" id="statBurned">—</div>
+            <div class="stat-box-label">PHN Burned</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-box-val" id="statHolders">—</div>
+            <div class="stat-box-label">Holders</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Trades -->
+      <div class="info-card">
+        <h3>Recent Trades</h3>
+        <div class="tx-list" id="txList">
+          <div style="color:var(--muted);font-size:13px;text-align:center;padding:20px">No trades yet — liquidity coming after presale</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONFIG ───────────────────────────────────────────────────────────────────
+const PHN_CA       = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
+const ROUTER_V2    = "0x10ED43C718714eb63d5aA57B78B54704E256024E"; // PancakeSwap V2 Router BSC
+const WBNB         = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+const USDC_BSC     = "0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d";
+const FACTORY_V2   = "0xcA143Ce32Fe78f1f7019d7d551a6402fC5350c73";
+const FEE_BPS      = 100;  // 1% protocol fee
+const BURN_BPS     = 25;   // 0.25%
+const TREASURY_BPS = 75;   // 0.75%
+const PRESALE_PRICE_USD = 0.02; // update after deployment
+const BSC_CHAIN_ID = "0x38";
+
+// ── ABIs (minimal) ───────────────────────────────────────────────────────────
+const ROUTER_ABI = [
+  "function getAmountsOut(uint amountIn, address[] calldata path) view returns (uint[] memory)",
+  "function swapExactETHForTokens(uint amountOutMin, address[] calldata path, address to, uint deadline) payable returns (uint[] memory)",
+  "function swapExactTokensForETH(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline) returns (uint[] memory)",
+  "function swapExactTokensForTokens(uint amountIn, uint amountOutMin, address[] calldata path, address to, uint deadline) returns (uint[] memory)"
+];
+const ERC20_ABI = [
+  "function balanceOf(address owner) view returns (uint256)",
+  "function decimals() view returns (uint8)",
+  "function approve(address spender, uint256 amount) returns (bool)",
+  "function allowance(address owner, address spender) view returns (uint256)"
+];
+const PAIR_ABI = [
+  "function getReserves() view returns (uint112 reserve0, uint112 reserve1, uint32 blockTimestampLast)",
+  "function token0() view returns (address)",
+  "function token1() view returns (address)"
+];
+const FACTORY_ABI = [
+  "function getPair(address tokenA, address tokenB) view returns (address)"
+];
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let provider, signer, userAddress;
+let slippage = 0.5;
+let fromIsNative = true; // true = BNB→PHN, false = PHN→BNB
+let currentPairToken = 'BNB';
+let bnbPrice = 300; // will be fetched
+let phnMarketPrice = PRESALE_PRICE_USD;
+let presalePhase = true; // flip after LP is live
+
+// ── WALLET ───────────────────────────────────────────────────────────────────
+async function connectWallet() {
+  if (!window.ethereum) { showStatus('error', 'MetaMask not detected. Please install MetaMask.'); return; }
+  try {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    if (chainId !== BSC_CHAIN_ID) {
+      showStatus('pending', 'Switching to BSC...');
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain', params: [{ chainId: BSC_CHAIN_ID }]
+        });
+      } catch (e) {
+        if (e.code === 4902) await addBscNetwork();
+      }
+    }
+    provider = new ethers.BrowserProvider(window.ethereum);
+    signer   = await provider.getSigner();
+    userAddress = await signer.getAddress();
+    document.getElementById('navConnectBtn').textContent = userAddress.slice(0,6) + '...' + userAddress.slice(-4);
+    document.getElementById('swapBtn').textContent = 'Swap';
+    document.getElementById('swapBtn').className = 'btn-connect btn-swap';
+    await loadBalances();
+    await loadPoolStats();
+  } catch(e) { showStatus('error', e.message || 'Connection failed'); }
+}
+
+async function addBscNetwork() {
+  await window.ethereum.request({
+    method: 'wallet_addEthereumChain',
+    params: [{ chainId: BSC_CHAIN_ID, chainName: 'BNB Smart Chain',
+      nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
+      rpcUrls: ['https://bsc-dataseed.binance.org/'],
+      blockExplorerUrls: ['https://bscscan.com/'] }]
+  });
+}
+
+async function loadBalances() {
+  if (!provider || !userAddress) return;
+  try {
+    const bnbBal = await provider.getBalance(userAddress);
+    const phn = new ethers.Contract(PHN_CA, ERC20_ABI, provider);
+    const phnBal = await phn.balanceOf(userAddress);
+    document.getElementById('fromBalance').textContent =
+      `Balance: ${parseFloat(ethers.formatEther(bnbBal)).toFixed(4)} BNB`;
+    document.getElementById('toBalance').textContent =
+      `Balance: ${parseFloat(ethers.formatEther(phnBal)).toLocaleString()} PHN`;
+  } catch(e) {}
+}
+
+async function loadPoolStats() {
+  // Placeholders — will populate once LP is live
+  document.getElementById('statLiquidity').textContent = 'Post-presale';
+  document.getElementById('statVolume').textContent = '$—';
+  document.getElementById('statBurned').textContent = '—';
+  document.getElementById('statHolders').textContent = '—';
+}
+
+// ── SWAP CALC ────────────────────────────────────────────────────────────────
+async function calcOutput() {
+  const fromVal = parseFloat(document.getElementById('fromAmount').value);
+  if (!fromVal || fromVal <= 0) {
+    document.getElementById('toAmount').value = '';
+    clearDetails(); return;
+  }
+
+  if (presalePhase) {
+    // Use presale pricing
+    const phnRaw = fromIsNative
+      ? (fromVal * bnbPrice) / phnMarketPrice
+      : fromVal / phnMarketPrice; // PHN→USD rough
+    const fee    = phnRaw * (FEE_BPS / 10000);
+    const burn   = phnRaw * (BURN_BPS / 10000);
+    const phnOut = phnRaw - fee;
+    document.getElementById('toAmount').value = phnOut.toLocaleString(undefined, {maximumFractionDigits: 2});
+    document.getElementById('rateDisplay').textContent = fromIsNative
+      ? `1 BNB = ${(bnbPrice / phnMarketPrice).toLocaleString()} PHN`
+      : `1 PHN = $${phnMarketPrice}`;
+    document.getElementById('feeDisplay').textContent = `${fee.toLocaleString(undefined,{maximumFractionDigits:2})} PHN`;
+    document.getElementById('burnDisplay').textContent = `${burn.toLocaleString(undefined,{maximumFractionDigits:2})} PHN`;
+    document.getElementById('priceImpact').textContent = '< 0.1%';
+    document.getElementById('minReceived').textContent = `${(phnOut * (1 - slippage/100)).toLocaleString(undefined,{maximumFractionDigits:2})} PHN`;
+    document.getElementById('fromUsd').textContent = `≈ $${(fromVal * (fromIsNative ? bnbPrice : phnMarketPrice)).toFixed(2)}`;
+    document.getElementById('toUsd').textContent = `≈ $${(phnOut * phnMarketPrice).toFixed(2)}`;
+  } else {
+    // Use router for live pricing
+    if (!provider) { showStatus('error', 'Connect wallet for live pricing'); return; }
+    try {
+      const router = new ethers.Contract(ROUTER_V2, ROUTER_ABI, provider);
+      const amtIn = ethers.parseEther(fromVal.toString());
+      const path  = fromIsNative ? [WBNB, PHN_CA] : [PHN_CA, WBNB];
+      const amts  = await router.getAmountsOut(amtIn, path);
+      const phnOut = parseFloat(ethers.formatEther(amts[1]));
+      document.getElementById('toAmount').value = phnOut.toLocaleString(undefined,{maximumFractionDigits:4});
+    } catch(e) { document.getElementById('toAmount').value = '—'; }
+  }
+}
+
+function clearDetails() {
+  ['rateDisplay','priceImpact','feeDisplay','burnDisplay','minReceived','fromUsd','toUsd']
+    .forEach(id => document.getElementById(id).textContent = '—');
+}
+
+// ── SWAP EXECUTE ─────────────────────────────────────────────────────────────
+async function handleSwap() {
+  if (!signer) { connectWallet(); return; }
+  if (presalePhase) {
+    // Redirect to presale
+    window.location.href = 'buy.html';
+    return;
+  }
+  const fromVal = parseFloat(document.getElementById('fromAmount').value);
+  if (!fromVal || fromVal <= 0) { showStatus('error', 'Enter an amount'); return; }
+
+  showStatus('pending', '⏳ Confirm in MetaMask...');
+  try {
+    const router   = new ethers.Contract(ROUTER_V2, ROUTER_ABI, signer);
+    const deadline = Math.floor(Date.now()/1000) + 300; // 5 min
+    const amtIn    = ethers.parseEther(fromVal.toString());
+    const toVal    = parseFloat(document.getElementById('toAmount').value);
+    const minOut   = ethers.parseEther((toVal * (1 - slippage/100)).toFixed(18));
+    const path     = fromIsNative ? [WBNB, PHN_CA] : [PHN_CA, WBNB];
+
+    let tx;
+    if (fromIsNative) {
+      tx = await router.swapExactETHForTokens(minOut, path, userAddress, deadline, { value: amtIn });
+    } else {
+      // Approve first
+      const phn = new ethers.Contract(PHN_CA, ERC20_ABI, signer);
+      const allowance = await phn.allowance(userAddress, ROUTER_V2);
+      if (allowance < amtIn) {
+        showStatus('pending', '⏳ Approving PHN...');
+        const approveTx = await phn.approve(ROUTER_V2, ethers.MaxUint256);
+        await approveTx.wait();
+      }
+      tx = await router.swapExactTokensForETH(amtIn, minOut, path, userAddress, deadline);
+    }
+    showStatus('pending', `⏳ Swap pending... ${tx.hash.slice(0,12)}...`);
+    await tx.wait();
+    showStatus('success', `✅ Swap complete! TX: ${tx.hash.slice(0,12)}...`);
+    await loadBalances();
+    document.getElementById('fromAmount').value = '';
+    document.getElementById('toAmount').value = '';
+  } catch(e) {
+    showStatus('error', e.reason || e.message || 'Transaction failed');
+  }
+}
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function flipPair() {
+  fromIsNative = !fromIsNative;
+  document.getElementById('fromSymbol').textContent = fromIsNative ? 'BNB' : 'PHN';
+  document.getElementById('toSymbol').textContent   = fromIsNative ? 'PHN' : 'BNB';
+  document.getElementById('fromIcon').textContent   = fromIsNative ? 'B' : 'P';
+  document.getElementById('toIcon').textContent     = fromIsNative ? 'P' : 'B';
+  document.getElementById('fromIcon').style.background  = fromIsNative ? 'rgba(240,185,11,.15)' : 'rgba(0,229,255,.15)';
+  document.getElementById('toIcon').style.background    = fromIsNative ? 'rgba(0,229,255,.15)' : 'rgba(240,185,11,.15)';
+  document.getElementById('fromIcon').style.color = fromIsNative ? '#f0b90b' : 'var(--cyan)';
+  document.getElementById('toIcon').style.color   = fromIsNative ? 'var(--cyan)' : '#f0b90b';
+  // Swap values
+  const fv = document.getElementById('fromAmount').value;
+  const tv = document.getElementById('toAmount').value;
+  document.getElementById('fromAmount').value = tv;
+  document.getElementById('toAmount').value = fv;
+  calcOutput();
+}
+
+function setSlippage(val, btn) {
+  slippage = val;
+  document.querySelectorAll('.slip-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  document.getElementById('customSlip').value = '';
+}
+
+function setSlippageCustom(input) {
+  const v = parseFloat(input.value);
+  if (v > 0 && v <= 50) {
+    slippage = v;
+    document.querySelectorAll('.slip-btn').forEach(b => b.classList.remove('active'));
+  }
+}
+
+function setMax() {
+  if (!userAddress) return;
+  // Would pull from balance — simplified
+}
+
+function selectPair(token) {
+  currentPairToken = token;
+  document.querySelectorAll('.pair-tag').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+}
+
+function showStatus(type, msg) {
+  const bar = document.getElementById('statusBar');
+  bar.className = `status-bar show ${type}`;
+  bar.textContent = msg;
+  if (type === 'success') setTimeout(() => bar.classList.remove('show'), 5000);
+}
+
+// ── FAKE CHART (visual only) ──────────────────────────────────────────────────
+function renderChart() {
+  const bars = document.getElementById('chartBars');
+  const heights = [30,45,38,60,42,55,48,70,52,65,58,80,72,68,75,90,82,88,95,100];
+  bars.innerHTML = heights.map(h =>
+    `<div class="chart-bar" style="height:${h}%;background:rgba(0,229,255,${h/100*.4+.1})"></div>`
+  ).join('');
+}
+
+renderChart();
+// Fetch BNB price on load
+fetch('https://api.coingecko.com/api/v3/simple/price?ids=binancecoin&vs_currencies=usd')
+  .then(r=>r.json()).then(d=>{ if(d.binancecoin) bnbPrice = d.binancecoin.usd; calcOutput(); })
+  .catch(()=>{});
+</script>
+</body>
+</html>

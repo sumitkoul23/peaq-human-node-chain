@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PHN Liquidity Console | Skymetric Consulting LLP</title>
+<meta name="description" content="Owner liquidity console for PHN on peaq: fund presale inventory, fund staking rewards, and prepare future DEX liquidity.">
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+<style>
+:root{--bg:#030508;--panel:#0c1420;--line:#1a2840;--text:#e8f0fe;--muted:#7890a8;--cyan:#00e5ff;--green:#00ff88;--pink:#f472b6;--amber:#ffb800;--red:#ff5b6e}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55}main{max-width:1120px;margin:0 auto;padding:34px 22px 80px}.nav{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:42px}.brand{font-weight:900;text-decoration:none;color:var(--text)}.nav a{color:var(--muted);text-decoration:none}.cta{background:var(--cyan);color:#030508!important;padding:10px 16px;border-radius:4px;font-weight:800}.eyebrow{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--cyan);font-size:12px;text-transform:uppercase;letter-spacing:.12em;margin-bottom:12px}h1{font-size:clamp(38px,5vw,64px);line-height:1;margin:0 0 16px}.lead{font-size:17px;color:var(--muted);max-width:780px;margin:0 0 34px}.grid{display:grid;grid-template-columns:1.1fr .9fr;gap:18px}.card{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px}.card h2,.card h3{margin:0 0 10px}.card p,.card li{color:var(--muted);font-size:14px}.rows{display:grid;gap:10px;margin-top:18px}.row{display:flex;justify-content:space-between;gap:18px;border-bottom:1px solid var(--line);padding-bottom:10px;color:var(--muted);font-size:14px}.row strong{color:var(--text);text-align:right;word-break:break-all}label{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin:18px 0 8px}input{width:100%;background:#07101d;border:1px solid var(--line);border-radius:6px;color:var(--text);padding:13px;font-size:16px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}button{background:var(--cyan);color:#030508;border:0;border-radius:4px;padding:12px 16px;font-weight:900;cursor:pointer}button.secondary{background:transparent;color:var(--text);border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}.notice{border:1px solid rgba(255,184,0,.25);background:rgba(255,184,0,.06);border-radius:8px;padding:16px;color:#d8c38a;margin-top:18px}.ok{color:var(--green)}.warn{color:var(--amber)}.bad{color:var(--red)}code{color:var(--cyan);word-break:break-all}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}@media(max-width:880px){.grid,.steps{grid-template-columns:1fr}.nav{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<main>
+  <nav class="nav">
+    <a class="brand" href="index.html">PEAQ HUMAN NODE</a>
+    <div class="actions" style="margin:0">
+      <a href="buy.html">Presale</a>
+      <a href="staking.html">Staking</a>
+      <a class="cta" href="exchange.html">Exchange</a>
+    </div>
+  </nav>
+
+  <div class="eyebrow">Owner liquidity process</div>
+  <h1>Fund PHN liquidity paths on peaq.</h1>
+  <p class="lead">This console starts the operational liquidity process: fund presale inventory, fund staking rewards, collect PEAQ through presale, then use that treasury PEAQ plus PHN inventory for the first DEX pool.</p>
+
+  <section class="grid">
+    <div>
+      <article class="card">
+        <h2>Wallet Status</h2>
+        <p>Connect the owner wallet. Only the owner/admin wallet can fund staking because <code>fundRewardPool()</code> is admin-gated.</p>
+        <div class="rows">
+          <div class="row"><span>Connected wallet</span><strong id="account">Not connected</strong></div>
+          <div class="row"><span>Network</span><strong id="network">-</strong></div>
+          <div class="row"><span>PEAQ balance</span><strong id="peaqBal">-</strong></div>
+          <div class="row"><span>PHN balance</span><strong id="phnBal">-</strong></div>
+          <div class="row"><span>Presale PHN inventory</span><strong id="presaleBal">-</strong></div>
+          <div class="row"><span>Staking reward pool</span><strong id="stakingPool">-</strong></div>
+        </div>
+        <div class="actions">
+          <button onclick="connect()">Connect Owner Wallet</button>
+          <button class="secondary" onclick="addPeaq()">Add peaq Network</button>
+          <button class="secondary" onclick="refresh()">Refresh</button>
+        </div>
+      </article>
+
+      <article class="card" style="margin-top:18px">
+        <h2>1. Fund Presale Inventory</h2>
+        <p>Transfers PHN from the owner wallet into the PHNPresale contract. Purchases cannot complete until this inventory is funded.</p>
+        <label>PHN to transfer to presale</label>
+        <input id="presaleAmount" value="5000000" inputmode="decimal">
+        <div class="actions">
+          <button onclick="fundPresale()">Transfer PHN to Presale</button>
+        </div>
+      </article>
+
+      <article class="card" style="margin-top:18px">
+        <h2>2. Fund Staking Rewards</h2>
+        <p>Approves the staking contract and calls <code>fundRewardPool()</code>. Default amount is the planned 10M PHN rewards pool.</p>
+        <label>PHN to fund staking</label>
+        <input id="stakingAmount" value="10000000" inputmode="decimal">
+        <div class="actions">
+          <button onclick="approveStaking()">Approve Staking</button>
+          <button onclick="fundStaking()">Fund Reward Pool</button>
+        </div>
+      </article>
+    </div>
+
+    <aside>
+      <article class="card">
+        <h2>Custom Network</h2>
+        <div class="rows">
+          <div class="row"><span>Network</span><strong>peaq Mainnet</strong></div>
+          <div class="row"><span>RPC URL</span><strong>https://quicknode1.peaq.xyz</strong></div>
+          <div class="row"><span>Chain ID</span><strong>3338</strong></div>
+          <div class="row"><span>Currency</span><strong>PEAQ</strong></div>
+          <div class="row"><span>Explorer</span><strong>https://peaq.subscan.io/</strong></div>
+        </div>
+      </article>
+
+      <article class="card" style="margin-top:18px">
+        <h2>Live Contracts</h2>
+        <p><strong>PHN:</strong><br><code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code></p>
+        <p><strong>Presale:</strong><br><code>0x334D6748a105Aa857890375a811bf51a0182a757</code></p>
+        <p><strong>Staking:</strong><br><code>0x2926c13A0f82b0462f686bbd6c67Fe78a444589A</code></p>
+      </article>
+
+      <article class="card" style="margin-top:18px">
+        <h2>DEX Liquidity Sequence</h2>
+        <ol>
+          <li>Fund presale inventory.</li>
+          <li>Let presale collect PEAQ into treasury.</li>
+          <li>Reserve PHN inventory for pool creation.</li>
+          <li>Create PHN/PEAQ pool when router/pair is selected.</li>
+          <li>Lock LP tokens and publish lock transaction.</li>
+        </ol>
+        <div class="notice"><strong>Note:</strong> BSC PancakeSwap liquidity is blocked until the BSC PHN contract is deployed and the deployer has BNB gas.</div>
+      </article>
+    </aside>
+  </section>
+
+  <section class="steps">
+    <article class="card"><h3>Presale Liquidity</h3><p>Presale creates immediate buy-side access while treasury accumulates PEAQ for later pool depth.</p></article>
+    <article class="card"><h3>Staking Liquidity</h3><p>Funded staking reduces circulating pressure by giving holders a reason to lock tokens.</p></article>
+    <article class="card"><h3>DEX Liquidity</h3><p>DEX pool comes after enough PEAQ and PHN are reserved, then LP is locked for trust.</p></article>
+  </section>
+</main>
+
+<script>
+const PHN = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
+const PRESALE = "0x334D6748a105Aa857890375a811bf51a0182a757";
+const STAKING = "0x2926c13A0f82b0462f686bbd6c67Fe78a444589A";
+const PEAQ_CHAIN_ID = "0xD0A";
+const PEAQ_PARAMS = { chainId: PEAQ_CHAIN_ID, chainName: "peaq Mainnet", nativeCurrency: { name: "PEAQ", symbol: "PEAQ", decimals: 18 }, rpcUrls: ["https://quicknode1.peaq.xyz"], blockExplorerUrls: ["https://peaq.subscan.io/"] };
+const ERC20 = ["function balanceOf(address) view returns (uint256)","function transfer(address,uint256) returns (bool)","function approve(address,uint256) returns (bool)","function allowance(address,address) view returns (uint256)"];
+const STAKING_ABI = ["function fundRewardPool(uint256 amount) external","function rewardPoolRemaining() view returns (uint256)"];
+let provider, signer, account, phn, staking;
+
+function units(v){ return ethers.parseEther(String(v || "0")); }
+function fmt(v){ return Number(ethers.formatEther(v)).toLocaleString(undefined,{maximumFractionDigits:4}); }
+
+async function addPeaq(){
+  if (!window.ethereum) return alert("MetaMask not found.");
+  await window.ethereum.request({ method:"wallet_addEthereumChain", params:[PEAQ_PARAMS] });
+}
+
+async function connect(){
+  if (!window.ethereum) return alert("MetaMask not found.");
+  await window.ethereum.request({ method:"eth_requestAccounts" });
+  provider = new ethers.BrowserProvider(window.ethereum);
+  const net = await provider.getNetwork();
+  if (net.chainId !== 3338n) {
+    try { await window.ethereum.request({ method:"wallet_switchEthereumChain", params:[{ chainId: PEAQ_CHAIN_ID }] }); }
+    catch { await addPeaq(); }
+    provider = new ethers.BrowserProvider(window.ethereum);
+  }
+  signer = await provider.getSigner();
+  account = await signer.getAddress();
+  phn = new ethers.Contract(PHN, ERC20, signer);
+  staking = new ethers.Contract(STAKING, STAKING_ABI, signer);
+  await refresh();
+}
+
+async function refresh(){
+  if (!provider || !account) return;
+  const net = await provider.getNetwork();
+  document.getElementById("account").textContent = account;
+  document.getElementById("network").textContent = `${net.name || "peaq"} (${net.chainId})`;
+  document.getElementById("peaqBal").textContent = `${fmt(await provider.getBalance(account))} PEAQ`;
+  document.getElementById("phnBal").textContent = `${fmt(await phn.balanceOf(account))} PHN`;
+  document.getElementById("presaleBal").textContent = `${fmt(await phn.balanceOf(PRESALE))} PHN`;
+  document.getElementById("stakingPool").textContent = `${fmt(await staking.rewardPoolRemaining())} PHN`;
+}
+
+async function fundPresale(){
+  if (!phn) await connect();
+  const amount = units(document.getElementById("presaleAmount").value);
+  const tx = await phn.transfer(PRESALE, amount);
+  alert("Presale funding submitted: " + tx.hash);
+  await tx.wait();
+  await refresh();
+}
+
+async function approveStaking(){
+  if (!phn) await connect();
+  const amount = units(document.getElementById("stakingAmount").value);
+  const tx = await phn.approve(STAKING, amount);
+  alert("Staking approval submitted: " + tx.hash);
+  await tx.wait();
+  await refresh();
+}
+
+async function fundStaking(){
+  if (!staking) await connect();
+  const amount = units(document.getElementById("stakingAmount").value);
+  const tx = await staking.fundRewardPool(amount);
+  alert("Staking pool funding submitted: " + tx.hash);
+  await tx.wait();
+  await refresh();
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PHN — Verified Machine Economy</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7fbff;
+      --bg2: #edf6ff;
+      --panel: rgba(255,255,255,.86);
+      --line: rgba(28, 78, 120, .12);
+      --text: #0c1930;
+      --muted: #5f7188;
+      --teal: #0fb9b1;
+      --blue: #356dff;
+      --gold: #cb8b16;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; color: var(--text); font-family: Inter, Segoe UI, sans-serif;
+      background:
+        radial-gradient(circle at 15% 0%, rgba(15,185,177,.12), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(53,109,255,.14), transparent 26%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
+    a { color: inherit; }
+    .wrap { width: min(1240px, calc(100% - 48px)); margin: 0 auto; }
+    nav {
+      display:flex; justify-content:space-between; align-items:center; padding:22px 0;
+      border-bottom:1px solid var(--line);
+    }
+    .brand { display:flex; align-items:center; gap:14px; }
+    .brand img { width:220px; max-width:38vw; height:auto; }
+    nav a { text-decoration:none; color:var(--muted); margin-left:18px; }
+    .hero { display:grid; grid-template-columns:.9fr 1.1fr; gap:32px; align-items:center; min-height:78vh; }
+    .eyebrow { color:var(--teal); letter-spacing:.14em; text-transform:uppercase; font-size:12px; }
+    h1 { font-size:clamp(42px,6vw,72px); line-height:.94; margin:14px 0 18px; }
+    h2 { font-size:clamp(28px,4vw,40px); margin:0 0 18px; }
+    h3 { margin-top:0; }
+    p { color:var(--muted); line-height:1.7; }
+    .actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:24px; }
+    .btn { border:0; cursor:pointer; text-decoration:none; background:var(--blue); color:#fff; padding:13px 18px; border-radius:999px; font-weight:700; }
+    .btn.alt { background:transparent; color:var(--text); border:1px solid var(--line); }
+    .panel, .card { background:var(--panel); border:1px solid var(--line); border-radius:28px; padding:22px; box-shadow:0 18px 45px rgba(39,74,115,.10); backdrop-filter:blur(18px); }
+    .hero-panel { display:grid; gap:16px; padding:0; overflow:hidden; min-height:520px; position:relative; }
+    .hero-art { width:100%; height:100%; object-fit:cover; display:block; }
+    .hero-overlay {
+      position:absolute; inset:auto 18px 18px 18px; display:grid; gap:12px;
+      background:rgba(255,255,255,.76); border:1px solid rgba(255,255,255,.8);
+      border-radius:24px; padding:16px; box-shadow:0 24px 60px rgba(53,109,255,.18);
+    }
+    .metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+    .metric small { color:var(--teal); text-transform:uppercase; letter-spacing:.12em; font-size:11px; }
+    .metric strong { display:block; margin-top:8px; font-size:24px; }
+    section { padding:54px 0; }
+    .grid { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+    .logos { display:flex; gap:12px; flex-wrap:wrap; color:var(--muted); }
+    .chip { border:1px solid var(--line); border-radius:999px; padding:10px 14px; background:rgba(255,255,255,.6); }
+    .steps, .timeline { display:grid; gap:14px; }
+    .step { display:grid; grid-template-columns:92px 1fr; gap:14px; }
+    .step strong { color:var(--gold); }
+    table { width:100%; border-collapse:collapse; }
+    th,td { text-align:left; padding:14px; border-bottom:1px solid var(--line); }
+    .wallet { display:grid; gap:10px; }
+    .row { display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap; color:var(--muted); }
+    .faq details { background:var(--panel); border:1px solid var(--line); border-radius:18px; padding:16px 18px; }
+    .faq details + details { margin-top:12px; }
+    .faq summary { cursor:pointer; font-weight:700; }
+    code { color:var(--teal); word-break:break-all; }
+    footer { padding:56px 0 70px; color:var(--muted); border-top:1px solid var(--line); margin-top:18px; }
+    .feature-band { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+    .glow { position:relative; overflow:hidden; }
+    .glow::after { content:""; position:absolute; inset:auto -20% -40% auto; width:180px; height:180px; background:radial-gradient(circle,var(--teal),transparent 70%); opacity:.16; }
+    .showcase { display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:stretch; }
+    .showcase-art { padding:0; overflow:hidden; min-height:380px; }
+    .showcase-art img { width:100%; height:100%; object-fit:cover; display:block; }
+    .glass-stat {
+      display:grid; gap:8px; align-content:center;
+      background:linear-gradient(135deg,rgba(255,255,255,.92),rgba(244,249,255,.72));
+    }
+    .glass-stat strong { font-size:34px; }
+    .floaty { animation:floaty 7s ease-in-out infinite; }
+    .floaty.delay { animation-delay:1.4s; }
+    @keyframes floaty { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .footer-grid { display:grid; grid-template-columns:1.2fr repeat(3,1fr); gap:22px; }
+    .footer-grid a { display:block; text-decoration:none; color:var(--muted); margin-top:10px; }
+    @media(max-width:900px){
+      .hero { grid-template-columns:1fr; min-height:auto; }
+      nav { flex-direction:column; align-items:flex-start; gap:10px; }
+      nav a { margin-left:0; margin-right:14px; }
+      .metrics { grid-template-columns:1fr; }
+      .showcase { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav>
+      <div class="brand"><img src="../assets/phn-wordmark.png" alt="Peaq Human Node logo"></div>
+      <div>
+        <a href="#network">Network</a>
+        <a href="#earn">Earn</a>
+        <a href="activate-node.html">Activate node</a>
+        <a href="#build">Build</a>
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="staking.html">Staking</a>
+        <a href="vesting.html">Vesting</a>
+        <a href="governance.html">Governance</a>
+        <a href="validators.html">Validators</a>
+        <a href="developers.html">Developers</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div>
+        <div class="eyebrow">Verified machine economy</div>
+        <h1>Machines earn. Humans remain accountable.</h1>
+        <p>PHN is a peaq-native protocol for verified PCs and machine operators. Identity-gated nodes join the network, prove activity, and earn from a fixed-supply reward economy.</p>
+        <div class="actions">
+          <a class="btn" href="#wallet">Launch app</a>
+          <a class="btn alt" href="exchange.html">Buy PHN</a>
+          <a class="btn alt" href="https://scout.peaq.xyz/address/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B">Explorer</a>
+        </div>
+      </div>
+      <div class="panel hero-panel floaty">
+        <img class="hero-art" src="../assets/phn-hero-3d.png" alt="3D Peaq Human Node network artwork">
+        <div class="hero-overlay">
+          <div class="metrics">
+            <div class="metric"><small>Total supply</small><strong>100M</strong></div>
+            <div class="metric"><small>Node rewards</small><strong>20M</strong></div>
+            <div class="metric"><small>Live chain</small><strong>peaq</strong></div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section>
+      <div class="eyebrow">Built for the next machine economy</div>
+      <div class="logos">
+        <span class="chip">peaq-native</span>
+        <span class="chip">verified nodes</span>
+        <span class="chip">fixed supply</span>
+        <span class="chip">timelocked control</span>
+        <span class="chip">future cross-chain</span>
+      </div>
+    </section>
+
+    <section>
+      <div class="feature-band">
+        <article class="card glow"><h3>Buy PHN</h3><p>Round-based fundraising sale with dynamic pricing.</p><p><a href="exchange.html">Open sale →</a></p></article>
+        <article class="card glow"><h3>Wallet</h3><p>Connect on peaq and inspect PHN, PEAQ, and rewards.</p><p><a href="wallet.html">Open wallet →</a></p></article>
+        <article class="card glow"><h3>Run node</h3><p>Activate a verified machine and start earning.</p><p><a href="activate-node.html">Activate node →</a></p></article>
+        <article class="card glow"><h3>Govern</h3><p>Stake, vest, and help shape the network.</p><p><a href="governance.html">Open governance →</a></p></article>
+      </div>
+    </section>
+
+    <section class="showcase">
+      <div class="panel showcase-art floaty delay">
+        <img src="../assets/phn-network-3d.png" alt="3D machine economy network">
+      </div>
+      <div class="grid">
+        <article class="card glass-stat"><small class="eyebrow">Reward rails</small><strong>Verified PCs → PHN</strong><p>Identity, activity, staking, vesting, and rewards now read as one connected machine economy.</p></article>
+        <article class="card glass-stat"><small class="eyebrow">Visual system</small><strong>Glass + glow + depth</strong><p>The site now leans into a premium 3D Web3 language instead of flat brochure cards.</p></article>
+      </div>
+    </section>
+
+    <section id="network">
+      <div class="eyebrow">Network</div>
+      <h2>The protocol stack</h2>
+      <div class="grid">
+        <article class="card"><h3>Identity</h3><p>Human attestation, PC identity hash, and peaq machine DID form the admission layer.</p></article>
+        <article class="card"><h3>Registry</h3><p>Verified operators become visible, active, and reward-eligible on-chain participants.</p></article>
+        <article class="card"><h3>Rewards</h3><p>Heartbeat-based participation accrues PHN from a transparent vault.</p></article>
+        <article class="card"><h3>Expansion</h3><p>peaq first, with later BSC interoperability planned through one global supply.</p></article>
+      </div>
+    </section>
+
+    <section id="earn">
+      <div class="eyebrow">Earn</div>
+      <h2>Run a verified node. Earn PHN.</h2>
+      <div class="panel steps">
+        <div class="step"><strong>01</strong><span>Register the machine with operator identity and peaq DID.</span></div>
+        <div class="step"><strong>02</strong><span>Become an active eligible operator in the registry.</span></div>
+        <div class="step"><strong>03</strong><span>Send node heartbeats to prove continued participation.</span></div>
+        <div class="step"><strong>04</strong><span>Claim earned PHN from the reward vault.</span></div>
+      </div>
+    </section>
+
+    <section id="build">
+      <div class="eyebrow">Build</div>
+      <h2>What already exists</h2>
+      <div class="grid">
+        <article class="card"><h3>Token</h3><p>Fixed-supply PHN live on peaq mainnet.</p></article>
+        <article class="card"><h3>Node registry</h3><p>Identity-gated registration for machine operators.</p></article>
+        <article class="card"><h3>Reward engine</h3><p>Heartbeat accrual and claims for verified nodes.</p></article>
+        <article class="card"><h3>Dashboard</h3><p>Supply, vault, and allocation visibility for the ecosystem.</p></article>
+        <article class="card"><h3>Validator terminal</h3><p>Integrity and health monitoring for the protocol.</p></article>
+        <article class="card"><h3>Developer portal</h3><p>CLI, contracts, SDK roadmap, and build surfaces.</p></article>
+        <article class="card"><h3>Staking</h3><p>Yield, loyalty, and network participation.</p></article>
+        <article class="card"><h3>Vesting</h3><p>Sale unlocks and founder allocation schedules.</p></article>
+        <article class="card"><h3>Governance</h3><p>Stake to help steer the future protocol.</p></article>
+        <article class="card"><h3>Activation guide</h3><p>Step-by-step onboarding for Windows, macOS, Linux, Ubuntu, and mobile.</p></article>
+      </div>
+    </section>
+
+    <section id="wallet" class="grid">
+      <div>
+        <div class="eyebrow">Wallet</div>
+        <h2>Launch the protocol</h2>
+        <p>Connect, inspect your PHN, jump into the exchange, or move directly into node operations.</p>
+      </div>
+      <div class="panel wallet">
+        <div class="row"><span>Wallet</span><span id="wallet-address">Not connected</span></div>
+        <div class="row"><span>Network</span><span id="wallet-network">—</span></div>
+        <div class="row"><span>PHN balance</span><span id="wallet-balance">—</span></div>
+        <div class="row"><span>MetaMask</span><span id="wallet-provider">Checking...</span></div>
+        <div class="actions">
+          <button class="btn" id="connect-wallet">Connect MetaMask</button>
+          <button class="btn alt" id="switch-peaq">Switch to peaq</button>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Use PHN</div>
+      <h2>Web3 surfaces</h2>
+      <div class="grid">
+        <article class="card"><h3>Wallet</h3><p>Inspect balances and connect on peaq.</p><p><a href="wallet.html">Open wallet →</a></p></article>
+        <article class="card"><h3>Exchange</h3><p>Buy PHN through the official routed sale path.</p><p><a href="exchange.html">Open exchange →</a></p></article>
+        <article class="card"><h3>Node</h3><p>Run a verified node and earn from the reward economy.</p><p><a href="#earn">See node flow →</a></p></article>
+        <article class="card"><h3>Explorer</h3><p>Verify contracts and supply directly on-chain.</p><p><a href="https://scout.peaq.xyz/address/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B">Open explorer →</a></p></article>
+      </div>
+    </section>
+
+    <section id="tokenomics">
+      <div class="eyebrow">Tokenomics</div>
+      <h2>100,000,000 PHN fixed supply</h2>
+      <div class="panel">
+        <table>
+          <thead><tr><th>Bucket</th><th>Allocation</th><th>Purpose</th></tr></thead>
+          <tbody>
+            <tr><td>Founder vesting</td><td>50,000,000 PHN</td><td>Founder allocation</td></tr>
+            <tr><td>Ecosystem treasury</td><td>20,000,000 PHN</td><td>Development and partnerships</td></tr>
+            <tr><td>Node rewards</td><td>20,000,000 PHN</td><td>Verified-node incentives</td></tr>
+            <tr><td>Liquidity</td><td>10,000,000 PHN</td><td>Market support</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Roadmap</div>
+      <h2>From token launch to network scale</h2>
+      <div class="panel timeline">
+        <div class="step"><strong>Phase 1</strong><span>Canonical PHN launch on peaq mainnet.</span></div>
+        <div class="step"><strong>Phase 2</strong><span>Verified-node rewards and operator tooling.</span></div>
+        <div class="step"><strong>Phase 3</strong><span>Liquidity, metadata, and public dashboard.</span></div>
+        <div class="step"><strong>Phase 4</strong><span>BSC expansion through one-supply architecture.</span></div>
+        <div class="step"><strong>Phase 5</strong><span>Marketplace fees, reputation, and broader listings.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <div class="eyebrow">Contracts</div>
+      <h2>Live on-chain anchors</h2>
+      <div class="grid">
+        <article class="card"><h3>Token</h3><code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code></article>
+        <article class="card"><h3>Registry</h3><code>0x94F7a1C1Bb5Bab6C5Ba6E2371789828Ef94E6ea9</code></article>
+        <article class="card"><h3>Reward vault</h3><code>0x38F783620A850AC99677fE083DFd5dF86682885f</code></article>
+      </div>
+    </section>
+
+    <section id="faq" class="faq">
+      <div class="eyebrow">FAQ</div>
+      <h2>Core questions</h2>
+      <details><summary>Can PHN be mined?</summary><p>No. PHN is fixed supply; verified nodes earn from the reward pool.</p></details>
+      <details><summary>Is PHN already cross-chain?</summary><p>Not yet. peaq is live first; BSC comes later through a one-supply route.</p></details>
+      <details><summary>Why require identity?</summary><p>Because machine economies need accountability to resist sybil farming and reward abuse.</p></details>
+      <details><summary>Where is the logo stored?</summary><p>In project metadata and token-list submissions, not inside token bytecode.</p></details>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div>
+          <strong>PHN</strong>
+          <p>Building a verified machine economy on peaq.</p>
+        </div>
+        <div>
+          <strong>Protocol</strong>
+          <a href="about.html">About us</a>
+          <a href="#network">Mission</a>
+          <a href="#tokenomics">Tokenomics</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div>
+          <strong>Ecosystem</strong>
+          <a href="#earn">Run a node</a>
+          <a href="staking.html">Staking</a>
+          <a href="vesting.html">Vesting</a>
+          <a href="validators.html">Validators</a>
+        </div>
+        <div>
+          <strong>Resources</strong>
+          <a href="developers.html">Developers</a>
+          <a href="activate-node.html">Activation guide</a>
+          <a href="wallet.html">Wallet</a>
+          <a href="exchange.html">Sale</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script type="module">
+    import { BrowserProvider, Contract, formatUnits } from "https://cdn.jsdelivr.net/npm/ethers@6.13.5/+esm";
+    const PHN = "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B";
+    const PEAQ_CHAIN_ID_HEX = "0xd0a";
+    const tokenAbi = ["function balanceOf(address) view returns (uint256)"];
+    const $ = (id) => document.getElementById(id);
+    async function updateWallet() {
+      if (!window.ethereum) { $("wallet-provider").textContent = "Not detected"; return; }
+      $("wallet-provider").textContent = "Detected";
+      const provider = new BrowserProvider(window.ethereum);
+      const accounts = await provider.send("eth_accounts", []);
+      const network = await provider.getNetwork();
+      $("wallet-network").textContent = `chain ${network.chainId}`;
+      if (!accounts.length) return;
+      const account = accounts[0];
+      $("wallet-address").textContent = `${account.slice(0,6)}...${account.slice(-4)}`;
+      if (network.chainId === 3338n) {
+        const token = new Contract(PHN, tokenAbi, provider);
+        const balance = await token.balanceOf(account);
+        $("wallet-balance").textContent = `${Number(formatUnits(balance,18)).toLocaleString()} PHN`;
+      } else $("wallet-balance").textContent = "Switch to peaq";
+    }
+    $("connect-wallet").onclick = async () => {
+      if (!window.ethereum) return alert("MetaMask was not found in this browser.");
+      await window.ethereum.request({ method:"eth_requestAccounts" });
+      await updateWallet();
+    };
+    $("switch-peaq").onclick = async () => {
+      if (!window.ethereum) return alert("MetaMask was not found in this browser.");
+      try {
+        await window.ethereum.request({ method:"wallet_switchEthereumChain", params:[{ chainId:PEAQ_CHAIN_ID_HEX }] });
+      } catch (error) {
+        if (error.code === 4902) {
+          await window.ethereum.request({
+            method:"wallet_addEthereumChain",
+            params:[{
+              chainId:PEAQ_CHAIN_ID_HEX,
+              chainName:"peaq",
+              nativeCurrency:{ name:"PEAQ", symbol:"PEAQ", decimals:18 },
+              rpcUrls:["https://peaq.api.onfinality.io/public"],
+              blockExplorerUrls:["https://scout.peaq.xyz"]
+            }]
+          });
+        } else throw error;
+      }
+      await updateWallet();
+    };
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", updateWallet);
+      window.ethereum.on("chainChanged", () => window.location.reload());
+    }
+    updateWallet().catch(console.error);
+  </script>
+</body>
+</html>

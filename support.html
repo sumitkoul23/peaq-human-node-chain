@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Support — Peaq Human Node | $PHN Help Center</title>
+<meta name="description" content="Get help with PHN token, presale, staking, node setup and wallet issues. Official support for Peaq Human Node."/>
+<meta property="og:title" content="PHN Support — Peaq Human Node Help Center"/>
+<meta property="og:description" content="Answers to common questions about PHN presale, staking, node setup, and security."/>
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:site" content="@PeaqHumanNode"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{--black:#030508;--deep:#070c14;--card:#0c1420;--border:#1a2840;--cyan:#00e5ff;--green:#00ff88;--amber:#ffb800;--red:#ff4444;--text:#e8f0fe;--muted:#6b8299;--font-display:'Syne',sans-serif;--font-mono:'DM Mono',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--text);font-family:var(--font-display);overflow-x:hidden;line-height:1.6}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:1000;opacity:.4}
+.grid-bg{position:fixed;inset:0;background-image:linear-gradient(rgba(0,229,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.03) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;z-index:0}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:900;display:flex;align-items:center;justify-content:space-between;padding:20px 48px;background:linear-gradient(180deg,rgba(3,5,8,.95) 0%,transparent 100%);backdrop-filter:blur(8px)}
+.nav-logo{font-size:18px;font-weight:800;display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--text)}
+.logo-dot{width:10px;height:10px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 8px var(--cyan)}50%{box-shadow:0 0 24px var(--cyan),0 0 40px var(--cyan)}}
+.nav-links{display:flex;gap:24px;list-style:none}
+.nav-links a{font-size:13px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--cyan)}
+.nav-cta{background:var(--cyan);color:var(--black);font-family:var(--font-display);font-weight:700;font-size:13px;letter-spacing:.04em;padding:10px 22px;border-radius:4px;text-decoration:none;border:none;cursor:pointer;transition:all .2s}
+.nav-cta:hover{background:#fff}
+
+.page{position:relative;z-index:10;padding:120px 48px 80px;max-width:1100px;margin:0 auto}
+.section-label{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px}
+.section-label::before,.section-label::after{content:'';width:24px;height:1px;background:var(--cyan)}
+h1{font-size:clamp(36px,5vw,60px);font-weight:800;letter-spacing:-.03em;margin-bottom:16px}
+h2{font-size:22px;font-weight:700;margin-bottom:24px}
+
+/* SCAM ALERT */
+.scam-alert{background:rgba(255,68,68,.08);border:1px solid rgba(255,68,68,.3);border-radius:12px;padding:20px 24px;margin-bottom:48px}
+.scam-alert h3{color:var(--red);font-size:16px;margin-bottom:10px}
+.scam-alert ul{color:var(--text);font-size:14px;padding-left:20px;line-height:2}
+.scam-alert strong{color:var(--red)}
+
+/* QUICK LINKS */
+.quick-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:64px}
+.quick-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;cursor:pointer;text-decoration:none;transition:all .2s;display:flex;align-items:center;gap:14px}
+.quick-card:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,229,255,.1)}
+.quick-icon{font-size:24px;min-width:32px;text-align:center}
+.quick-label{font-size:14px;font-weight:600;color:var(--text)}
+.quick-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+/* FAQ */
+.faq-section{margin-bottom:64px}
+.faq-category{font-family:var(--font-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;margin-top:40px}
+.faq-item{border:1px solid var(--border);border-radius:10px;margin-bottom:8px;overflow:hidden;transition:border-color .2s}
+.faq-item.open{border-color:rgba(0,229,255,.3)}
+.faq-q{padding:18px 24px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-weight:600;font-size:15px;transition:background .2s}
+.faq-q:hover{background:rgba(0,229,255,.04)}
+.faq-chevron{color:var(--muted);font-size:12px;transition:transform .2s}
+.faq-item.open .faq-chevron{transform:rotate(180deg);color:var(--cyan)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:400px}
+.faq-a-inner{padding:0 24px 20px;color:var(--muted);font-size:14px;line-height:1.8}
+.faq-a-inner a{color:var(--cyan);text-decoration:none}
+.faq-a-inner code{background:var(--deep);border:1px solid var(--border);padding:2px 8px;border-radius:4px;font-family:var(--font-mono);font-size:12px;color:var(--cyan)}
+
+/* CONTACT GRID */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-bottom:64px}
+.contact-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;text-align:center}
+.contact-card .icon{font-size:32px;margin-bottom:12px}
+.contact-card h4{font-size:16px;font-weight:700;margin-bottom:6px}
+.contact-card p{font-size:13px;color:var(--muted);margin-bottom:16px;line-height:1.6}
+.contact-btn{display:inline-block;padding:10px 20px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
+.contact-btn-primary{background:var(--cyan);color:var(--black)}
+.contact-btn-primary:hover{background:#fff}
+.contact-btn-secondary{border:1px solid var(--border);color:var(--text)}
+.contact-btn-secondary:hover{border-color:var(--cyan);color:var(--cyan)}
+
+/* TICKET FORM */
+.ticket-section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:36px;margin-bottom:64px}
+.form-row{margin-bottom:20px}
+.form-label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em;font-family:var(--font-mono)}
+.form-input,.form-select,.form-textarea{width:100%;background:var(--deep);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--font-display);font-size:14px;padding:12px 16px;outline:none;transition:border-color .2s}
+.form-input:focus,.form-select:focus,.form-textarea:focus{border-color:rgba(0,229,255,.4)}
+.form-textarea{resize:vertical;min-height:120px}
+.form-select option{background:var(--card)}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.btn-submit{background:var(--cyan);color:var(--black);border:none;padding:14px 32px;border-radius:8px;font-family:var(--font-display);font-weight:700;font-size:15px;cursor:pointer;transition:all .2s}
+.btn-submit:hover{background:#fff;box-shadow:0 0 24px rgba(0,229,255,.4)}
+.submit-note{font-size:12px;color:var(--muted);margin-top:12px}
+
+/* DOCS LINKS */
+.docs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.doc-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:20px;text-decoration:none;transition:all .2s}
+.doc-card:hover{border-color:var(--cyan);transform:translateY(-2px)}
+.doc-icon{font-size:20px;margin-bottom:10px}
+.doc-title{font-size:14px;font-weight:700;color:var(--text);margin-bottom:4px}
+.doc-desc{font-size:12px;color:var(--muted)}
+
+/* STATUS INDICATOR */
+.status-indicator{display:flex;align-items:center;gap:8px;font-size:13px;font-family:var(--font-mono)}
+.status-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
+
+@media(max-width:768px){
+  nav{padding:16px 24px}.nav-links{display:none}
+  .page{padding:100px 24px 60px}
+  .form-row-2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="grid-bg"></div>
+<nav>
+  <a class="nav-logo" href="index.html"><span class="logo-dot"></span>PEAQ HUMAN NODE</a>
+  <ul class="nav-links">
+    <li><a href="buy.html">Presale</a></li>
+    <li><a href="staking.html">Staking</a></li>
+    <li><a href="exchange.html">Exchange</a></li>
+    <li><a href="verify.html">Verify</a></li>
+  </ul>
+  <a class="nav-cta" href="buy.html">Buy PHN →</a>
+</nav>
+
+<div class="page">
+  <div class="section-label">Help Center</div>
+  <h1>Support</h1>
+  <p style="font-size:16px;color:var(--muted);max-width:560px;margin-bottom:48px;line-height:1.8">Find answers about PHN token, presale, staking, nodes, and security. If you can't find your answer here, reach out to the team directly.</p>
+
+  <!-- SCAM ALERT -->
+  <div class="scam-alert">
+    <h3>🚨 Scam Warning — Read Before Proceeding</h3>
+    <ul>
+      <li><strong>Admins will NEVER DM you first</strong> asking for your wallet, seed phrase, or funds</li>
+      <li><strong>There are no secret presales, private sales, or whitelists</strong> — buy only at <a href="buy.html" style="color:var(--red)">peaqhumannode.netlify.app/buy</a></li>
+      <li><strong>Contract:</strong> <code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code> — verify before any transaction</li>
+      <li><strong>Official channels only:</strong> t.me/PeaqHumanNode | x.com/PeaqHumanNode | this website</li>
+    </ul>
+  </div>
+
+  <!-- QUICK LINKS -->
+  <div class="quick-grid">
+    <a href="buy.html" class="quick-card">
+      <div class="quick-icon">🔥</div>
+      <div><div class="quick-label">Buy PHN</div><div class="quick-sub">Presale — $0.02</div></div>
+    </a>
+    <a href="staking.html" class="quick-card">
+      <div class="quick-icon">⚡</div>
+      <div><div class="quick-label">Staking</div><div class="quick-sub">Up to 25% APY</div></div>
+    </a>
+    <a href="exchange.html" class="quick-card">
+      <div class="quick-icon">🔄</div>
+      <div><div class="quick-label">Exchange</div><div class="quick-sub">Swap PHN</div></div>
+    </a>
+    <a href="verify.html" class="quick-card">
+      <div class="quick-icon">✅</div>
+      <div><div class="quick-label">Verify Token</div><div class="quick-sub">Is this PHN legit?</div></div>
+    </a>
+    <a href="vesting.html" class="quick-card">
+      <div class="quick-icon">🔓</div>
+      <div><div class="quick-label">Vesting</div><div class="quick-sub">Founder schedule</div></div>
+    </a>
+    <a href="activate-node.html" class="quick-card">
+      <div class="quick-icon">🖥️</div>
+      <div><div class="quick-label">Run a Node</div><div class="quick-sub">Earn PHN rewards</div></div>
+    </a>
+  </div>
+
+  <!-- FAQ -->
+  <div class="faq-section">
+    <h2>Frequently Asked Questions</h2>
+
+    <div class="faq-category">💰 Presale & Buying</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I buy PHN in the presale? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        1. Go to <a href="buy.html">peaqhumannode.netlify.app/buy</a><br>
+        2. Connect your MetaMask wallet<br>
+        3. Switch to peaq network (Chain ID 3338) or BSC<br>
+        4. Enter the amount of PEAQ or USDC you want to spend<br>
+        5. Review the PHN you will receive (98% after 2% fee)<br>
+        6. Click Buy and confirm in MetaMask<br><br>
+        PHN will appear in your wallet immediately after the transaction confirms.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is an epoch and when does the price change? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        An epoch is a presale pricing round. Each epoch has a fixed price and a 5M PHN cap.<br><br>
+        When all 5M tokens in Epoch 1 are sold, the price automatically advances to Epoch 2 — permanently.<br><br>
+        Epochs: <code>$0.02</code> → <code>$0.05</code> → <code>$0.10</code> → <code>$0.20</code><br><br>
+        There is no way to buy at a previous epoch price once it has closed.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the 2% fee on purchases? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Every PHN purchase incurs a 2% fee on the PHN amount:<br><br>
+        • <strong>0.25%</strong> → permanently burned via <code>ERC20Burnable.burn()</code> — reduces total supply forever<br>
+        • <strong>1.75%</strong> → treasury wallet for project development<br>
+        • <strong>98%</strong> → you receive this<br><br>
+        The burn amount is shown in the presale calculator before you confirm.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Which networks and currencies can I use to buy? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>Phase 1 (now):</strong> peaq Mainnet — PEAQ native token + USDC<br>
+        <strong>Phase 2 (soon):</strong> BSC — BNB + USDC<br>
+        <strong>Phase 3 (future):</strong> Ethereum, BTC via bridge<br><br>
+        Add peaq network to MetaMask: Chain ID <code>3338</code>, RPC <code>https://peaq.api.onfinality.io/public</code>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">I sent the transaction but don't see PHN in my wallet. <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        PHN may not show automatically — you need to add it to MetaMask manually:<br><br>
+        1. Open MetaMask → Assets → Import token<br>
+        2. Token contract: <code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code><br>
+        3. Symbol: <code>PHN</code> | Decimals: <code>18</code><br><br>
+        Or use the <a href="verify.html">"Add to Wallet" button on our verify page</a>.
+        If the transaction failed, check BscScan for error details.
+      </div></div>
+    </div>
+
+    <div class="faq-category">⚡ Staking</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What are the staking tiers? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        PHN offers 3 staking tiers:<br><br>
+        • <strong>FLEX</strong> — 8% APY, no lock period, unstake anytime<br>
+        • <strong>LOCKED</strong> — 15% APY, 90-day lock, 50% reward penalty for early exit<br>
+        • <strong>VAULT</strong> — 25% APY, 180-day lock, 100% reward penalty for early exit<br><br>
+        Rewards accrue per second. The longer you lock, the higher the yield.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">When will staking go live? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        PHNStaking.sol is written and ready. Deployment requires a small amount of BNB for gas (~0.02 BNB).<br><br>
+        Once deployed, the staking contract address will be updated in <a href="staking.html">staking.html</a> and announced on <a href="https://t.me/PeaqHumanNode" target="_blank">Telegram</a>.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Where do staking rewards come from? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        The Staking Rewards Pool holds 10,000,000 PHN (10% of total supply), allocated from the tokenomics. This pool is pre-funded at contract deployment and disbursed per second to active stakers based on tier APY.<br><br>
+        Rewards are real PHN transfers from the pool — not synthetic tokens.
+      </div></div>
+    </div>
+
+    <div class="faq-category">🖥️ Node Operation</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What are the requirements to run a PHN node? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Requirements:<br>
+        • A personal computer (not a VM or cloud server — hardware fingerprinting detects this)<br>
+        • A peaq wallet with enough PEAQ for gas<br>
+        • Completed identity verification (human attestation + peaq DID)<br>
+        • Node software installed (available on the <a href="activate-node.html">Activate Node page</a>)<br><br>
+        Nodes earn PHN for every "heartbeat" transaction sent to the network. No staking or collateral required.
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I run multiple nodes? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        Each node requires a unique hardware identity. Running multiple nodes on different physical machines is allowed — but bots, VMs, and duplicate hardware fingerprints are rejected by the NodeIdentityRegistry contract.
+      </div></div>
+    </div>
+
+    <div class="faq-category">🔒 Security & Wallets</div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is the PHN contract audited? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        The contracts are built with OpenZeppelin v5 libraries (industry-standard, battle-tested). A formal third-party audit is planned. In the meantime, all contract source code is visible on BscScan after verification.<br><br>
+        Contract: <code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code><br>
+        <a href="https://bscscan.com/token/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank">View on BscScan →</a>
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I add PHN to MetaMask? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong>Method 1 (automatic):</strong> Click "Add PHN to Wallet" on the <a href="verify.html">verify page</a>.<br><br>
+        <strong>Method 2 (manual):</strong><br>
+        1. MetaMask → Add Token → Custom Token<br>
+        2. Contract: <code>0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code><br>
+        3. Symbol: <code>PHN</code> | Decimals: <code>18</code><br>
+        4. Click Add Token
+      </div></div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">The team DMed me asking for funds — is this legitimate? <span class="faq-chevron">▼</span></div>
+      <div class="faq-a"><div class="faq-a-inner">
+        <strong style="color:var(--red)">NO. This is a scam.</strong><br><br>
+        The PHN team will NEVER:<br>
+        • DM you first on any platform<br>
+        • Ask for your seed phrase, private key, or password<br>
+        • Ask you to send crypto to "verify" your wallet<br>
+        • Offer private sales, refunds, or special deals via DM<br><br>
+        Report scammers to: t.me/PeaqHumanNode (tag an admin)
+      </div></div>
+    </div>
+  </div>
+
+  <!-- CONTACT CHANNELS -->
+  <h2>Contact the Team</h2>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="icon">📢</div>
+      <h4>Telegram Community</h4>
+      <p>Fastest response. Active community + team admins. For general questions and support.</p>
+      <a href="https://t.me/PeaqHumanNode" target="_blank" rel="noopener" class="contact-btn contact-btn-primary">Join Telegram</a>
+    </div>
+    <div class="contact-card">
+      <div class="icon">💬</div>
+      <h4>Discord Server</h4>
+      <p>Node operators, devs and staking support. Best for technical questions.</p>
+      <a href="https://discord.gg/peaqhumannode" target="_blank" rel="noopener" class="contact-btn contact-btn-primary">Join Discord</a>
+    </div>
+    <div class="contact-card">
+      <div class="icon">🐦</div>
+      <h4>Twitter / X</h4>
+      <p>Latest announcements, epoch updates, and burn stats. Follow for real-time news.</p>
+      <a href="https://x.com/PeaqHumanNode" target="_blank" rel="noopener" class="contact-btn contact-btn-secondary">Follow @PeaqHumanNode</a>
+    </div>
+    <div class="contact-card">
+      <div class="icon">📧</div>
+      <h4>Email Support</h4>
+      <p>For serious technical issues, partnership inquiries, or security disclosures.</p>
+      <a href="mailto:support@peaqhumannode.io" class="contact-btn contact-btn-secondary">Email Team</a>
+    </div>
+  </div>
+
+  <!-- TICKET FORM -->
+  <div class="ticket-section">
+    <h2>Submit a Ticket</h2>
+    <p style="color:var(--muted);font-size:14px;margin-bottom:28px">For issues not covered by the FAQ. We respond within 24–48 hours.</p>
+
+    <form id="ticketForm" onsubmit="submitTicket(event)">
+      <div class="form-row-2">
+        <div class="form-row">
+          <label class="form-label">Your Name</label>
+          <input class="form-input" type="text" placeholder="Satoshi" required/>
+        </div>
+        <div class="form-row">
+          <label class="form-label">Email or Telegram</label>
+          <input class="form-input" type="text" placeholder="you@email.com or @username" required/>
+        </div>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Issue Category</label>
+        <select class="form-select" required>
+          <option value="">Select category...</option>
+          <option>Presale — transaction failed</option>
+          <option>Presale — didn't receive PHN</option>
+          <option>Staking — can't connect wallet</option>
+          <option>Staking — rewards not showing</option>
+          <option>Node — setup issue</option>
+          <option>Node — identity verification failed</option>
+          <option>Exchange — swap failed</option>
+          <option>Token — not showing in wallet</option>
+          <option>Security — report a scam</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label class="form-label">Wallet Address (optional)</label>
+        <input class="form-input" type="text" placeholder="0x..." />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Transaction Hash (if applicable)</label>
+        <input class="form-input" type="text" placeholder="0x..." />
+      </div>
+      <div class="form-row">
+        <label class="form-label">Describe Your Issue</label>
+        <textarea class="form-textarea" placeholder="Please describe what happened, what you expected, and any error messages you saw..." required></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Submit Ticket →</button>
+      <p class="submit-note">Note: We respond via the contact method you provided. Never share your seed phrase with anyone — including us.</p>
+    </form>
+    <div id="ticketSuccess" style="display:none;background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);border-radius:8px;padding:16px 20px;color:var(--green);font-size:14px;margin-top:16px">
+      ✅ Ticket submitted! We'll respond within 24–48 hours.
+    </div>
+  </div>
+
+  <!-- DOCS -->
+  <h2>Documentation</h2>
+  <div class="docs-grid">
+    <a href="verify.html" class="doc-card">
+      <div class="doc-icon">🔍</div>
+      <div class="doc-title">Token Verification</div>
+      <div class="doc-desc">How to verify the PHN contract and check trust signals</div>
+    </a>
+    <a href="vesting.html" class="doc-card">
+      <div class="doc-icon">📅</div>
+      <div class="doc-title">Vesting Schedule</div>
+      <div class="doc-desc">Founder allocation, 24-month linear unlock details</div>
+    </a>
+    <a href="staking.html" class="doc-card">
+      <div class="doc-icon">⚡</div>
+      <div class="doc-title">Staking Guide</div>
+      <div class="doc-desc">FLEX / LOCKED / VAULT tiers and how APY accrues</div>
+    </a>
+    <a href="activate-node.html" class="doc-card">
+      <div class="doc-icon">🖥️</div>
+      <div class="doc-title">Node Setup Guide</div>
+      <div class="doc-desc">Run a node and earn PHN heartbeat rewards</div>
+    </a>
+    <a href="developers.html" class="doc-card">
+      <div class="doc-icon">🛠️</div>
+      <div class="doc-title">Developer Docs</div>
+      <div class="doc-desc">Contract addresses, ABIs, and integration guides</div>
+    </a>
+    <a href="https://bscscan.com/token/0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B" target="_blank" class="doc-card">
+      <div class="doc-icon">🔗</div>
+      <div class="doc-title">BscScan</div>
+      <div class="doc-desc">Live on-chain contract data and transactions</div>
+    </a>
+  </div>
+
+</div>
+
+<script>
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+function submitTicket(e) {
+  e.preventDefault();
+  // In production, POST to a form handler (Netlify Forms, Formspree, etc.)
+  // Netlify automatically handles forms with netlify attribute
+  document.getElementById('ticketForm').style.display = 'none';
+  document.getElementById('ticketSuccess').style.display = 'block';
+}
+
+// Open first FAQ by default
+document.querySelector('.faq-item')?.classList.add('open');
+</script>
+</body>
+</html>
