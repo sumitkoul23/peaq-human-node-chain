@@ -1,7 +1,10 @@
 {
+  "site": {
+    "name": "peaqhumannode"
+  },
   "ci": {
     "buildCommand": "",
-    "distDir": "dist",
+    "distDir": "web3-dist",
     "dockerImage": "node:18"
   }
 }

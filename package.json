@@ -9,7 +9,8 @@
                     "deploy:bsc-testnet":  "hardhat run scripts/deploy.js --network bscTestnet",
                     "deploy:bsc":  "hardhat run scripts/deploy.js --network bsc",
                     "deploy:peaq":  "hardhat run scripts/deploy.js --network peaq",
-                    "phn-node":  "node cli/phn-node.js"
+                    "phn-node":  "node cli/phn-node.js",
+                    "web3:build":  "node scripts/buildWeb3Site.js"
                 },
     "devDependencies":  {
                             "@nomicfoundation/hardhat-toolbox":  "^5.0.0",
