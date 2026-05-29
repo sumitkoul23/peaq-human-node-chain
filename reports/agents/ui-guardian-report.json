@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-28T23:25:50.536Z",
+  "generatedAt": "2026-05-29T03:06:46.416Z",
   "viewports": [
     {
       "name": "mobile-small",
@@ -37,6 +37,10 @@
     },
     {
       "page": "auth.html",
+      "findings": []
+    },
+    {
+      "page": "burn.html",
       "findings": []
     },
     {

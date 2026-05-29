@@ -1,9 +1,10 @@
-const PHN_CACHE = "phn-beacon-v9";
+const PHN_CACHE = "phn-beacon-v11";
 const PHN_ASSETS = [
   "./",
   "./index.html",
   "./buy.html",
   "./staking.html",
+  "./burn.html",
   "./exchange.html",
   "./wallet.html",
   "./activate-node.html",

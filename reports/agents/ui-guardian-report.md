@@ -1,6 +1,6 @@
 # PHN UI Guardian Report
 
-Generated: 2026-05-28T23:25:50.536Z
+Generated: 2026-05-29T03:06:46.416Z
 
 ## Viewports Covered
 - mobile-small: 360x740
@@ -13,6 +13,7 @@ Generated: 2026-05-28T23:25:50.536Z
 - OK: achievements.html
 - OK: activate-node.html
 - OK: auth.html
+- OK: burn.html
 - OK: buy.html
 - OK: dashboard/index.html
 - OK: developers.html

@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHN Burn Protocol | Peaq Human Node</title>
+<meta name="description" content="PHN burn protocol page explaining the 0.25% token burn, 1.75% treasury routing, and fixed-supply mechanics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260529-light3">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0b1f33">
+<script defer src="phn-app.js?v=20260529-light3"></script>
+<style>
+:root {
+  --b-bg: #f7fbff;
+  --b-card: #ffffff;
+  --b-soft: #eef6fb;
+  --b-line: #d9e7f2;
+  --b-text: #0b1f33;
+  --b-muted: #60758a;
+  --b-cyan: #008fb3;
+  --b-green: #00a978;
+  --b-red: #d63d54;
+  --b-amber: #b87900;
+  --b-shadow: 0 22px 70px rgba(20, 45, 70, .10);
+  --b-radius: 10px;
+  --b-mono: "DM Mono", monospace;
+}
+* { box-sizing: border-box; }
+body.burn-page {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--b-bg);
+  color: var(--b-text);
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+button, input { font: inherit; }
+a { color: inherit; }
+.burn-nav {
+  position: sticky;
+  top: 0;
+  z-index: 70;
+  border-bottom: 1px solid var(--b-line);
+  background: rgba(247, 251, 255, .9);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 34px rgba(20,45,70,.06);
+}
+.burn-nav-inner {
+  width: min(1180px, calc(100% - 32px));
+  min-height: 74px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+.nav-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--b-text);
+  font-weight: 900;
+}
+.nav-logo img {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  border: 1px solid var(--b-line);
+  background: #fff;
+}
+.phn-brand-stack {
+  height: 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  line-height: .88;
+  font-size: 13px;
+  font-weight: 900;
+}
+.top-links { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+.top-links a { color: var(--b-muted); text-decoration: none; font-size: 12px; font-weight: 800; }
+.top-links a.active, .top-links a:hover { color: var(--b-cyan); }
+.btn {
+  min-height: 42px;
+  border: 1px solid var(--b-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--b-text);
+  padding: 11px 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 850;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn.primary { background: var(--b-text); border-color: var(--b-text); color: #fff; }
+.shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(340px, .78fr);
+  gap: clamp(24px, 4vw, 44px);
+  align-items: start;
+  padding: clamp(46px, 7vw, 84px) 0 28px;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid #ffd1d9;
+  border-radius: 999px;
+  background: #fff1f4;
+  color: var(--b-red);
+  padding: 7px 12px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.eyebrow-dot { width: 8px; height: 8px; border-radius: 999px; background: var(--b-red); box-shadow: 0 0 0 5px rgba(214,61,84,.12); }
+.hero h1 {
+  margin: 18px 0 16px;
+  max-width: 760px;
+  font-size: clamp(44px, 7vw, 80px);
+  line-height: .94;
+  letter-spacing: 0;
+  font-weight: 950;
+}
+.hero p { margin: 0; max-width: 660px; color: var(--b-muted); font-size: clamp(16px, 2vw, 19px); line-height: 1.7; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+.card, .calc-card, .panel {
+  border: 1px solid var(--b-line);
+  border-radius: var(--b-radius);
+  background: var(--b-card);
+  box-shadow: var(--b-shadow);
+}
+.calc-card { padding: 24px; }
+.calc-card h2 { margin: 0 0 14px; font-size: 24px; letter-spacing: 0; }
+.input-box {
+  border: 1px solid var(--b-line);
+  border-radius: 10px;
+  background: #fff;
+  padding: 14px;
+  margin: 14px 0;
+}
+.input-label { color: var(--b-muted); font-family: var(--b-mono); font-size: 11px; text-transform: uppercase; margin-bottom: 8px; }
+#grossInput {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--b-text);
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 900;
+}
+.quote {
+  display: grid;
+  gap: 8px;
+  border: 1px solid var(--b-line);
+  border-radius: 10px;
+  background: var(--b-soft);
+  padding: 14px;
+}
+.quote-row { display: flex; justify-content: space-between; gap: 12px; font-family: var(--b-mono); font-size: 12px; }
+.quote-row span:first-child { color: var(--b-muted); }
+.quote-row strong.red { color: var(--b-red); }
+.quote-row strong.amber { color: var(--b-amber); }
+.quote-row strong.green { color: var(--b-green); }
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-top: 22px;
+}
+.metric { padding: 16px; border: 1px solid var(--b-line); border-radius: 8px; background: var(--b-soft); }
+.metric strong { display: block; font-size: 26px; line-height: 1; font-weight: 950; }
+.metric span { display: block; margin-top: 8px; color: var(--b-muted); font-family: var(--b-mono); font-size: 10px; text-transform: uppercase; }
+.section { padding: 22px 0; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.panel { padding: 22px; }
+.panel h2, .panel h3 { margin: 0 0 12px; letter-spacing: 0; }
+.panel p, .panel li { color: var(--b-muted); line-height: 1.65; }
+.panel ul { margin: 0; padding-left: 18px; }
+.flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.flow-step {
+  border: 1px solid var(--b-line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 16px;
+}
+.flow-step small { color: var(--b-cyan); font-family: var(--b-mono); font-weight: 900; }
+.flow-step strong { display: block; margin: 8px 0 4px; }
+.code-box {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 14px;
+  border: 1px solid var(--b-line);
+  border-radius: 8px;
+  background: var(--b-soft);
+  padding: 12px;
+}
+.code-box code { min-width: 0; flex: 1; color: var(--b-cyan); font-family: var(--b-mono); font-size: 12px; overflow-wrap: anywhere; }
+.mini-btn { border: 1px solid var(--b-line); border-radius: 7px; background: #fff; min-height: 34px; padding: 7px 10px; font-weight: 850; cursor: pointer; }
+.burn-footer { border-top: 1px solid var(--b-line); margin-top: 48px; padding: 28px 0; color: var(--b-muted); font-size: 13px; }
+.burn-footer .shell { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+@media (max-width: 980px) {
+  .top-links { display: none; }
+  .hero, .grid, .flow { grid-template-columns: 1fr; }
+  .metric-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .burn-nav-inner, .shell { width: min(100% - 24px, 1180px); }
+  .nav-logo img { width: 38px; height: 38px; }
+  .phn-brand-stack { height: 38px; font-size: 11px; }
+  .hero h1 { font-size: clamp(40px, 12vw, 54px); }
+  .hero-actions { display: grid; grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body class="burn-page">
+<header class="burn-nav">
+  <div class="burn-nav-inner">
+    <a class="nav-logo" href="index.html" aria-label="Peaq Human Node">
+      <img src="assets/phn-logo-minimal.svg" alt="PHN">
+      <span class="phn-brand-stack"><span>Peaq</span><span>Human</span><span>Node</span></span>
+    </a>
+    <nav class="top-links" aria-label="Primary">
+      <a href="buy.html">Buy</a>
+      <a href="staking.html">Stake</a>
+      <a class="active" href="burn.html">Burn</a>
+      <a href="wallet.html">Wallet</a>
+      <a href="verify.html">Verify</a>
+    </nav>
+    <a class="btn primary" href="buy.html">Buy PHN</a>
+  </div>
+</header>
+
+<main>
+  <section class="shell hero">
+    <div>
+      <div class="eyebrow"><span class="eyebrow-dot"></span> Burn protocol</div>
+      <h1>Every official purchase removes PHN from circulation.</h1>
+      <p>The PHN sale route applies a 2% token-side fee. From that fee, 0.25% of gross PHN is burned permanently and 1.75% routes to treasury operations. Buyers receive the remaining 98%.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="buy.html">Open presale</a>
+        <a class="btn" href="verify.html">Verify token</a>
+        <a class="btn" href="staking.html">Stake PHN</a>
+      </div>
+      <div class="metric-grid">
+        <div class="metric"><strong>0.25%</strong><span>Burned per purchase</span></div>
+        <div class="metric"><strong>1.75%</strong><span>Treasury route</span></div>
+        <div class="metric"><strong>98%</strong><span>Net to buyer</span></div>
+      </div>
+    </div>
+    <aside class="calc-card">
+      <h2>Burn calculator</h2>
+      <p style="color:var(--b-muted);line-height:1.6;margin:0">Enter the gross PHN amount calculated before fees.</p>
+      <div class="input-box">
+        <div class="input-label">Gross PHN</div>
+        <input id="grossInput" type="number" min="0" step="1" value="10000" oninput="updateBurnCalc()" aria-label="Gross PHN amount">
+      </div>
+      <div class="quote">
+        <div class="quote-row"><span>Burned 0.25%</span><strong class="red" id="burnOut">25.00 PHN</strong></div>
+        <div class="quote-row"><span>Treasury 1.75%</span><strong class="amber" id="treasuryOut">175.00 PHN</strong></div>
+        <div class="quote-row"><span>Net to buyer 98%</span><strong class="green" id="netOut">9,800.00 PHN</strong></div>
+      </div>
+      <div class="code-box">
+        <code id="tokenAddress">0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code>
+        <button class="mini-btn" type="button" onclick="copyBurnText('tokenAddress', this)">Copy</button>
+      </div>
+    </aside>
+  </section>
+
+  <section class="shell section">
+    <div class="flow">
+      <div class="flow-step"><small>01</small><strong>User buys PHN</strong><span>Presale or official exchange route calculates gross PHN.</span></div>
+      <div class="flow-step"><small>02</small><strong>Fee split applies</strong><span>2% total PHN-side fee is separated before delivery.</span></div>
+      <div class="flow-step"><small>03</small><strong>Burn executes</strong><span>0.25% is permanently removed through ERC20Burnable burn().</span></div>
+      <div class="flow-step"><small>04</small><strong>Net PHN delivered</strong><span>98% of calculated PHN is delivered to the buyer wallet.</span></div>
+    </div>
+  </section>
+
+  <section class="shell section grid">
+    <article class="panel">
+      <h2>Why burn?</h2>
+      <p>The burn mechanism creates a transparent supply sink linked to real protocol activity. It is small enough to keep purchase pricing readable and large enough to be visible over many transactions.</p>
+    </article>
+    <article class="panel">
+      <h2>What gets burned?</h2>
+      <p>The burn is based on gross PHN output, not the payment currency. If a purchase calculates 10,000 PHN before fees, 25 PHN is burned and 9,800 PHN goes to the buyer.</p>
+    </article>
+    <article class="panel">
+      <h2>What is not automated?</h2>
+      <p>We do not execute wallet transactions without explicit user confirmation. All burns tied to purchases must be performed by deployed contracts and visible on-chain.</p>
+    </article>
+  </section>
+
+  <section class="shell section">
+    <div class="panel">
+      <h2>Implementation notes</h2>
+      <ul>
+        <li>PHN token uses ERC20Burnable, so burn() permanently reduces token balance and total supply accounting.</li>
+        <li>The presale contract computes BURN_BPS = 25, TREASURY_BPS = 175, FEE_BPS = 200 over a 10,000 BPS denominator.</li>
+        <li>The burn page is informational and calculator-based. The actual burn must be verified through transaction logs and explorer data.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="burn-footer">
+  <div class="shell">
+    <span>2026 Skymetric Consulting LLP - Peaq Human Node</span>
+    <span>Verify the official contract before interacting with any token route.</span>
+  </div>
+</footer>
+
+<script>
+function fmtBurn(n) {
+  if (!Number.isFinite(n)) return "0.00";
+  return n.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+function updateBurnCalc() {
+  const gross = Number(document.getElementById("grossInput").value || 0);
+  document.getElementById("burnOut").textContent = fmtBurn(gross * 0.0025) + " PHN";
+  document.getElementById("treasuryOut").textContent = fmtBurn(gross * 0.0175) + " PHN";
+  document.getElementById("netOut").textContent = fmtBurn(gross * 0.98) + " PHN";
+}
+async function copyBurnText(id, button) {
+  await navigator.clipboard.writeText(document.getElementById(id).textContent.trim());
+  const old = button.textContent;
+  button.textContent = "Copied";
+  setTimeout(() => { button.textContent = old; }, 1200);
+}
+window.updateBurnCalc = updateBurnCalc;
+window.copyBurnText = copyBurnText;
+window.addEventListener("load", updateBurnCalc);
+</script>
+</body>
+</html>

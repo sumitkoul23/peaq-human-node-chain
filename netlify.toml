@@ -16,6 +16,11 @@
   status = 200
 
 [[redirects]]
+  from = "/burn"
+  to = "/burn.html"
+  status = 200
+
+[[redirects]]
   from = "/exchange"
   to = "/exchange.html"
   status = 200

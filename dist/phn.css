@@ -14,7 +14,7 @@
   --red: #d63d54;
   --shadow: 0 20px 58px rgba(20, 45, 70, 0.10);
   --radius: 8px;
-  --font-display: "Syne", "Inter", system-ui, sans-serif;
+  --font-display: "Inter", "Segoe UI", system-ui, sans-serif;
   --font-body: "Inter", "Segoe UI", system-ui, sans-serif;
   --font-mono: "DM Mono", "SFMono-Regular", Consolas, monospace;
 }

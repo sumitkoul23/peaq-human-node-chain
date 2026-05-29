@@ -206,32 +206,114 @@ npm run phn-node -- registration-payload`;
     setStatus("#authStatus", "Email/password needs a hosted auth backend before launch. Wallet sign-in is ready now; email auth is staged for Supabase or Firebase free tier.", "warn");
   }
 
-  function installQuickHub() {
-    if (document.querySelector(".phn-topbar") || document.querySelector(".phn-quick-hub")) return;
+  function installSideBreadcrumbPanel() {
+    if (document.body.classList.contains("buy-page") || document.querySelector(".phn-side-nav-panel")) return;
+    const items = [
+      ["index.html", "Home"],
+      ["buy.html", "Buy"],
+      ["staking.html", "Stake"],
+      ["burn.html", "Burn"],
+      ["activate-node.html", "Run Node"],
+      ["wallet.html", "Wallet"],
+      ["vesting.html", "Vesting"],
+      ["roadmap.html", "Roadmap"],
+      ["support.html", "Support"]
+    ];
+    const currentFile = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+    const current = items.find(([href]) => href.toLowerCase() === currentFile) || ["index.html", document.title.split("|")[0].trim() || "PHN"];
     const style = document.createElement("style");
     style.textContent = `
-      .phn-quick-hub{position:fixed;left:16px;right:16px;bottom:16px;z-index:9999;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;padding:10px;border:1px solid rgba(0,229,255,.2);border-radius:8px;background:rgba(3,5,8,.88);backdrop-filter:blur(18px);box-shadow:0 18px 60px rgba(0,0,0,.35)}
-      .phn-quick-hub a,.phn-quick-hub button{border:1px solid rgba(0,229,255,.18);background:rgba(0,229,255,.08);color:#e8f0fe;border-radius:6px;padding:8px 10px;font:700 11px Inter,Segoe UI,sans-serif;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;cursor:pointer}
-      .phn-quick-hub a.primary{background:#00e5ff;color:#030508;border-color:#00e5ff}
-      @media(max-width:720px){.phn-quick-hub{left:8px;right:8px;bottom:8px;max-height:38vh;overflow:auto}.phn-quick-hub a,.phn-quick-hub button{font-size:10px;padding:7px 8px}}
+      .phn-side-nav-panel{
+        position:sticky;
+        top:74px;
+        z-index:55;
+        width:min(1180px,calc(100% - 32px));
+        margin:10px auto 0;
+        display:grid;
+        grid-template-columns:auto minmax(0,1fr) auto;
+        align-items:center;
+        gap:12px;
+        padding:10px;
+        border:1px solid #d9e7f2;
+        border-radius:10px;
+        background:rgba(255,255,255,.94);
+        backdrop-filter:blur(18px);
+        box-shadow:0 18px 50px rgba(20,45,70,.10);
+      }
+      .phn-breadcrumb{
+        display:inline-flex;
+        align-items:center;
+        gap:7px;
+        min-width:max-content;
+        color:#60758a;
+        font:700 11px Inter,Segoe UI,sans-serif;
+      }
+      .phn-breadcrumb a{color:#008fb3;text-decoration:none}
+      .phn-breadcrumb strong{color:#0b1f33;font-weight:850}
+      .phn-side-nav-panel nav{
+        display:flex;
+        align-items:center;
+        gap:6px;
+        min-width:0;
+        overflow:auto;
+        scrollbar-width:none;
+      }
+      .phn-side-nav-panel nav::-webkit-scrollbar{display:none}
+      .phn-side-nav-panel a,.phn-side-nav-panel button{
+        border:1px solid #d9e7f2;
+        background:#fff;
+        color:#0b1f33;
+        border-radius:8px;
+        padding:8px 10px;
+        font:800 11px Inter,Segoe UI,sans-serif;
+        letter-spacing:0;
+        text-decoration:none;
+        cursor:pointer;
+        white-space:nowrap;
+      }
+      .phn-side-nav-panel a.active{background:#0b1f33;color:#fff;border-color:#0b1f33}
+      .phn-side-nav-panel button{color:#008fb3}
+      @media(min-width:1500px){
+        .phn-side-nav-panel{
+          position:fixed;
+          top:96px;
+          left:18px;
+          width:210px;
+          display:block;
+          margin:0;
+          padding:14px;
+        }
+        .phn-breadcrumb{display:flex;margin-bottom:12px;flex-wrap:wrap;line-height:1.45}
+        .phn-side-nav-panel nav{display:grid;gap:7px;overflow:visible}
+        .phn-side-nav-panel a,.phn-side-nav-panel button{width:100%;justify-content:flex-start;text-align:left}
+        .phn-side-nav-panel button{text-align:center}
+      }
+      @media(max-width:720px){
+        .phn-side-nav-panel{
+          top:66px;
+          width:min(100% - 20px,1180px);
+          grid-template-columns:1fr;
+          gap:8px;
+          padding:9px;
+        }
+        .phn-breadcrumb{font-size:10px}
+        .phn-side-nav-panel a,.phn-side-nav-panel button{font-size:10px;padding:7px 9px}
+      }
     `;
     document.head.appendChild(style);
-    const hub = document.createElement("div");
-    hub.className = "phn-quick-hub";
-    hub.innerHTML = `
-      <a href="index.html">Home</a>
-      <a class="primary" href="buy.html">Buy</a>
-      <a href="staking.html">Stake</a>
-      <a href="activate-node.html">Run Node</a>
-      <a href="wallet.html">Wallet</a>
-      <a href="download.html">Download</a>
-      <a href="vesting.html">Vesting</a>
-      <a href="roadmap.html">Roadmap</a>
-      <a href="achievements.html">Achievements</a>
-      <a href="support.html">Support</a>
+    const panel = document.createElement("aside");
+    panel.className = "phn-side-nav-panel";
+    panel.setAttribute("aria-label", "Breadcrumb and page navigation");
+    panel.innerHTML = `
+      <div class="phn-breadcrumb"><a href="index.html">PHN</a><span>/</span><strong>${current[1]}</strong></div>
+      <nav>
+        ${items.map(([href, label]) => `<a href="${href}" class="${href.toLowerCase() === currentFile ? "active" : ""}">${label}</a>`).join("")}
+      </nav>
       <button type="button" onclick="connectPhnWallet()">Connect</button>
     `;
-    document.body.appendChild(hub);
+    const anchor = document.querySelector(".phn-topbar, .staking-nav, .burn-nav, .buy-nav, body > nav, header");
+    if (anchor && anchor.parentNode) anchor.insertAdjacentElement("afterend", panel);
+    else document.body.prepend(panel);
   }
 
   function normalizeLegacyShell() {
@@ -323,7 +405,12 @@ npm run phn-node -- registration-payload`;
         --purple:#6b5bd6!important;
         --red:#d63d54!important;
       }
-      html,body{background:#f7fbff!important;color:#0b1f33!important}
+      html,body{
+        background:#f7fbff!important;
+        color:#0b1f33!important;
+        font-family:Inter,"Segoe UI",system-ui,sans-serif!important;
+        font-style:normal!important;
+      }
       body::before,.grid-bg,.hero-orb,.hero-orb-2{opacity:0!important;display:none!important}
       nav,.phn-topbar{
         background:rgba(247,251,255,.86)!important;
@@ -331,8 +418,9 @@ npm run phn-node -- registration-payload`;
         box-shadow:0 10px 34px rgba(20,45,70,.06)!important;
         backdrop-filter:blur(18px)!important;
       }
-      .nav-logo,.phn-brand{color:#0b1f33!important;letter-spacing:0!important}
+      .nav-logo,.phn-brand{color:#0b1f33!important;letter-spacing:0!important;font-family:Inter,"Segoe UI",system-ui,sans-serif!important;font-style:normal!important}
       .nav-logo span,.phn-brand span{color:#0b1f33!important}
+      .phn-brand-stack,.phn-brand-stack span{font-family:Inter,"Segoe UI",system-ui,sans-serif!important;font-style:normal!important;letter-spacing:0!important;transform:none!important}
       .phn-legacy-logo-img,.phn-brand img,.nav-logo img{
         background:#fff!important;
         border:1px solid #d9e7f2!important;
@@ -354,6 +442,11 @@ npm run phn-node -- registration-payload`;
         border-radius:8px!important;
         box-shadow:none!important;
       }
+      .btn-primary,.btn-secondary,.nav-cta,.btn-connect,.btn-buy,.btn-stake,.connect-btn,.btn-send,.btn-submit,.copy-btn,.max-btn,.slip-btn,.cur-tab,button,input,select,textarea{
+        font-family:Inter,"Segoe UI",system-ui,sans-serif!important;
+        font-style:normal!important;
+        letter-spacing:0!important;
+      }
       .btn-primary:hover,.btn-secondary:hover,.phn-btn:hover,.nav-cta:hover{
         transform:translateY(-1px)!important;
         box-shadow:0 16px 34px rgba(0,143,179,.12)!important;
@@ -369,7 +462,14 @@ npm run phn-node -- registration-payload`;
       }
       .h1-accent,.section-label,.phn-label,.price-val,.live-price,.up{color:#008fb3!important}
       .h1-line2,.hero-desc,.section-desc,.page-desc,.phn-lead,p,li{color:#60758a}
-      h1,h2,h3,.phn-title,.stat-value,.phn-stat,.raise-val,.val,.v,.contract-val{color:#0b1f33!important;letter-spacing:0!important}
+      h1,h2,h3,h4,.phn-title,.stat-value,.phn-stat,.raise-val,.val,.v,.contract-val,.tier-apy,.tier-name{
+        color:#0b1f33!important;
+        font-family:Inter,"Segoe UI",system-ui,sans-serif!important;
+        font-style:normal!important;
+        letter-spacing:0!important;
+        transform:none!important;
+      }
+      .tier-apy span{letter-spacing:0!important;font-style:normal!important}
       .ticker,.listing,.tokenomics,.exchange,.how,.features,.cta-section,footer,.phn-footer{
         background:#f7fbff!important;
         border-color:#d9e7f2!important;
@@ -392,17 +492,17 @@ npm run phn-node -- registration-payload`;
         border-color:#d9e7f2!important;
       }
       .progress-bar,.pool-bar,.burn-bar{background:linear-gradient(90deg,#008fb3,#00a978)!important}
-      .phn-quick-hub{
+      .phn-side-nav-panel{
         background:rgba(255,255,255,.92)!important;
         border-color:#d9e7f2!important;
         box-shadow:0 18px 50px rgba(20,45,70,.14)!important;
       }
-      .phn-quick-hub a,.phn-quick-hub button{
+      .phn-side-nav-panel a,.phn-side-nav-panel button{
         background:#fff!important;
         color:#0b1f33!important;
         border-color:#d9e7f2!important;
       }
-      .phn-quick-hub a.primary{background:#0b1f33!important;color:#fff!important;border-color:#0b1f33!important}
+      .phn-side-nav-panel a.active{background:#0b1f33!important;color:#fff!important;border-color:#0b1f33!important}
     `;
     document.head.appendChild(style);
   }
@@ -427,7 +527,7 @@ npm run phn-node -- registration-payload`;
     registerServiceWorker();
     normalizeLegacyShell();
     applyLightMinimalTheme();
-    installQuickHub();
+    installSideBreadcrumbPanel();
     document.querySelectorAll("[data-copy]").forEach((el) => {
       el.addEventListener("click", () => copyText(el.getAttribute("data-copy"), el.getAttribute("data-status")));
     });
