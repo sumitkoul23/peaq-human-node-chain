@@ -1,4 +1,4 @@
-const PHN_CACHE = "phn-beacon-v11";
+const PHN_CACHE = "phn-beacon-v12";
 const PHN_ASSETS = [
   "./",
   "./index.html",
