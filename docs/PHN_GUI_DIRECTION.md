@@ -84,7 +84,7 @@ Whitepaper:
 
 - Must be reviewer-ready and linked from all important paths.
 
-## Stitch Prompt
+## Stitch Prompt - Desktop Web App / Website
 
 ```text
 Design a complete responsive web3 product interface for Peaq Human Node ($PHN), a peaq-first verified-human DePIN protocol by Skymetric Consulting LLP.
@@ -120,4 +120,75 @@ First viewport:
 - Buttons: Open Presale, Run Node, Verify Contracts
 
 Create desktop, tablet and mobile layouts. Mobile buttons must be full-width, text must not overlap, and cards should stack cleanly. The site must feel credible enough for Subscan, DePINscan, CoinSniper, CoinPaprika and DappBay reviewers.
+```
+
+## Stitch Prompt - Native Mobile App / Mobile Site
+
+```text
+Design a native mobile app experience for Peaq Human Node ($PHN), a peaq-first verified-human DePIN protocol by Skymetric Consulting LLP.
+
+The mobile app should feel like a premium crypto companion app inspired by Katana Network, Aster DEX, BlockDAG presale, peaq.xyz and Teneo node infrastructure, without copying any exact layout.
+
+Style:
+- Light futuristic app UI
+- White and pale blue surfaces
+- Thin cyan/green grid or network texture
+- Crisp cards with 8px radius
+- Bottom tab navigation
+- Clear wallet and presale actions
+- Inter-style typography
+- No skewed text
+- No clutter
+- Full-width touch buttons
+
+Primary app tabs:
+1. Home
+2. Buy
+3. Stake
+4. Node
+5. Wallet
+
+Home screen:
+- PHN stacked logo wordmark: Peaq / Human / Node
+- Status cards: Presale $0.02, Next epoch $0.05, Burn 0.25%, Staking up to 25% APY
+- Main actions: Buy PHN, Run Node, Verify Contracts
+- Small trust strip: Skymetric Consulting LLP, peaq Mainnet, contract verified pending/listing pending
+
+Buy screen:
+- Presale price card
+- Enter amount
+- Currency tabs: PEAQ, USDC, BNB soon, ETH/BTC future
+- Fee breakdown: 98% buyer, 0.25% burn, 1.75% treasury
+- Large confirm button
+
+Stake screen:
+- Three staking tiers: Flex 8%, Locked 15%, Vault 25%
+- Stake amount input
+- Reward estimate
+- Active stakes list
+
+Node screen:
+- Node activation steps
+- Wallet binding
+- peaq DID status
+- Generate node setup command
+- Download PHN Beacon app
+
+Wallet screen:
+- Connect MetaMask, Binance Wallet, WalletConnect
+- Add peaq Mainnet
+- Add PHN token
+- Show contract address and copy button
+
+Design 8 mobile screens total:
+- Splash
+- Home
+- Buy
+- Stake
+- Burn
+- Node
+- Wallet
+- Support
+
+Use Android/iOS-friendly spacing, 44px minimum tap targets, safe-area padding, readable 14-18px body text, and single-column layouts. This should be ready to hand to a developer building a PWA/mobile app shell.
 ```
