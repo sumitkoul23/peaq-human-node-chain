@@ -1,6 +1,6 @@
 # PHN UI Guardian Report
 
-Generated: 2026-05-29T11:58:54.330Z
+Generated: 2026-06-02T18:01:22.483Z
 
 ## Viewports Covered
 - mobile-small: 360x740

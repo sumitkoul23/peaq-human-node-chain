@@ -216,6 +216,7 @@ npm run phn-node -- registration-payload`;
       ["activate-node.html", "Run Node"],
       ["wallet.html", "Wallet"],
       ["vesting.html", "Vesting"],
+      ["whitepaper.html", "Whitepaper"],
       ["roadmap.html", "Roadmap"],
       ["support.html", "Support"]
     ];

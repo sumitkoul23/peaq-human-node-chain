@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PHN Whitepaper | Peaq Human Node</title>
+<meta name="description" content="Peaq Human Node whitepaper covering PHN token design, verified-human DePIN node activation, presale, staking, burn routing, vesting and roadmap.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="phn.css?v=20260602-v3">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#f7fbff">
+<script defer src="phn-app.js?v=20260602-v3"></script>
+<style>
+body.whitepaper-page {
+  margin: 0;
+  min-height: 100vh;
+  background: #f7fbff;
+  color: #0b1f33;
+  font-family: "Inter", system-ui, sans-serif;
+}
+.wp-shell { width: min(1040px, calc(100% - 32px)); margin: 0 auto; }
+.wp-hero { padding: clamp(44px, 7vw, 82px) 0 28px; }
+.wp-kicker {
+  display: inline-flex;
+  border: 1px solid #c7edf5;
+  border-radius: 999px;
+  background: #eef9fc;
+  color: #008fb3;
+  padding: 8px 12px;
+  font: 700 11px "DM Mono", monospace;
+  text-transform: uppercase;
+}
+.wp-hero h1 {
+  margin: 18px 0 14px;
+  max-width: 850px;
+  font-size: clamp(38px, 6vw, 72px);
+  line-height: .98;
+  letter-spacing: 0;
+}
+.wp-hero p { max-width: 780px; color: #60758a; font-size: 18px; line-height: 1.7; }
+.wp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
+.wp-btn {
+  min-height: 42px;
+  border: 1px solid #d9e7f2;
+  border-radius: 8px;
+  background: #fff;
+  color: #0b1f33;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 850;
+  font-size: 13px;
+}
+.wp-btn.primary { background: #0b1f33; border-color: #0b1f33; color: #fff; }
+.wp-card {
+  border: 1px solid #d9e7f2;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 16px 42px rgba(20,45,70,.07);
+  padding: clamp(18px, 3vw, 30px);
+  margin: 16px 0;
+}
+.wp-card h2 { margin: 0 0 12px; font-size: clamp(24px, 3vw, 36px); }
+.wp-card h3 { margin: 22px 0 8px; font-size: 20px; }
+.wp-card p,
+.wp-card li { color: #60758a; line-height: 1.68; }
+.wp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.wp-stat {
+  border: 1px solid #d9e7f2;
+  border-radius: 8px;
+  background: #f7fbff;
+  padding: 14px;
+}
+.wp-stat small {
+  display: block;
+  color: #60758a;
+  font: 700 10px "DM Mono", monospace;
+  text-transform: uppercase;
+}
+.wp-stat strong { display: block; margin-top: 6px; font-size: 24px; }
+.wp-table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 8px; }
+.wp-table th,
+.wp-table td {
+  border: 1px solid #d9e7f2;
+  padding: 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.wp-table th { background: #eef6fb; color: #0b1f33; }
+.wp-table td { color: #60758a; }
+.wp-code {
+  display: block;
+  border: 1px solid #d9e7f2;
+  border-radius: 8px;
+  background: #f1f7fb;
+  color: #006f8d;
+  padding: 12px;
+  font: 12px "DM Mono", monospace;
+  overflow-wrap: anywhere;
+}
+@media (max-width: 780px) {
+  .wp-grid { grid-template-columns: 1fr; }
+  .wp-actions { display: grid; }
+  .wp-btn { width: 100%; }
+  .wp-table { display: block; overflow-x: auto; }
+}
+</style>
+</head>
+<body class="whitepaper-page">
+<header class="phn-topbar">
+  <nav class="phn-nav">
+    <a class="phn-brand" href="index.html">
+      <img src="assets/phn-logo-minimal.svg" alt="PHN">
+      <span class="phn-brand-stack"><span>Peaq</span><span>Human</span><span>Node</span></span>
+    </a>
+    <div class="phn-links">
+      <a href="index.html">Home</a>
+      <a href="buy.html">Buy</a>
+      <a href="staking.html">Stake</a>
+      <a href="burn.html">Burn</a>
+      <a class="active" href="whitepaper.html">Whitepaper</a>
+    </div>
+    <div class="phn-actions">
+      <button class="phn-btn" type="button" onclick="connectPhnWallet(null, '#wpStatus')">Connect</button>
+      <a class="phn-btn primary" href="buy.html">Buy PHN</a>
+    </div>
+    <button class="phn-menu" type="button" onclick="togglePhnMenu()">Menu</button>
+  </nav>
+</header>
+
+<main class="wp-shell">
+  <section class="wp-hero">
+    <span class="wp-kicker">Whitepaper v1.0 - June 2026</span>
+    <h1>Peaq Human Node protocol and PHN token paper.</h1>
+    <p>PHN is a peaq-first verified-human DePIN protocol by Skymetric Consulting LLP. The project combines wallet identity, machine participation, staking, burn routing and future utility layers into one launch stack.</p>
+    <div class="wp-actions">
+      <a class="wp-btn primary" href="buy.html">Open presale</a>
+      <a class="wp-btn" href="vesting.html">View vesting</a>
+      <a class="wp-btn" href="verify.html">Verify contracts</a>
+    </div>
+    <p id="wpStatus" data-wallet-status></p>
+  </section>
+
+  <section class="wp-card">
+    <h2>Executive summary</h2>
+    <p>Peaq Human Node (PHN) is designed to reward verified human-operated nodes. The protocol is peaq-first, with BNB Smart Chain support for token liquidity and future expansion to additional EVM chains only after the peaq user experience, sale flow and staking stack are stable.</p>
+    <div class="wp-grid">
+      <div class="wp-stat"><small>Total supply</small><strong>100M PHN</strong></div>
+      <div class="wp-stat"><small>Presale start</small><strong>$0.02</strong></div>
+      <div class="wp-stat"><small>Burn route</small><strong>0.25%</strong></div>
+    </div>
+  </section>
+
+  <section class="wp-card">
+    <h2>Problem</h2>
+    <p>DePIN networks need active machines and real operators, but early token systems often reward wallets before they prove useful participation. PHN approaches this by centering identity-gated node participation, peaq DID alignment and transparent on-site token flows.</p>
+  </section>
+
+  <section class="wp-card">
+    <h2>Protocol model</h2>
+    <h3>Verified-human node activation</h3>
+    <p>The node flow is designed around three gates: machine fingerprint, human attestation and peaq DID binding. The current website prepares wallet, DID and node command workflows; deeper automation must only go live after contract and infrastructure review.</p>
+    <h3>Heartbeat rewards</h3>
+    <p>Verified nodes are expected to send periodic heartbeats. Reward emission should be tied to valid operator identity and node activity, not passive wallet holding.</p>
+    <h3>peaq-first rollout</h3>
+    <p>The first production priority is peaq Mainnet support. BSC, Ethereum, BTC payment routing and additional chains are future phases and should not be marketed as live until deployed and verified.</p>
+  </section>
+
+  <section class="wp-card">
+    <h2>Token and distribution</h2>
+    <p>PHN has a fixed 100,000,000 token supply. The public distribution policy redirects 10,000,000 PHN from founder vesting into staking rewards. If allocation changes require treasury movements, those movements must be executed by the owner wallet and documented publicly.</p>
+    <table class="wp-table">
+      <thead><tr><th>Bucket</th><th>Amount</th><th>Share</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>Founder vesting</td><td>40,000,000 PHN</td><td>40%</td><td>Long-term team alignment, subject to vesting disclosure.</td></tr>
+        <tr><td>Ecosystem</td><td>30,000,000 PHN</td><td>30%</td><td>Partnerships, grants, listing support, user growth and operations.</td></tr>
+        <tr><td>Staking rewards</td><td>10,000,000 PHN</td><td>10%</td><td>Flex, Locked and Vault staking reward pool.</td></tr>
+        <tr><td>Node rewards</td><td>12,000,000 PHN</td><td>12%</td><td>Verified node participation and heartbeat incentives.</td></tr>
+        <tr><td>Liquidity</td><td>8,000,000 PHN</td><td>8%</td><td>Initial and future DEX liquidity support.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="wp-card">
+    <h2>Presale and burn routing</h2>
+    <p>The presale starts at $0.02 per PHN. Later epochs increase price after defined caps. Every official purchase routes 2% total fee: 0.25% burn and 1.75% treasury. The buyer receives 98% of the gross PHN amount.</p>
+    <table class="wp-table">
+      <thead><tr><th>Epoch</th><th>Price</th><th>Purpose</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>$0.02</td><td>Initial community access and liquidity preparation.</td></tr>
+        <tr><td>2</td><td>$0.05</td><td>Post-validation phase after first sale milestone.</td></tr>
+        <tr><td>3</td><td>$0.10</td><td>Growth phase after initial listing progress.</td></tr>
+        <tr><td>4</td><td>$0.20</td><td>Later phase before broader exchange/liquidity expansion.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="wp-card">
+    <h2>Staking</h2>
+    <p>PHN staking is designed with three public tiers. Rewards depend on available reward-pool funding and deployed contract configuration.</p>
+    <table class="wp-table">
+      <thead><tr><th>Tier</th><th>APY</th><th>Lock</th><th>Use case</th></tr></thead>
+      <tbody>
+        <tr><td>Flex</td><td>8%</td><td>No lock</td><td>Entry staking and liquidity flexibility.</td></tr>
+        <tr><td>Locked</td><td>15%</td><td>90 days</td><td>Medium commitment and stronger yield.</td></tr>
+        <tr><td>Vault</td><td>25%</td><td>180 days</td><td>Long-term alignment and highest reward tier.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="wp-card">
+    <h2>Contracts and verification</h2>
+    <p>Users must verify addresses before transacting. Contract verification, liquidity locking and listing pages should be updated as approvals go live.</p>
+    <code class="wp-code">PHN token: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code>
+    <code class="wp-code">Presale: 0x334D6748a105Aa857890375a811bf51a0182a757</code>
+    <code class="wp-code">Staking: 0x2926c13A0f82b0462f686bbd6c67Fe78a444589A</code>
+    <code class="wp-code">peaq RPC: https://quicknode1.peaq.xyz | Chain ID: 3338</code>
+  </section>
+
+  <section class="wp-card">
+    <h2>Roadmap</h2>
+    <ul>
+      <li>Phase 1: peaq-first website, presale, staking, burn page, vesting, wallet, node activation and Subscan setup.</li>
+      <li>Phase 2: social proof, listings, liquidity process, app install flow and community operations.</li>
+      <li>Phase 3: NexaFlow Agents integration as an ongoing Skymetric execution proof point.</li>
+      <li>Phase 4: own chain planning, games, utility tokens and governance token systems.</li>
+    </ul>
+  </section>
+
+  <section class="wp-card">
+    <h2>Risk disclosure</h2>
+    <p>PHN is an early-stage blockchain project. Presale participation, staking, liquidity provision and token holding carry financial and technical risk. Nothing in this whitepaper is financial advice. Users should verify contracts, understand fees and avoid any unofficial DMs or links.</p>
+  </section>
+</main>
+</body>
+</html>

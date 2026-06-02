@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-28T22:54:53.111Z",
+  "generatedAt": "2026-06-02T03:30:08.685Z",
   "targets": [
     "https://www.peaq.network/",
     "https://depinscan.io/",
@@ -14,7 +14,7 @@
       "url": "https://www.peaq.network/",
       "ok": true,
       "status": 200,
-      "ms": 1424,
+      "ms": 9640,
       "title": "peaq",
       "description": "",
       "signals": {
@@ -29,7 +29,7 @@
       "url": "https://depinscan.io/",
       "ok": true,
       "status": 200,
-      "ms": 767,
+      "ms": 769,
       "title": "DePINscan - The Ultimate DePIN Explorer &amp; Analytics Platform",
       "description": "Explore and analyze 500+ DePIN (Decentralized Physical Infrastructure Network) projects. Track market cap, devices, tokens, and real-time metrics across IoTeX, Solana, Polygon, and Ethereum blockchains. The comprehensive DePIN database for investors and developers.",
       "signals": {
@@ -44,7 +44,7 @@
       "url": "https://www.helium.com/",
       "ok": true,
       "status": 200,
-      "ms": 510,
+      "ms": 557,
       "title": "Helium - Own the Air",
       "description": "Helium allows anyone to build and own massive wireless networks.",
       "signals": {
@@ -59,7 +59,7 @@
       "url": "https://iotex.io/",
       "ok": true,
       "status": 200,
-      "ms": 106,
+      "ms": 164,
       "title": "IoTeX | where AI touches life",
       "description": "The open ecosystem for real-world AI, transforming data from physical machine networks into collective intelligence that will power the next generation of AI.",
       "signals": {
@@ -74,7 +74,7 @@
       "url": "https://rendernetwork.com/",
       "ok": true,
       "status": 200,
-      "ms": 683,
+      "ms": 3752,
       "title": "Render Network",
       "description": "Try the leading decentralized GPU computing platform today at: https://rendernetwork.com/",
       "signals": {
@@ -89,7 +89,7 @@
       "url": "https://www.phantom.com/",
       "ok": true,
       "status": 200,
-      "ms": 445,
+      "ms": 760,
       "title": "Phantom: The money app that&#x27;ll take you places",
       "description": "Your home for trading crypto, predictions, and more",
       "signals": {
@@ -104,7 +104,7 @@
       "url": "https://backpack.app/",
       "ok": true,
       "status": 200,
-      "ms": 492,
+      "ms": 165,
       "title": "Backpack: Crypto Exchange &amp; Wallet | Solana, Ethereum &amp; BTC",
       "description": "Backpack offers a robust, user-friendly platform for seamlessly trading, managing, and securing your cryptocurrency assets.",
       "signals": {

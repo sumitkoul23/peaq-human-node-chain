@@ -31,6 +31,11 @@
   status = 200
 
 [[redirects]]
+  from = "/whitepaper"
+  to = "/whitepaper.html"
+  status = 200
+
+[[redirects]]
   from = "/activate"
   to = "/activate-node.html"
   status = 200

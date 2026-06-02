@@ -3,31 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Peaq Human Node ($PHN) | Verified Human DePIN Protocol</title>
-<meta name="description" content="Peaq Human Node is a verified-human DePIN protocol with PHN presale, staking, burn routing, node activation, wallet tools and peaq-first rollout.">
-<meta name="keywords" content="PHN token, Peaq Human Node, peaq network, DePIN token, verified human node, PHN presale, PHN staking, burn protocol">
+<title>Peaq Human Node ($PHN) | Official Launch Console</title>
+<meta name="description" content="Official PHN launch console by Skymetric Consulting LLP. Buy PHN, stake, verify contracts, track burn routing, install the app and prepare peaq human-node activation.">
 <meta property="og:title" content="Peaq Human Node ($PHN)">
-<meta property="og:description" content="Run a verified human node. Buy PHN. Stake PHN. Track burn, vesting, node and wallet workflows from one protocol hub.">
+<meta property="og:description" content="A peaq-first verified-human DePIN protocol with presale, staking, burn routing, vesting, wallet and node activation tools.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://peaqhumannode.netlify.app">
 <meta property="og:image" content="https://peaqhumannode.netlify.app/assets/phn-logo-minimal-512.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@PeaqHumanNode">
 <meta name="twitter:title" content="Peaq Human Node ($PHN)">
-<meta name="twitter:description" content="Verified-human DePIN protocol on peaq with presale, staking, burn, node activation and wallet tools.">
+<meta name="twitter:description" content="Official PHN launch console for presale, staking, burn, vesting, wallet and peaq node activation.">
 <meta name="twitter:image" content="https://peaqhumannode.netlify.app/assets/phn-logo-minimal-512.png">
 <link rel="canonical" href="https://peaqhumannode.netlify.app/">
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0b1f33">
+<meta name="theme-color" content="#f7fbff">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Organization",
   "name": "Peaq Human Node",
+  "legalName": "Skymetric Consulting LLP",
   "url": "https://peaqhumannode.netlify.app",
   "logo": "https://peaqhumannode.netlify.app/assets/phn-logo-minimal-512.png",
-  "description": "Verified-human DePIN protocol by Skymetric Consulting LLP.",
+  "description": "Peaq Human Node is a peaq-first verified-human DePIN protocol.",
   "sameAs": [
     "https://x.com/PeaqHumanNode",
     "https://t.me/PeaqHumanNode",
@@ -40,96 +40,120 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="phn.css?v=20260529-light3">
-<script defer src="phn-app.js?v=20260529-light3"></script>
+<link rel="stylesheet" href="phn.css?v=20260602-v3">
+<script defer src="phn-app.js?v=20260602-v3"></script>
 <style>
 :root {
-  --h-bg: #f7fbff;
-  --h-card: #ffffff;
-  --h-soft: #eef6fb;
-  --h-line: #d9e7f2;
-  --h-line-strong: #b8dfea;
-  --h-text: #0b1f33;
-  --h-muted: #60758a;
-  --h-cyan: #008fb3;
-  --h-green: #00a978;
-  --h-purple: #6b5bd6;
-  --h-amber: #b87900;
-  --h-red: #d63d54;
-  --h-shadow: 0 22px 70px rgba(20, 45, 70, .10);
-  --h-radius: 10px;
-  --h-mono: "DM Mono", monospace;
+  --page: #f5f9fc;
+  --surface: #ffffff;
+  --surface-soft: #edf5f9;
+  --ink: #0d2235;
+  --muted: #62778a;
+  --line: #d6e5ef;
+  --line-strong: #aacfe0;
+  --cyan: #008fb3;
+  --green: #00a978;
+  --amber: #b87900;
+  --red: #cf3e52;
+  --shadow: 0 18px 54px rgba(31, 61, 86, .10);
+  --radius: 8px;
+  --mono: "DM Mono", monospace;
 }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body.home-page {
   margin: 0;
   min-height: 100vh;
-  background: var(--h-bg);
-  color: var(--h-text);
+  background:
+    radial-gradient(circle at 16% 0%, rgba(0, 143, 179, .12), transparent 34rem),
+    linear-gradient(180deg, #fafdff 0%, var(--page) 42%, #ffffff 100%);
+  color: var(--ink);
   font-family: "Inter", "Segoe UI", system-ui, sans-serif;
   overflow-x: hidden;
 }
-button, input { font: inherit; }
 a { color: inherit; }
-.home-nav {
+button, input { font: inherit; }
+
+.topbar {
   position: sticky;
   top: 0;
-  z-index: 70;
-  border-bottom: 1px solid var(--h-line);
-  background: rgba(247, 251, 255, .9);
+  z-index: 80;
+  border-bottom: 1px solid rgba(214, 229, 239, .9);
+  background: rgba(250, 253, 255, .88);
   backdrop-filter: blur(18px);
-  box-shadow: 0 10px 34px rgba(20,45,70,.06);
 }
-.home-nav-inner {
-  width: min(1180px, calc(100% - 32px));
-  min-height: 74px;
+.nav {
+  width: min(1200px, calc(100% - 32px));
+  min-height: 72px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
+  gap: 16px;
 }
-.nav-logo {
+.brand,
+.phn-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 11px;
+  min-width: 0;
   text-decoration: none;
-  color: var(--h-text);
-  font-weight: 900;
 }
-.nav-logo img {
-  width: 44px;
-  height: 44px;
+.brand img,
+.phn-brand img {
+  width: 48px;
+  height: 48px;
   border-radius: 10px;
-  border: 1px solid var(--h-line);
+  border: 1px solid var(--line);
   background: #fff;
+  box-shadow: 0 8px 24px rgba(0, 143, 179, .12);
 }
-.phn-brand-stack {
-  height: 44px;
+.brand-stack {
+  height: 48px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  line-height: .88;
-  font-size: 13px;
   font-weight: 900;
+  line-height: .88;
+  font-size: 14px;
+  letter-spacing: 0;
 }
-.top-links { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
-.top-links a {
-  color: var(--h-muted);
+.nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: rgba(255,255,255,.72);
+}
+.nav-links a {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  padding: 0 12px;
+  color: var(--muted);
   text-decoration: none;
   font-size: 12px;
   font-weight: 800;
 }
-.top-links a:hover,
-.top-links a.active { color: var(--h-cyan); }
+.nav-links a.active,
+.nav-links a:hover {
+  background: var(--ink);
+  color: #fff;
+}
+.nav-actions { display: flex; align-items: center; gap: 10px; }
 .btn {
   min-height: 42px;
-  border: 1px solid var(--h-line);
+  border: 1px solid var(--line);
   border-radius: 8px;
   background: #fff;
-  color: var(--h-text);
-  padding: 11px 16px;
+  color: var(--ink);
+  padding: 0 16px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -138,55 +162,81 @@ a { color: inherit; }
   font-weight: 850;
   font-size: 13px;
   cursor: pointer;
-  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+  white-space: nowrap;
 }
-.btn:hover { transform: translateY(-1px); border-color: var(--h-line-strong); box-shadow: 0 14px 28px rgba(20,45,70,.08); }
-.btn.primary { background: var(--h-text); border-color: var(--h-text); color: #fff; }
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--line-strong);
+  box-shadow: 0 14px 30px rgba(31, 61, 86, .10);
+}
+.btn.primary {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: #fff;
+}
+.btn.cyan {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #fff;
+}
 .btn.full { width: 100%; }
-.shell { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+
+.shell {
+  width: min(1200px, calc(100% - 32px));
+  margin: 0 auto;
+}
 .hero {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(340px, .78fr);
-  gap: clamp(24px, 4vw, 44px);
-  align-items: start;
-  padding: clamp(46px, 7vw, 86px) 0 28px;
+  grid-template-columns: minmax(0, 1.04fr) minmax(360px, .72fr);
+  gap: clamp(22px, 4vw, 42px);
+  align-items: stretch;
+  padding: clamp(34px, 6vw, 72px) 0 28px;
+}
+.hero-copy {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .eyebrow {
+  width: fit-content;
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  border: 1px solid #c7edf5;
+  min-height: 34px;
+  border: 1px solid #c5eaf4;
   border-radius: 999px;
   background: #eef9fc;
-  color: var(--h-cyan);
-  padding: 7px 12px;
+  color: var(--cyan);
+  padding: 0 13px;
+  font-family: var(--mono);
   font-size: 11px;
-  font-weight: 900;
-  letter-spacing: .08em;
+  font-weight: 700;
   text-transform: uppercase;
 }
-.eyebrow-dot {
+.pulse {
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: var(--h-green);
-  box-shadow: 0 0 0 5px rgba(0,169,120,.12);
+  background: var(--green);
+  box-shadow: 0 0 0 6px rgba(0,169,120,.12);
 }
-.hero h1 {
+h1 {
   margin: 18px 0 16px;
-  max-width: 800px;
-  font-size: clamp(44px, 7vw, 84px);
-  line-height: .94;
+  max-width: 820px;
+  font-size: clamp(38px, 6vw, 76px);
+  line-height: .96;
   letter-spacing: 0;
-  font-weight: 950;
+  font-weight: 900;
 }
-.hero h1 span { color: var(--h-cyan); }
-.hero p {
+h1 span { color: var(--cyan); }
+.lead {
+  max-width: 720px;
   margin: 0;
-  max-width: 680px;
-  color: var(--h-muted);
-  font-size: clamp(16px, 2vw, 19px);
-  line-height: 1.7;
+  color: var(--muted);
+  font-size: clamp(16px, 1.9vw, 19px);
+  line-height: 1.72;
 }
 .hero-actions {
   display: flex;
@@ -194,351 +244,432 @@ a { color: inherit; }
   gap: 12px;
   margin-top: 28px;
 }
-.gateway-card,
-.card,
+.hero-note {
+  margin-top: 18px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.launch-card,
 .panel,
-.route-card {
-  border: 1px solid var(--h-line);
-  border-radius: var(--h-radius);
-  background: var(--h-card);
-  box-shadow: var(--h-shadow);
+.route,
+.stat,
+.timeline-card {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: rgba(255,255,255,.92);
+  box-shadow: var(--shadow);
 }
-.gateway-card {
-  padding: 24px;
-}
-.gateway-head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-.gateway-head img {
-  width: 54px;
-  height: 54px;
-  border-radius: 12px;
-  border: 1px solid var(--h-line);
-}
-.gateway-head h2 {
-  margin: 0;
-  font-size: 24px;
-  letter-spacing: 0;
-}
-.gateway-head span {
-  color: var(--h-muted);
-  font-family: var(--h-mono);
-  font-size: 11px;
-}
-.gateway-actions {
+.launch-card {
+  padding: 20px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-}
-.gateway-actions .btn {
-  min-height: 58px;
-  font-size: 15px;
-}
-.metric-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 22px;
-}
-.metric {
-  border: 1px solid var(--h-line);
-  border-radius: 8px;
-  background: var(--h-soft);
-  padding: 16px;
-}
-.metric strong {
-  display: block;
-  font-size: 26px;
-  line-height: 1;
-  font-weight: 950;
-}
-.metric span {
-  display: block;
-  margin-top: 8px;
-  color: var(--h-muted);
-  font-family: var(--h-mono);
-  font-size: 10px;
-  text-transform: uppercase;
-}
-.section { padding: 24px 0; }
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 18px;
-  align-items: end;
-  margin-bottom: 18px;
-}
-.section-head h2 {
-  margin: 0;
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1.05;
-  letter-spacing: 0;
-}
-.section-head p {
-  margin: 8px 0 0;
-  color: var(--h-muted);
-  line-height: 1.65;
-  max-width: 680px;
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 16px;
 }
-.card {
-  padding: 22px;
-  text-decoration: none;
-  transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+.launch-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
 }
-.card:hover {
-  transform: translateY(-2px);
-  border-color: var(--h-line-strong);
-  box-shadow: var(--h-shadow);
+.launch-head h2,
+.panel h2,
+.section-head h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 38px);
+  line-height: 1.04;
+  letter-spacing: 0;
 }
-.card small {
+.status-pill {
+  min-height: 30px;
   display: inline-flex;
-  border: 1px solid #c7edf5;
+  align-items: center;
   border-radius: 999px;
-  background: #eef9fc;
-  color: var(--h-cyan);
-  padding: 5px 10px;
-  font-family: var(--h-mono);
+  border: 1px solid #bfe7d9;
+  background: #effbf7;
+  color: #007a58;
+  padding: 0 10px;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.price-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.price-cell {
+  padding: 13px;
+  background: var(--surface);
+  border-right: 1px solid var(--line);
+}
+.price-cell:last-child { border-right: 0; }
+.price-cell small,
+.route small,
+.stat span,
+.timeline-card small {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-family: var(--mono);
   font-size: 10px;
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
 }
-.card h3 {
-  margin: 16px 0 8px;
-  font-size: 20px;
-  letter-spacing: 0;
+.price-cell strong {
+  display: block;
+  color: var(--ink);
+  font-size: 21px;
+  line-height: 1;
 }
-.card p {
-  margin: 0;
-  color: var(--h-muted);
-  font-size: 14px;
-  line-height: 1.6;
-}
-.two-col {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, .72fr);
-  gap: 18px;
-  align-items: stretch;
-}
-.panel { padding: 24px; }
-.panel h2,
-.panel h3 {
-  margin: 0 0 14px;
-  letter-spacing: 0;
-}
-.panel p,
-.panel li {
-  color: var(--h-muted);
-  line-height: 1.65;
-}
-.panel ul {
-  display: grid;
-  gap: 10px;
-  margin: 0;
-  padding-left: 18px;
-}
-.token-split {
-  display: grid;
-  gap: 10px;
-}
-.split-row {
-  display: grid;
-  grid-template-columns: 120px 1fr auto;
-  gap: 12px;
-  align-items: center;
-  font-family: var(--h-mono);
-  font-size: 12px;
-}
-.split-bar {
-  height: 8px;
-  border-radius: 999px;
-  background: var(--h-soft);
-  overflow: hidden;
-  border: 1px solid var(--h-line);
-}
-.split-fill {
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--h-cyan), var(--h-green));
-}
-.code-box {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  border: 1px solid var(--h-line);
+.quote-box {
+  border: 1px solid var(--line);
   border-radius: 8px;
-  background: var(--h-soft);
-  padding: 12px;
-  margin-top: 16px;
+  background: var(--surface-soft);
+  padding: 14px;
 }
-.code-box code {
+.quote-line {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(214,229,239,.9);
+  color: var(--muted);
+  font-size: 13px;
+}
+.quote-line:last-child { border-bottom: 0; }
+.quote-line strong { color: var(--ink); }
+.address-box {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  padding: 11px;
+}
+.address-box code {
   min-width: 0;
-  flex: 1;
-  color: var(--h-cyan);
-  font-family: var(--h-mono);
+  color: #006f8d;
+  font-family: var(--mono);
   font-size: 12px;
   overflow-wrap: anywhere;
 }
 .mini-btn {
-  border: 1px solid var(--h-line);
+  min-height: 32px;
+  border: 1px solid var(--line);
   border-radius: 7px;
   background: #fff;
-  min-height: 34px;
-  padding: 7px 10px;
+  padding: 0 10px;
   font-weight: 850;
   cursor: pointer;
 }
-.roadmap-grid {
+
+.stats {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 10px 0 28px;
 }
-.home-footer {
-  border-top: 1px solid var(--h-line);
-  margin-top: 48px;
-  padding: 28px 0;
-  color: var(--h-muted);
-  font-size: 13px;
+.stat {
+  padding: 16px;
+  box-shadow: 0 10px 32px rgba(31,61,86,.07);
 }
-.home-footer .shell {
+.stat strong {
+  display: block;
+  font-size: clamp(24px, 3vw, 34px);
+  line-height: 1;
+}
+
+.section { padding: 38px 0; }
+.section-head {
   display: flex;
   justify-content: space-between;
+  align-items: end;
   gap: 16px;
+  margin-bottom: 18px;
+}
+.section-head p {
+  max-width: 720px;
+  margin: 8px 0 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+.routes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+.route {
+  min-height: 184px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  box-shadow: 0 12px 34px rgba(31,61,86,.07);
+}
+.route:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-2px);
+  transition: .18s ease;
+}
+.route h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+.route p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.56;
+  font-size: 14px;
+}
+.route-footer {
+  margin-top: 20px;
+  color: var(--cyan);
+  font-weight: 850;
+  font-size: 13px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.panel {
+  padding: clamp(20px, 3vw, 28px);
+}
+.panel p,
+.panel li {
+  color: var(--muted);
+  line-height: 1.64;
+}
+.split {
+  display: grid;
+  gap: 10px;
+  margin-top: 18px;
+}
+.split-row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) 54px;
+  align-items: center;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.bar {
+  height: 9px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  background: #f0f6fa;
+}
+.fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), var(--green));
+}
+.check-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.check-list li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #f9fcfe;
+  padding: 12px;
+  overflow-wrap: anywhere;
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.timeline-card {
+  padding: 18px;
+  box-shadow: 0 12px 34px rgba(31,61,86,.07);
+}
+.timeline-card h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+.timeline-card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.58;
+}
+.status-line {
+  min-height: 24px;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.footer {
+  border-top: 1px solid var(--line);
+  margin-top: 38px;
+  padding: 24px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.footer .shell {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
   flex-wrap: wrap;
 }
+
 @media (max-width: 1080px) {
-  .top-links { display: none; }
+  .nav-links { display: none; }
   .hero,
   .two-col { grid-template-columns: 1fr; }
-  .grid { grid-template-columns: repeat(2, 1fr); }
-  .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  .routes { grid-template-columns: repeat(2, 1fr); }
+  .stats { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 640px) {
-  .home-nav-inner,
-  .shell { width: min(100% - 24px, 1180px); }
-  .home-nav-inner .btn { padding: 9px 11px; font-size: 11px; }
-  .nav-logo img { width: 38px; height: 38px; }
-  .phn-brand-stack { height: 38px; font-size: 11px; }
-  .hero { padding-top: 32px; }
-  .hero h1 { font-size: clamp(40px, 12vw, 54px); }
+@media (max-width: 720px) {
+  .nav,
+  .shell { width: min(100% - 22px, 1200px); }
+  .nav { min-height: 66px; }
+  .brand img { width: 40px; height: 40px; }
+  .brand-stack { height: 40px; font-size: 11px; }
+  .nav-actions .btn:not(.primary) { display: none; }
+  .hero { padding-top: 28px; }
+  h1 { font-size: clamp(36px, 12vw, 54px); }
   .hero-actions,
-  .gateway-actions,
-  .grid,
-  .metric-grid,
-  .roadmap-grid { grid-template-columns: 1fr; display: grid; }
-  .split-row { grid-template-columns: 1fr; gap: 6px; }
+  .price-row,
+  .routes,
+  .stats,
+  .timeline {
+    grid-template-columns: 1fr;
+  }
+  .hero-actions { display: grid; }
+  .btn { width: 100%; min-height: 44px; padding: 0 12px; white-space: normal; text-align: center; }
+  .price-cell { border-right: 0; border-bottom: 1px solid var(--line); }
+  .price-cell:last-child { border-bottom: 0; }
+  .address-box { grid-template-columns: 1fr; }
+  .split-row { grid-template-columns: 1fr; gap: 7px; }
   .section-head { display: block; }
 }
 </style>
 </head>
 <body class="home-page">
-<header class="home-nav">
-  <div class="home-nav-inner">
-    <a class="nav-logo" href="index.html" aria-label="Peaq Human Node">
-      <img src="assets/phn-logo-minimal.svg" alt="PHN">
-      <span class="phn-brand-stack"><span>Peaq</span><span>Human</span><span>Node</span></span>
+<header class="topbar">
+  <div class="nav">
+    <a class="brand phn-brand" href="index.html" aria-label="Peaq Human Node home">
+      <img src="assets/phn-logo-minimal.svg" alt="PHN logo">
+      <span class="brand-stack"><span>Peaq</span><span>Human</span><span>Node</span></span>
     </a>
-    <nav class="top-links" aria-label="Primary">
+    <nav class="nav-links" aria-label="Primary">
       <a class="active" href="index.html">Home</a>
       <a href="buy.html">Buy</a>
       <a href="staking.html">Stake</a>
       <a href="burn.html">Burn</a>
-      <a href="activate-node.html">Run Node</a>
+      <a href="activate-node.html">Node</a>
       <a href="wallet.html">Wallet</a>
+      <a href="whitepaper.html">Whitepaper</a>
       <a href="roadmap.html">Roadmap</a>
     </nav>
-    <a class="btn primary" href="buy.html">Buy PHN</a>
+    <div class="nav-actions">
+      <button class="btn" type="button" onclick="connectPhnWallet(null, '#homeStatus')">Connect</button>
+      <a class="btn primary" href="buy.html">Buy PHN</a>
+    </div>
   </div>
 </header>
 
 <main>
   <section class="shell hero">
-    <div>
-      <div class="eyebrow"><span class="eyebrow-dot"></span> Verified-human DePIN protocol</div>
-      <h1>One hub for <span>PHN</span> presale, staking, burn and node activation.</h1>
-      <p>Peaq Human Node is a peaq-first protocol for verified node participation. Buy PHN, stake into transparent lock tiers, understand token burn routing, and prepare human-node activation from one official web3 app.</p>
+    <div class="hero-copy">
+      <div class="eyebrow"><span class="pulse"></span> Official Skymetric Consulting LLP protocol</div>
+      <h1>PHN is a <span>peaq-first</span> launch console for human DePIN nodes.</h1>
+      <p class="lead">One official web3 app for presale, staking, burn routing, vesting, wallet setup, app install and node activation. The product experience now starts with the workflows users actually need.</p>
       <div class="hero-actions">
         <a class="btn primary" href="buy.html">Open presale</a>
-        <a class="btn" href="staking.html">Stake PHN</a>
         <a class="btn" href="activate-node.html">Run a node</a>
+        <a class="btn" href="verify.html">Verify contracts</a>
       </div>
-      <div class="metric-grid">
-        <div class="metric"><strong>$0.02</strong><span>Epoch 1 price</span></div>
-        <div class="metric"><strong>25%</strong><span>Max staking APY</span></div>
-        <div class="metric"><strong>0.25%</strong><span>Burn per buy</span></div>
-        <div class="metric"><strong>100M</strong><span>Fixed supply</span></div>
-      </div>
+      <div class="hero-note" id="homeStatus" data-wallet-status>Connect wallet to switch to peaq Mainnet and use PHN tools.</div>
     </div>
-    <aside class="gateway-card">
-      <div class="gateway-head">
-        <img src="assets/phn-logo-minimal.svg" alt="PHN">
-        <div>
-          <h2>PHN command center</h2>
-          <span>Official Skymetric Consulting LLP launch app</span>
-        </div>
+
+    <aside class="launch-card" aria-label="PHN presale status">
+      <div class="launch-head">
+        <h2>Launch status</h2>
+        <span class="status-pill">Epoch 1 live</span>
       </div>
-      <div class="gateway-actions">
-        <a class="btn primary" href="buy.html">Buy PHN</a>
-        <a class="btn" href="staking.html">Stake</a>
-        <a class="btn" href="burn.html">Burn protocol</a>
-        <a class="btn" href="verify.html">Verify</a>
+      <div class="price-row">
+        <div class="price-cell"><small>Price</small><strong>$0.02</strong></div>
+        <div class="price-cell"><small>Next epoch</small><strong>$0.05</strong></div>
+        <div class="price-cell"><small>Net to buyer</small><strong>98%</strong></div>
       </div>
-      <div class="code-box">
+      <div class="quote-box">
+        <div class="quote-line"><span>Protocol fee</span><strong>2.00%</strong></div>
+        <div class="quote-line"><span>Permanent burn</span><strong>0.25%</strong></div>
+        <div class="quote-line"><span>Treasury route</span><strong>1.75%</strong></div>
+      </div>
+      <div class="address-box">
         <code id="tokenAddress">0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</code>
         <button class="mini-btn" type="button" onclick="copyHomeText('tokenAddress', this)">Copy</button>
       </div>
+      <a class="btn cyan full" href="buy.html">Continue to buy flow</a>
     </aside>
+  </section>
+
+  <section class="shell stats" aria-label="Protocol metrics">
+    <div class="stat"><span>Fixed supply</span><strong>100M</strong></div>
+    <div class="stat"><span>Max staking APY</span><strong>25%</strong></div>
+    <div class="stat"><span>peaq chain ID</span><strong>3338</strong></div>
+    <div class="stat"><span>Staking pool</span><strong>10M</strong></div>
   </section>
 
   <section class="shell section">
     <div class="section-head">
       <div>
-        <h2>Core protocol surfaces</h2>
-        <p>Each action has its own page and purpose. The homepage stays a gateway instead of becoming a long form dump.</p>
+        <h2>Use the protocol</h2>
+        <p>Every route below is a real product surface. The site should feel like an operating console, not a brochure pretending to be a protocol.</p>
       </div>
     </div>
-    <div class="grid">
-      <a class="card" href="buy.html"><small>Presale</small><h3>Buy PHN</h3><p>Use the official sale page with live quote, epoch pricing, burn split and wallet confirmation.</p></a>
-      <a class="card" href="staking.html"><small>Yield</small><h3>Stake PHN</h3><p>Choose Flex, Locked or Vault tiers with visible APY, lock terms and reward estimates.</p></a>
-      <a class="card" href="burn.html"><small>Supply</small><h3>Burn protocol</h3><p>Understand the 0.25% burn and 1.75% treasury route applied to official purchases.</p></a>
-      <a class="card" href="activate-node.html"><small>DePIN</small><h3>Run a node</h3><p>Generate setup commands, bind wallet identity and prepare peaq DID attestation.</p></a>
-      <a class="card" href="wallet.html"><small>Wallet</small><h3>PHN wallet</h3><p>Connect wallet, add peaq network, add PHN token and inspect balances.</p></a>
-      <a class="card" href="download.html"><small>App</small><h3>Install beacon</h3><p>Install the free PHN PWA on Android, iOS, iPadOS, Windows and macOS.</p></a>
-      <a class="card" href="vesting.html"><small>Trust</small><h3>Vesting</h3><p>Review founder vesting, staking reward redirection and unlock assumptions.</p></a>
-      <a class="card" href="support.html"><small>Help</small><h3>Support</h3><p>Use official support routes. Admins will never DM first asking for funds or seed phrases.</p></a>
+    <div class="routes">
+      <a class="route" href="buy.html"><div><small>Presale</small><h3>Buy PHN</h3><p>Epoch pricing, wallet quote, fee split, burn routing and official contract address.</p></div><span class="route-footer">Open buy page</span></a>
+      <a class="route" href="staking.html"><div><small>Rewards</small><h3>Stake PHN</h3><p>Flex, Locked and Vault tiers with APY, lock terms, estimates and pool visibility.</p></div><span class="route-footer">Open staking</span></a>
+      <a class="route" href="burn.html"><div><small>Supply</small><h3>Burn protocol</h3><p>Track the 0.25% burn design and why the burn is tied to official purchases.</p></div><span class="route-footer">Review burn</span></a>
+      <a class="route" href="activate-node.html"><div><small>DePIN</small><h3>Run a node</h3><p>Generate setup commands, bind wallet identity and prepare peaq DID attestation.</p></div><span class="route-footer">Activate node</span></a>
+      <a class="route" href="wallet.html"><div><small>Access</small><h3>Wallet tools</h3><p>Connect MetaMask or Binance Wallet, add peaq Mainnet and add PHN token.</p></div><span class="route-footer">Open wallet</span></a>
+      <a class="route" href="vesting.html"><div><small>Trust</small><h3>Vesting</h3><p>Founder vesting, reward pool redirection and unlock assumptions in one page.</p></div><span class="route-footer">View vesting</span></a>
+      <a class="route" href="whitepaper.html"><div><small>Docs</small><h3>Whitepaper</h3><p>Protocol model, distribution, presale, burn, staking and roadmap in a reviewer-ready paper.</p></div><span class="route-footer">Read whitepaper</span></a>
+      <a class="route" href="download.html"><div><small>Apps</small><h3>Install beacon</h3><p>Free installable PWA for Android, iOS, iPadOS, Windows and macOS.</p></div><span class="route-footer">Download app</span></a>
+      <a class="route" href="support.html"><div><small>Support</small><h3>Get help</h3><p>Official support, FAQs, scam warnings and ticket form for launch users.</p></div><span class="route-footer">Open support</span></a>
     </div>
   </section>
 
   <section class="shell section two-col">
     <div class="panel">
-      <h2>Token model</h2>
-      <p>PHN is designed as a fixed-supply utility token for verified human node participation, staking rewards, protocol operations and future cross-chain expansion.</p>
-      <div class="token-split">
-        <div class="split-row"><span>Founder</span><div class="split-bar"><div class="split-fill" style="width:40%"></div></div><strong>40%</strong></div>
-        <div class="split-row"><span>Ecosystem</span><div class="split-bar"><div class="split-fill" style="width:30%"></div></div><strong>30%</strong></div>
-        <div class="split-row"><span>Staking</span><div class="split-bar"><div class="split-fill" style="width:10%"></div></div><strong>10%</strong></div>
-        <div class="split-row"><span>Node rewards</span><div class="split-bar"><div class="split-fill" style="width:12%"></div></div><strong>12%</strong></div>
-        <div class="split-row"><span>Liquidity</span><div class="split-bar"><div class="split-fill" style="width:8%"></div></div><strong>8%</strong></div>
+      <h2>Token allocation</h2>
+      <p>The public UI shows the launch allocation model with 10M PHN redirected from founder vesting into the staking rewards pool.</p>
+      <div class="split">
+        <div class="split-row"><span>Founder</span><div class="bar"><div class="fill" style="width:40%"></div></div><strong>40%</strong></div>
+        <div class="split-row"><span>Ecosystem</span><div class="bar"><div class="fill" style="width:30%"></div></div><strong>30%</strong></div>
+        <div class="split-row"><span>Staking</span><div class="bar"><div class="fill" style="width:10%"></div></div><strong>10%</strong></div>
+        <div class="split-row"><span>Nodes</span><div class="bar"><div class="fill" style="width:12%"></div></div><strong>12%</strong></div>
+        <div class="split-row"><span>Liquidity</span><div class="bar"><div class="fill" style="width:8%"></div></div><strong>8%</strong></div>
       </div>
     </div>
     <div class="panel">
-      <h2>Verification checklist</h2>
-      <ul>
+      <h2>Verification</h2>
+      <p>Users must be able to verify addresses before doing anything financial. These are the current launch addresses wired into the app.</p>
+      <ul class="check-list">
         <li>Token: 0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B</li>
         <li>Presale: 0x334D6748a105Aa857890375a811bf51a0182a757</li>
         <li>Staking: 0x2926c13A0f82b0462f686bbd6c67Fe78a444589A</li>
-        <li>peaq network: chain ID 3338, RPC https://quicknode1.peaq.xyz</li>
+        <li>peaq RPC: https://quicknode1.peaq.xyz</li>
       </ul>
       <div class="hero-actions">
-        <a class="btn primary" href="verify.html">Open verification</a>
-        <button class="btn" type="button" onclick="addToWallet()">Add PHN token</button>
+        <a class="btn primary" href="verify.html">Open verify page</a>
+        <button class="btn" type="button" onclick="addPhnToken('#homeStatus')">Add PHN token</button>
       </div>
     </div>
   </section>
@@ -546,56 +677,35 @@ a { color: inherit; }
   <section class="shell section">
     <div class="section-head">
       <div>
-        <h2>Roadmap and proof points</h2>
-        <p>PHN starts with peaq-first sale, staking, burn, node activation and listing preparation. Future Skymetric work expands into chain infrastructure, games and governance.</p>
+        <h2>Roadmap and achievements</h2>
+        <p>PHN starts with the peaq launch stack, then expands into Skymetric-owned infrastructure, games, utility tokens and governance.</p>
       </div>
+      <a class="btn" href="achievements.html">View achievements</a>
     </div>
-    <div class="roadmap-grid">
-      <a class="card" href="roadmap.html"><small>Future</small><h3>Own chain</h3><p>EVM-compatible Skymetric Chain planning for verified DePIN and utility transactions.</p></a>
-      <a class="card" href="roadmap.html"><small>Future</small><h3>Games and utility</h3><p>NodeRunner, Proof of Human and DePIN utility loops for verified participation.</p></a>
-      <a class="card" href="achievements.html"><small>Evidence</small><h3>Achievements</h3><p>Track shipped contracts, PWA, staking, presale, listing packets and launch assets.</p></a>
+    <div class="timeline">
+      <a class="timeline-card" href="roadmap.html"><small>Now</small><h3>peaq launch stack</h3><p>Presale, staking, burn page, wallet tools, node activation, app install and listing preparation.</p></a>
+      <a class="timeline-card" href="roadmap.html"><small>Next</small><h3>NexaFlow Agents</h3><p>Highlight the NexaFlowAgents.netlify.app work as an ongoing Skymetric product line and proof of execution.</p></a>
+      <a class="timeline-card" href="roadmap.html"><small>Future</small><h3>Chains, games and governance</h3><p>Own chain planning, game loops, utility tokens and governance token systems after PHN stabilizes.</p></a>
     </div>
   </section>
 </main>
 
-<footer class="home-footer">
+<footer class="footer">
   <div class="shell">
     <span>2026 Skymetric Consulting LLP - Peaq Human Node</span>
-    <span>Use the side navigation for protocol pages. Verify all contract addresses before transacting.</span>
+    <span>Admins never DM first asking for seed phrases, funds or wallet keys.</span>
   </div>
 </footer>
 
 <script>
 async function copyHomeText(id, button) {
-  await navigator.clipboard.writeText(document.getElementById(id).textContent.trim());
-  const old = button.textContent;
+  const text = document.getElementById(id).textContent.trim();
+  await navigator.clipboard.writeText(text);
+  const previous = button.textContent;
   button.textContent = "Copied";
-  setTimeout(() => { button.textContent = old; }, 1200);
-}
-async function addToWallet() {
-  if (!window.ethereum) {
-    alert("Please install MetaMask or another EVM wallet.");
-    return;
-  }
-  try {
-    await window.ethereum.request({
-      method: "wallet_watchAsset",
-      params: {
-        type: "ERC20",
-        options: {
-          address: "0x83e2A4aB24A61d138f12569c497C3E5f2BF8694B",
-          symbol: "PHN",
-          decimals: 18,
-          image: window.location.origin + "/assets/phn-logo-minimal-192.png"
-        }
-      }
-    });
-  } catch (error) {
-    console.error(error);
-  }
+  setTimeout(() => { button.textContent = previous; }, 1200);
 }
 window.copyHomeText = copyHomeText;
-window.addToWallet = addToWallet;
 </script>
 </body>
 </html>

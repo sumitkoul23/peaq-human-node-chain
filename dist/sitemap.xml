@@ -56,6 +56,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://peaqhumannode.netlify.app/whitepaper</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+  <url>
     <loc>https://peaqhumannode.netlify.app/activate-node</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
