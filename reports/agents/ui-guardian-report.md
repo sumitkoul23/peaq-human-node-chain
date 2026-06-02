@@ -1,6 +1,6 @@
 # PHN UI Guardian Report
 
-Generated: 2026-06-02T18:01:22.483Z
+Generated: 2026-06-02T18:31:26.990Z
 
 ## Viewports Covered
 - mobile-small: 360x740
@@ -31,3 +31,4 @@ Generated: 2026-06-02T18:01:22.483Z
 - OK: verify.html
 - OK: vesting.html
 - OK: wallet.html
+- OK: whitepaper.html

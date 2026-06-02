@@ -1,6 +1,6 @@
 # PHN Intelligence Agent Report
 
-Generated: 2026-06-02T03:30:08.685Z
+Generated: 2026-06-02T18:31:26.823Z
 
 ## Passive Design/SEO Scan
 - OK https://www.peaq.network/ (200) - peaq

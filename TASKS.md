@@ -3,6 +3,25 @@ _Last updated: 2026-05-19 | Agent: autonomous mode active_
 
 ---
 
+## CURRENT PRIORITY - 2026-06-02
+
+- [x] Rebuild homepage into a cleaner PHN launch console.
+- [x] Add live website whitepaper page: `dist/whitepaper.html`.
+- [x] Add clean Markdown whitepaper: `docs/PHN_WHITEPAPER.md`.
+- [x] Add reviewer packet: `C:\ClaudeAgent\outputs\PHN_WHITEPAPER.md`.
+- [x] Add strict Subscan logo filename: `dist/assets/peaq_erc20_PHN.png`.
+- [x] Replace Subscan submission packet: `C:\ClaudeAgent\outputs\SUBSCAN_TOKEN_SUBMISSION.md`.
+- [x] Add presale listing launch packet: `C:\ClaudeAgent\outputs\PHN_PRESALE_LISTING_LAUNCH_PACKET.md`.
+- [ ] Submit Subscan token info issue.
+- [ ] Submit DePINscan project.
+- [ ] Submit CoinSniper presale listing.
+- [ ] Submit DappBay dapp listing.
+- [ ] Submit CoinPaprika token profile.
+- [ ] Create official social accounts manually and link live URLs back into website.
+- [ ] After liquidity exists, update GeckoTerminal, DexScreener, DexTools, CoinGecko, CoinMarketCap and LiveCoinWatch.
+
+---
+
 ## 🔴 CRITICAL — Blocking launch
 
 > Run script: `C:\ClaudeAgent\GITHUB_PUSH.bat` after creating GitHub repo

@@ -392,118 +392,153 @@ npm run phn-node -- registration-payload`;
     style.id = "phn-light-minimal-theme";
     style.textContent = `
       :root{
-        --black:#f7fbff!important;
-        --deep:#eef5fb!important;
+        --black:#f4f8fb!important;
+        --deep:#edf4f8!important;
         --card:#ffffff!important;
-        --border:#d9e7f2!important;
-        --text:#0b1f33!important;
-        --muted:#60758a!important;
-        --cyan:#008fb3!important;
+        --border:#d5e4ec!important;
+        --text:#0c1e2d!important;
+        --muted:#66798a!important;
+        --cyan:#0097b8!important;
         --cyan-dim:#006f8d!important;
-        --green:#00a978!important;
-        --amber:#c88700!important;
-        --pink:#d94f96!important;
-        --purple:#6b5bd6!important;
-        --red:#d63d54!important;
+        --green:#00a67a!important;
+        --amber:#b97800!important;
+        --pink:#c94a8b!important;
+        --purple:#6254cf!important;
+        --red:#c93c4f!important;
       }
       html,body{
-        background:#f7fbff!important;
-        color:#0b1f33!important;
+        background:#f4f8fb!important;
+        color:#0c1e2d!important;
         font-family:Inter,"Segoe UI",system-ui,sans-serif!important;
         font-style:normal!important;
       }
-      body::before,.grid-bg,.hero-orb,.hero-orb-2{opacity:0!important;display:none!important}
+      body:not(.home-page)::before{
+        content:""!important;
+        position:fixed!important;
+        inset:0!important;
+        pointer-events:none!important;
+        z-index:-1!important;
+        opacity:.38!important;
+        display:block!important;
+        background-image:linear-gradient(rgba(12,30,45,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(12,30,45,.035) 1px,transparent 1px)!important;
+        background-size:44px 44px!important;
+        mask-image:linear-gradient(180deg,#000 0%,transparent 62%)!important;
+      }
+      body{
+        background:
+          radial-gradient(circle at 12% -6%,rgba(0,151,184,.13),transparent 30rem),
+          radial-gradient(circle at 88% 4%,rgba(0,166,122,.10),transparent 28rem),
+          linear-gradient(180deg,#fbfdff 0%,#f4f8fb 48%,#fff 100%)!important;
+      }
+      .grid-bg,.hero-orb,.hero-orb-2{opacity:0!important;display:none!important}
       nav,.phn-topbar{
-        background:rgba(247,251,255,.86)!important;
-        border-bottom:1px solid #d9e7f2!important;
-        box-shadow:0 10px 34px rgba(20,45,70,.06)!important;
+        background:rgba(251,253,255,.88)!important;
+        border-bottom:1px solid #d5e4ec!important;
+        box-shadow:0 12px 34px rgba(20,45,70,.07)!important;
         backdrop-filter:blur(18px)!important;
       }
-      .nav-logo,.phn-brand{color:#0b1f33!important;letter-spacing:0!important;font-family:Inter,"Segoe UI",system-ui,sans-serif!important;font-style:normal!important}
-      .nav-logo span,.phn-brand span{color:#0b1f33!important}
+      .phn-links,.nav-links,.top-links,.buy-links{
+        gap:6px!important;
+      }
+      .nav-logo,.phn-brand{color:#0c1e2d!important;letter-spacing:0!important;font-family:Inter,"Segoe UI",system-ui,sans-serif!important;font-style:normal!important}
+      .nav-logo span,.phn-brand span{color:#0c1e2d!important}
       .phn-brand-stack,.phn-brand-stack span{font-family:Inter,"Segoe UI",system-ui,sans-serif!important;font-style:normal!important;letter-spacing:0!important;transform:none!important}
       .phn-legacy-logo-img,.phn-brand img,.nav-logo img{
         background:#fff!important;
-        border:1px solid #d9e7f2!important;
-        box-shadow:0 8px 22px rgba(0,143,179,.10)!important;
+        border:1px solid #d5e4ec!important;
+        box-shadow:0 10px 24px rgba(0,151,184,.13)!important;
       }
-      .nav-links a,.phn-links a,.footer-links a,.phn-footer a{color:#60758a!important}
-      .nav-links a:hover,.phn-links a:hover,.footer-links a:hover,.phn-footer a:hover{color:#008fb3!important}
-      .nav-cta,.btn-primary,.phn-btn.primary,.btn-connect,.btn-buy,.btn-stake,.connect-btn,.btn-send,.btn-submit{
-        background:#0b1f33!important;
+      .nav-links a,.phn-links a,.top-links a,.buy-links a,.footer-links a,.phn-footer a{color:#66798a!important}
+      .nav-links a:hover,.phn-links a:hover,.top-links a:hover,.buy-links a:hover,.footer-links a:hover,.phn-footer a:hover{color:#0097b8!important}
+      .nav-cta,.btn-primary,.phn-btn.primary,.btn-connect,.btn-buy,.btn-stake,.connect-btn,.btn-send,.btn-submit,.btn.primary,.buy-btn.primary{
+        background:#0c1e2d!important;
         color:#fff!important;
-        border:1px solid #0b1f33!important;
+        border:1px solid #0c1e2d!important;
         border-radius:8px!important;
-        box-shadow:0 12px 28px rgba(11,31,51,.14)!important;
+        box-shadow:0 14px 32px rgba(12,30,45,.18)!important;
+        min-height:42px!important;
       }
-      .btn-secondary,.phn-btn,.phn-btn.ghost,.copy-btn,.max-btn,.slip-btn,.cur-tab,.contact-btn-secondary{
+      .btn-secondary,.phn-btn,.phn-btn.ghost,.copy-btn,.max-btn,.slip-btn,.cur-tab,.contact-btn-secondary,.btn,.buy-btn,.mini-btn{
         background:#fff!important;
-        color:#0b1f33!important;
-        border:1px solid #d9e7f2!important;
+        color:#0c1e2d!important;
+        border:1px solid #d5e4ec!important;
         border-radius:8px!important;
         box-shadow:none!important;
+        min-height:40px!important;
       }
-      .btn-primary,.btn-secondary,.nav-cta,.btn-connect,.btn-buy,.btn-stake,.connect-btn,.btn-send,.btn-submit,.copy-btn,.max-btn,.slip-btn,.cur-tab,button,input,select,textarea{
+      .btn-primary,.btn-secondary,.nav-cta,.btn-connect,.btn-buy,.btn-stake,.connect-btn,.btn-send,.btn-submit,.copy-btn,.max-btn,.slip-btn,.cur-tab,.btn,.buy-btn,button,input,select,textarea{
         font-family:Inter,"Segoe UI",system-ui,sans-serif!important;
         font-style:normal!important;
         letter-spacing:0!important;
+        transform:none;
       }
-      .btn-primary:hover,.btn-secondary:hover,.phn-btn:hover,.nav-cta:hover{
+      .btn-primary:hover,.btn-secondary:hover,.phn-btn:hover,.nav-cta:hover,.btn:hover,.buy-btn:hover{
         transform:translateY(-1px)!important;
-        box-shadow:0 16px 34px rgba(0,143,179,.12)!important;
+        box-shadow:0 16px 34px rgba(0,151,184,.12)!important;
       }
       .hero,.phn-hero,.page,.staking-page,.wallet-page,.exchange-page,.support-page{
-        background:#f7fbff!important;
+        background:transparent!important;
       }
       .hero-badge,.phn-kicker,.presale-badge,.phn-tag,.exchange-tag,.badge{
         background:#eef9fc!important;
-        color:#008fb3!important;
+        color:#0097b8!important;
         border-color:#c7edf5!important;
         border-radius:999px!important;
       }
-      .h1-accent,.section-label,.phn-label,.price-val,.live-price,.up{color:#008fb3!important}
-      .h1-line2,.hero-desc,.section-desc,.page-desc,.phn-lead,p,li{color:#60758a}
+      .h1-accent,.section-label,.phn-label,.price-val,.live-price,.up{color:#0097b8!important}
+      .h1-line2,.hero-desc,.section-desc,.page-desc,.phn-lead,p,li{color:#66798a}
       h1,h2,h3,h4,.phn-title,.stat-value,.phn-stat,.raise-val,.val,.v,.contract-val,.tier-apy,.tier-name{
-        color:#0b1f33!important;
+        color:#0c1e2d!important;
         font-family:Inter,"Segoe UI",system-ui,sans-serif!important;
         font-style:normal!important;
         letter-spacing:0!important;
         transform:none!important;
       }
+      h1,.phn-title{font-size:clamp(38px,6.2vw,76px)!important;line-height:.98!important}
       .tier-apy span{letter-spacing:0!important;font-style:normal!important}
       .ticker,.listing,.tokenomics,.exchange,.how,.features,.cta-section,footer,.phn-footer{
-        background:#f7fbff!important;
-        border-color:#d9e7f2!important;
+        background:transparent!important;
+        border-color:#d5e4ec!important;
       }
-      .step,.feat-card,.contract-box,.exchange-card,.phn-card,.phn-panel,.buy-widget,.info-card,.burn-meter,.form-card,.pool-card,.tier-card,.stat-card,.wallet-card,.balance-card,.quick-card,.contact-card,.doc-card,.trust-item,.raise-block,.fee-box,.input-wrap,.send-card{
-        background:#fff!important;
-        border:1px solid #d9e7f2!important;
+      .step,.feat-card,.contract-box,.exchange-card,.phn-card,.phn-panel,.buy-widget,.info-card,.burn-meter,.form-card,.pool-card,.tier-card,.stat-card,.wallet-card,.balance-card,.quick-card,.contact-card,.doc-card,.trust-item,.raise-block,.fee-box,.input-wrap,.send-card,.launch-card,.panel,.route,.stat,.timeline-card,.wp-card{
+        background:rgba(255,255,255,.94)!important;
+        border:1px solid #d5e4ec!important;
         border-radius:10px!important;
-        box-shadow:0 16px 42px rgba(20,45,70,.07)!important;
+        box-shadow:0 14px 38px rgba(24,54,78,.08)!important;
+        transform:none!important;
+      }
+      .step:hover,.feat-card:hover,.exchange-card:hover,.phn-card:hover,.tier-card:hover,.quick-card:hover,.route:hover,.timeline-card:hover{
+        border-color:#9ed4df!important;
+        box-shadow:0 22px 48px rgba(24,54,78,.12)!important;
       }
       input,select,textarea,.phn-input,.phn-select{
         background:#fff!important;
-        color:#0b1f33!important;
-        border:1px solid #cbddeb!important;
+        color:#0c1e2d!important;
+        border:1px solid #c9dae5!important;
         border-radius:8px!important;
       }
       code,.phn-code,.phn-code-block{
         color:#006f8d!important;
         background:#f1f7fb!important;
-        border-color:#d9e7f2!important;
+        border-color:#d5e4ec!important;
       }
-      .progress-bar,.pool-bar,.burn-bar{background:linear-gradient(90deg,#008fb3,#00a978)!important}
+      .progress-bar,.pool-bar,.burn-bar,.fill,.split-fill{background:linear-gradient(90deg,#0097b8,#00a67a)!important}
       .phn-side-nav-panel{
-        background:rgba(255,255,255,.92)!important;
-        border-color:#d9e7f2!important;
-        box-shadow:0 18px 50px rgba(20,45,70,.14)!important;
+        background:rgba(255,255,255,.90)!important;
+        border-color:#d5e4ec!important;
+        box-shadow:0 16px 44px rgba(20,45,70,.12)!important;
       }
       .phn-side-nav-panel a,.phn-side-nav-panel button{
         background:#fff!important;
-        color:#0b1f33!important;
-        border-color:#d9e7f2!important;
+        color:#0c1e2d!important;
+        border-color:#d5e4ec!important;
       }
-      .phn-side-nav-panel a.active{background:#0b1f33!important;color:#fff!important;border-color:#0b1f33!important}
+      .phn-side-nav-panel a.active{background:#0c1e2d!important;color:#fff!important;border-color:#0c1e2d!important}
+      @media(max-width:720px){
+        h1,.phn-title{font-size:clamp(34px,10.8vw,48px)!important}
+        .phn-side-nav-panel nav{scroll-snap-type:x mandatory}
+        .phn-side-nav-panel a,.phn-side-nav-panel button{scroll-snap-align:start;white-space:nowrap}
+      }
     `;
     document.head.appendChild(style);
   }

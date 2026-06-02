@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T18:01:22.483Z",
+  "generatedAt": "2026-06-02T18:31:26.990Z",
   "viewports": [
     {
       "name": "mobile-small",
@@ -109,6 +109,10 @@
     },
     {
       "page": "wallet.html",
+      "findings": []
+    },
+    {
+      "page": "whitepaper.html",
       "findings": []
     }
   ],
